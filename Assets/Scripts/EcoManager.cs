@@ -8,10 +8,10 @@ public class EcoManager
     /// <summary>
     /// Stores state of ecosystem.
     /// </summary>
-    private Ecosystem ecosystem;
+    Ecosystem ecosystem;
     EcosystemCreator ecoCreator;
 
-    public void main()
+    public void makeEco()
     {
         userCreatesEcosystem();
         userAddsSpecies();
@@ -91,4 +91,15 @@ public class EcoManager
         // TODO: Include system for saving a temporary map to the actual map.
         // this applies to both the MapEditor, and SpeciesPopulator.
     }
+
+    public void runSystem(int steps)
+    {
+        ecosystem.runSystem(steps);
+    }
+
+    public Ecosystem getEcosystem()
+    {
+        return ecosystem;
+    }
+
 }

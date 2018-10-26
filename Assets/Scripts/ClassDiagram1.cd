@@ -123,7 +123,7 @@
   <Class Name="Ecosystem">
     <Position X="27.25" Y="6.25" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAAAGAAEAAAAAAAAQkAABQAAAAIAIEAAAAAAAAAQBAA=</HashCode>
+      <HashCode>AAAAHAAEAAAAAAAAQkAABQAAAAIAAEAAAAAAAAAQBAA=</HashCode>
       <FileName>Assets\Scripts\Ecosystem.cs</FileName>
       <NewMemberFileName>Assets\Scripts\EcoSystem.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -136,7 +136,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ResourceStore">
-    <Position X="33.75" Y="12.5" Width="4.75" />
+    <Position X="33.75" Y="13.5" Width="4.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAQAQAAQAAEAAAAAAAAAAEACAAAAAAAAQAAAA=</HashCode>
       <FileName>Assets\Scripts\ResourceStore.cs</FileName>
@@ -186,7 +186,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAggAAAGAEAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAAAAAAggAAAGAEAAAAAAAAAAAAAAAAAAAAAAAAQAAQ=</HashCode>
       <FileName>Assets\Scripts\EcoManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -321,7 +321,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>FAAAAgBAgBAAgAAAQAAAMAAAABAAADBAAAAAAQQAAAA=</HashCode>
+      <HashCode>FAAABgBQgBAAgAAAQAAAMAAAABAAADBAAAAAAQQAAAA=</HashCode>
       <FileName>Assets\Scripts\EcosystemCreator.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -339,7 +339,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="LandResourceCreator">
-    <Position X="33.75" Y="9.75" Width="4.25" />
+    <Position X="33.75" Y="10.25" Width="4.25" />
     <AssociationLine Name="resourceStore" Type="ResourceStore">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.104" Y="0.347" />
@@ -356,7 +356,7 @@
   <Class Name="SpeciesPopulator">
     <Position X="39.25" Y="5.75" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>IAAAEAQAAAAAAAAEAAAAAAAAAAAAAAAAAIAAAAAgAAA=</HashCode>
+      <HashCode>IAAAEAQAAAgAAAAEAAAAAAAAAAAAAAAAAIAAAAAgAAA=</HashCode>
       <FileName>Assets\Scripts\SpeciesPopulator.cs</FileName>
     </TypeIdentifier>
   </Class>

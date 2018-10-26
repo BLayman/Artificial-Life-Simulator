@@ -11,7 +11,7 @@ public class BoostRequirement
     /// <summary>
     /// List of resources required for boost, and their thresholds.
     /// </summary>
-    public List<string, int> requiredResources;
+    public Dictionary<string, int> requiredResources;
     /// <summary>
     /// The amount of increase in ability if the boost is active.
     /// </summary>

@@ -79,6 +79,7 @@ public class Creature
     /// </summary>
     public void startTurn()
     {
+        Console.WriteLine("starting turn");
         throw new System.NotImplementedException();
     }
 

@@ -7,6 +7,10 @@ public class SpeciesPopulator
 {
     private Creature founder;
     private List<List<Land>> map;
+    /// <summary>
+    /// List of creatures in the population.
+    /// </summary>
+    private List<Creature> population;
 
     public SpeciesPopulator(Creature _founder, List<List<Land>> _map)
     {
@@ -32,7 +36,7 @@ public class SpeciesPopulator
     }
 
     /// <summary>
-    /// Creates set number of creatures, randomly across the map.
+    /// Creates set number of creatures, randomly across the map. Adds them to population variable.
     /// </summary>
     /// <param name="size">Number of creatures.</param>
     public void populateRandom(int size)

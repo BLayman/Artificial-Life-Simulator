@@ -8,7 +8,7 @@ public class Ecosystem
     /// <summary>
     /// Lists of creatures, organized by species name in dictionary.
     /// </summary>
-    public Dictionary<string, List<Creature>> creatures;
+    public Dictionary<string, List<Creature>> populations;
     /// <summary>
     /// map of land spaces
     /// </summary>
@@ -46,7 +46,16 @@ public class Ecosystem
     /// </summary>
     public void runSystem(int timeSteps)
     {
-        throw new System.NotImplementedException();
+        foreach (string species in populations.Keys)
+        {
+            List<Creature> population = populations[species];
+
+            foreach (Creature creature in population)
+            {
+                Console.WriteLine("creating creature");
+                creature.startTurn();
+            }
+        }
     }
 
 

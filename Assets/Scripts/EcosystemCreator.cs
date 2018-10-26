@@ -29,6 +29,10 @@ public class EcosystemCreator
     /// Users founder and map to populate species.
     /// </summary>
     public SpeciesPopulator speciesPopulator;
+    /// <summary>
+    /// Stores populations of creatures.
+    /// </summary>
+    public Dictionary<string, List<Creature>> populations;
 
     public EcosystemCreator(Ecosystem _ecosystem)
     {
@@ -38,7 +42,7 @@ public class EcosystemCreator
 
     public void setAbilityPointsPerCreature(int abilityPoints)
     {
-        throw new System.NotImplementedException();
+        ecosystem.abilityPointsPerCreature = abilityPoints;
     }
 
     public void setCommBits(int numBits)
@@ -88,5 +92,13 @@ public class EcosystemCreator
     public void populateSpecies(string founderSpecies)
     {
         speciesPopulator = new SpeciesPopulator(founderCreatures[founderSpecies], ecosystem.map);
+    }
+
+    /// <summary>
+    /// Saves population creatured by speciesPopulator.
+    /// </summary>
+    public void savePopulation()
+    {
+        throw new System.NotImplementedException();
     }
 }
