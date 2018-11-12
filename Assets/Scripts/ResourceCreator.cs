@@ -17,7 +17,7 @@ public class ResourceCreator
 
     public void setLevel(int resourceLevel)
     {
-        throw new System.NotImplementedException();
+        resource.currentLevel = resourceLevel;
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ public class ResourceCreator
     /// <param name="drainAmt">Amount of health drained per healthUpdate when below deficiency threshold.</param>
     public void setDeficiencyHealthDrain(int drainAmt)
     {
-        throw new System.NotImplementedException();
+        resource.deficiencyHealthDrain = drainAmt;
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public class ResourceCreator
     /// <param name="deficiencyThreshold">Threshold at which deficiency occurs (health drain takes effect).</param>
     public void setDeficiencyThreshold(int deficiencyThreshold)
     {
-        throw new System.NotImplementedException();
+        resource.deficiencyThreshold = deficiencyThreshold;
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public class ResourceCreator
     /// <param name="healthGain">Health gained when health gain threshold is met.</param>
     public void setHealthGain(int healthGain)
     {
-        throw new System.NotImplementedException();
+        resource.healthGain = healthGain;
     }
 
     /// <summary>
@@ -53,6 +53,21 @@ public class ResourceCreator
     /// <param name="gainThreshold">Threshold at which health is gained when it's surpassed.</param>
     public void setHealthGainThreshold(int gainThreshold)
     {
-        throw new System.NotImplementedException();
+        resource.healthGainThreshold = gainThreshold;
+    }
+
+    public void setMaxLevel(int maxLevel)
+    {
+        resource.maxLevel = maxLevel;
+    }
+
+    public void setBaseUsage(int baseUsage)
+    {
+        resource.baseUsage = baseUsage;
+    }
+
+    public void setName(string name)
+    {
+        resource.name = name;
     }
 }

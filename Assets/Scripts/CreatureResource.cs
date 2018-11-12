@@ -6,28 +6,33 @@ using System.Text;
 /// <summary>
 /// Resources stored by a creature.
 /// </summary>
+
+[Serializable]
 public class CreatureResource
 {
     /// <summary>
     /// Threshold below which resource causes health damage.
     /// </summary>
-    private int deficiencyThreshold;
+    public int deficiencyThreshold;
     /// <summary>
     /// Amount of health drain from deficiency in one time step.
     /// </summary>
-    private int deficiencyHealthDrain;
+    public int deficiencyHealthDrain;
     /// <summary>
     /// Amount of the resource currently stored.
     /// </summary>
-    private int currentLevel;
+    public int currentLevel;
     /// <summary>
     /// Amount of health gained when resource is adequate.
     /// </summary>
-    private int healthGain;
+    public int healthGain;
     /// <summary>
     /// Threshold above which health is gained.
     /// </summary>
-    private int healthGainThreshold;
+    public int healthGainThreshold;
+    public int maxLevel;
+    public int baseUsage;
+    public string name;
 
     /// <summary>
     /// Update creature health according to resource level.

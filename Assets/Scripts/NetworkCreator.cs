@@ -39,4 +39,9 @@ public class NetworkCreator
         network.net[nodeCreator.nodeLayer].Add(nodeCreator.getCreatedNode());
     }
 
+    public NodeCreator addNode(int layer)
+    {
+        nodeCreator = new NodeCreator(layer);
+        return nodeCreator;
+    }
 }

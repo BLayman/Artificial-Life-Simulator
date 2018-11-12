@@ -5,6 +5,7 @@ using System.Text;
 
 public enum NodeCreatorType { siNodeCreator, commNodeCreator }
 
+
 public class NodeCreator
 {
     NodeCreatorInterface nodeCreator;

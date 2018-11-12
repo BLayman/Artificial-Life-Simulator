@@ -24,70 +24,111 @@ public class EcoManager
         ecosystem = new Ecosystem();
 
         ecoCreator = new EcosystemCreator(ecosystem);
+        // set basic ecosystem parameters
         ecoCreator.setAbilityPointsPerCreature(10);
         ecoCreator.setCommBits(4);
-        ecoCreator.setDistinctPhenotypeNum(20);
-        ecoCreator.generateMap(100, 100);
+        ecoCreator.setDistinctPhenotypeNum(16);
         ecoCreator.setTimeUnitsPerTurn(10);
 
+        // create and save resources
         ecoCreator.addResource("grass");
-        ecoCreator.lrc.setAmountOfResource(1000);
+        ecoCreator.lrc.setAmountOfResource(1500);
+        ecoCreator.lrc.setMaxAmt(1500);
         ecoCreator.lrc.setAmtConsumedPerTime(100);
         ecoCreator.lrc.setProportionExtracted(.05f);
         ecoCreator.lrc.setRenewalAmt(10);
         ecoCreator.saveResource();
 
-        ecoCreator.mapEditor.addUniformResource("grass", .5f); 
+        ecoCreator.addResource("flowers");
+        ecoCreator.lrc.setAmountOfResource(500);
+        ecoCreator.lrc.setMaxAmt(500);
+        ecoCreator.lrc.setAmtConsumedPerTime(100);
+        ecoCreator.lrc.setProportionExtracted(.1f);
+        ecoCreator.lrc.setRenewalAmt(1);
+        ecoCreator.saveResource();// saves to tentative resources
+
+        ecoCreator.saveResourceOptions(); // adds all resources to ecosystem resources
+
+        // generate map
+        ecoCreator.mapEditor = new MapEditor(ecoCreator.tentativeMap, ecoCreator.tentativeResourceOptions);
+        ecoCreator.mapEditor.generateMap(50, 50);
+        ecoCreator.mapEditor.addLERPXResource("grass", .75f);
+        ecoCreator.saveEditedMap(); // saves to tentative map
+        ecoCreator.saveMap(); // saves to ecosystem map
+        
     }
 
     
     public void userAddsSpecies()
     {
         // when user clicks to start species creation process:
-        ecoCreator.creatureCreator =  new CreatureCreator(new Creature(ecosystem.abilityPointsPerCreature));
-        CreatureCreator cc = ecoCreator.creatureCreator;
+        CreatureCreator cc = ecoCreator.addCreature();
 
         // user edits:
         cc.setSpecies("Cat");
 
+        // add resource for the creature to store
+        ResourceCreator resourceCreator = cc.addResource();
+
+
+        List<string> keyList = new List<string>(ecosystem.resourceOptions.Keys);
+        Console.WriteLine("resource added to creature: " + keyList[0]);
+
+        resourceCreator.setName(keyList[0]);
+        resourceCreator.setMaxLevel(100);
+        resourceCreator.setLevel(90);
+        resourceCreator.setHealthGain(1);
+        resourceCreator.setHealthGainThreshold(50);
+        resourceCreator.setDeficiencyHealthDrain(1);
+        resourceCreator.setDeficiencyThreshold(10);
+        resourceCreator.setBaseUsage(1);
+
+        cc.saveResource();
+
         // user opens networks creator for that creature
 
         // user adds a network
-        cc.netCreator = new NetworkCreator(new Network());
-        cc.netCreator.setInLayer(0); // called by default with index of layer user clicked
-        cc.netCreator.setName("net1");
+        NetworkCreator netCreator = cc.addNetwork();
+        netCreator.setInLayer(0); // called by default with index of layer user clicked
+        netCreator.setName("net1");
 
         // user adds nodes to input layer (0)
-        cc.netCreator.nodeCreator = new NodeCreator(0);
+        NodeCreator nodeCreator = netCreator.addNode(0);
 
         // user sets node type to sensory input node
-        cc.netCreator.nodeCreator.setCreator(NodeCreatorType.siNodeCreator);
+        nodeCreator.setCreator(NodeCreatorType.siNodeCreator);
 
         // the sensory node editor gets it's sensory input node creator from nodeCreator
-        SensoryInputNodeCreator sinc = (SensoryInputNodeCreator) cc.netCreator.nodeCreator.getNodeCreator();
+        SensoryInputNodeCreator sinc = (SensoryInputNodeCreator) nodeCreator.getNodeCreator();
         // the sinc is used to set properties on the sensory input node
         sinc.setLandIndex(4);
-        sinc.setSensedResource("grass");
+        sinc.setSensedResource(keyList[0]);
 
         // user clicks save on node editor
-        cc.netCreator.saveNode();
+        netCreator.saveNode();
 
         // user clicks save on network creator
         cc.saveNetwork();
 
         // user clicks save on creature creator
-        ecoCreator.addToFounders(cc.creature);
+
+        // adds creature to list of founders
+        ecoCreator.addToFounders();
+        // saves founders to ecosystem species list
+        ecoCreator.saveFoundersToSpecies();
     }
 
     public void userPopulatesSpecies()
     {
-        ecoCreator.populateSpecies("Cat");
-        SpeciesPopulator populator = ecoCreator.speciesPopulator;
+        SpeciesPopulator populator = ecoCreator.populateSpecies("Cat"); ;
         populator.SetAbilityStandardDeviation(1);
         populator.setNetworkWeightStandardDeviation(.5f);
         populator.populateRandom(100);
+        ecoCreator.saveCurrentPopulation();
+        ecoCreator.addCurrentPopulationToEcosystem();
+        ecoCreator.addCurrentPopulationToMap();
+        ecoCreator.saveMap(); // need to save updated tentative map
 
-        ecoCreator.saveFounders();
         // TODO: Include system for saving a temporary map to the actual map.
         // this applies to both the MapEditor, and SpeciesPopulator.
     }

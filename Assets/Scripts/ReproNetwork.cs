@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 
 [Serializable]
-public class CommNetwork: Network
+public class ReproNetwork: Network
 {
     /// <summary>
-    /// Index of neighbor from which communication was recieved
+    /// Index of neighbor to reproduce with.
     /// </summary>
-    private int communicationFrom;
+    public int reproduceWith;
 }

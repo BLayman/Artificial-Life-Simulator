@@ -14,17 +14,17 @@ public class LandResourceCreator
 
     public void setAmtConsumedPerTime(int amountConsumed)
     {
-        throw new System.NotImplementedException();
+        resourceStore.amountConsumedPerTimeUnit = amountConsumed;
     }
 
     public void setRenewalAmt(int amountRenewed)
     {
-        throw new System.NotImplementedException();
+        resourceStore.renewalAmt = amountRenewed;
     }
 
     public void setAmountOfResource(int amount)
     {
-        throw new System.NotImplementedException();
+        resourceStore.amountStored = amount;
     }
 
     /// <summary>
@@ -33,6 +33,14 @@ public class LandResourceCreator
     /// <param name="proportion">Must be between 0 and 1.</param>
     public void setProportionExtracted(float proportion)
     {
-        throw new System.NotImplementedException();
+        resourceStore.proportionExtracted = proportion;
+    }
+
+    /// <summary>
+    /// Sets maximum amount of the resource that can be stored.
+    /// </summary>
+    public void setMaxAmt(int maxAmount)
+    {
+        resourceStore.maxAmount = maxAmount;
     }
 }

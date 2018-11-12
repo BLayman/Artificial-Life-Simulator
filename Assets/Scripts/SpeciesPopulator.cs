@@ -5,17 +5,15 @@ using System.Text;
 
 public class SpeciesPopulator
 {
-    private Creature founder;
-    private List<List<Land>> map;
     /// <summary>
-    /// List of creatures in the population.
+    /// Stores Information about the population.
     /// </summary>
-    private List<Creature> population;
+    public Population population;
 
-    public SpeciesPopulator(Creature _founder, List<List<Land>> _map)
+
+    public SpeciesPopulator(Creature _founder)
     {
-        founder = _founder;
-        map = _map;
+        population.founder = _founder;
     }
 
     /// <summary>
@@ -32,7 +30,7 @@ public class SpeciesPopulator
     /// </summary>
     public void setNetworkWeightStandardDeviation(float standardDeviation)
     {
-        throw new System.NotImplementedException();
+        population.weightStandardDev = standardDeviation;
     }
 
     /// <summary>
@@ -41,13 +39,18 @@ public class SpeciesPopulator
     /// <param name="size">Number of creatures.</param>
     public void populateRandom(int size)
     {
-        throw new System.NotImplementedException();
+        population.creatures = new List<Creature>(size);
+        // remember to set creature founder
+        for (int i = 0; i < size; i++)
+        {
+            population.creatures[i] = population.generateMember();
+        }
     }
 
     /// <summary></summary>
     /// <param name="standardDeviation"></param>
     public void SetAbilityStandardDeviation(float standardDeviation)
     {
-        throw new System.NotImplementedException();
+        population.abilityStandardDev = standardDeviation;
     }
 }

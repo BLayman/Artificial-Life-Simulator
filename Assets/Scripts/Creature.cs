@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using Priority_Queue;
 
+
+[Serializable]
 public class Creature
 {
 
-    public Creature(int maxAbilityPoints)
-    {
-        remainingAbilityPoints = maxAbilityPoints;
-    }
+    public Creature founder;
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
@@ -28,6 +29,8 @@ public class Creature
     /// Time remaining in turn: limits number of actions that can be taken in one turn.
     /// </summary>
     public int remainingTurnTime;
+
+    public int fullTurnTime;
     /// <summary>
     /// The number of layers of Networks
     /// </summary>
@@ -60,19 +63,31 @@ public class Creature
     /// <summary>
     /// A comm network will be created for each CommSignal in commList, and added to the first layer of networks in "networks" (the input layer).
     /// </summary>
-    public Network commInNetTemplate;
+    public CommNetwork commInNetTemplate;
     /// <summary>
     /// A template for the network that generates actions towards a specific neighbor in response to comm input from that neighbor.
     /// </summary>
-    public Network commOutNetTemplate;
+    public CommNetwork commOutNetTemplate;
     /// <summary>
     /// Maximum health that creature can attain.
     /// </summary>
     public int maxHealth;
 
     public int remainingAbilityPoints;
+    /// <summary>
+    /// List of requests for reproduction from neighbors.
+    /// </summary>
+    public List<ReproAction> reproductionRequests;
+    /// <summary>
+    /// Network to decide whether a creature should reproduce with a neightbor.
+    /// </summary>
+    public ReproNetwork reproductionDeciderNetwork;
 
-    
+    public Creature(int maxAbilityPoints)
+    {
+        remainingAbilityPoints = maxAbilityPoints;
+    }
+
 
     /// <summary>
     /// Starts creatures turn
@@ -81,6 +96,21 @@ public class Creature
     {
         Console.WriteLine("starting turn");
         throw new System.NotImplementedException();
+    }
+
+    public Creature getCopy()
+    {
+        using (System.IO.MemoryStream stream = new MemoryStream())
+        {
+            if (this.GetType().IsSerializable)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, this);
+                stream.Position = 0;
+                return (Creature) formatter.Deserialize(stream);
+            }
+            return null;
+        }
     }
 
     /// <summary>
@@ -155,4 +185,23 @@ public class Creature
     {
         throw new System.NotImplementedException();
     }
+
+    /// <summary>
+    /// process requests for reproduction.
+    /// </summary>
+    public void processReproRequests()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    /// <summary>
+    /// Reproduce with neighboring creature.
+    /// </summary>
+    /// <param name="mate">Creature to reproduce with.</param>
+    public void reproduce(Creature mate)
+    {
+        throw new System.NotImplementedException();
+    }
+
+
 }

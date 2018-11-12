@@ -9,15 +9,18 @@ public class CreatureCreator
     public NetworkCreator netCreator;
     public ResourceCreator resourceCreator;
     public AbilitiesCreator abilitiesCreator;
+    public int distinctPhenotypes;
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public CreatureCreator(Creature _creature)
+    public CreatureCreator(Creature _creature, int _distinctPhenotypes)
     {
         creature = _creature;
         initializeNetworkStructure();
+        distinctPhenotypes = _distinctPhenotypes;
     }
+
 
 
     /// <summary>
@@ -51,27 +54,29 @@ public class CreatureCreator
     /// </summary>
     public void setPosition(int xCoor, int yCoor)
     {
-        throw new System.NotImplementedException();
+        creature.position[0] = xCoor;
+        creature.position[1] = yCoor;
     }
 
     public void setMaxHealth(int maxHealth)
     {
-        throw new System.NotImplementedException();
+        creature.maxHealth = maxHealth;
     }
 
     public void setInitialHealth(int initialHealth)
     {
-        throw new System.NotImplementedException();
+        creature.health = initialHealth;
     }
 
     /// <summary>
-    /// Sets phenotype of creature. Takes in int: [0,x], where there are x distinct phenotypes allowed in the ecosystem,
-    /// and assigns corrresponding bool array to creatures phenotype. The bool array contains all zeros, except for a 1 at the x index.
+    /// Sets phenotype of creature. Takes in int: [1,x], where there are x distinct phenotypes allowed in the ecosystem,
+    /// and assigns corrresponding bool array to creatures phenotype. The bool array contains all falses, except for a true at the x-1 index.
     /// </summary>
-    /// <param name="phenotype">Must be 0 - x: Where there are x distinct phenotypes allowed in the ecosystem (set in Ecosystem class).</param>
+    /// <param name="phenotype">Must be 1 - x: Where there are x distinct phenotypes allowed in the ecosystem (set in Ecosystem class).</param>
     public void setPhenotype(int phenotype)
     {
-        throw new System.NotImplementedException();
+        creature.phenotype = new bool[distinctPhenotypes];
+        creature.phenotype[phenotype - 1] = true;
     }
 
     /// <summary>
@@ -79,7 +84,7 @@ public class CreatureCreator
     /// </summary>
     public void setTurnTime(int time)
     {
-        throw new System.NotImplementedException();
+        creature.fullTurnTime = time;
     }
 
     /// <summary>
@@ -95,7 +100,7 @@ public class CreatureCreator
     /// </summary>
     public void saveResource()
     {
-        throw new System.NotImplementedException();
+        creature.storedResources.Add(resourceCreator.resource.name, resourceCreator.resource);
     }
 
     /// <summary>
@@ -109,9 +114,10 @@ public class CreatureCreator
     /// <summary>
     /// Resets netCreator, allowing for the creation of a new network.
     /// </summary>
-    public void addNetwork()
+    public NetworkCreator addNetwork()
     {
-        throw new System.NotImplementedException();
+        netCreator = new NetworkCreator(new Network());
+        return netCreator;
     }
 
     /// <summary>
@@ -120,5 +126,11 @@ public class CreatureCreator
     public void saveAbilities()
     {
         throw new System.NotImplementedException();
+    }
+
+    public ResourceCreator addResource()
+    {
+        resourceCreator = new ResourceCreator(new CreatureResource());
+        return resourceCreator;
     }
 }

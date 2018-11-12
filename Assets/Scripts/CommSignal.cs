@@ -6,6 +6,8 @@ using System.Text;
 /// <summary>
 /// The comm network must individually process each comm signal stored in the creatures commList, and save the outputs as action recommendations.
 /// </summary>
+
+[Serializable]
 public class CommSignal
 {
     /// <summary>

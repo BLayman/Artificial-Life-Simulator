@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+[Serializable]
 public class Land
 {
     /// <summary>
     /// Stores resource values and other attributes of the land
     /// </summary>
-    public System.Collections.Generic.Dictionary<string, ResourceStore> propertyDict;
+    public System.Collections.Generic.Dictionary<string, ResourceStore> propertyDict = new Dictionary<string, ResourceStore>();
     /// <summary>
     /// Stores whatever creature is currently on this land.
     /// </summary>
@@ -31,4 +32,6 @@ public class Land
     {
         throw new System.NotImplementedException();
     }
+
+
 }
