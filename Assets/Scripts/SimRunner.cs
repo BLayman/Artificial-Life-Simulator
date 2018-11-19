@@ -6,19 +6,27 @@ public class SimRunner : MonoBehaviour {
     EcoManager ecoMan;
     public GameObject tilePrefab;
     List<List<GameObject>> tiles = new List<List<GameObject>>();
+    float elapsedTime = 0.0f;
+    float intervalTime = 1.0f;
 
 	// Use this for initialization
 	void Start () {
         ecoMan = new EcoManager();
         ecoMan.makeEco();
         startRender(ecoMan.getEcosystem());
-
+        updateRender(ecoMan.getEcosystem());
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //clearOldMap();
-        updateRender(ecoMan.getEcosystem());
+        // only update every intervalTime seconds
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime > intervalTime)
+        {
+            updateRender(ecoMan.getEcosystem());
+            ecoMan.runSystem(5);
+            elapsedTime = 0.0f;
+        }
 
         /*
         ecoMan.runSystem(1);
@@ -54,7 +62,7 @@ public class SimRunner : MonoBehaviour {
             {
                 GameObject tile = GameObject.Instantiate(tilePrefab, new Vector3(j, i, 0), Quaternion.identity);
                 float proportionStored = (float)sys.map[i][j].propertyDict["grass"].getProportionStored();
-                Debug.Log(proportionStored);
+                //Debug.Log(proportionStored);
                 tile.GetComponent<SpriteRenderer>().color = new Color(proportionStored, proportionStored, proportionStored);
                 tiles[i].Add(tile);
             }
@@ -68,19 +76,29 @@ public class SimRunner : MonoBehaviour {
         ResourceStore store;
         Color updatedColor = new Color(1,1,1);
         float proportionStored;
+        List<List<Land>> map = sys.map;
 
         for (int i = 0; i < sys.map.Count; i++)
         {
             for (int j = 0; j < sys.map[i].Count; j++)
             {
                 tile = tiles[i][j];
-                store = sys.map[i][j].propertyDict["grass"];
-                proportionStored = (float)store.amountStored / (float)store.maxAmount;
-                //Debug.Log(proportionStored);
-                updatedColor.r = proportionStored;
-                updatedColor.g = proportionStored;
-                updatedColor.b = proportionStored;
-                tile.GetComponent<SpriteRenderer>().color = updatedColor;
+                if (map[i][j].creatureIsOn())
+                {
+                    updatedColor = Color.blue;
+                    tile.GetComponent<SpriteRenderer>().color = updatedColor;
+                }
+                else
+                {
+                    store = map[i][j].propertyDict["grass"];
+                    proportionStored = (float)store.amountStored / (float)store.maxAmount;
+                    //Debug.Log(proportionStored);
+                    updatedColor.r = proportionStored;
+                    updatedColor.g = proportionStored;
+                    updatedColor.b = proportionStored;
+                    tile.GetComponent<SpriteRenderer>().color = updatedColor;
+                }
+                
             }
         }
     }

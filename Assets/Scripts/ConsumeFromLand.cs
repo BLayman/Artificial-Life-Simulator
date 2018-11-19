@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-[Serializable]
+
 public class ConsumeFromLand : Action
 {
     /// <summary>

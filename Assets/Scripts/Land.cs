@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-[Serializable]
+
 public class Land
 {
     /// <summary>
@@ -20,7 +20,7 @@ public class Land
     /// </summary>
     public bool creatureIsOn()
     {
-        throw new System.NotImplementedException();
+        return (creatureOn != null);
     }
 
     /// <summary>

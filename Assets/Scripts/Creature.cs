@@ -6,8 +6,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using Priority_Queue;
 
+using UnityEngine;
 
-[Serializable]
+
 public class Creature
 {
 
@@ -18,7 +19,7 @@ public class Creature
     /// </summary>
     public List<Dictionary<string, Network>> networks = new List<Dictionary<string, Network>>();
     public string species = "default";
-    private List<List<Land>> map = new List<List<Land>>();
+    public List<List<Land>> map = new List<List<Land>>();
     public int[] position = new int[2];
     /// <summary>
     /// Neighbors are up, down, left, and right. Index 0 for land creature is on.
@@ -88,29 +89,25 @@ public class Creature
         remainingAbilityPoints = maxAbilityPoints;
     }
 
+    public Creature()
+    {
+        // TODO: this is only test case, delete
+        remainingAbilityPoints = 10;
+    }
+
 
     /// <summary>
     /// Starts creatures turn
     /// </summary>
     public void startTurn()
     {
-        Console.WriteLine("starting turn");
-        throw new System.NotImplementedException();
+        Debug.Log("starting turn");
+        //throw new System.NotImplementedException();
     }
 
     public Creature getCopy()
     {
-        using (System.IO.MemoryStream stream = new MemoryStream())
-        {
-            if (this.GetType().IsSerializable)
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(stream, this);
-                stream.Position = 0;
-                return (Creature) formatter.Deserialize(stream);
-            }
-            return null;
-        }
+        return (Creature) Utility.getDeepCopy(this);
     }
 
     /// <summary>

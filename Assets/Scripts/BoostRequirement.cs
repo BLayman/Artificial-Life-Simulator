@@ -7,7 +7,7 @@ using System.Text;
 /// Currently not used. Boost requirements allow for modifications to abilities, thus giving creatures with certain resources an advantage over other creatures. If all creatures are capable of this ability, and have the same boost requirements, they all have the opportunity to gain this advantage. However, it should be noted that the relationship between resources and abilities established here does give certain resources more inherent value than others.
 /// </summary>
 
-[Serializable]
+
 public class BoostRequirement
 {
     /// <summary>

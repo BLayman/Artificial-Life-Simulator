@@ -7,7 +7,7 @@ using System.Text;
 /// Resources stored by a creature.
 /// </summary>
 
-[Serializable]
+
 public class CreatureResource
 {
     /// <summary>

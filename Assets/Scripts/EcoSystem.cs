@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-[Serializable]
+
 public class Ecosystem
 {
     /// <summary>
     /// Lists of creatures, organized by species name in dictionary.
     /// </summary>
-    public Dictionary<string, List<Creature>> populations = new Dictionary<string, List<Creature>>();
+    public Dictionary<string, Population> populations = new Dictionary<string, Population>();
     /// <summary>
     /// map of land spaces
     /// </summary>
@@ -47,16 +47,19 @@ public class Ecosystem
     /// </summary>
     public void runSystem(int timeSteps)
     {
-        foreach (string species in populations.Keys)
+        for (int i = 0; i < timeSteps; i++)
         {
-            List<Creature> population = populations[species];
-
-            foreach (Creature creature in population)
+            foreach (string species in populations.Keys)
             {
-                Console.WriteLine("starting turn");
-                creature.startTurn();
+                Population population = populations[species];
+
+                foreach (Creature creature in population.creatures)
+                {
+                    creature.startTurn();
+                }
             }
         }
+        
     }
 
 

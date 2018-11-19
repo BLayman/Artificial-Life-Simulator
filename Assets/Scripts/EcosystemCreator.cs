@@ -1,7 +1,9 @@
-﻿using System;
+﻿//using UnityEngine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 
 public class EcosystemCreator
 {
@@ -43,13 +45,15 @@ public class EcosystemCreator
     public List<List<Land>> tentativeMap = new List<List<Land>>();
 
     // population created by SpeciesPopulator
-    private List<Creature> currentPopulation;
+    private Population currentPopulation;
 
     public EcosystemCreator(Ecosystem _ecosystem)
     {
+        //Debug.Log("ecosystem created");
         ecosystem = _ecosystem;
         tentativeResourceOptions = ecosystem.resourceOptions;
         founderCreatures = ecosystem.species;
+
     }
 
     public void setAbilityPointsPerCreature(int abilityPoints)
@@ -111,21 +115,24 @@ public class EcosystemCreator
 
     public SpeciesPopulator populateSpecies(string founderSpecies)
     {
-        speciesPopulator = new SpeciesPopulator(founderCreatures[founderSpecies]);
+        speciesPopulator = new SpeciesPopulator(founderCreatures[founderSpecies], tentativeMap);
         return speciesPopulator;
     }
 
     /// <summary>
-    /// Saves population creatured by speciesPopulator.
+    /// Saves population creatured by speciesPopulator to currentPopulation.
     /// </summary>
     public void saveCurrentPopulation()
     {
         currentPopulation = speciesPopulator.population;
     }
 
+    /// <summary>
+    /// Saves currentPopulation to ecosystem.populations
+    /// </summary>
     public void addCurrentPopulationToEcosystem()
     {
-        ecosystem.populations.Add(currentPopulation[0].founder.species, currentPopulation);
+        ecosystem.populations.Add(currentPopulation.founder.species, currentPopulation);
     }
 
     public void saveEditedMap()
@@ -152,6 +159,11 @@ public class EcosystemCreator
     /// </summary>
     public void addCurrentPopulationToMap()
     {
-
+        for (int i = 0; i < currentPopulation.creatures.Count; i++)
+        {
+            // place each creature on its location on the map
+            currentPopulation.creatures[i].map = tentativeMap;
+            tentativeMap[currentPopulation.creatures[i].position[1]][currentPopulation.creatures[i].position[0]].creatureOn = currentPopulation.creatures[i];
+        }
     }
 }

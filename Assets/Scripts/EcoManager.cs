@@ -19,6 +19,12 @@ public class EcoManager
     }
 
 
+    /*
+     * set ecosystem parameters,
+     * create resources,
+     * create map,
+     * add resource to map
+     * */
     public void userCreatesEcosystem()
     {
         ecosystem = new Ecosystem();
@@ -58,7 +64,14 @@ public class EcoManager
         
     }
 
-    
+    /*
+     * create creature,
+     * create and save creature resource,
+     * create creature network,
+     * create network node,
+     * add resource to node, 
+     * save creature to founder creatures dict and species dict
+     */
     public void userAddsSpecies()
     {
         // when user clicks to start species creation process:
@@ -116,11 +129,20 @@ public class EcoManager
         ecoCreator.addToFounders();
         // saves founders to ecosystem species list
         ecoCreator.saveFoundersToSpecies();
+
+
     }
 
+    /*
+     * Create populator (with population),
+     * set population parameters
+     * generate population
+     * saves population and adds it to list of populations
+     * adds population to map, and saves map
+     * */
     public void userPopulatesSpecies()
     {
-        SpeciesPopulator populator = ecoCreator.populateSpecies("Cat"); ;
+        SpeciesPopulator populator = ecoCreator.populateSpecies("Cat");
         populator.SetAbilityStandardDeviation(1);
         populator.setNetworkWeightStandardDeviation(.5f);
         populator.populateRandom(100);

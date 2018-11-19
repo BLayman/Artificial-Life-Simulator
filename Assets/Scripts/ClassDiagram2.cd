@@ -144,7 +144,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ResourceStore">
-    <Position X="33.75" Y="15" Width="4.75" />
+    <Position X="33.75" Y="16.5" Width="4.75" />
     <TypeIdentifier>
       <HashCode>EAAAIBAAQAQAAQAAAAAAAAAAAAAEACAAAgAAAAQAAAA=</HashCode>
       <FileName>Assets\Scripts\ResourceStore.cs</FileName>
@@ -352,7 +352,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="LandResourceCreator">
-    <Position X="33.75" Y="11.5" Width="4.25" />
+    <Position X="34" Y="12.25" Width="4.25" />
     <AssociationLine Name="resourceStore" Type="ResourceStore">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.049" Y="0.634" />
@@ -374,7 +374,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAQAAAgAAAAEAAAAAAAAAAAAAAAAAIAAAAAgAAA=</HashCode>
+      <HashCode>AEAAEAQAAAgAAAAMAAAAAAAAAAAAAAAAAIAAAAAgAAA=</HashCode>
       <FileName>Assets\Scripts\SpeciesPopulator.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
