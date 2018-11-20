@@ -13,18 +13,19 @@ public class Creature
 {
 
     public Creature founder;
+    public Land dummyLand = new Land();
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
     /// </summary>
     public List<Dictionary<string, Network>> networks = new List<Dictionary<string, Network>>();
     public string species = "default";
-    public List<List<Land>> map = new List<List<Land>>();
-    public int[] position = new int[2];
+    public List<List<Land>> map = new List<List<Land>>(); // x coord by y coord
+    public int[] position = new int[2]; // x y
     /// <summary>
     /// Neighbors are up, down, left, and right. Index 0 for land creature is on.
     /// </summary>
-    private Land[] neighborLands = new Land[5];
+    public Land[] neighborLands = new Land[5];
     public SimplePriorityQueue<Action> actionQueue = new SimplePriorityQueue<Action>();
     /// <summary>
     /// Time remaining in turn: limits number of actions that can be taken in one turn.
@@ -86,7 +87,7 @@ public class Creature
     /// <summary>
     /// Dictionary of potential actions that the creature can take if assigned to an output node.
     /// </summary>
-    public Dictionary<string, Action> actionPool;
+    public Dictionary<string, Action> actionPool = new Dictionary<string, Action>();
 
     public Creature(int maxAbilityPoints)
     {
@@ -97,6 +98,7 @@ public class Creature
     {
         // TODO: this is only test case, delete
         remainingAbilityPoints = 10;
+        dummyLand.isDummy = true;
     }
 
 
@@ -105,9 +107,24 @@ public class Creature
     /// </summary>
     public void startTurn()
     {
-        Debug.Log("starting turn");
-        //throw new System.NotImplementedException();
+        updateNeighbors();
+        updateNets();
+        
     }
+
+    public void updateNets()
+    {
+        // for every layer of networks
+        for (int i = 0; i < networks.Count; i++)
+        {
+            // for every network in that layer
+            foreach (Network net in networks[i].Values)
+            {
+                net.feedForward();
+            }
+        }
+    }
+
 
     public Creature getCopy()
     {
@@ -127,7 +144,45 @@ public class Creature
     /// </summary>
     public void updateNeighbors()
     {
-        throw new System.NotImplementedException();
+        neighborLands[0] = map[position[0]][position[1]];
+
+        if (position[1] + 1 >= map[position[0]].Count)
+        {
+            neighborLands[1] = dummyLand;
+        }
+        else
+        {
+            neighborLands[1] = map[position[0]][position[1] + 1];
+        }
+
+        if (position[1] - 1 < 0)
+        {
+            neighborLands[2] = dummyLand;
+        }
+        else
+        {
+            neighborLands[2] = map[position[0]][position[1] - 1];
+        }
+
+
+
+        if (position[0] + 1 >= map.Count)
+        {
+            neighborLands[4] = dummyLand;
+        }
+        else
+        {
+            neighborLands[4] = map[position[0] + 1][position[1]];
+        }
+
+        if (position[0] - 1 < 0)
+        {
+            neighborLands[3] = dummyLand;
+        }
+        else
+        {
+            neighborLands[3] = map[position[0] - 1][position[1]];
+        }
     }
 
     /// <summary>
@@ -221,9 +276,9 @@ public class Creature
         foreach (string resource in storedResources.Keys)
         {
             // for each neighbor spot reachable by creature
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
             {
-                actionPool.Add(resource, new ConsumeFromLand(i, resource, this));
+                actionPool.Add(resource + "At" + i, new ConsumeFromLand(i, resource, this));
             }
         }
 

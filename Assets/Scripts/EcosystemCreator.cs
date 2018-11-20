@@ -102,7 +102,6 @@ public class EcosystemCreator
 
     public void addToFounders()
     {
-        creatureCreator.generateCreatureActionPool();
         founderCreatures.Add(creatureCreator.creature.species, creatureCreator.creature);
     }
 

@@ -7,6 +7,7 @@ public class CommNodeCreator : NodeCreatorInterface
 {
     public CommInputNode commNode;
     public int nodeLayer;
+    private NetworkCreator parentNetCreator;
 
     public CommNodeCreator(CommInputNode _commNode, int _nodeLayer)
     {

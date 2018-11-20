@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 public class NetworkCreator
 {
@@ -19,7 +20,6 @@ public class NetworkCreator
     public void initializeNetwork()
     {
         // add two empty lists to the network (inputs and outputs)
-        network.net = new List<List<Node>>();
         network.net.Add(new List<Node>());
         network.net.Add(new List<Node>());
         // bias node added to input nodes
@@ -38,11 +38,17 @@ public class NetworkCreator
 
     public void saveNode()
     {
+        Debug.Log(network);
+        Debug.Log(network.net);
+        Debug.Log(nodeCreator);
+        Debug.Log(network.net[nodeCreator.nodeLayer]);
+        Debug.Log(nodeCreator.getCreatedNode());
         network.net[nodeCreator.nodeLayer].Add(nodeCreator.getCreatedNode());
     }
 
     public NodeCreator addNode(int layer)
     {
+        Debug.Log("called addNode");
         nodeCreator = new NodeCreator(layer, this);
         return nodeCreator;
     }

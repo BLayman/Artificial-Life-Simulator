@@ -13,11 +13,11 @@ public class BiasNode : Node
     }
 
     /// <summary>
-    /// sets initial value
+    /// sets bias to a value
     /// </summary>
-    public void setBias()
+    public void setBias(float newBias)
     {
-        throw new System.NotImplementedException();
+        value = newBias;
     }
 
     public override void updateValue()

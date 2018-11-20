@@ -60,7 +60,7 @@ public class SimRunner : MonoBehaviour {
             tiles.Add(new List<GameObject>());
             for (int j = 0; j < sys.map[i].Count; j++)
             {
-                GameObject tile = GameObject.Instantiate(tilePrefab, new Vector3(j, i, 0), Quaternion.identity);
+                GameObject tile = GameObject.Instantiate(tilePrefab, new Vector3(i, j, 0), Quaternion.identity);
                 float proportionStored = (float)sys.map[i][j].propertyDict["grass"].getProportionStored();
                 //Debug.Log(proportionStored);
                 tile.GetComponent<SpriteRenderer>().color = new Color(proportionStored, proportionStored, proportionStored);

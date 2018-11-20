@@ -8,6 +8,6 @@ public class EmptyActivBehavior : ActivationBehavior
 {
     public float activFunct(float input)
     {
-        throw new NotImplementedException();
+        return input;
     }
 }

@@ -92,9 +92,10 @@ public class CreatureCreator
     /// <summary>
     /// Resets creatures resource creator, allowing the user to create a resource for the creature to use for survival or attribute benefits.
     /// </summary>
-    public void addCreatureResource(CreatureResource resource)
+    public ResourceCreator addResource()
     {
-        throw new System.NotImplementedException();
+        resourceCreator = new ResourceCreator(new CreatureResource());
+        return resourceCreator;
     }
 
     /// <summary>
@@ -130,11 +131,7 @@ public class CreatureCreator
         throw new System.NotImplementedException();
     }
 
-    public ResourceCreator addResource()
-    {
-        resourceCreator = new ResourceCreator(new CreatureResource());
-        return resourceCreator;
-    }
+    
 
     public void generateCreatureActionPool()
     {

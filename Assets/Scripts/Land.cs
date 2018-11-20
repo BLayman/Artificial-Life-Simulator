@@ -15,6 +15,8 @@ public class Land
     /// </summary>
     public Creature creatureOn;
 
+    public bool isDummy = false;
+
     /// <summary>
     /// returns true if creatureOn is not null
     /// </summary>

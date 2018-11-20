@@ -6,13 +6,13 @@ using System.Text;
 
 public class InnerInputNode : Node
 {
-    public Node inNode;
+    public Node linkedNode;
 
     /// <summary>
     /// This method simply gets the value from inNode.
     /// </summary>
     public override void updateValue()
     {
-        throw new NotImplementedException();
+        value = linkedNode.value;
     }
 }

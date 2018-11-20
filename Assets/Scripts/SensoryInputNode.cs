@@ -19,12 +19,17 @@ public class SensoryInputNode : Node
     /// </summary>
     private Creature creature;
 
+    public SensoryInputNode(Creature parentCreature)
+    {
+        creature = parentCreature;
+    }
+
     /// <summary>
     /// Uses neighborIndex and key with propertyDict to get an updated value
     /// </summary>
     public float senseValFromNeighbor()
     {
-        throw new System.NotImplementedException();
+        return creature.neighborLands[neighborLandIndex].propertyDict[sensedResource].amountStored;
     }
 
     /// <summary>
@@ -32,6 +37,6 @@ public class SensoryInputNode : Node
     /// </summary>
     public override void updateValue()
     {
-        throw new System.NotImplementedException();
+        value = senseValFromNeighbor();
     }
 }

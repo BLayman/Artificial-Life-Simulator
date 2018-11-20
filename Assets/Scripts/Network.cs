@@ -6,7 +6,7 @@ using System;
 
 public class Network
 {
-    public List<List<Node>> net;
+    public List<List<Node>> net = new List<List<Node>>();
 
     public string name;
     public int inLayer;
@@ -64,6 +64,12 @@ public class Network
     /// </summary>
     public void feedForward()
     {
-        throw new System.NotImplementedException();
+        for (int i = 0; i < net.Count; i++)
+        {
+            for (int j = 0; j < net[i].Count; j++)
+            {
+                net[i][j].updateValue();
+            }
+        }
     }
 }

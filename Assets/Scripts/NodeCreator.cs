@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
-public enum NodeCreatorType { siNodeCreator, commNodeCreator, outputNodeCreator }
+public enum NodeCreatorType { siNodeCreator, commNodeCreator, outputNodeCreator, innerInputNodeCreator }
 
 
 public class NodeCreator
@@ -30,15 +31,19 @@ public class NodeCreator
         {
             case NodeCreatorType.siNodeCreator:
                 // now node will be modified by siNodeCreator
-                nodeCreator = new SensoryInputNodeCreator(new SensoryInputNode(), nodeLayer);
+                nodeCreator = new SensoryInputNodeCreator(new SensoryInputNode(parentNetCreator.parentCreatureCreator.creature), nodeLayer);
                 break;
             case NodeCreatorType.commNodeCreator:
                 nodeCreator = new CommNodeCreator(new CommInputNode(), nodeLayer);
                 break;
             case NodeCreatorType.outputNodeCreator:
-                nodeCreator = new FinalOutputNodeCreator(new FinalOutputNode(parentNetCreator.parentCreatureCreator.creature), nodeLayer);
+                nodeCreator = new OutputNodeCreator(new OutputNode(parentNetCreator.parentCreatureCreator.creature, parentNetCreator.network, nodeLayer), nodeLayer);
+                break;
+            case NodeCreatorType.innerInputNodeCreator:
+                nodeCreator = new InnerInputNodeCreator(new InnerInputNode(), parentNetCreator.parentCreatureCreator.creature);
                 break;
             default:
+                Debug.LogError("unable to set node creator to that type.");
                 break;
         }
         // now this NodeCreator will now be passed to a gameObject ( or referenced by a gameObject) 
@@ -53,7 +58,12 @@ public class NodeCreator
                 return (SensoryInputNodeCreator)nodeCreator;
             case NodeCreatorType.commNodeCreator:
                 return (CommNodeCreator)nodeCreator;
+            case NodeCreatorType.innerInputNodeCreator:
+                return (InnerInputNodeCreator)nodeCreator;
+            case NodeCreatorType.outputNodeCreator:
+                return (OutputNodeCreator)nodeCreator;
             default:
+                Debug.LogError("not able to get that node creator");
                 return null;
         }
     }

@@ -7,6 +7,7 @@ public class SensoryInputNodeCreator: NodeCreatorInterface
 {
     public SensoryInputNode siNode;
     public int nodeLayer;
+    private NetworkCreator parentNetCreator;
 
     public SensoryInputNodeCreator(SensoryInputNode _siNode, int _nodeLayer)
     {

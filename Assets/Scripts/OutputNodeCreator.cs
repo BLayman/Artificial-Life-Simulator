@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinalOutputNodeCreator : NodeCreatorInterface
+public class OutputNodeCreator : NodeCreatorInterface
 {
-    public FinalOutputNode foNode;
+    public OutputNode foNode;
     public int nodeLayer;
 
-    public FinalOutputNodeCreator(FinalOutputNode foNode, int nodeLayer)
+    public OutputNodeCreator(OutputNode foNode, int nodeLayer)
     {
         this.foNode = foNode;
         this.nodeLayer = nodeLayer;
@@ -34,6 +34,9 @@ public class FinalOutputNodeCreator : NodeCreatorInterface
                 break;
             case ActivationBehaviorTypes.EmptyAB:
                 foNode.setActivBehavior(new EmptyActivBehavior());
+                break;
+            case ActivationBehaviorTypes.LogWithNeg:
+                foNode.setActivBehavior(new LogisticWithNegActivBehav());
                 break;
             default:
                 break;

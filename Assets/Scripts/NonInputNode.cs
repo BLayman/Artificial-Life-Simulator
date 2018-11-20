@@ -1,49 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using System.Linq;
 using System.Text;
 
-public enum ActivationBehaviorTypes { LogisticAB, EmptyAB }
+public enum ActivationBehaviorTypes { LogisticAB, EmptyAB, LogWithNeg }
 
 public class NonInputNode : Node
 {
-    private List<Node> prevNodes;
+    public List<Node> prevNodes = new List<Node>();
     /// <summary>
     /// Holds an object that carries out an activation function.
     /// </summary>
     protected ActivationBehavior activBehavior;
+    /// <summary>
+    /// List of weights to be multiplied by previous node values.
+    /// </summary>
+    public List<float> weights = new List<float>();
 
-    public NonInputNode()
+    protected Network parentNet;
+    public int layer;
+
+    public NonInputNode(Network parentNet, int layer)
     {
+        this.parentNet = parentNet;
         // set to logistic activation by default
         activBehavior = new LogisticActivBehavior();
+        this.layer = layer;
+        setAllPreviousNodes();
     }
 
     public override void updateValue()
     {
-        throw new NotImplementedException();
+        float combination = linearCombinePrevVals();
+        value = performActivBehavior(combination);
     }
 
     public void appendPrevNode(Node newNode)
     {
-        throw new System.NotImplementedException();
+        prevNodes.Add(newNode);
+        weights.Add(generateNewRandomWeight());
     }
 
     public void removePrevNode(int index)
     {
-        throw new System.NotImplementedException();
+        prevNodes.RemoveAt(index);
+        weights.RemoveAt(index);
     }
 
-    private float sumPrevVals()
+    private float linearCombinePrevVals()
     {
-        throw new System.NotImplementedException();
+        float sum = 0;
+        if(prevNodes.Count != weights.Count)
+        {
+            Debug.LogError("Error: Previous node count not equal to weights count.");
+        }
+        for (int i = 0; i < prevNodes.Count; i++)
+        {
+            sum += prevNodes[i].value * weights[i];
+        }
+        return sum;
     }
 
     /// <param name="index">Index of previous node.</param>
-    /// <param name="value">Value coming from previous node.</param>
-    public void setPrevNodeVal(int index, float value)
+    /// <param name="value">Weight coming from previous node.</param>
+    public void setPrevNodeWeight(int index, float weight)
     {
-        throw new System.NotImplementedException();
+        weights[index] = weight;
     }
 
     /// <summary>
@@ -60,5 +83,26 @@ public class NonInputNode : Node
     public void setActivBehavior(ActivationBehavior behavior)
     {
         activBehavior = behavior;
+    }
+
+    /// <summary>
+    /// Sets prevNodes to include all nodes in previous layer.
+    /// </summary>
+    public void setAllPreviousNodes()
+    {
+        prevNodes.Clear();
+        weights.Clear();
+        for (int i = 0; i < parentNet.net[layer - 1].Count; i++)
+        {
+            prevNodes.Add(parentNet.net[layer - 1][i]);
+            weights.Add(generateNewRandomWeight());
+        }
+    }
+
+    public float generateNewRandomWeight()
+    {
+        System.Random rand = new System.Random();
+
+        return (float)((rand.NextDouble() * 2.0) - 1);
     }
 }

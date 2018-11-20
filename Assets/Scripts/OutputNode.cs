@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 
 
-public class FinalOutputNode: NonInputNode
+public class OutputNode: NonInputNode
 {
     public Action action;
     public Creature parentCreature;
 
-    public FinalOutputNode(Creature parentCreature)
+    public OutputNode(Creature parentCreature, Network parentNet, int layer): base(parentNet, layer)
     {
+        
         activBehavior = new LogisticActivBehavior();
         this.parentCreature = parentCreature;
     }

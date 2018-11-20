@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 public class EcoManager
 {
@@ -83,11 +84,11 @@ public class EcoManager
         // add resource for the creature to store
         ResourceCreator resourceCreator = cc.addResource();
 
+        List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
 
-        List<string> keyList = new List<string>(ecosystem.resourceOptions.Keys);
-        Console.WriteLine("resource added to creature: " + keyList[0]);
+        Debug.Log("resource added to creature: " + ecosystemResources[0]);
 
-        resourceCreator.setName(keyList[0]);
+        resourceCreator.setName(ecosystemResources[0]);
         resourceCreator.setMaxLevel(100);
         resourceCreator.setLevel(90);
         resourceCreator.setHealthGain(1);
@@ -98,7 +99,29 @@ public class EcoManager
 
         cc.saveResource();
 
+        Debug.Log("resource added to creature: " + ecosystemResources[1]);
+
+        resourceCreator = cc.addResource();
+
+        resourceCreator.setName(ecosystemResources[1]);
+        resourceCreator.setMaxLevel(100);
+        resourceCreator.setLevel(90);
+        resourceCreator.setHealthGain(1);
+        resourceCreator.setHealthGainThreshold(50);
+        resourceCreator.setDeficiencyHealthDrain(1);
+        resourceCreator.setDeficiencyThreshold(10);
+        resourceCreator.setBaseUsage(1);
+
+        cc.saveResource();
+
+
+        List<string> creatureResources = new List<string>(cc.creature.storedResources.Keys);
+
+        cc.generateCreatureActionPool();
+
         // user opens networks creator for that creature
+
+        /* First Network */
 
         // user adds a network
         NetworkCreator netCreator = cc.addNetwork();
@@ -115,25 +138,107 @@ public class EcoManager
         SensoryInputNodeCreator sinc = (SensoryInputNodeCreator) nodeCreator.getNodeCreator();
         // the sinc is used to set properties on the sensory input node
         sinc.setLandIndex(4);
-        sinc.setSensedResource(keyList[0]);
+        sinc.setSensedResource(creatureResources[0]); // senses "grass"
 
         // user clicks save on node editor
         netCreator.saveNode();
 
-        // user adds nodes to input layer (1)
+        // user adds node to second layer
         NodeCreator nodeCreator2 = netCreator.addNode(1);
 
-        // user sets node type to sensory input node
+        // user sets node type to output node
         nodeCreator2.setCreator(NodeCreatorType.outputNodeCreator);
 
-        // the sensory node editor gets it's sensory input node creator from nodeCreator
-        FinalOutputNodeCreator fonc = (FinalOutputNodeCreator)nodeCreator2.getNodeCreator();
-        // the sinc is used to set properties on the sensory input node
-        fonc.setAction("Move left");
-        fonc.setActivationFunction(ActivationBehaviorTypes.LogisticAB);
+        // the output node editor gets it's output node creator from nodeCreator
+        OutputNodeCreator onc = (OutputNodeCreator)nodeCreator2.getNodeCreator();
+        // the onc is used to set properties on the output node
+        onc.setAction("Move left");
+        onc.setActivationFunction(ActivationBehaviorTypes.LogWithNeg);
 
         // user clicks save on node editor
         netCreator.saveNode();
+
+        // user clicks save on network creator
+        cc.saveNetwork();
+
+        /* Second Network */
+
+        // user adds a network
+        NetworkCreator netCreator3 = cc.addNetwork();
+        netCreator3.setInLayer(0); // called by default with index of layer user clicked
+        netCreator3.setName("net2");
+
+        // user adds nodes to input layer (0)
+        NodeCreator nodeCreator5 = netCreator3.addNode(0);
+
+        // user sets node type to sensory input node
+        nodeCreator5.setCreator(NodeCreatorType.siNodeCreator);
+
+        // the sensory node editor gets it's sensory input node creator from nodeCreator
+        SensoryInputNodeCreator sinc2 = (SensoryInputNodeCreator)nodeCreator5.getNodeCreator();
+        // the sinc is used to set properties on the sensory input node
+        sinc2.setLandIndex(4);
+        sinc2.setSensedResource(creatureResources[1]); // senses "flowers"
+
+        // user clicks save on node editor
+        netCreator3.saveNode();
+
+        // user adds node to second layer
+        NodeCreator nodeCreator6 = netCreator3.addNode(1);
+
+        // user sets node type to output node
+        nodeCreator6.setCreator(NodeCreatorType.outputNodeCreator);
+
+        // the output node editor gets it's output node creator from nodeCreator
+        OutputNodeCreator onc3 = (OutputNodeCreator)nodeCreator6.getNodeCreator();
+        // the onc is used to set properties on the output node
+        onc3.setAction("Move left");
+        onc3.setActivationFunction(ActivationBehaviorTypes.LogWithNeg);
+
+        // user clicks save on node editor
+        netCreator3.saveNode();
+
+        // user clicks save on network creator
+        cc.saveNetwork();
+
+        /* Third Network */
+
+        // user adds a second network
+        NetworkCreator netCreator2 = cc.addNetwork();
+        // network added to second layer of networks
+        netCreator2.setInLayer(1); // called by default with index of layer user clicked
+        netCreator2.setName("outNet");
+
+        // user adds nodes to input layer (0)
+        NodeCreator nodeCreator3 = netCreator2.addNode(0);
+        // user adds inner input node
+        nodeCreator3.setCreator(NodeCreatorType.innerInputNodeCreator);
+        InnerInputNodeCreator iinc = (InnerInputNodeCreator)nodeCreator3.getNodeCreator();
+        // the inner input node gets its value from net1's output node at index 0
+        iinc.setLinkedNode("net1", 0);
+        // user clicks save on node editor
+        netCreator2.saveNode();
+
+
+        // user adds nodes to input layer (0)
+        NodeCreator nodeCreator7 = netCreator2.addNode(0);
+        // user adds inner input node
+        nodeCreator7.setCreator(NodeCreatorType.innerInputNodeCreator);
+        InnerInputNodeCreator iinc2 = (InnerInputNodeCreator)nodeCreator7.getNodeCreator();
+        // the inner input node gets its value from net1's output node at index 0
+        iinc2.setLinkedNode("net2", 0);
+        // user clicks save on node editor
+        netCreator2.saveNode();
+
+
+
+        // user adds node to second layer
+        NodeCreator nodeCreator4 = netCreator2.addNode(1);
+        nodeCreator4.setCreator(NodeCreatorType.outputNodeCreator);
+        OutputNodeCreator onc2 = (OutputNodeCreator)nodeCreator4.getNodeCreator();
+        onc2.setAction("Move left");
+        onc2.setActivationFunction(ActivationBehaviorTypes.LogisticAB);
+        netCreator2.saveNode();
 
         // user clicks save on network creator
         cc.saveNetwork();
@@ -146,6 +251,7 @@ public class EcoManager
         ecoCreator.saveFoundersToSpecies();
 
 
+        
     }
 
     /*
