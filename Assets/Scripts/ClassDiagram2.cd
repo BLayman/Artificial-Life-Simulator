@@ -15,7 +15,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Land">
-    <Position X="26.5" Y="11" Width="5" />
+    <Position X="28.25" Y="11" Width="5" />
     <TypeIdentifier>
       <HashCode>ACAAAAEAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Assets\Scripts\Land.cs</FileName>
@@ -39,7 +39,7 @@
   <Class Name="Action">
     <Position X="20" Y="24.75" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAAAAAAAAAAAAABAAAAEAAAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AAAAAAACAAQAAAAAAAAAAABAAAAEAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Assets\Scripts\Action.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -47,15 +47,15 @@
     <Position X="21.5" Y="10.25" Width="3.75" />
     <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
       <Path>
-        <Point X="25.25" Y="12.136" />
-        <Point X="26.5" Y="12.136" />
+        <Point X="25.25" Y="12.224" />
+        <Point X="28.25" Y="12.224" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.414" Y="-0.24" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAqIEAgYAKZBAyAIAAgAIQAgIRQBAAAQAAABIABgBAk=</HashCode>
+      <HashCode>IAqIEAgYAKZBAyAIAAgCIQAgIRQBIAAQAAABIABgBAk=</HashCode>
       <FileName>Assets\Scripts\Creature.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -85,14 +85,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="FinalOutputNode">
-    <Position X="20" Y="21.75" Width="2.25" />
+    <Position X="19.25" Y="21.75" Width="3" />
     <AssociationLine Name="action" Type="Action">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.048" Y="0.319" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAABAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAABAAAAAAAAAQAAAAABAAACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\FinalOutputNode.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -165,7 +165,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CommAction">
-    <Position X="21.25" Y="27.5" Width="2.75" />
+    <Position X="21" Y="27.75" Width="2.75" />
     <AssociationLine Name="signal" Type="CommSignal">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.633" Y="0.104" />
@@ -210,7 +210,7 @@
     </AssociationLine>
     <AssociationLine Name="netCreator" Type="NetworkCreator">
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.249" Y="0.307" />
+        <Position X="0.307" Y="0.249" />
       </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="abilitiesCreator" Type="AbilitiesCreator">
@@ -219,7 +219,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BBAIAAAAACIAACAAAAAAAAAKABQAYBKgAAAFAAAAACA=</HashCode>
+      <HashCode>BBAIAAAAACIQACEAAAAAAAAKABQAYBKgAAAFAAAAACA=</HashCode>
       <FileName>Assets\Scripts\CreatureCreator.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -230,9 +230,9 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="NetworkCreator">
-    <Position X="26" Y="2.5" Width="2.5" />
+    <Position X="26.75" Y="2.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AhAAAAAAAAQAAAAAAAAAAAAAAAAAAABABAgAAAAAAAA=</HashCode>
+      <HashCode>AhAAAAAAAAQAAAAAAAAAAAAAAAAAAABABAgAAAAAIAA=</HashCode>
       <FileName>Assets\Scripts\NetworkCreator.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -245,9 +245,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="NodeCreator">
-    <Position X="13.5" Y="4" Width="3.5" />
+    <Position X="13.5" Y="3.5" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAQAAAAAAAAAAEIAAEAAAAAAEAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAwAAAAAAAAAAEIAAEAAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\NodeCreator.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -268,7 +268,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="EmptyActivBehavior">
-    <Position X="14.75" Y="21.25" Width="1.5" />
+    <Position X="14.75" Y="21.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\EmptyActivBehavior.cs</FileName>
@@ -405,7 +405,7 @@
   <Class Name="SimRunner" Collapsed="true">
     <Position X="7" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABQAAAAAACAAAAEAAAgAAAAAAgAAAAAAAAAAAAIAAAA=</HashCode>
+      <HashCode>ABQAAAAAASAAAAEAAAgAAgAAAgAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Assets\Scripts\SimRunner.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -414,6 +414,36 @@
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAIIAIAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Population.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalOutputNodeCreator">
+    <Position X="6" Y="7.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAQAAAAAAABEAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\FinalOutputNodeCreator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ActionCreator">
+    <Position X="15.25" Y="23.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EBAABAAAAAAAAAAAAAAAAQAAAAAAAAAAEAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Scripts\ActionCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommActionCreator">
+    <Position X="11.75" Y="24.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\CommActionCreator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoveAction">
+    <Position X="25" Y="28.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAIAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\MoveAction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="NodeCreatorInterface">
@@ -440,7 +470,7 @@
   <Enum Name="NodeCreatorType" Collapsed="true">
     <Position X="7" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AYAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\NodeCreator.cs</FileName>
     </TypeIdentifier>
   </Enum>

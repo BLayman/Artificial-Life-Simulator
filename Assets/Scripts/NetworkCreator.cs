@@ -7,10 +7,12 @@ public class NetworkCreator
 {
     public Network network;
     public NodeCreator nodeCreator;
+    public CreatureCreator parentCreatureCreator;
 
-    public NetworkCreator(Network _net)
+    public NetworkCreator(Network net, CreatureCreator parentCreatureCreator)
     {
-        network = _net;
+        network = net;
+        this.parentCreatureCreator = parentCreatureCreator;
         initializeNetwork();
     }
 
@@ -41,7 +43,7 @@ public class NetworkCreator
 
     public NodeCreator addNode(int layer)
     {
-        nodeCreator = new NodeCreator(layer);
+        nodeCreator = new NodeCreator(layer, this);
         return nodeCreator;
     }
 }

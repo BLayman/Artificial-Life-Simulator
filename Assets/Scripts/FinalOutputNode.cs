@@ -6,16 +6,13 @@ using System.Text;
 
 public class FinalOutputNode: NonInputNode
 {
-    private Action action;
+    public Action action;
+    public Creature parentCreature;
 
-    public FinalOutputNode()
+    public FinalOutputNode(Creature parentCreature)
     {
         activBehavior = new LogisticActivBehavior();
-    }
-
-    public float activFunct(float input)
-    {
-        throw new NotImplementedException();
+        this.parentCreature = parentCreature;
     }
 
     /// <summary>
@@ -23,6 +20,11 @@ public class FinalOutputNode: NonInputNode
     /// </summary>
     public void addActionIfActive()
     {
-        throw new System.NotImplementedException();
+        parentCreature.actionQueue.Enqueue(action, action.priority);
+    }
+
+    public void setAction(string actionKey)
+    {
+        action = parentCreature.actionPool[actionKey];
     }
 }

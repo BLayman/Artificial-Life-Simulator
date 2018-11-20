@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public abstract class NonInputNode : Node
+public enum ActivationBehaviorTypes { LogisticAB, EmptyAB }
+
+public class NonInputNode : Node
 {
     private List<Node> prevNodes;
     /// <summary>

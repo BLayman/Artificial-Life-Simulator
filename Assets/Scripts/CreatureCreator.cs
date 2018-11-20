@@ -10,15 +10,17 @@ public class CreatureCreator
     public ResourceCreator resourceCreator;
     public AbilitiesCreator abilitiesCreator;
     public int distinctPhenotypes;
+    EcosystemCreator ecoCreator;
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public CreatureCreator(Creature _creature, int _distinctPhenotypes)
+    public CreatureCreator(Creature creature, int distinctPhenotypes, EcosystemCreator ecoCreator)
     {
-        creature = _creature;
+        this.creature = creature;
         initializeNetworkStructure();
-        distinctPhenotypes = _distinctPhenotypes;
+        this.distinctPhenotypes = distinctPhenotypes;
+        this.ecoCreator = ecoCreator;
     }
 
 
@@ -116,7 +118,7 @@ public class CreatureCreator
     /// </summary>
     public NetworkCreator addNetwork()
     {
-        netCreator = new NetworkCreator(new Network());
+        netCreator = new NetworkCreator(new Network(), this);
         return netCreator;
     }
 
@@ -132,5 +134,10 @@ public class CreatureCreator
     {
         resourceCreator = new ResourceCreator(new CreatureResource());
         return resourceCreator;
+    }
+
+    public void generateCreatureActionPool()
+    {
+        creature.generateDefaultActions();
     }
 }

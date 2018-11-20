@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public enum NodeCreatorType { siNodeCreator, commNodeCreator }
+public enum NodeCreatorType { siNodeCreator, commNodeCreator, outputNodeCreator }
 
 
 public class NodeCreator
@@ -11,11 +11,13 @@ public class NodeCreator
     NodeCreatorInterface nodeCreator;
     public int nodeLayer;
     NodeCreatorType creatorType;
+    NetworkCreator parentNetCreator;
 
     // user picks layer to create node in, initializing a node creator
-    public NodeCreator(int _layer)
+    public NodeCreator(int _layer, NetworkCreator parentNetCreator)
     {
         nodeLayer = _layer;
+        this.parentNetCreator = parentNetCreator;
     }
 
 
@@ -32,6 +34,9 @@ public class NodeCreator
                 break;
             case NodeCreatorType.commNodeCreator:
                 nodeCreator = new CommNodeCreator(new CommInputNode(), nodeLayer);
+                break;
+            case NodeCreatorType.outputNodeCreator:
+                nodeCreator = new FinalOutputNodeCreator(new FinalOutputNode(parentNetCreator.parentCreatureCreator.creature), nodeLayer);
                 break;
             default:
                 break;

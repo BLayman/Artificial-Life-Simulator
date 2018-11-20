@@ -120,6 +120,21 @@ public class EcoManager
         // user clicks save on node editor
         netCreator.saveNode();
 
+        // user adds nodes to input layer (1)
+        NodeCreator nodeCreator2 = netCreator.addNode(1);
+
+        // user sets node type to sensory input node
+        nodeCreator2.setCreator(NodeCreatorType.outputNodeCreator);
+
+        // the sensory node editor gets it's sensory input node creator from nodeCreator
+        FinalOutputNodeCreator fonc = (FinalOutputNodeCreator)nodeCreator2.getNodeCreator();
+        // the sinc is used to set properties on the sensory input node
+        fonc.setAction("Move left");
+        fonc.setActivationFunction(ActivationBehaviorTypes.LogisticAB);
+
+        // user clicks save on node editor
+        netCreator.saveNode();
+
         // user clicks save on network creator
         cc.saveNetwork();
 

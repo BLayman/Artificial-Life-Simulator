@@ -102,6 +102,7 @@ public class EcosystemCreator
 
     public void addToFounders()
     {
+        creatureCreator.generateCreatureActionPool();
         founderCreatures.Add(creatureCreator.creature.species, creatureCreator.creature);
     }
 
@@ -150,7 +151,7 @@ public class EcosystemCreator
 
     public CreatureCreator addCreature()
     {
-        creatureCreator = new CreatureCreator(new Creature(ecosystem.abilityPointsPerCreature), ecosystem.distictPhenotypes);
+        creatureCreator = new CreatureCreator(new Creature(ecosystem.abilityPointsPerCreature), ecosystem.distictPhenotypes, this);
         return creatureCreator;
     }
 

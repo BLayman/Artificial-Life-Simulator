@@ -83,6 +83,10 @@ public class Creature
     /// Network to decide whether a creature should reproduce with a neightbor.
     /// </summary>
     public ReproNetwork reproductionDeciderNetwork;
+    /// <summary>
+    /// Dictionary of potential actions that the creature can take if assigned to an output node.
+    /// </summary>
+    public Dictionary<string, Action> actionPool;
 
     public Creature(int maxAbilityPoints)
     {
@@ -200,5 +204,32 @@ public class Creature
         throw new System.NotImplementedException();
     }
 
+    /// <summary>
+    /// Adds default actions to action pool: movement, reproduction, resource consumption.
+    /// </summary>
+    public void generateDefaultActions()
+    {
+        // create movement actions
+        actionPool.Add("Move up", new MoveAction(1));
+        actionPool.Add("Move down", new MoveAction(2));
+        actionPool.Add("Move left", new MoveAction(3));
+        actionPool.Add("Move right", new MoveAction(4));
 
+        // create consumption actions
+        
+        // for each resource that creature can store
+        foreach (string resource in storedResources.Keys)
+        {
+            // for each neighbor spot reachable by creature
+            for (int i = 0; i < 4; i++)
+            {
+                actionPool.Add(resource, new ConsumeFromLand(i, resource, this));
+            }
+        }
+
+        // add Reproduction action?
+        // actionPool.Add("reproduce", new ReproAction());
+
+
+    }
 }

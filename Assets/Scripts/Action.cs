@@ -7,6 +7,7 @@ using System.Text;
 public abstract class Action
 {
     public string name;
+    public int priority;
     /// <summary>
     /// Stores which resources are spend, and the amount spent
     /// </summary>

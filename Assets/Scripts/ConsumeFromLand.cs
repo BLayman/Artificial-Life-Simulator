@@ -14,6 +14,14 @@ public class ConsumeFromLand : Action
     /// Name of resource to consume.
     /// </summary>
     private string resourceToConsume;
+    Creature parentCreature;
+
+    public ConsumeFromLand(int neighborIndex, string resourceToConsume, Creature parentCreature)
+    {
+        this.neighborIndex = neighborIndex;
+        this.resourceToConsume = resourceToConsume;
+        this.parentCreature = parentCreature;
+    }
 
     /// <summary>
     /// Accesses land via neighborIndex, and attemps to consume resource.
