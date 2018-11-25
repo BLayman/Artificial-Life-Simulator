@@ -53,20 +53,53 @@ public class SpeciesPopulator
 
         for (int i = 0; i < size; i++)
         {
-            population.creatures.Add(population.generateMember());
-            population.creatures[i].position = new int[2];
+            Creature addedCreature = population.generateMember();
+            population.creatures.Add(addedCreature);
+            addedCreature.index = i;
+            addedCreature.addVariationToWeights(population.weightStandardDev);
             int x;
             int y;
+
             do
             {
                 y = rand.Next(0, map.Count);
                 x = rand.Next(0, map[0].Count);
             } while (checkIfTaken(x, y));
 
-            population.creatures[i].position[0] = x;
-            population.creatures[i].position[1] = y;
+            addedCreature.position[0] = x;
+            addedCreature.position[1] = y;
 
+            /*
+            // fix inner input node references to linked nodes
+            foreach (Dictionary<string, Network> dict in addedCreature.networks)
+            {
+                foreach (Network net in dict.Values)
+                {
+                    foreach (List<Node> layer in net.net)
+                    {
+                        foreach (InnerInputNode iiNode in layer.OfType<InnerInputNode>())
+                        {
+                            Network linkedNet = addedCreature.networks[iiNode.linkedNodeNetworkLayer][iiNode.netName];
+                            iiNode.linkedNode = linkedNet.net[linkedNet.net.Count - 1][iiNode.linkedNodeIndex];
+                        }
+                        foreach (NonInputNode niNode in layer.OfType<NonInputNode>())
+                        {
+                            niNode.assignPrevNodes();
+                        }
+                    }
+                }
+            }
+            */
+
+            //addedCreature.addActionsToQueue();
         }
+
+        for (int i = 0; i < population.creatures.Count; i++)
+        {
+            //population.creatures[i].addActionsToQueue();
+        }
+
+        population.size = size;
     }
 
     private bool checkIfTaken(int x, int y)

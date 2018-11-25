@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 
 public class SensoryInputNode : Node
@@ -17,19 +18,51 @@ public class SensoryInputNode : Node
     /// <summary>
     /// stores a reference to the creature it belongs to (for getting neighbors)
     /// </summary>
-    private Creature creature;
+    public Creature creature;
 
-    public SensoryInputNode(Creature parentCreature)
+
+    public SensoryInputNode() { }
+
+    public SensoryInputNode(Creature creature) {
+        this.creature = creature;
+    }
+
+    public void setCreature(Creature parentCreature)
     {
         creature = parentCreature;
     }
+
 
     /// <summary>
     /// Uses neighborIndex and key with propertyDict to get an updated value
     /// </summary>
     public float senseValFromNeighbor()
     {
-        return creature.neighborLands[neighborLandIndex].propertyDict[sensedResource].amountStored;
+        Dictionary<string,ResourceStore> properties = creature.neighborLands[neighborLandIndex].propertyDict;
+        //Debug.Log(properties.Keys.Count);
+        foreach (string key in properties.Keys)
+        {
+            //Debug.Log(key);
+        }
+        
+        //Debug.Log("sensing: " + sensedResource);
+        if (!creature.neighborLands[neighborLandIndex].isDummy)
+        {
+            if (properties.ContainsKey(sensedResource))
+            {
+                return properties[sensedResource].amountStored;
+            }
+            else
+            {
+                return 0;
+            }
+            
+        }
+        else
+        {
+            return 0;
+        }
+
     }
 
     /// <summary>
@@ -37,6 +70,13 @@ public class SensoryInputNode : Node
     /// </summary>
     public override void updateValue()
     {
-        value = senseValFromNeighbor();
+        float amount = senseValFromNeighbor();
+        //Debug.Log("creature " + creature.index + " sensed " + amount + " of " + sensedResource);
+        value = amount;
+    }
+
+    public SensoryInputNode clone()
+    {
+        return (SensoryInputNode) this.MemberwiseClone();
     }
 }

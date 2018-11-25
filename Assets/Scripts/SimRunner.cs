@@ -24,7 +24,7 @@ public class SimRunner : MonoBehaviour {
         if (elapsedTime > intervalTime)
         {
             updateRender(ecoMan.getEcosystem());
-            ecoMan.runSystem(5);
+            ecoMan.runSystem(1);
             elapsedTime = 0.0f;
         }
 

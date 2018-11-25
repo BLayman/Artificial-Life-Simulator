@@ -7,6 +7,10 @@ using System.Text;
 public class InnerInputNode : Node
 {
     public Node linkedNode;
+    public string netName;
+    public Creature parentCreature;
+    public int linkedNodeIndex;
+    public int linkedNodeNetworkLayer;
 
     /// <summary>
     /// This method simply gets the value from inNode.
@@ -14,5 +18,10 @@ public class InnerInputNode : Node
     public override void updateValue()
     {
         value = linkedNode.value;
+    }
+
+    public InnerInputNode clone()
+    {
+        return (InnerInputNode) this.MemberwiseClone();
     }
 }

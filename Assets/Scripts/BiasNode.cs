@@ -7,10 +7,6 @@ using System.Text;
 public class BiasNode : Node
 {
 
-    public BiasNode(float bias)
-    {
-        value = bias;
-    }
 
     /// <summary>
     /// sets bias to a value
@@ -23,5 +19,10 @@ public class BiasNode : Node
     public override void updateValue()
     {
         return;
+    }
+
+    public BiasNode clone()
+    {
+        return (BiasNode) this.MemberwiseClone();
     }
 }

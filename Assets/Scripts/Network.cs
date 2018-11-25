@@ -72,4 +72,9 @@ public class Network
             }
         }
     }
+
+    public Network getShallowCopy()
+    {
+        return (Network) this.MemberwiseClone();
+    }
 }

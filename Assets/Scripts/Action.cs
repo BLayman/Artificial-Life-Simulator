@@ -9,7 +9,7 @@ public abstract class Action
     public string name;
     public int priority;
     /// <summary>
-    /// Stores which resources are spend, and the amount spent
+    /// Stores which resources are spent, and the amount spent
     /// </summary>
     public System.Collections.Generic.Dictionary<string, float> resourceCosts;
     public int timeCost;
@@ -18,4 +18,10 @@ public abstract class Action
     /// Performs the action.
     /// </summary>
     public abstract void perform(Creature creature);
+
+
+    public Action getShallowCopy()
+    {
+        return (Action)this.MemberwiseClone();
+    }
 }

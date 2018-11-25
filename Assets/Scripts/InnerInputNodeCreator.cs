@@ -18,9 +18,13 @@ public class InnerInputNodeCreator : NodeCreatorInterface
         return node;
     }
 
-    public void setLinkedNode(string netName, int outLayerNodeIndex)
+    public void setLinkedNode(string netName, int outLayerNodeIndex, int netLayer)
     {
-        int outLayerIndex = parentCreature.networks[0][netName].net.Count - 1;
-        node.linkedNode = parentCreature.networks[0][netName].net[outLayerIndex][outLayerNodeIndex]; 
+        int outLayerIndex = parentCreature.networks[netLayer][netName].net.Count - 1;
+        node.linkedNode = parentCreature.networks[netLayer][netName].net[outLayerIndex][outLayerNodeIndex];
+        node.netName = netName;
+        node.linkedNodeIndex = outLayerNodeIndex;
+        node.linkedNodeNetworkLayer = netLayer;
+        node.parentCreature = parentCreature;
     }
 }

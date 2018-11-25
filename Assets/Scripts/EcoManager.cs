@@ -86,7 +86,7 @@ public class EcoManager
 
         List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
 
-        Debug.Log("resource added to creature: " + ecosystemResources[0]);
+        //Debug.Log("resource added to creature: " + ecosystemResources[0]);
 
         resourceCreator.setName(ecosystemResources[0]);
         resourceCreator.setMaxLevel(100);
@@ -99,7 +99,7 @@ public class EcoManager
 
         cc.saveResource();
 
-        Debug.Log("resource added to creature: " + ecosystemResources[1]);
+        //Debug.Log("resource added to creature: " + ecosystemResources[1]);
 
         resourceCreator = cc.addResource();
 
@@ -215,7 +215,7 @@ public class EcoManager
         nodeCreator3.setCreator(NodeCreatorType.innerInputNodeCreator);
         InnerInputNodeCreator iinc = (InnerInputNodeCreator)nodeCreator3.getNodeCreator();
         // the inner input node gets its value from net1's output node at index 0
-        iinc.setLinkedNode("net1", 0);
+        iinc.setLinkedNode("net1", 0, 0);
         // user clicks save on node editor
         netCreator2.saveNode();
 
@@ -226,7 +226,7 @@ public class EcoManager
         nodeCreator7.setCreator(NodeCreatorType.innerInputNodeCreator);
         InnerInputNodeCreator iinc2 = (InnerInputNodeCreator)nodeCreator7.getNodeCreator();
         // the inner input node gets its value from net1's output node at index 0
-        iinc2.setLinkedNode("net2", 0);
+        iinc2.setLinkedNode("net2", 0, 0);
         // user clicks save on node editor
         netCreator2.saveNode();
 
@@ -266,7 +266,7 @@ public class EcoManager
         SpeciesPopulator populator = ecoCreator.populateSpecies("Cat");
         populator.SetAbilityStandardDeviation(1);
         populator.setNetworkWeightStandardDeviation(.5f);
-        populator.populateRandom(100);
+        populator.populateRandom(10);
         ecoCreator.saveCurrentPopulation();
         ecoCreator.addCurrentPopulationToEcosystem();
         ecoCreator.addCurrentPopulationToMap();

@@ -18,4 +18,9 @@ public class BoostRequirement
     /// The amount of increase in ability if the boost is active.
     /// </summary>
     public int boostAmount;
+
+    public BoostRequirement getShallowCopy()
+    {
+        return (BoostRequirement)this.MemberwiseClone();
+    }
 }

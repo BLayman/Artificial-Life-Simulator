@@ -23,7 +23,9 @@ public class NetworkCreator
         network.net.Add(new List<Node>());
         network.net.Add(new List<Node>());
         // bias node added to input nodes
-        network.net[0].Add(new BiasNode(1));
+        BiasNode bn = new BiasNode();
+        bn.setBias(1);
+        network.net[0].Add(bn);
 
     }
 
@@ -38,17 +40,17 @@ public class NetworkCreator
 
     public void saveNode()
     {
-        Debug.Log(network);
-        Debug.Log(network.net);
-        Debug.Log(nodeCreator);
-        Debug.Log(network.net[nodeCreator.nodeLayer]);
-        Debug.Log(nodeCreator.getCreatedNode());
+        //Debug.Log(network);
+        //Debug.Log(network.net);
+        //Debug.Log(nodeCreator);
+        //Debug.Log(network.net[nodeCreator.nodeLayer]);
+        //Debug.Log(nodeCreator.getCreatedNode());
         network.net[nodeCreator.nodeLayer].Add(nodeCreator.getCreatedNode());
     }
 
     public NodeCreator addNode(int layer)
     {
-        Debug.Log("called addNode");
+        //Debug.Log("called addNode");
         nodeCreator = new NodeCreator(layer, this);
         return nodeCreator;
     }

@@ -18,8 +18,10 @@ public class NonInputNode : Node
     /// </summary>
     public List<float> weights = new List<float>();
 
-    protected Network parentNet;
+    public Network parentNet;
     public int layer;
+
+    public NonInputNode() { }
 
     public NonInputNode(Network parentNet, int layer)
     {
@@ -27,7 +29,7 @@ public class NonInputNode : Node
         // set to logistic activation by default
         activBehavior = new LogisticActivBehavior();
         this.layer = layer;
-        setAllPreviousNodes();
+        resetAllPreviousNodes();
     }
 
     public override void updateValue()
@@ -88,7 +90,7 @@ public class NonInputNode : Node
     /// <summary>
     /// Sets prevNodes to include all nodes in previous layer.
     /// </summary>
-    public void setAllPreviousNodes()
+    public void resetAllPreviousNodes()
     {
         prevNodes.Clear();
         weights.Clear();
@@ -99,10 +101,38 @@ public class NonInputNode : Node
         }
     }
 
+    public void assignPrevNodes()
+    {
+        prevNodes.Clear();
+        for (int i = 0; i < parentNet.net[layer - 1].Count; i++)
+        {
+            prevNodes.Add(parentNet.net[layer - 1][i]);
+        }
+    }
+
     public float generateNewRandomWeight()
     {
         System.Random rand = new System.Random();
 
         return (float)((rand.NextDouble() * 2.0) - 1);
+    }
+
+    public object clone()
+    {
+        return this.MemberwiseClone();
+    }
+
+    public void printInputsAndWeights()
+    {
+        Debug.Log("weights:");
+        foreach (float weight in weights)
+        {
+            Debug.Log(weight);
+        }
+        Debug.Log("values:");
+        foreach (Node node in prevNodes)
+        {
+            Debug.Log(node.value);
+        }
     }
 }

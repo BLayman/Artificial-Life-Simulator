@@ -18,4 +18,9 @@ public class Ability
     /// NOT IN USE. List of BoostRequirements that could give this ability a boost if the resource needs are met.
     /// </summary>
     public List<BoostRequirement> boostOptions;
+
+    public Ability getShallowCopy()
+    {
+        return (Ability)this.MemberwiseClone();
+    }
 }

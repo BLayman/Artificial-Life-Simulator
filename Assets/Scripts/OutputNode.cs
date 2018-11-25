@@ -9,6 +9,8 @@ public class OutputNode: NonInputNode
     public Action action;
     public Creature parentCreature;
 
+    public OutputNode() { }
+
     public OutputNode(Creature parentCreature, Network parentNet, int layer): base(parentNet, layer)
     {
         
@@ -28,4 +30,11 @@ public class OutputNode: NonInputNode
     {
         action = parentCreature.actionPool[actionKey];
     }
+
+    public OutputNode clone()
+    {
+        return (OutputNode)this.MemberwiseClone();
+    }
+
+
 }

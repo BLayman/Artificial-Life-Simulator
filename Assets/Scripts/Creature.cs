@@ -14,6 +14,7 @@ public class Creature
 
     public Creature founder;
     public Land dummyLand = new Land();
+    public int index;
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
@@ -26,6 +27,9 @@ public class Creature
     /// Neighbors are up, down, left, and right. Index 0 for land creature is on.
     /// </summary>
     public Land[] neighborLands = new Land[5];
+    /// <summary>
+    /// Actions to be taken by creature
+    /// </summary>
     public SimplePriorityQueue<Action> actionQueue = new SimplePriorityQueue<Action>();
     /// <summary>
     /// Time remaining in turn: limits number of actions that can be taken in one turn.
@@ -107,13 +111,36 @@ public class Creature
     /// </summary>
     public void startTurn()
     {
+        addActionsToQueue();
         updateNeighbors();
         updateNets();
-        
+        //addActionsToQueue();
+    }
+
+    public void addActionsToQueue()
+    {
+        // for every network in that layer
+        Debug.Log("creature: " + index);
+        foreach (Network network in networks[0].Values)
+        {
+            Debug.Log("net name: " + network.name);
+            foreach(Node node in network.net[0])
+            {
+                Debug.Log(node.value);
+            }
+            Debug.Log("layer 2");
+
+            foreach (NonInputNode node in network.net[1])
+            {
+                node.printInputsAndWeights();
+                Debug.Log("value:" + node.value);
+            }
+        }
     }
 
     public void updateNets()
     {
+        //Debug.Log("network count: " + networks.Count);
         // for every layer of networks
         for (int i = 0; i < networks.Count; i++)
         {
@@ -128,7 +155,7 @@ public class Creature
 
     public Creature getCopy()
     {
-        return (Creature) Utility.getDeepCopy(this);
+        return CSDeepCloneObject.DeepCloneHelper.DeepClone(this);
     }
 
     /// <summary>
@@ -163,8 +190,6 @@ public class Creature
         {
             neighborLands[2] = map[position[0]][position[1] - 1];
         }
-
-
 
         if (position[0] + 1 >= map.Count)
         {
@@ -284,7 +309,30 @@ public class Creature
 
         // add Reproduction action?
         // actionPool.Add("reproduce", new ReproAction());
+    }
 
+    public void addVariationToWeights(float standardDev)
+    {
+        foreach (Dictionary<string,Network> dict in networks)
+        {
+            foreach (Network net in dict.Values)
+            {
+                foreach (List<Node> layer in net.net)
+                {
+                    foreach(NonInputNode node in layer.OfType<NonInputNode>())
+                    {
+                        for (int i = 0; i < node.weights.Count; i++)
+                        {
+                            node.weights[i] += Utility.normRand(standardDev);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
+    public Creature getShallowCopy()
+    {
+        return (Creature) this.MemberwiseClone();
     }
 }

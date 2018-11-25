@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Creature.cs" />
     <Compile Include="Assets\Scripts\CreatureCreator.cs" />
     <Compile Include="Assets\Scripts\CreatureResource.cs" />
+    <Compile Include="Assets\Scripts\CSDeepCloneObject.cs" />
     <Compile Include="Assets\Scripts\EcoManager.cs" />
     <Compile Include="Assets\Scripts\Ecosystem.cs" />
     <Compile Include="Assets\Scripts\EcosystemCreator.cs" />

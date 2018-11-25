@@ -14,7 +14,9 @@ public class ConsumeFromLand : Action
     /// Name of resource to consume.
     /// </summary>
     private string resourceToConsume;
-    Creature parentCreature;
+    public Creature parentCreature;
+
+    public ConsumeFromLand() { }
 
     public ConsumeFromLand(int neighborIndex, string resourceToConsume, Creature parentCreature)
     {
@@ -29,5 +31,10 @@ public class ConsumeFromLand : Action
     public override void perform(Creature creature)
     {
         throw new NotImplementedException();
+    }
+
+    public Object clone()
+    {
+        return this.MemberwiseClone();
     }
 }

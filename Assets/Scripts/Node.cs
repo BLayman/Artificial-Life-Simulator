@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
 using System.Text;
 
 public abstract class Node
@@ -11,4 +11,5 @@ public abstract class Node
     /// Updates node value
     /// </summary>
     public abstract void updateValue();
+
 }

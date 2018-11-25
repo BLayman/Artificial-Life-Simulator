@@ -12,13 +12,13 @@ public class Population
     public Creature founder;
     public float weightStandardDev;
     public float abilityStandardDev;
+    public int size = 0;
 
     public Creature generateMember()
     {
+        //Debug.Log("founder species: " + founder.species);
         Creature c = founder.getCopy();
-        // TODO: add variation to creature weights and abilities
-        //c.addVariationToWeights(weightStandardDev);
-
+        //Debug.Log("copy species: " + c.species);
         return c;
     }
 }
