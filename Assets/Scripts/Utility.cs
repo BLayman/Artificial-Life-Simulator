@@ -137,7 +137,6 @@ public class Utility
             foreach (string key in origNetworks[i].Keys)
             {
                 dict[key] = origNetworks[i][key].getShallowCopy();
-                dict[key].name = "modified";
                 List<List<Node>> origNet = origNetworks[i][key].net;
                 List<List<Node>> newNet = new List<List<Node>>();
                 dict[key].net = newNet;
@@ -197,6 +196,7 @@ public class Utility
         {
             OutputNode oldNode2 = (OutputNode)oldNode;
             OutputNode newNode = oldNode2.clone();
+            newNode.parentNet = parentNet;
             newNode.parentCreature = creatureCopy;
             newNode.action = getNewAction(oldNode2.action);
             newNode.prevNodes = new List<Node>();
@@ -206,8 +206,6 @@ public class Utility
             {
                 newNode.weights.Add(oldNode2.weights[i]);
             }
-            newNode.parentNet = parentNet;
-
             return newNode;
         }
         else if (oldNode.GetType().Name == "BiasNode")

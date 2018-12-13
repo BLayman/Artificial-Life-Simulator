@@ -106,6 +106,7 @@ public class NonInputNode : Node
         prevNodes.Clear();
         for (int i = 0; i < parentNet.net[layer - 1].Count; i++)
         {
+            Debug.Log("assigning " + parentNet.net[layer - 1][i].value);
             prevNodes.Add(parentNet.net[layer - 1][i]);
         }
     }
