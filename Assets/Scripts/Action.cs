@@ -11,7 +11,7 @@ public abstract class Action
     /// <summary>
     /// Stores which resources are spent, and the amount spent
     /// </summary>
-    public System.Collections.Generic.Dictionary<string, float> resourceCosts;
+    public Dictionary<string, float> resourceCosts = new Dictionary<string, float>();
     public int timeCost;
 
     /// <summary>

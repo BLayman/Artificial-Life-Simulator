@@ -127,12 +127,12 @@ public class NonInputNode : Node
         Debug.Log("weights:");
         foreach (float weight in weights)
         {
-            Debug.Log(weight);
+            Debug.Log("w = " + weight);
         }
-        Debug.Log("values:");
+        Debug.Log("previous values:");
         foreach (Node node in prevNodes)
         {
-            Debug.Log(node.value);
+            Debug.Log("v = " + node.value);
         }
     }
 }

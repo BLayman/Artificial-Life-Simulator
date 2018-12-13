@@ -34,7 +34,7 @@ public class EcoManager
         // set basic ecosystem parameters
         ecoCreator.setAbilityPointsPerCreature(10);
         ecoCreator.setCommBits(4);
-        ecoCreator.setDistinctPhenotypeNum(16);
+        ecoCreator.setDistinctPhenotypeNum(32);
         ecoCreator.setTimeUnitsPerTurn(10);
 
         // create and save resources
@@ -80,6 +80,7 @@ public class EcoManager
 
         // user edits:
         cc.setSpecies("Cat");
+        cc.setPhenotype(3);
 
         // add resource for the creature to store
         ResourceCreator resourceCreator = cc.addResource();

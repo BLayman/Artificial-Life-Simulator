@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 public class SpeciesPopulator
 {
@@ -15,6 +16,7 @@ public class SpeciesPopulator
     public SpeciesPopulator(Creature founder, List<List<Land>> map)
     {
         population.founder = founder;
+        founder.map = map;
         this.map = map;
     }
 
@@ -42,7 +44,7 @@ public class SpeciesPopulator
     public void populateRandom(int size)
     {
         population.creatures = new List<Creature>();
-        Random rand = new Random();
+        System.Random rand = new System.Random();
 
         //TODO: handle this case better
         if(size > (map.Count * map[0].Count) * 3.0/4.0)
@@ -57,6 +59,7 @@ public class SpeciesPopulator
             population.creatures.Add(addedCreature);
             addedCreature.index = i;
             addedCreature.addVariationToWeights(population.weightStandardDev);
+            //population.creatures[i].printNetworks();
             int x;
             int y;
 
@@ -68,6 +71,11 @@ public class SpeciesPopulator
 
             addedCreature.position[0] = x;
             addedCreature.position[1] = y;
+
+            //Debug.Log("x " + x);
+            //Debug.Log("y " + y);
+            addedCreature.updateNeighbors();
+
 
             /*
             // fix inner input node references to linked nodes
@@ -93,12 +101,13 @@ public class SpeciesPopulator
 
             //addedCreature.addActionsToQueue();
         }
-
+        //Debug.Log("************************************************");
+        /*
         for (int i = 0; i < population.creatures.Count; i++)
         {
-            //population.creatures[i].addActionsToQueue();
+            population.creatures[i].printNetworks();
         }
-
+        */
         population.size = size;
     }
 

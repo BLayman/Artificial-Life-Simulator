@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 
 public class EcosystemCreator
@@ -146,11 +147,12 @@ public class EcosystemCreator
     public void saveMap()
     {
         ecosystem.map = tentativeMap;
+        Debug.Log("map size: " + tentativeMap.Count);
     }
 
     public CreatureCreator addCreature()
     {
-        creatureCreator = new CreatureCreator(new Creature(ecosystem.abilityPointsPerCreature), ecosystem.distictPhenotypes, this);
+        creatureCreator = new CreatureCreator(new Creature(ecosystem.abilityPointsPerCreature), this);
         return creatureCreator;
     }
 

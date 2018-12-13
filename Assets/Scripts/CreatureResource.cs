@@ -41,4 +41,9 @@ public class CreatureResource
     {
         throw new System.NotImplementedException();
     }
+
+    public CreatureResource getShallowCopy()
+    {
+        return (CreatureResource)this.MemberwiseClone();
+    }
 }

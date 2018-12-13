@@ -69,11 +69,11 @@ public class Creature
     /// <summary>
     /// A comm network will be created for each CommSignal in commList, and added to the first layer of networks in "networks" (the input layer).
     /// </summary>
-    public CommNetwork commInNetTemplate;
+    public CommNetwork commInNetTemplate = new CommNetwork();
     /// <summary>
     /// A template for the network that generates actions towards a specific neighbor in response to comm input from that neighbor.
     /// </summary>
-    public CommNetwork commOutNetTemplate;
+    public CommNetwork commOutNetTemplate = new CommNetwork();
     /// <summary>
     /// Maximum health that creature can attain.
     /// </summary>
@@ -112,28 +112,48 @@ public class Creature
     public void startTurn()
     {
         addActionsToQueue();
-        updateNeighbors();
-        updateNets();
-        //addActionsToQueue();
+
+        updateNets(); // only need to do first turn, and after movement
+        printNetworks();
     }
 
-    public void addActionsToQueue()
+    public void addActionsToQueue() { }
+
+
+    public void printNetworks()
     {
-        // for every network in that layer
-        Debug.Log("creature: " + index);
+        // print creature's networks:
+        Debug.Log("**************************   creature: " + index + "  *********************");
         foreach (Network network in networks[0].Values)
         {
             Debug.Log("net name: " + network.name);
-            foreach(Node node in network.net[0])
+            Debug.Log("layer 1:");
+            foreach (Node node in network.net[0])
             {
-                Debug.Log(node.value);
+                Debug.Log("input value: " + node.value);
             }
-            Debug.Log("layer 2");
+            Debug.Log("layer 2:");
 
             foreach (NonInputNode node in network.net[1])
             {
                 node.printInputsAndWeights();
-                Debug.Log("value:" + node.value);
+                Debug.Log("this node value: " + node.value);
+            }
+        }
+        foreach (Network network in networks[1].Values)
+        {
+            Debug.Log("net name: " + network.name);
+            Debug.Log("layer 1:");
+            foreach (Node node in network.net[0])
+            {
+                Debug.Log("input value: " + node.value);
+            }
+            Debug.Log("layer 2:");
+
+            foreach (NonInputNode node in network.net[1])
+            {
+                node.printInputsAndWeights();
+                Debug.Log("this node value: " + node.value);
             }
         }
     }
@@ -152,11 +172,13 @@ public class Creature
         }
     }
 
-
+    /*
     public Creature getCopy()
     {
         return CSDeepCloneObject.DeepCloneHelper.DeepClone(this);
     }
+    */
+
 
     /// <summary>
     /// updates creatures current position based on a move action, also updates creatureOn and creatureIsOn for relevant Land objects
@@ -171,6 +193,8 @@ public class Creature
     /// </summary>
     public void updateNeighbors()
     {
+
+        //Debug.Log("in update neighbors: " + map.Count);
         neighborLands[0] = map[position[0]][position[1]];
 
         if (position[1] + 1 >= map[position[0]].Count)
@@ -323,12 +347,15 @@ public class Creature
                     {
                         for (int i = 0; i < node.weights.Count; i++)
                         {
+                            //Debug.Log("old weight: " + node.weights[i]);
                             node.weights[i] += Utility.normRand(standardDev);
+                            //Debug.Log("new weight: " + node.weights[i]);
                         }
                     }
                 }
             }
         }
+        
     }
 
     public Creature getShallowCopy()

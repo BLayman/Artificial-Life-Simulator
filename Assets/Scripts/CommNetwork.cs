@@ -10,4 +10,10 @@ public class CommNetwork: Network
     /// Index of neighbor from which communication was recieved
     /// </summary>
     private int communicationFrom;
+
+
+    public CommNetwork getShallowCopy()
+    {
+        return (CommNetwork)this.MemberwiseClone();  
+    }
 }

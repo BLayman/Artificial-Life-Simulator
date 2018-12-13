@@ -7,7 +7,7 @@ using System.Text;
 public class InnerInputNode : Node
 {
     public Node linkedNode;
-    public string netName;
+    public string linkedNetName;
     public Creature parentCreature;
     public int linkedNodeIndex;
     public int linkedNodeNetworkLayer;

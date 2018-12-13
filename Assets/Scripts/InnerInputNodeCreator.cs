@@ -22,7 +22,7 @@ public class InnerInputNodeCreator : NodeCreatorInterface
     {
         int outLayerIndex = parentCreature.networks[netLayer][netName].net.Count - 1;
         node.linkedNode = parentCreature.networks[netLayer][netName].net[outLayerIndex][outLayerNodeIndex];
-        node.netName = netName;
+        node.linkedNetName = netName;
         node.linkedNodeIndex = outLayerNodeIndex;
         node.linkedNodeNetworkLayer = netLayer;
         node.parentCreature = parentCreature;

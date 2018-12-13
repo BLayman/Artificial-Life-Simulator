@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 public class CreatureCreator
 {
@@ -15,11 +16,11 @@ public class CreatureCreator
     /// <summary>
     /// Constructor
     /// </summary>
-    public CreatureCreator(Creature creature, int distinctPhenotypes, EcosystemCreator ecoCreator)
+    public CreatureCreator(Creature creature, EcosystemCreator ecoCreator)
     {
         this.creature = creature;
         initializeNetworkStructure();
-        this.distinctPhenotypes = distinctPhenotypes;
+        this.distinctPhenotypes = ecoCreator.ecosystem.distictPhenotypes;
         this.ecoCreator = ecoCreator;
     }
 
@@ -77,8 +78,16 @@ public class CreatureCreator
     /// <param name="phenotype">Must be 1 - x: Where there are x distinct phenotypes allowed in the ecosystem (set in Ecosystem class).</param>
     public void setPhenotype(int phenotype)
     {
-        creature.phenotype = new bool[distinctPhenotypes];
-        creature.phenotype[phenotype - 1] = true;
+        if(phenotype > distinctPhenotypes)
+        {
+            Debug.LogError("Phenotype entered excedes max range of possible phenotypes");
+        }
+        else
+        {
+            creature.phenotype = new bool[distinctPhenotypes];
+            creature.phenotype[phenotype - 1] = true;
+        }
+
     }
 
     /// <summary>

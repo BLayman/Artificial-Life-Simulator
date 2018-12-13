@@ -3,7 +3,7 @@
   <Class Name="Network">
     <Position X="7" Y="15" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgQAhgAAAAAEEAABAAAAAAIAGAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAgQAhgAAAAAEEAABAAAAAAIAGAAA=</HashCode>
       <FileName>Assets\Scripts\Network.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -39,7 +39,7 @@
   <Class Name="Action">
     <Position X="20" Y="24.75" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAQAAAAAAAAAAABAAAAEAAAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AAAAAAACAQQAAAAAAAAAAABAAAAEAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Assets\Scripts\Action.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -55,7 +55,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAqIEAkZAKZBAyEIAAgCIQAgIRQBIIAQAAABIABhBAk=</HashCode>
+      <HashCode>IAqIEAkZAaZBAyEIAAgCIQAgIRQBIIAQAAABIABhBAk=</HashCode>
       <FileName>Assets\Scripts\Creature.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -70,7 +70,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAAAAAgAAACAAAAgAAAEgaAAAEIAABAAIAIA=</HashCode>
+      <HashCode>ACAAAAAAgAAAAgIAACAAAAoAAAAgaAAAEIAAFAAIAIA=</HashCode>
       <FileName>Assets\Scripts\NonInputNode.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -80,7 +80,7 @@
   <Class Name="InnerInputNode">
     <Position X="10" Y="11" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAgAAIAAAAAAgAAAAAAACAAACAAAAAAAEAAAAAA=</HashCode>
       <FileName>Assets\Scripts\InnerInputNode.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -102,7 +102,7 @@
   <Class Name="BiasNode">
     <Position X="13.25" Y="17.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAACAAAAAAAEAAAAAA=</HashCode>
       <FileName>Assets\Scripts\BiasNode.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -151,7 +151,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CreatureResource">
-    <Position X="17.5" Y="7.5" Width="3" />
+    <Position X="17.75" Y="7.75" Width="3" />
     <TypeIdentifier>
       <HashCode>IACAAACACAAAAAAAAAAAAAAAAAAEgAAABAAAQAAAAQA=</HashCode>
       <FileName>Assets\Scripts\CreatureResource.cs</FileName>
@@ -261,14 +261,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Ability">
-    <Position X="17.75" Y="2" Width="3" />
+    <Position X="17.75" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAEAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAIAAAAAAAAAEAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Ability.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BoostRequirement">
-    <Position X="14.5" Y="2" Width="2.75" />
+    <Position X="14" Y="0.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\BoostRequirement.cs</FileName>

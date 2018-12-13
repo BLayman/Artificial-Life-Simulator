@@ -52,7 +52,7 @@ public class Utility
 
     }
 
-    public Creature getCreatureCopy(Creature c)
+    public static Creature getCreatureCopy(Creature c)
     {
         Creature creatureCopy = c.getShallowCopy();
 
@@ -61,26 +61,7 @@ public class Utility
         creatureCopy.networks = networks;
         List<Dictionary<string, Network>> origNetworks = c.networks;
 
-        for (int i = 0; i < origNetworks.Count; i++)
-        {
-            Dictionary<string, Network> dict = new Dictionary<string, Network>();
-            networks.Add(dict);
-            foreach (string key in origNetworks[i].Keys)
-            {
-                dict[key] = origNetworks[i][key].getShallowCopy();
-                List<List<Node>> origNet = origNetworks[i][key].net;
-                List<List<Node>> newNet = new List<List<Node>>();
-                dict[key].net = newNet;
-                for (int j = 0; j < origNet.Count; j++)
-                {
-                    newNet.Add(new List<Node>());
-                    for (int k = 0; k < origNet[i].Count; k++)
-                    {
-                        newNet[j].Add(getNewNode(origNet[i][j], creatureCopy));
-                    }
-                }
-            }
-        }
+        copyCreatureNetworks(origNetworks, networks, creatureCopy);
 
         creatureCopy.position = new int[2];
         creatureCopy.neighborLands = new Land[5];
@@ -97,11 +78,79 @@ public class Utility
             creatureCopy.abilities[ability] = newAbility;
         }
 
-        // Next: storedResources
+        creatureCopy.storedResources = new Dictionary<string, CreatureResource>();
+        foreach (string resKey in c.storedResources.Keys)
+        {
+            creatureCopy.storedResources[resKey] = c.storedResources[resKey].getShallowCopy();
+        }
+        creatureCopy.phenotype = new bool[c.phenotype.Length];
+        Array.Copy(c.phenotype, creatureCopy.phenotype, c.phenotype.Length);
+        creatureCopy.inputCommList = new List<CommSignal>();
 
+        creatureCopy.commInNetTemplate = c.commInNetTemplate.getShallowCopy();
+        creatureCopy.commInNetTemplate.net = new List<List<Node>>();
+        List<List<Node>> newCommNet = creatureCopy.commInNetTemplate.net;
+        List<List<Node>> origCommNet = c.commInNetTemplate.net;
+
+        for (int j = 0; j < origCommNet.Count; j++)
+        {
+            newCommNet.Add(new List<Node>());
+            for (int k = 0; k < origCommNet[j].Count; k++)
+            {
+                newCommNet[j].Add(getNewNode(origCommNet[j][k], creatureCopy, creatureCopy.commInNetTemplate));
+            }
+        }
+
+
+        creatureCopy.commOutNetTemplate = c.commOutNetTemplate.getShallowCopy();
+        creatureCopy.commOutNetTemplate.net = new List<List<Node>>();
+        List<List<Node>> newCommOutNet = creatureCopy.commOutNetTemplate.net;
+        List<List<Node>> origCommOutNet = c.commOutNetTemplate.net;
+
+        for (int j = 0; j < origCommOutNet.Count; j++)
+        {
+            newCommOutNet.Add(new List<Node>());
+            for (int k = 0; k < origCommOutNet[j].Count; k++)
+            {
+                newCommOutNet[j].Add(getNewNode(origCommOutNet[j][k], creatureCopy, creatureCopy.commOutNetTemplate));
+            }
+        }
+
+        creatureCopy.reproductionRequests = new List<ReproAction>();
+
+        creatureCopy.actionPool = new Dictionary<string, Action>();
+        foreach (string key in c.actionPool.Keys)
+        {
+            creatureCopy.actionPool[key] = getNewAction(c.actionPool[key]);
+        }
 
         // TODO: create instances of reference variables
         return creatureCopy;
+    }
+
+    public static void copyCreatureNetworks(List<Dictionary<string, Network>> origNetworks, List<Dictionary<string, Network>> networks, Creature creatureCopy)
+    {
+        for (int i = 0; i < origNetworks.Count; i++)
+        {
+            Dictionary<string, Network> dict = new Dictionary<string, Network>();
+            networks.Add(dict);
+            foreach (string key in origNetworks[i].Keys)
+            {
+                dict[key] = origNetworks[i][key].getShallowCopy();
+                dict[key].name = "modified";
+                List<List<Node>> origNet = origNetworks[i][key].net;
+                List<List<Node>> newNet = new List<List<Node>>();
+                dict[key].net = newNet;
+                for (int j = 0; j < origNet.Count; j++)
+                {
+                    newNet.Add(new List<Node>());
+                    for (int k = 0; k < origNet[j].Count; k++)
+                    {
+                        newNet[j].Add(getNewNode(origNet[j][k], creatureCopy, dict[key]));
+                    }
+                }
+            }
+        }
     }
 
     public static Ability getNewAbility(Ability oldAbility)
@@ -134,7 +183,7 @@ public class Utility
         return newAction;
     }
 
-    public static Node getNewNode(Node oldNode, Creature creatureCopy)
+    public static Node getNewNode(Node oldNode, Creature creatureCopy, Network parentNet)
     {
         if (oldNode.GetType().Name == "SensoryInputNode")
         {
@@ -150,6 +199,15 @@ public class Utility
             OutputNode newNode = oldNode2.clone();
             newNode.parentCreature = creatureCopy;
             newNode.action = getNewAction(oldNode2.action);
+            newNode.prevNodes = new List<Node>();
+            newNode.assignPrevNodes();
+            newNode.weights = new List<float>();
+            for (int i = 0; i < oldNode2.weights.Count; i++)
+            {
+                newNode.weights.Add(oldNode2.weights[i]);
+            }
+            newNode.parentNet = parentNet;
+
             return newNode;
         }
         else if (oldNode.GetType().Name == "BiasNode")
@@ -164,8 +222,13 @@ public class Utility
             InnerInputNode oldNode2 = (InnerInputNode)oldNode;
             InnerInputNode newNode = oldNode2.clone();
             newNode.parentCreature = creatureCopy;
-            Network network = creatureCopy.networks[newNode.linkedNodeNetworkLayer][newNode.netName];
-            newNode.linkedNode = network.net[network.net.Count][newNode.linkedNodeIndex];
+            /*
+            Debug.Log("linked network layer number: " + oldNode2.linkedNodeNetworkLayer);
+            Debug.Log("net name: " + oldNode2.linkedNetName);
+            Debug.Log("node index: " + newNode.linkedNodeIndex);
+            */
+            Network linkedNetwork = creatureCopy.networks[oldNode2.linkedNodeNetworkLayer][oldNode2.linkedNetName];
+            newNode.linkedNode = linkedNetwork.net[linkedNetwork.net.Count - 1][newNode.linkedNodeIndex];
             return newNode;
         }
         else if (oldNode.GetType().Name == "CommInputNode")
