@@ -51,7 +51,7 @@ public class MapEditor
             {
                 level = ((float)j / (float)map[i].Count) * maxAmt; 
                 // get copy of resource to be added
-                ResourceStore resStore = resourceOptions["grass"].shallowCopy();
+                ResourceStore resStore = resourceOptions[resource].shallowCopy();
                 // only store the fraction specified by level
                 resStore.amountStored = (int)Math.Round(resStore.amountStored * level);
                 // add resource to the properties of that land

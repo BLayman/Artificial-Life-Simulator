@@ -38,7 +38,11 @@ public class OutputNodeCreator : NodeCreatorInterface
             case ActivationBehaviorTypes.LogWithNeg:
                 foNode.setActivBehavior(new LogisticWithNegActivBehav());
                 break;
+            case ActivationBehaviorTypes.Tanh:
+                foNode.setActivBehavior(new TanhActivBehav());
+                break;
             default:
+                Debug.LogError("Activation function type not found.");
                 break;
         }
     }

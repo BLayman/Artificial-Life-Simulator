@@ -37,7 +37,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Action">
-    <Position X="20" Y="24.75" Width="3.25" />
+    <Position X="20.25" Y="26" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAQQAAAAAAAAAAABAAAAEAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Assets\Scripts\Action.cs</FileName>
@@ -55,7 +55,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAqIEAkZAaZBAyEIAAgCIQAgIRQBIIAQAAABIABhBAk=</HashCode>
+      <HashCode>IAqIECEZAaZBAyEIAAgCIQAgIRQBIIAQAAABIABhBAk=</HashCode>
       <FileName>Assets\Scripts\Creature.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -70,7 +70,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ACAAAAAAgAAAAgIAACAAAAoAAAAgaAAAEIAAFAAIAIA=</HashCode>
+      <HashCode>ACAAAIAAgAAAAgIAACAAAAoAAAAgaAAAEIAAFAAIAIA=</HashCode>
       <FileName>Assets\Scripts\NonInputNode.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -80,12 +80,12 @@
   <Class Name="InnerInputNode">
     <Position X="10" Y="11" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAgAAIAAAAAAgAAAAAAACAAACAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>AAAAAAgAAIAAAAAAgAAAAAAACAAACAAAAAEAEAAAAAA=</HashCode>
       <FileName>Assets\Scripts\InnerInputNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OutputNode">
-    <Position X="19.25" Y="21.75" Width="3" />
+    <Position X="19.25" Y="22.5" Width="3" />
     <AssociationLine Name="action" Type="Action">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.048" Y="0.319" />
@@ -107,7 +107,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CommInputNode">
-    <Position X="17.5" Y="11.25" Width="2.25" />
+    <Position X="17.5" Y="12.25" Width="2.25" />
     <AssociationLine Name="creature" Type="Creature">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.775" Y="0.111" />
@@ -137,7 +137,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ConsumeFromLand">
-    <Position X="24.5" Y="24.75" Width="2.5" />
+    <Position X="24.75" Y="26" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAAAAAAAABAAAACAAAAAAAAAAgEAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ConsumeFromLand.cs</FileName>
@@ -153,19 +153,19 @@
   <Class Name="CreatureResource">
     <Position X="17.75" Y="7.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>IACAAACACAAAAAAAAAAAAAAAAAAEgAAABAAAQAAAAQA=</HashCode>
+      <HashCode>IACAAACACQAAAAAAAAAAAAAAAAAEgAAABAAAQAAAAQA=</HashCode>
       <FileName>Assets\Scripts\CreatureResource.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CommSignal">
-    <Position X="15.75" Y="27.5" Width="3.5" />
+    <Position X="16" Y="28.75" Width="3.5" />
     <TypeIdentifier>
       <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\CommSignal.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CommAction">
-    <Position X="21" Y="27.75" Width="2.75" />
+    <Position X="21.25" Y="29" Width="2.75" />
     <AssociationLine Name="signal" Type="CommSignal">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.633" Y="0.104" />
@@ -182,7 +182,7 @@
   <Class Name="CommNetwork">
     <Position X="9" Y="19" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\CommNetwork.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -367,7 +367,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ReproAction">
-    <Position X="23" Y="21.75" Width="3" />
+    <Position X="23" Y="22.25" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAADAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ReproAction.cs</FileName>
@@ -425,7 +425,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MoveAction">
-    <Position X="25" Y="28.25" Width="2.75" />
+    <Position X="25.25" Y="29.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\MoveAction.cs</FileName>

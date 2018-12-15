@@ -39,18 +39,22 @@ public class SensoryInputNode : Node
     public float senseValFromNeighbor()
     {
         Dictionary<string,ResourceStore> properties = creature.neighborLands[neighborLandIndex].propertyDict;
-        //Debug.Log(properties.Keys.Count);
+        /*
+        Debug.Log(properties.Keys.Count);
         foreach (string key in properties.Keys)
         {
-            //Debug.Log(key);
+            Debug.Log(key);
         }
-        
+        */
+
         //Debug.Log("sensing: " + sensedResource);
         if (!creature.neighborLands[neighborLandIndex].isDummy)
         {
             if (properties.ContainsKey(sensedResource))
             {
-                return properties[sensedResource].amountStored;
+                //Debug.Log("sensed: " + properties[sensedResource].amountStored);
+               //Debug.Log("out of possible: " + properties[sensedResource].maxAmount);
+                return (float) properties[sensedResource].amountStored / (float) properties[sensedResource].maxAmount;
             }
             else
             {

@@ -15,7 +15,7 @@ public class MoveAction : Action
 
     public override void perform(Creature creature)
     {
-        throw new System.NotImplementedException();
+        creature.remainingTurnTime -= timeCost;
     }
 
     

@@ -199,6 +199,7 @@ public class Utility
             newNode.parentNet = parentNet;
             newNode.parentCreature = creatureCopy;
             newNode.action = getNewAction(oldNode2.action);
+            //newNode.setActivBehavior(new LogisticActivBehavior());
             newNode.prevNodes = new List<Node>();
             newNode.assignPrevNodes();
             newNode.weights = new List<float>();

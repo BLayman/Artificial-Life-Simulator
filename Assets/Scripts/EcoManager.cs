@@ -59,7 +59,8 @@ public class EcoManager
         // generate map
         ecoCreator.mapEditor = new MapEditor(ecoCreator.tentativeMap, ecoCreator.tentativeResourceOptions);
         ecoCreator.mapEditor.generateMap(50, 50);
-        ecoCreator.mapEditor.addLERPXResource("grass", .75f);
+        ecoCreator.mapEditor.addLERPXResource("grass", 1f);
+        ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
         
@@ -154,7 +155,7 @@ public class EcoManager
         OutputNodeCreator onc = (OutputNodeCreator)nodeCreator2.getNodeCreator();
         // the onc is used to set properties on the output node
         onc.setAction("Move left");
-        onc.setActivationFunction(ActivationBehaviorTypes.LogWithNeg);
+        onc.setActivationFunction(ActivationBehaviorTypes.LogisticAB);
 
         // user clicks save on node editor
         netCreator.saveNode();
@@ -194,7 +195,7 @@ public class EcoManager
         OutputNodeCreator onc3 = (OutputNodeCreator)nodeCreator6.getNodeCreator();
         // the onc is used to set properties on the output node
         onc3.setAction("Move left");
-        onc3.setActivationFunction(ActivationBehaviorTypes.LogWithNeg);
+        onc3.setActivationFunction(ActivationBehaviorTypes.LogisticAB);
 
         // user clicks save on node editor
         netCreator3.saveNode();
@@ -266,7 +267,7 @@ public class EcoManager
     {
         SpeciesPopulator populator = ecoCreator.populateSpecies("Cat");
         populator.SetAbilityStandardDeviation(1);
-        populator.setNetworkWeightStandardDeviation(.5f);
+        populator.setNetworkWeightStandardDeviation(.1f);
         populator.populateRandom(10);
         ecoCreator.saveCurrentPopulation();
         ecoCreator.addCurrentPopulationToEcosystem();

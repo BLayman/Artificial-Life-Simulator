@@ -117,7 +117,35 @@ public class Creature
         printNetworks();
     }
 
-    public void addActionsToQueue() { }
+    public void addActionsToQueue()
+    {
+        int lastNetLayer = networks.Count - 1;
+        foreach (Network network in networks[lastNetLayer].Values)
+        {
+            int finalLayer = network.net.Count - 1;
+            foreach (OutputNode node in network.net[finalLayer])
+            {
+                actionQueue.Enqueue(node.action, 1);
+            }
+        }
+    }
+
+    public void performActionsInQueue()
+    {
+        while (actionQueue.Count != 0)
+        {
+            Action nextAction = actionQueue.Dequeue();
+            if(nextAction.timeCost < remainingTurnTime)
+            {
+                nextAction.perform(this);
+            }
+            else
+            {
+                actionQueue.Enqueue(nextAction, 1);
+                break;
+            }
+        }
+    }
 
 
     public void printNetworks()
@@ -137,6 +165,8 @@ public class Creature
             foreach (NonInputNode node in network.net[1])
             {
                 node.printInputsAndWeights();
+                //node.setActivBehavior(new LogisticActivBehavior());
+                //node.updateValue();
                 Debug.Log("this node value: " + node.value);
             }
         }
@@ -153,7 +183,7 @@ public class Creature
             foreach (NonInputNode node in network.net[1])
             {
                 node.printInputsAndWeights();
-                Debug.Log("this node value: " + node.value);
+                Debug.Log("*************   this final output node value: " + node.value);
             }
         }
     }
@@ -335,7 +365,8 @@ public class Creature
         // actionPool.Add("reproduce", new ReproAction());
     }
 
-    public void addVariationToWeights(float standardDev)
+    public void addVariationToWeights
+        (float standardDev)
     {
         foreach (Dictionary<string,Network> dict in networks)
         {

@@ -4,10 +4,12 @@ using UnityEngine;
 using System.Linq;
 using System.Text;
 
-public enum ActivationBehaviorTypes { LogisticAB, EmptyAB, LogWithNeg }
+public enum ActivationBehaviorTypes { LogisticAB, EmptyAB, LogWithNeg, Tanh }
 
 public class NonInputNode : Node
 {
+    System.Random rand = new System.Random();
+
     public List<Node> prevNodes = new List<Node>();
     /// <summary>
     /// Holds an object that carries out an activation function.
@@ -21,7 +23,9 @@ public class NonInputNode : Node
     public Network parentNet;
     public int layer;
 
-    public NonInputNode() { }
+    public NonInputNode() {
+        activBehavior = new LogisticActivBehavior();
+    }
 
     public NonInputNode(Network parentNet, int layer)
     {
@@ -35,6 +39,7 @@ public class NonInputNode : Node
     public override void updateValue()
     {
         float combination = linearCombinePrevVals();
+        Debug.Log("combination = " + combination);
         value = performActivBehavior(combination);
     }
 
@@ -96,6 +101,7 @@ public class NonInputNode : Node
         weights.Clear();
         for (int i = 0; i < parentNet.net[layer - 1].Count; i++)
         {
+            Debug.Log("assigning " + parentNet.net[layer - 1][i].value);
             prevNodes.Add(parentNet.net[layer - 1][i]);
             weights.Add(generateNewRandomWeight());
         }
@@ -106,15 +112,12 @@ public class NonInputNode : Node
         prevNodes.Clear();
         for (int i = 0; i < parentNet.net[layer - 1].Count; i++)
         {
-            Debug.Log("assigning " + parentNet.net[layer - 1][i].value);
             prevNodes.Add(parentNet.net[layer - 1][i]);
         }
     }
 
     public float generateNewRandomWeight()
     {
-        System.Random rand = new System.Random();
-
         return (float)((rand.NextDouble() * 2.0) - 1);
     }
 
