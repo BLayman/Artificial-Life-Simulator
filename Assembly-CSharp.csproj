@@ -65,7 +65,7 @@
     <Compile Include="Assets\Scripts\Ability.cs" />
     <Compile Include="Assets\Scripts\Action.cs" />
     <Compile Include="Assets\Scripts\ActionCreator.cs" />
-    <Compile Include="Assets\Scripts\ActionCreatorInterface.cs" />
+    <Compile Include="Assets\Scripts\ActionCreatorAbstract.cs" />
     <Compile Include="Assets\Scripts\ActivationBehavior.cs" />
     <Compile Include="Assets\Scripts\BiasNode.cs" />
     <Compile Include="Assets\Scripts\BoostRequirement.cs" />
@@ -76,10 +76,10 @@
     <Compile Include="Assets\Scripts\CommNodeCreator.cs" />
     <Compile Include="Assets\Scripts\CommSignal.cs" />
     <Compile Include="Assets\Scripts\ConsumeFromLand.cs" />
+    <Compile Include="Assets\Scripts\ConsumeFromLandCreator.cs" />
     <Compile Include="Assets\Scripts\Creature.cs" />
     <Compile Include="Assets\Scripts\CreatureCreator.cs" />
     <Compile Include="Assets\Scripts\CreatureResource.cs" />
-    <Compile Include="Assets\Scripts\CSDeepCloneObject.cs" />
     <Compile Include="Assets\Scripts\EcoManager.cs" />
     <Compile Include="Assets\Scripts\Ecosystem.cs" />
     <Compile Include="Assets\Scripts\EcosystemCreator.cs" />
@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\MapEditor.cs" />
     <Compile Include="Assets\Scripts\MemoryInputNode.cs" />
     <Compile Include="Assets\Scripts\MoveAction.cs" />
+    <Compile Include="Assets\Scripts\MoveActionCreator.cs" />
     <Compile Include="Assets\Scripts\Network.cs" />
     <Compile Include="Assets\Scripts\NetworkCreator.cs" />
     <Compile Include="Assets\Scripts\NetworksCreator.cs" />

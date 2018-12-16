@@ -96,6 +96,7 @@ public class CreatureCreator
     public void setTurnTime(int time)
     {
         creature.fullTurnTime = time;
+        creature.remainingTurnTime = time;
     }
 
     /// <summary>

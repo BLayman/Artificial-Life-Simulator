@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommActionCreator : ActionCreatorInterface
+public class CommActionCreator : ActionCreatorAbstract
 {
-    public Action getAction()
+    public CommActionCreator(CommAction a)
     {
-        throw new System.NotImplementedException();
+        action = a;
     }
 
     public void setCommSignalProperties()

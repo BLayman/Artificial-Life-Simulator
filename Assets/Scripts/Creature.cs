@@ -15,6 +15,7 @@ public class Creature
     public Creature founder;
     public Land dummyLand = new Land();
     public int index;
+    public System.Random rand = new System.Random();
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
@@ -111,10 +112,11 @@ public class Creature
     /// </summary>
     public void startTurn()
     {
-        addActionsToQueue();
-
+        remainingTurnTime = fullTurnTime;
         updateNets(); // only need to do first turn, and after movement
-        printNetworks();
+        //printNetworks();
+        addActionsToQueue();
+        performActions();
     }
 
     public void addActionsToQueue()
@@ -125,24 +127,12 @@ public class Creature
             int finalLayer = network.net.Count - 1;
             foreach (OutputNode node in network.net[finalLayer])
             {
-                actionQueue.Enqueue(node.action, 1);
-            }
-        }
-    }
-
-    public void performActionsInQueue()
-    {
-        while (actionQueue.Count != 0)
-        {
-            Action nextAction = actionQueue.Dequeue();
-            if(nextAction.timeCost < remainingTurnTime)
-            {
-                nextAction.perform(this);
-            }
-            else
-            {
-                actionQueue.Enqueue(nextAction, 1);
-                break;
+                double uniform = rand.NextDouble();
+                if (uniform < node.value)
+                {
+                    actionQueue.Enqueue(node.action, node.action.priority);
+                }
+                
             }
         }
     }
@@ -211,14 +201,6 @@ public class Creature
 
 
     /// <summary>
-    /// updates creatures current position based on a move action, also updates creatureOn and creatureIsOn for relevant Land objects
-    /// </summary>
-    private void movePos()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    /// <summary>
     /// Called at beginning of each turn.
     /// </summary>
     public void updateNeighbors()
@@ -277,7 +259,20 @@ public class Creature
     /// </summary>
     public void performActions()
     {
-        throw new System.NotImplementedException();
+        while (actionQueue.Count > 0)
+        {
+            Action nextAction = actionQueue.Dequeue();
+            if (nextAction.timeCost <= remainingTurnTime)
+            {
+                Debug.Log("performing action");
+                nextAction.perform(this);
+            }
+            else
+            {
+                actionQueue.Enqueue(nextAction, nextAction.priority);
+                break;
+            }
+        }
     }
 
     /// <summary>
@@ -343,23 +338,18 @@ public class Creature
     /// </summary>
     public void generateDefaultActions()
     {
-        // create movement actions
-        actionPool.Add("Move up", new MoveAction(1));
-        actionPool.Add("Move down", new MoveAction(2));
-        actionPool.Add("Move left", new MoveAction(3));
-        actionPool.Add("Move right", new MoveAction(4));
+        // create move up action
+        ActionCreator ac = new ActionCreator();
+        ac.setCreator(ActionCreatorType.moveActionCreator);
+        MoveActionCreator mac = (MoveActionCreator) ac.getActionCreator();
+        mac.setName("moveUp");
+        mac.setDirection(moveDir.up);
+        mac.setPriority(1);
+        mac.setTimeCost(5);
+        mac.addResourceCost("grass", 10);
+        MoveAction moveUp = (MoveAction) ac.getCreatedAction();
 
-        // create consumption actions
-        
-        // for each resource that creature can store
-        foreach (string resource in storedResources.Keys)
-        {
-            // for each neighbor spot reachable by creature
-            for (int i = 0; i < 5; i++)
-            {
-                actionPool.Add(resource + "At" + i, new ConsumeFromLand(i, resource, this));
-            }
-        }
+        actionPool.Add("moveUp", moveUp);
 
         // add Reproduction action?
         // actionPool.Add("reproduce", new ReproAction());

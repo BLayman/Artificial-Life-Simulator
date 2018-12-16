@@ -39,7 +39,7 @@ public class NonInputNode : Node
     public override void updateValue()
     {
         float combination = linearCombinePrevVals();
-        Debug.Log("combination = " + combination);
+        //Debug.Log("combination = " + combination);
         value = performActivBehavior(combination);
     }
 

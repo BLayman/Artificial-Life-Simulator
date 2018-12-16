@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ActionCreatorType { commActionCreator }
+public enum ActionCreatorType { commActionCreator, moveActionCreator, consumeCreator }
 
 public class ActionCreator
 {
-    public Action action;
-
-    ActionCreatorInterface actionCreator;
+    ActionCreatorAbstract actionCreator;
     ActionCreatorType actionType;
 
 
@@ -27,7 +25,14 @@ public class ActionCreator
         {
             case ActionCreatorType.commActionCreator:
                 // now node will be modified by siNodeCreator
-                actionCreator = new CommActionCreator();
+                actionCreator = new CommActionCreator(new CommAction());
+                break;
+            case ActionCreatorType.moveActionCreator:
+                // now node will be modified by siNodeCreator
+                actionCreator = new MoveActionCreator(new MoveAction());
+                break;
+            case ActionCreatorType.consumeCreator:
+                actionCreator = new ConsumeFromLandCreator(new ConsumeFromLand());
                 break;
             default:
                 break;
@@ -36,13 +41,18 @@ public class ActionCreator
         // that only displays node edits for it's type and only uses the variable for that kind of nodeCreator      
     }
 
-    public ActionCreatorInterface getActionCreator()
+    public ActionCreatorAbstract getActionCreator()
     {
         switch (actionType)
         {
             case ActionCreatorType.commActionCreator:
                 return (CommActionCreator)actionCreator;
+            case ActionCreatorType.moveActionCreator:
+                return (MoveActionCreator)actionCreator;
+            case ActionCreatorType.consumeCreator:
+                return (ConsumeFromLandCreator)actionCreator;
             default:
+                Debug.LogError("Invalid action creator type");
                 return null;
         }
     }

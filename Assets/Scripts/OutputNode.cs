@@ -8,6 +8,7 @@ public class OutputNode: NonInputNode
 {
     public Action action;
     public Creature parentCreature;
+    public string actionKey;
 
     public OutputNode() { }
 
@@ -30,6 +31,7 @@ public class OutputNode: NonInputNode
     {
         action = parentCreature.actionPool[actionKey];
     }
+
 
     public OutputNode clone()
     {

@@ -23,44 +23,10 @@
   </Class>
   <Class Name="SensoryInputNode">
     <Position X="13.25" Y="10.5" Width="3.5" />
-    <AssociationLine Name="creature" Type="Creature">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="3.893" Y="0.041" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAAAAAAAIAAAAKAAAAAAAEAABCAA=</HashCode>
       <FileName>Assets\Scripts\SensoryInputNode.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="creature" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="Action">
-    <Position X="20.25" Y="26" Width="3.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAACAQQAAAAAAAAAAABAAAAEAAAAAAAAAAAAQAA=</HashCode>
-      <FileName>Assets\Scripts\Action.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Creature">
-    <Position X="21.5" Y="10.25" Width="3.75" />
-    <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
-      <Path>
-        <Point X="25.25" Y="12.444" />
-        <Point X="28.25" Y="12.444" />
-      </Path>
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.414" Y="-0.24" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <TypeIdentifier>
-      <HashCode>IAqIECEZAaZBAyEIAAgCIQAgIRQBIIAQAAABIABhBAk=</HashCode>
-      <FileName>Assets\Scripts\Creature.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Field Name="neighborLands" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="NonInputNode">
     <Position X="17.5" Y="16.5" Width="3.25" />
@@ -86,18 +52,10 @@
   </Class>
   <Class Name="OutputNode">
     <Position X="19.25" Y="22.5" Width="3" />
-    <AssociationLine Name="action" Type="Action">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.048" Y="0.319" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAAQAAAAABAAACAAAAAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>AAAABAAAAAAAAAQAAAAABAAACAAAAAAAAAAAUAAAAAA=</HashCode>
       <FileName>Assets\Scripts\OutputNode.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="action" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="BiasNode">
     <Position X="13.25" Y="17.5" Width="1.75" />
@@ -108,18 +66,10 @@
   </Class>
   <Class Name="CommInputNode">
     <Position X="17.5" Y="12.25" Width="2.25" />
-    <AssociationLine Name="creature" Type="Creature">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.775" Y="0.111" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAQAAA=</HashCode>
       <FileName>Assets\Scripts\CommInputNode.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="creature" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="MemoryInputNode">
     <Position X="7.25" Y="11.75" Width="2.25" />
@@ -139,7 +89,7 @@
   <Class Name="ConsumeFromLand">
     <Position X="24.75" Y="26" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAAAAAAAAAABAAAACAAAAAAAAAAgEAAAAAA=</HashCode>
+      <HashCode>AAAAAAACAAAAAAAAAAABAAAAAAAAAAAAAAAgEAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ConsumeFromLand.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -188,11 +138,6 @@
   </Class>
   <Class Name="CreatureCreator">
     <Position X="22" Y="4.75" Width="3" />
-    <AssociationLine Name="creature" Type="Creature">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.081" Y="0.619" />
-      </MemberNameLabel>
-    </AssociationLine>
     <AssociationLine Name="netCreator" Type="NetworkCreator">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.307" Y="0.249" />
@@ -208,7 +153,6 @@
       <FileName>Assets\Scripts\CreatureCreator.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="creature" />
       <Field Name="netCreator" />
       <Field Name="resourceCreator" />
       <Field Name="abilitiesCreator" />
@@ -409,20 +353,22 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ActionCreator">
-    <Position X="15.25" Y="23.75" Width="3" />
+  <Class Name="ActionCreatorAbstract">
+    <Position X="14" Y="25.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>EBAABAAAAAAAAAAAAAAAAQAAAAAAAAAAEAAAAAAAEAA=</HashCode>
-      <FileName>Assets\Scripts\ActionCreator.cs</FileName>
+      <HashCode>AAAABAAAAAAAAAABQAAAAAAAAAAAAABEAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ActionCreatorAbstract.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="action" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="CommActionCreator">
-    <Position X="11.75" Y="24.25" Width="2.5" />
+    <Position X="13.5" Y="23.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\CommActionCreator.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="MoveAction">
     <Position X="25.25" Y="29.5" Width="2.75" />
@@ -461,6 +407,54 @@
       <FileName>Assets\Scripts\LogisticWithNegActivBehav.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Creature">
+    <Position X="21.5" Y="10.25" Width="3.75" />
+    <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
+      <Path>
+        <Point X="25.25" Y="12.402" />
+        <Point X="28.25" Y="12.402" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.414" Y="-0.24" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAqIEKEZAaZAAyEIAAgCIQAgIRQBIIAQAAABIABhBAk=</HashCode>
+      <FileName>Assets\Scripts\Creature.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="neighborLands" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MoveActionCreator">
+    <Position X="12.75" Y="28.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\MoveActionCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TanhActivBehav">
+    <Position X="6.75" Y="21.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\TanhActivBehav.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Action" Collapsed="true">
+    <Position X="20.75" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAQQAAAAAAAAAAABAAAAEAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\Action.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsumeFromLandCreator">
+    <Position X="10.75" Y="26" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\ConsumeFromLandCreator.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="NodeCreatorInterface">
     <Position X="10.5" Y="4.75" Width="2" />

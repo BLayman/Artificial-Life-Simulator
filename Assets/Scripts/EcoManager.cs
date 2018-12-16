@@ -82,6 +82,11 @@ public class EcoManager
         // user edits:
         cc.setSpecies("Cat");
         cc.setPhenotype(3);
+        cc.setTurnTime(10);
+
+        // TODO create default actions for creature action pool, and example user made action 
+        // (should use add an action creator to creature creator)
+        cc.generateCreatureActionPool();
 
         // add resource for the creature to store
         ResourceCreator resourceCreator = cc.addResource();
@@ -119,7 +124,7 @@ public class EcoManager
 
         List<string> creatureResources = new List<string>(cc.creature.storedResources.Keys);
 
-        cc.generateCreatureActionPool();
+        
 
         // user opens networks creator for that creature
 
@@ -154,7 +159,7 @@ public class EcoManager
         // the output node editor gets it's output node creator from nodeCreator
         OutputNodeCreator onc = (OutputNodeCreator)nodeCreator2.getNodeCreator();
         // the onc is used to set properties on the output node
-        onc.setAction("Move left");
+        onc.setAction("moveUp");
         onc.setActivationFunction(ActivationBehaviorTypes.LogisticAB);
 
         // user clicks save on node editor
@@ -194,7 +199,7 @@ public class EcoManager
         // the output node editor gets it's output node creator from nodeCreator
         OutputNodeCreator onc3 = (OutputNodeCreator)nodeCreator6.getNodeCreator();
         // the onc is used to set properties on the output node
-        onc3.setAction("Move left");
+        onc3.setAction("moveUp");
         onc3.setActivationFunction(ActivationBehaviorTypes.LogisticAB);
 
         // user clicks save on node editor
@@ -238,7 +243,7 @@ public class EcoManager
         NodeCreator nodeCreator4 = netCreator2.addNode(1);
         nodeCreator4.setCreator(NodeCreatorType.outputNodeCreator);
         OutputNodeCreator onc2 = (OutputNodeCreator)nodeCreator4.getNodeCreator();
-        onc2.setAction("Move left");
+        onc2.setAction("moveUp");
         onc2.setActivationFunction(ActivationBehaviorTypes.LogisticAB);
         netCreator2.saveNode();
 
