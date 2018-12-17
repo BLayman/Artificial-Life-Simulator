@@ -10,6 +10,7 @@ public class CreatureCreator
     public NetworkCreator netCreator;
     public ResourceCreator resourceCreator;
     public AbilitiesCreator abilitiesCreator;
+    public ActionCreator actionCreator;
     public int distinctPhenotypes;
     EcosystemCreator ecoCreator;
 
@@ -133,6 +134,17 @@ public class CreatureCreator
         return netCreator;
     }
 
+    public ActionCreator addAction()
+    {
+        actionCreator = new ActionCreator(this);
+        return actionCreator;
+    }
+
+    public void saveAction()
+    {
+        creature.actionPool.Add(actionCreator.getCreatedAction().name, actionCreator.getCreatedAction());
+    }
+
     /// <summary>
     /// Saves abilities set by abilities creator.
     /// </summary>
@@ -143,8 +155,51 @@ public class CreatureCreator
 
     
 
-    public void generateCreatureActionPool()
+    public void generateDefaultActionPool()
     {
-        creature.generateDefaultActions();
+        // create move up action
+        ActionCreator ac = addAction();
+        ac.setCreator(ActionCreatorType.moveActionCreator);
+        MoveActionCreator mac = (MoveActionCreator)ac.getActionCreator();
+        mac.setName("moveUp");
+        mac.setDirection(moveDir.up);
+        mac.setPriority(1);
+        mac.setTimeCost(5);
+        mac.addResourceCost("grass", 1);
+        saveAction();
+
+        // create move up action
+        ActionCreator acd = addAction();
+        acd.setCreator(ActionCreatorType.moveActionCreator);
+        MoveActionCreator macd = (MoveActionCreator)acd.getActionCreator();
+        macd.setName("moveDown");
+        macd.setDirection(moveDir.down);
+        macd.setPriority(1);
+        macd.setTimeCost(5);
+        macd.addResourceCost("grass", 1);
+        saveAction();
+
+        // create move up action
+        ActionCreator acl = addAction();
+        acl.setCreator(ActionCreatorType.moveActionCreator);
+        MoveActionCreator macl = (MoveActionCreator)acl.getActionCreator();
+        macl.setName("moveLeft");
+        macl.setDirection(moveDir.left);
+        macl.setPriority(1);
+        macl.setTimeCost(5);
+        macl.addResourceCost("grass", 1);
+        saveAction();
+
+        // create move up action
+        ActionCreator acr = addAction();
+        acr.setCreator(ActionCreatorType.moveActionCreator);
+        MoveActionCreator macr = (MoveActionCreator)acr.getActionCreator();
+        macr.setName("moveRight");
+        macr.setDirection(moveDir.right);
+        macr.setPriority(1);
+        macr.setTimeCost(5);
+        macr.addResourceCost("grass", 1);
+        saveAction();
+
     }
 }

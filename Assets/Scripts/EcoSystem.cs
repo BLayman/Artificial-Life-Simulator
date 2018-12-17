@@ -52,11 +52,24 @@ public class Ecosystem
             foreach (string species in populations.Keys)
             {
                 Population population = populations[species];
-
-                foreach (Creature creature in population.creatures)
+                if(population.creatures.Count > 0)
                 {
-                    creature.startTurn();
+                    List<Creature> toRemove = new List<Creature>();
+                    foreach (Creature creature in population.creatures)
+                    {
+                        creature.startTurn();
+                        if (creature.isDead())
+                        {
+                            toRemove.Add(creature);
+                        }
+                    }
+
+                    foreach (Creature deadCreature in toRemove)
+                    {
+                        population.creatures.Remove(deadCreature);
+                    }
                 }
+                
             }
         }
         

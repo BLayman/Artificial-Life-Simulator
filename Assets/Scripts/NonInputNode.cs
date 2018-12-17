@@ -8,7 +8,8 @@ public enum ActivationBehaviorTypes { LogisticAB, EmptyAB, LogWithNeg, Tanh }
 
 public class NonInputNode : Node
 {
-    System.Random rand = new System.Random();
+    System.Random rand;
+    public List<int> tabooPrevNodeIndicies = new List<int>();
 
     public List<Node> prevNodes = new List<Node>();
     /// <summary>
@@ -24,11 +25,13 @@ public class NonInputNode : Node
     public int layer;
 
     public NonInputNode() {
+        rand = new System.Random(Guid.NewGuid().GetHashCode());
         activBehavior = new LogisticActivBehavior();
     }
 
     public NonInputNode(Network parentNet, int layer)
     {
+        rand = new System.Random(Guid.NewGuid().GetHashCode());
         this.parentNet = parentNet;
         // set to logistic activation by default
         activBehavior = new LogisticActivBehavior();
@@ -53,6 +56,7 @@ public class NonInputNode : Node
     {
         prevNodes.RemoveAt(index);
         weights.RemoveAt(index);
+        tabooPrevNodeIndicies.Add(index);
     }
 
     private float linearCombinePrevVals()
@@ -93,7 +97,7 @@ public class NonInputNode : Node
     }
 
     /// <summary>
-    /// Sets prevNodes to include all nodes in previous layer.
+    /// Sets prevNodes to include all nodes in previous layer. Resets nodes and weights
     /// </summary>
     public void resetAllPreviousNodes()
     {
@@ -101,20 +105,29 @@ public class NonInputNode : Node
         weights.Clear();
         for (int i = 0; i < parentNet.net[layer - 1].Count; i++)
         {
-            Debug.Log("assigning " + parentNet.net[layer - 1][i].value);
-            prevNodes.Add(parentNet.net[layer - 1][i]);
-            weights.Add(generateNewRandomWeight());
+            //Debug.Log("assigning " + parentNet.net[layer - 1][i].value);
+            if (!tabooPrevNodeIndicies.Contains(i))
+            {
+                prevNodes.Add(parentNet.net[layer - 1][i]);
+                weights.Add(generateNewRandomWeight());
+            }  
         }
     }
 
+    // resets nodes but not weights
     public void assignPrevNodes()
     {
         prevNodes.Clear();
+
         for (int i = 0; i < parentNet.net[layer - 1].Count; i++)
         {
-            prevNodes.Add(parentNet.net[layer - 1][i]);
+            if (!tabooPrevNodeIndicies.Contains(i))
+            {
+                prevNodes.Add(parentNet.net[layer - 1][i]);
+            }
         }
     }
+
 
     public float generateNewRandomWeight()
     {

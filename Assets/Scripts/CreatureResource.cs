@@ -39,7 +39,21 @@ public class CreatureResource
     /// </summary>
     public void healthUpdate(Creature creature)
     {
-        throw new System.NotImplementedException();
+        if(currentLevel < deficiencyThreshold)
+        {
+            creature.health -= deficiencyHealthDrain;
+        }
+        if(currentLevel > healthGainThreshold)
+        {
+            if(creature.health + healthGain > creature.maxHealth)
+            {
+                creature.health = creature.maxHealth;
+            }
+            else
+            {
+                creature.health += healthGain;
+            }
+        }
     }
 
     public CreatureResource getShallowCopy()

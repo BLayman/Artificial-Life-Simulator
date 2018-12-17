@@ -16,7 +16,7 @@ public abstract class ActionCreatorAbstract
         action.timeCost = cost;
     }
 
-    public void addResourceCost(string key, float value)
+    public void addResourceCost(string key, int value)
     {
         action.resourceCosts[key] = value;
     }

@@ -17,28 +17,50 @@ public class MoveAction : Action
 
     public override void perform(Creature creature)
     {
-        Debug.Log("performing move action");
-        creature.remainingTurnTime -= timeCost;
+        //Debug.Log("resource before: " + creature.storedResources["grass"].currentLevel);
+        bool enoughResources = spendTimeAndResources(creature);
+        if (!enoughResources) { return; }
+
+        //Debug.Log("resource after: " + creature.storedResources["grass"].currentLevel);
 
         // TODO: finish 
         switch (direction)
         {
             case moveDir.up:
-                if(!creature.neighborLands[1].creatureIsOn() && creature.position[1] + 1 <= creature.map[creature.position[0]].Count)
+                if(!creature.neighborLands[1].creatureIsOn() && creature.position[1] + 1 < creature.map[creature.position[0]].Count)
                 {
                     creature.neighborLands[0].creatureOn = null;
                     creature.position[1] += 1;
                     creature.updateNeighbors();
                     creature.neighborLands[0].creatureOn = creature;
                 }
-                
-                
                 break;
             case moveDir.down:
+                if (!creature.neighborLands[2].creatureIsOn() && creature.position[1] - 1 >= 0)
+                {
+                    creature.neighborLands[0].creatureOn = null;
+                    creature.position[1] -= 1;
+                    creature.updateNeighbors();
+                    creature.neighborLands[0].creatureOn = creature;
+                }
                 break;
             case moveDir.left:
+                if (!creature.neighborLands[3].creatureIsOn() && creature.position[0] - 1 >= 0)
+                {
+                    creature.neighborLands[0].creatureOn = null;
+                    creature.position[0] -= 1;
+                    creature.updateNeighbors();
+                    creature.neighborLands[0].creatureOn = creature;
+                }
                 break;
             case moveDir.right:
+                if (!creature.neighborLands[4].creatureIsOn() && creature.position[0] + 1 < creature.map.Count)
+                {
+                    creature.neighborLands[0].creatureOn = null;
+                    creature.position[0] += 1;
+                    creature.updateNeighbors();
+                    creature.neighborLands[0].creatureOn = creature;
+                }
                 break;
             default:
                 break;

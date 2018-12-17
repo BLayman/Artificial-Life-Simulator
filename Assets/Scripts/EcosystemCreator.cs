@@ -165,7 +165,7 @@ public class EcosystemCreator
         {
             // place each creature on its location on the map
             currentPopulation.creatures[i].map = tentativeMap;
-            tentativeMap[currentPopulation.creatures[i].position[1]][currentPopulation.creatures[i].position[0]].creatureOn = currentPopulation.creatures[i];
+            tentativeMap[currentPopulation.creatures[i].position[0]][currentPopulation.creatures[i].position[1]].creatureOn = currentPopulation.creatures[i];
         }
     }
 }

@@ -117,6 +117,8 @@ public class Creature
         //printNetworks();
         addActionsToQueue();
         performActions();
+        resourceHealthUpdate();
+        //printNetworks();
     }
 
     public void addActionsToQueue()
@@ -128,6 +130,7 @@ public class Creature
             foreach (OutputNode node in network.net[finalLayer])
             {
                 double uniform = rand.NextDouble();
+                //Debug.Log("probability: " + node.value);
                 if (uniform < node.value)
                 {
                     actionQueue.Enqueue(node.action, node.action.priority);
@@ -264,7 +267,7 @@ public class Creature
             Action nextAction = actionQueue.Dequeue();
             if (nextAction.timeCost <= remainingTurnTime)
             {
-                Debug.Log("performing action");
+                //Debug.Log("performing action");
                 nextAction.perform(this);
             }
             else
@@ -280,15 +283,27 @@ public class Creature
     /// </summary>
     public void resourceHealthUpdate()
     {
-        throw new System.NotImplementedException();
+        foreach (CreatureResource resource in storedResources.Values)
+        {
+            resource.healthUpdate(this);
+        }
+        //Debug.Log("Creature health: " + health);
     }
 
     /// <summary>
     /// Returns true if health is 0 or below.
     /// </summary>
-    public bool checkIfDead()
+    public bool isDead()
     {
-        throw new System.NotImplementedException();
+        if (health <= 0)
+        {
+            map[position[0]][position[1]].creatureOn = null;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /// <summary>
@@ -333,27 +348,7 @@ public class Creature
         throw new System.NotImplementedException();
     }
 
-    /// <summary>
-    /// Adds default actions to action pool: movement, reproduction, resource consumption.
-    /// </summary>
-    public void generateDefaultActions()
-    {
-        // create move up action
-        ActionCreator ac = new ActionCreator();
-        ac.setCreator(ActionCreatorType.moveActionCreator);
-        MoveActionCreator mac = (MoveActionCreator) ac.getActionCreator();
-        mac.setName("moveUp");
-        mac.setDirection(moveDir.up);
-        mac.setPriority(1);
-        mac.setTimeCost(5);
-        mac.addResourceCost("grass", 10);
-        MoveAction moveUp = (MoveAction) ac.getCreatedAction();
 
-        actionPool.Add("moveUp", moveUp);
-
-        // add Reproduction action?
-        // actionPool.Add("reproduce", new ReproAction());
-    }
 
     public void addVariationToWeights
         (float standardDev)

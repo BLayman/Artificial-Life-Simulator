@@ -36,7 +36,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ACAAAIAAgAAAAgIAACAAAAoAAAAgaAAAEIAAFAAIAIA=</HashCode>
+      <HashCode>ACAAAIQAgAAAAgIAACAAAAoAAAAgaAAAEIAAFAAIAIA=</HashCode>
       <FileName>Assets\Scripts\NonInputNode.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -149,7 +149,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BBAIAAAAACIQACEAAAAAAAAKABQAYBKgAAAEAAAAACA=</HashCode>
+      <HashCode>BDAICAAgACIAACEAAAAAAQAKABQAYBKgAAAEAAAAACA=</HashCode>
       <FileName>Assets\Scripts\CreatureCreator.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -412,15 +412,15 @@
     <Position X="21.5" Y="10.25" Width="3.75" />
     <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
       <Path>
-        <Point X="25.25" Y="12.402" />
-        <Point X="28.25" Y="12.402" />
+        <Point X="25.25" Y="12.36" />
+        <Point X="28.25" Y="12.36" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.414" Y="-0.24" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAqIEKEZAaZAAyEIAAgCIQAgIRQBIIAQAAABIABhBAk=</HashCode>
+      <HashCode>IAqIEKEZAaZAAyEIAAgCIQAgIRQAAIAQAAABIABhBAk=</HashCode>
       <FileName>Assets\Scripts\Creature.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -445,7 +445,7 @@
   <Class Name="Action" Collapsed="true">
     <Position X="20.75" Y="26.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAQQAAAAAAAAAAABAAAAEAAAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AAAAAAACAQQAAAAAAAAAAABAAAAEAAIAAAAAAAAAQAA=</HashCode>
       <FileName>Assets\Scripts\Action.cs</FileName>
     </TypeIdentifier>
   </Class>

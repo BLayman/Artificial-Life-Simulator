@@ -11,7 +11,7 @@ public abstract class Action
     /// <summary>
     /// Stores which resources are spent, and the amount spent
     /// </summary>
-    public Dictionary<string, float> resourceCosts = new Dictionary<string, float>();
+    public Dictionary<string, int> resourceCosts = new Dictionary<string, int>();
     public int timeCost;
 
     /// <summary>
@@ -19,6 +19,24 @@ public abstract class Action
     /// </summary>
     public abstract void perform(Creature creature);
 
+
+    public bool spendTimeAndResources(Creature creature)
+    {
+        bool enoughToSpend = true;
+        creature.remainingTurnTime -= timeCost;
+        foreach (string resource in resourceCosts.Keys)
+        {
+            if (creature.storedResources[resource].currentLevel > resourceCosts[resource])
+            {
+                creature.storedResources[resource].currentLevel -= resourceCosts[resource];
+            }
+            else
+            {
+                enoughToSpend = false;
+            }
+        }
+        return enoughToSpend;
+    }
 
     public Action getShallowCopy()
     {

@@ -8,11 +8,12 @@ public class ActionCreator
 {
     ActionCreatorAbstract actionCreator;
     ActionCreatorType actionType;
-
+    CreatureCreator creatureCreator;
 
     // user picks layer to create node in, initializing a node creator
-    public ActionCreator()
+    public ActionCreator(CreatureCreator cc)
     {
+        creatureCreator = cc;
     }
 
 
