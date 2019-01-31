@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 
 
-public class CommNetwork: Network
+/// <summary>
+/// A network that converts incomming comm signals into action recommendations. A seperate comm network is needed for every neightbor that sends a comm signal.
+/// </summary>
+public class CommNetwork : Network
 {
     /// <summary>
     /// Index of neighbor from which communication was recieved
@@ -14,6 +17,6 @@ public class CommNetwork: Network
 
     public CommNetwork getShallowCopy()
     {
-        return (CommNetwork)this.MemberwiseClone();  
+        return (CommNetwork)this.MemberwiseClone();
     }
 }

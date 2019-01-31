@@ -94,7 +94,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ResourceStore">
-    <Position X="33.75" Y="16.5" Width="4.75" />
+    <Position X="34" Y="15.5" Width="4.75" />
     <TypeIdentifier>
       <HashCode>EAAAIBAAQAQAAQAAAAAAAAAAAAAEACAAAgAAAAQAAAA=</HashCode>
       <FileName>Assets\Scripts\ResourceStore.cs</FileName>
@@ -148,6 +148,11 @@
         <Position X="0.066" Y="0.63" />
       </MemberNameLabel>
     </AssociationLine>
+    <AssociationLine Name="creature" Type="Creature">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.081" Y="0.407" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>BDAICAAgACIAACEAAAAAAQAKABQAYBKgAAAEAAAAACA=</HashCode>
       <FileName>Assets\Scripts\CreatureCreator.cs</FileName>
@@ -156,6 +161,7 @@
       <Field Name="netCreator" />
       <Field Name="resourceCreator" />
       <Field Name="abilitiesCreator" />
+      <Field Name="creature" />
     </ShowAsAssociation>
   </Class>
   <Class Name="NetworkCreator">
@@ -205,7 +211,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Ability">
-    <Position X="17.75" Y="0.5" Width="3" />
+    <Position X="18" Y="1" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAAIAAAAAAAAAEAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Ability.cs</FileName>
@@ -346,7 +352,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OutputNodeCreator">
-    <Position X="6" Y="7.25" Width="2.75" />
+    <Position X="6.5" Y="7.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAQAAAAAAABEAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\OutputNodeCreator.cs</FileName>
@@ -378,7 +384,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="InnerInputNodeCreator">
-    <Position X="28.25" Y="16.25" Width="2.5" />
+    <Position X="3.5" Y="7.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAgAAAAAAAAAACAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\InnerInputNodeCreator.cs</FileName>
@@ -393,7 +399,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAggAAAGAEAAAAAAgAAAAgAAAAAAAAAAAAQAAA=</HashCode>
+      <HashCode>ACAAAAAggAAAGAEAAAAAAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
       <FileName>Assets\Scripts\EcoManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -409,11 +415,11 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Creature">
-    <Position X="21.5" Y="10.25" Width="3.75" />
+    <Position X="21.5" Y="10.75" Width="3.75" />
     <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
       <Path>
-        <Point X="25.25" Y="12.36" />
-        <Point X="28.25" Y="12.36" />
+        <Point X="25.25" Y="12.86" />
+        <Point X="28.25" Y="12.86" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.414" Y="-0.24" />
@@ -450,7 +456,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ConsumeFromLandCreator">
-    <Position X="10.75" Y="26" Width="2.25" />
+    <Position X="10.75" Y="25.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAABA=</HashCode>
       <FileName>Assets\Scripts\ConsumeFromLandCreator.cs</FileName>
@@ -464,7 +470,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="ActivationBehavior">
-    <Position X="13" Y="19.75" Width="2.25" />
+    <Position X="13.5" Y="19.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ActivationBehavior.cs</FileName>

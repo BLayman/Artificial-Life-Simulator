@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 
 
-public class OutputNode: NonInputNode
+/// <summary>
+/// Maps a the value of the node (as calculated by NonInputNode methods) to an action.
+/// </summary>
+public class OutputNode : NonInputNode
 {
     public Action action;
     public Creature parentCreature;
@@ -12,9 +15,9 @@ public class OutputNode: NonInputNode
 
     public OutputNode() { }
 
-    public OutputNode(Creature parentCreature, Network parentNet, int layer): base(parentNet, layer)
+    public OutputNode(Creature parentCreature, Network parentNet, int layer) : base(parentNet, layer)
     {
-        
+
         activBehavior = new LogisticActivBehavior();
         this.parentCreature = parentCreature;
     }

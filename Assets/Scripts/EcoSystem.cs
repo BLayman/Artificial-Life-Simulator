@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 
 
+/// <summary>
+/// This class contains all of the data about the state of the ecosystem including the populations, species templates, map, resources, and other general parameters.
+/// </summary>
 public class Ecosystem
 {
     /// <summary>
@@ -52,7 +55,7 @@ public class Ecosystem
             foreach (string species in populations.Keys)
             {
                 Population population = populations[species];
-                if(population.creatures.Count > 0)
+                if (population.creatures.Count > 0)
                 {
                     List<Creature> toRemove = new List<Creature>();
                     foreach (Creature creature in population.creatures)
@@ -69,10 +72,10 @@ public class Ecosystem
                         population.creatures.Remove(deadCreature);
                     }
                 }
-                
+
             }
         }
-        
+
     }
 
 

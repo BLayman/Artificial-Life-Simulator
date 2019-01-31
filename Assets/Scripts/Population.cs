@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+/// <summary>
+/// A population stores information about a list of creatures, including it's founder, and initial variation.
+/// </summary>
 public class Population
 {
     public List<Creature> creatures;

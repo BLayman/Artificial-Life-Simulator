@@ -7,6 +7,9 @@ using UnityEngine;
 public enum NodeCreatorType { siNodeCreator, commNodeCreator, outputNodeCreator, innerInputNodeCreator }
 
 
+/// <summary>
+/// API for storing different kinds of specific node creators. ex. - could wrap a SensoryInputNodeCreator. Stored by NetworkCreator.
+/// </summary>
 public class NodeCreator
 {
     NodeCreatorInterface nodeCreator;

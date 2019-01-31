@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+/// <summary>
+/// API for Comm Nodes
+/// </summary>
 public class CommNodeCreator : NodeCreatorInterface
 {
     public CommInputNode commNode;

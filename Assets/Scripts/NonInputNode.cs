@@ -6,6 +6,9 @@ using System.Text;
 
 public enum ActivationBehaviorTypes { LogisticAB, EmptyAB, LogWithNeg, Tanh }
 
+/// <summary>
+/// Encompasses hidden nodes (which use this class directly) and output nodes (which use the OutputNode class).
+/// </summary>
 public class NonInputNode : Node
 {
     System.Random rand;
@@ -24,7 +27,8 @@ public class NonInputNode : Node
     public Network parentNet;
     public int layer;
 
-    public NonInputNode() {
+    public NonInputNode()
+    {
         rand = new System.Random(Guid.NewGuid().GetHashCode());
         activBehavior = new LogisticActivBehavior();
     }
@@ -62,7 +66,7 @@ public class NonInputNode : Node
     private float linearCombinePrevVals()
     {
         float sum = 0;
-        if(prevNodes.Count != weights.Count)
+        if (prevNodes.Count != weights.Count)
         {
             Debug.LogError("Error: Previous node count not equal to weights count.");
         }
@@ -110,7 +114,7 @@ public class NonInputNode : Node
             {
                 prevNodes.Add(parentNet.net[layer - 1][i]);
                 weights.Add(generateNewRandomWeight());
-            }  
+            }
         }
     }
 

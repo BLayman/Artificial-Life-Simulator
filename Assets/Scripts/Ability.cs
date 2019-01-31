@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 
 
+/// <summary>
+/// Modifies creature's ability to consume certain resources or attack certain species. Each creature has a specific number of ability points to assign to different abilities.
+/// </summary>
 public class Ability
 {
     /// <summary>
@@ -11,7 +14,7 @@ public class Ability
     /// </summary>
     public string target;
     /// <summary>
-    /// Strength of ability.
+    /// Strength of ability. (multiplier to increase chances)
     /// </summary>
     public int level;
     /// <summary>

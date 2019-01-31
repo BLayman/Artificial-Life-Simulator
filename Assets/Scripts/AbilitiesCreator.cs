@@ -5,6 +5,9 @@ using System.Text;
 
 public enum abilityType {comsumption, defense, attack}
 
+/// <summary>
+/// API for Abilities objects.
+/// </summary>
 public class AbilitiesCreator
 {
     public List<Ability> abilities;

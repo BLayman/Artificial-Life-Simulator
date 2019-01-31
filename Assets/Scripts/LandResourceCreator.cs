@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+/// <summary>
+/// Used as interface for generating ResourceStore objects.
+/// </summary>
 public class LandResourceCreator
 {
     public ResourceStore resourceStore;

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+/// API for Network objects. Stored by EcosystemCreator.
+/// </summary>
 public class NetworkCreator
 {
     public Network network;
@@ -29,7 +32,8 @@ public class NetworkCreator
 
     }
 
-    public void setName(string name) {
+    public void setName(string name)
+    {
         network.name = name;
     }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 /// <summary>
-/// Resources stored by a creature.
+/// Resource stored by a creature, and how that resource effects the creature.
 /// </summary>
 
 
@@ -39,13 +39,13 @@ public class CreatureResource
     /// </summary>
     public void healthUpdate(Creature creature)
     {
-        if(currentLevel < deficiencyThreshold)
+        if (currentLevel < deficiencyThreshold)
         {
             creature.health -= deficiencyHealthDrain;
         }
-        if(currentLevel > healthGainThreshold)
+        if (currentLevel > healthGainThreshold)
         {
-            if(creature.health + healthGain > creature.maxHealth)
+            if (creature.health + healthGain > creature.maxHealth)
             {
                 creature.health = creature.maxHealth;
             }

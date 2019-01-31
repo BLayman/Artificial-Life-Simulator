@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+/// <remarks>API for creature class. Stored by EcosystemCreator.</remarks>
 public class CreatureCreator
 {
     public Creature creature;
@@ -79,7 +80,7 @@ public class CreatureCreator
     /// <param name="phenotype">Must be 1 - x: Where there are x distinct phenotypes allowed in the ecosystem (set in Ecosystem class).</param>
     public void setPhenotype(int phenotype)
     {
-        if(phenotype > distinctPhenotypes)
+        if (phenotype > distinctPhenotypes)
         {
             Debug.LogError("Phenotype entered excedes max range of possible phenotypes");
         }
@@ -153,7 +154,7 @@ public class CreatureCreator
         throw new System.NotImplementedException();
     }
 
-    
+
 
     public void generateDefaultActionPool()
     {

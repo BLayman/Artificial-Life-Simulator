@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class SensoryInputNodeCreator: NodeCreatorInterface
+/// <summary>
+/// API for SensoryInputNodes.
+/// </summary>
+public class SensoryInputNodeCreator : NodeCreatorInterface
 {
     public SensoryInputNode siNode;
     public int nodeLayer;

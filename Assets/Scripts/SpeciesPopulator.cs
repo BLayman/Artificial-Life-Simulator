@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+/// Class for using a founder species to generate a population on the map.
+/// </summary>
 public class SpeciesPopulator
 {
     /// <summary>
@@ -47,7 +50,7 @@ public class SpeciesPopulator
         System.Random rand = new System.Random();
 
         //TODO: handle this case better
-        if(size > (map.Count * map[0].Count) * 3.0/4.0)
+        if (size > (map.Count * map[0].Count) * 3.0 / 4.0)
         {
             Console.WriteLine("population is too large for random initialization");
             return;

@@ -9,6 +9,9 @@ using Priority_Queue;
 using UnityEngine;
 
 
+/// <summary>
+/// Class for storing all data about a creature/agent, including its neural networks, queued actions, stored resources, location and other parameters.
+/// </summary>
 public class Creature
 {
 
@@ -135,7 +138,7 @@ public class Creature
                 {
                     actionQueue.Enqueue(node.action, node.action.priority);
                 }
-                
+
             }
         }
     }
@@ -353,13 +356,13 @@ public class Creature
     public void addVariationToWeights
         (float standardDev)
     {
-        foreach (Dictionary<string,Network> dict in networks)
+        foreach (Dictionary<string, Network> dict in networks)
         {
             foreach (Network net in dict.Values)
             {
                 foreach (List<Node> layer in net.net)
                 {
-                    foreach(NonInputNode node in layer.OfType<NonInputNode>())
+                    foreach (NonInputNode node in layer.OfType<NonInputNode>())
                     {
                         for (int i = 0; i < node.weights.Count; i++)
                         {
@@ -371,11 +374,11 @@ public class Creature
                 }
             }
         }
-        
+
     }
 
     public Creature getShallowCopy()
     {
-        return (Creature) this.MemberwiseClone();
+        return (Creature)this.MemberwiseClone();
     }
 }

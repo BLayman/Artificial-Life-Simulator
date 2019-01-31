@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+/// <summary>
+/// API for editing the map: a 2D array of Land spaces. Used to generate the map, and add resources.
+/// </summary>
 public class MapEditor
 {
     /// <summary>
@@ -14,7 +17,7 @@ public class MapEditor
     /// </summary>
     private Dictionary<string, ResourceStore> resourceOptions;
 
-    public MapEditor(List<List<Land>> _map, Dictionary<string,ResourceStore> _resOptions)
+    public MapEditor(List<List<Land>> _map, Dictionary<string, ResourceStore> _resOptions)
     {
         map = _map;
         resourceOptions = _resOptions;
@@ -34,7 +37,7 @@ public class MapEditor
                 // get copy of resource to be added
                 ResourceStore resStore = resourceOptions["grass"].shallowCopy();
                 // only store the fraction specified by level
-                resStore.amountStored = (int) Math.Round(resStore.amountStored * level);
+                resStore.amountStored = (int)Math.Round(resStore.amountStored * level);
                 // add resource to the properties of that land
                 map[i][j].propertyDict.Add(resource, resStore);
             }
@@ -49,7 +52,7 @@ public class MapEditor
         {
             for (int j = 0; j < map[i].Count; j++)
             {
-                level = ((float)j / (float)map[i].Count) * maxAmt; 
+                level = ((float)j / (float)map[i].Count) * maxAmt;
                 // get copy of resource to be added
                 ResourceStore resStore = resourceOptions[resource].shallowCopy();
                 // only store the fraction specified by level

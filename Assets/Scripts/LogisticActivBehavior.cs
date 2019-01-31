@@ -5,6 +5,9 @@ using System.Text;
 using UnityEngine;
 
 
+/// <summary>
+/// Implements logistic activation function.
+/// </summary>
 public class LogisticActivBehavior : ActivationBehavior
 {
     // TODO: implement logistic activation function

@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 
 
-public class ReproNetwork: Network
+/// <summary>
+/// A specific kind of network that decided whether a creature should reproduce.
+/// </summary>
+public class ReproNetwork : Network
 {
     /// <summary>
     /// Index of neighbor to reproduce with.

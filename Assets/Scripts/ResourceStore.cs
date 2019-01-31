@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 
 
+/// <summary>
+/// Basic unit of a resource to be stored in a Land object. Creature can attempt to consume this resource from the land.
+/// </summary>
 public class ResourceStore
 {
     /// <summary>
@@ -39,7 +42,7 @@ public class ResourceStore
     /// <summary>
     public ResourceStore shallowCopy()
     {
-        return (ResourceStore) this.MemberwiseClone();
+        return (ResourceStore)this.MemberwiseClone();
     }
 
     /// <summary>
@@ -49,7 +52,7 @@ public class ResourceStore
     {
         // Max(proportion * 2 ^ creatureAbility, 1) 
         float actualProportion = Math.Max(proportionExtracted * (float)Math.Pow((double)2, (double)creatureAbility), 1f);
-        int amountToTake = (int) Math.Round(timeDedicated * amountConsumedPerTimeUnit * actualProportion);
+        int amountToTake = (int)Math.Round(timeDedicated * amountConsumedPerTimeUnit * actualProportion);
         // if amount taken would be less than total amount
         if (amountToTake < amountStored)
         {

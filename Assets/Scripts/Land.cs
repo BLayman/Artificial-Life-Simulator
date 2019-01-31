@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 
 
+/// <summary>
+/// Class for storing data about a location on the map. Also facilitates creature's interaction with the environment.
+/// </summary>
 public class Land
 {
     /// <summary>

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// API for OutputNodes.
+/// </summary>
 public class OutputNodeCreator : NodeCreatorInterface
 {
     public OutputNode foNode;

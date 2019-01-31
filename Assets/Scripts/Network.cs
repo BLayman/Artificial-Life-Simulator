@@ -4,6 +4,9 @@ using UnityEngine;
 using System;
 
 
+/// <summary>
+/// A neural network of a creature, which consists of layers of nodes.
+/// </summary>
 public class Network
 {
     public List<List<Node>> net = new List<List<Node>>();
@@ -75,6 +78,6 @@ public class Network
 
     public Network getShallowCopy()
     {
-        return (Network) this.MemberwiseClone();
+        return (Network)this.MemberwiseClone();
     }
 }

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// API for InnerInputNodes.
+/// </summary>
 public class InnerInputNodeCreator : NodeCreatorInterface
 {
     InnerInputNode node;

@@ -6,6 +6,9 @@ using System.Text;
 using UnityEngine;
 
 
+/// <summary>
+/// API for alterning ecosystem.
+/// </summary>
 public class EcosystemCreator
 {
     /// <summary>
