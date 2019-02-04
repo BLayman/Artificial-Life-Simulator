@@ -5,12 +5,12 @@ using UnityEngine;
 /// <summary>
 /// API for InnerInputNodes.
 /// </summary>
-public class InnerInputNodeCreator : NodeCreatorInterface
+public class InnerInputNodeEditor : NodeEditorInterface
 {
     InnerInputNode node;
     Creature parentCreature;
 
-    public InnerInputNodeCreator(InnerInputNode node, Creature parentCreature)
+    public InnerInputNodeEditor(InnerInputNode node, Creature parentCreature)
     {
         this.parentCreature = parentCreature;
         this.node = node;

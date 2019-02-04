@@ -6,14 +6,14 @@ using System.Text;
 /// <summary>
 /// API for setting resources that creature can store, and how the resource effects the creature.
 /// </summary>
-public class ResourceCreator
+public class ResourceEditor
 {
     /// <summary>
     /// Resource being created.
     /// </summary>
     public CreatureResource resource;
 
-    public ResourceCreator(CreatureResource _resource)
+    public ResourceEditor(CreatureResource _resource)
     {
         resource = _resource;
     }

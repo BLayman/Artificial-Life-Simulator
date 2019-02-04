@@ -6,7 +6,7 @@ using System.Text;
 /// <summary>
 /// Interface that allows all specific node creator objects to be stored by NodeCreator class.
 /// </summary>
-public interface NodeCreatorInterface
+public interface NodeEditorInterface
 {
     Node getNode();
 }

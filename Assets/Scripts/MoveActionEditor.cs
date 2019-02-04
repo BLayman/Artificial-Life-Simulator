@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class MoveActionCreator: ActionCreatorAbstract
+public class MoveActionEditor: ActionEditorAbstract
 {
     MoveAction actionRef;
-    public MoveActionCreator(MoveAction a)
+    public MoveActionEditor(MoveAction a)
     {
         action = a;
         actionRef = a;

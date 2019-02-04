@@ -10,7 +10,7 @@ public class EcoManager
     /// Stores state of ecosystem.
     /// </summary>
     Ecosystem ecosystem;
-    EcosystemCreator ecoCreator;
+    EcosystemEditor ecoCreator;
 
     public void makeEco()
     {
@@ -30,7 +30,7 @@ public class EcoManager
     {
         ecosystem = new Ecosystem();
 
-        ecoCreator = new EcosystemCreator(ecosystem);
+        ecoCreator = new EcosystemEditor(ecosystem);
         // set basic ecosystem parameters
         ecoCreator.setAbilityPointsPerCreature(10);
         ecoCreator.setCommBits(4);
@@ -77,7 +77,7 @@ public class EcoManager
     public void userAddsSpecies()
     {
         // when user clicks to start species creation process:
-        CreatureCreator cc = ecoCreator.addCreature();
+        CreatureEditor cc = ecoCreator.addCreature();
 
         // user edits:
         cc.setSpecies("Cat");
@@ -89,7 +89,7 @@ public class EcoManager
 
 
         // add resource for the creature to store
-        ResourceCreator resourceCreator = cc.addResource();
+        ResourceEditor resourceCreator = cc.addResource();
 
         List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
 
@@ -136,7 +136,7 @@ public class EcoManager
         /**** net1 ****/
 
         // user adds a network
-        NetworkCreator netCreator = cc.addNetwork();
+        NetworkEditor netCreator = cc.addNetwork();
         netCreator.setInLayer(0); // called by default with index of layer user clicked
         netCreator.setName("net1");
 
@@ -156,7 +156,7 @@ public class EcoManager
         /**** net2 ****/
 
         // user adds a network
-        NetworkCreator netCreator3 = cc.addNetwork();
+        NetworkEditor netCreator3 = cc.addNetwork();
         netCreator3.setInLayer(0); // called by default with index of layer user clicked
         netCreator3.setName("net2");
 
@@ -176,7 +176,7 @@ public class EcoManager
         /**** outNetUp ****/
 
         // user adds a second network
-        NetworkCreator netCreator2 = cc.addNetwork();
+        NetworkEditor netCreator2 = cc.addNetwork();
         // network added to second layer of networks
         netCreator2.setInLayer(1); // called by default with index of layer user clicked
         netCreator2.setName("outNetUp");
@@ -196,7 +196,7 @@ public class EcoManager
         /**** outNetDown ****/
 
         // user adds a second network
-        NetworkCreator netCreator4 = cc.addNetwork();
+        NetworkEditor netCreator4 = cc.addNetwork();
         // network added to second layer of networks
         netCreator4.setInLayer(1); // called by default with index of layer user clicked
         netCreator4.setName("outNetDown");
@@ -259,14 +259,14 @@ public class EcoManager
     }
 
 
-    public void makeSensoryInputNode(NetworkCreator netCreator, int landIndex, string sensedResource)
+    public void makeSensoryInputNode(NetworkEditor netCreator, int landIndex, string sensedResource)
     {
-        NodeCreator nodeCreator = netCreator.addNode(0);
+        NodeEditor nodeCreator = netCreator.addNode(0);
         // user sets node type to sensory input node
         nodeCreator.setCreator(NodeCreatorType.siNodeCreator);
 
         // the sensory node editor gets it's sensory input node creator from nodeCreator
-        SensoryInputNodeCreator sinc2 = (SensoryInputNodeCreator)nodeCreator.getNodeCreator();
+        SensoryInputNodeEditor sinc2 = (SensoryInputNodeEditor)nodeCreator.getNodeCreator();
         // the sinc is used to set properties on the sensory input node
         sinc2.setLandIndex(landIndex);
         sinc2.setSensedResource(sensedResource);
@@ -276,25 +276,25 @@ public class EcoManager
     }
 
 
-    public void makeOutputNode(NetworkCreator netCreator, ActivationBehaviorTypes activationType, string action, int layer)
+    public void makeOutputNode(NetworkEditor netCreator, ActivationBehaviorTypes activationType, string action, int layer)
     {
         // user adds node to second layer
-        NodeCreator nodeCreator = netCreator.addNode(layer);
+        NodeEditor nodeCreator = netCreator.addNode(layer);
         nodeCreator.setCreator(NodeCreatorType.outputNodeCreator);
-        OutputNodeCreator onc = (OutputNodeCreator)nodeCreator.getNodeCreator();
+        OutputNodeEditor onc = (OutputNodeEditor)nodeCreator.getNodeCreator();
         onc.setAction(action);
         onc.setActivationFunction(activationType);
         netCreator.saveNode();
         // user clicks save on network creator
     }
 
-    public void makeInnerInputNode(NetworkCreator netCreator, int layer, string linkedNetName, int linkedNetIndex, int linkedNodeIndex)
+    public void makeInnerInputNode(NetworkEditor netCreator, int layer, string linkedNetName, int linkedNetIndex, int linkedNodeIndex)
     {
         // user adds nodes to input layer (0)
-        NodeCreator nodeCreator = netCreator.addNode(layer);
+        NodeEditor nodeCreator = netCreator.addNode(layer);
         // user adds inner input node
         nodeCreator.setCreator(NodeCreatorType.innerInputNodeCreator);
-        InnerInputNodeCreator iinc = (InnerInputNodeCreator)nodeCreator.getNodeCreator();
+        InnerInputNodeEditor iinc = (InnerInputNodeEditor)nodeCreator.getNodeCreator();
         // the inner input node gets its value from net1's output node at index 0
         iinc.setLinkedNode(linkedNetName, linkedNodeIndex, linkedNetIndex);
         // user clicks save on node editor

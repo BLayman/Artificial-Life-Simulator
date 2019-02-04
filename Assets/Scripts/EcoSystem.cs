@@ -9,6 +9,8 @@ using System.Text;
 /// </summary>
 public class Ecosystem
 {
+
+    public string name = "default";
     /// <summary>
     /// Lists of creatures, organized by species name in dictionary.
     /// </summary>

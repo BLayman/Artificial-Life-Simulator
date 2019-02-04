@@ -15,7 +15,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Land">
-    <Position X="28.25" Y="11" Width="5" />
+    <Position X="27" Y="15" Width="5" />
     <TypeIdentifier>
       <HashCode>ACAAAAEAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Assets\Scripts\Land.cs</FileName>
@@ -78,13 +78,18 @@
       <FileName>Assets\Scripts\MemoryInputNode.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Ecosystem">
-    <Position X="27.25" Y="6.25" Width="4" />
+  <Class Name="EcosystemEditor">
+    <Position X="34" Y="6" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAAAHAAEAAAAAAAAQkAABQAAAAIAAEAAAAAAAAAQBAA=</HashCode>
-      <FileName>Assets\Scripts\Ecosystem.cs</FileName>
-      <NewMemberFileName>Assets\Scripts\EcoSystem.cs</NewMemberFileName>
+      <HashCode>FQAAJABAgBABgAMAYAACMAgAARAAABBEAAAAAQQAAAA=</HashCode>
+      <FileName>Assets\Scripts\EcosystemEditor.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="creatureCreator" />
+      <Field Name="mapEditor" />
+      <Field Name="lrc" />
+      <Field Name="speciesPopulator" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="ConsumeFromLand">
     <Position X="24.75" Y="26" Width="2.5" />
@@ -94,7 +99,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ResourceStore">
-    <Position X="34" Y="15.5" Width="4.75" />
+    <Position X="34" Y="16.25" Width="4.75" />
     <TypeIdentifier>
       <HashCode>EAAAIBAAQAQAAQAAAAAAAAAAAAAEACAAAgAAAAQAAAA=</HashCode>
       <FileName>Assets\Scripts\ResourceStore.cs</FileName>
@@ -136,61 +141,61 @@
       <FileName>Assets\Scripts\CommNetwork.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CreatureCreator">
+  <Class Name="CreatureEditor">
     <Position X="22" Y="4.75" Width="3" />
-    <AssociationLine Name="netCreator" Type="NetworkCreator">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.307" Y="0.249" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <AssociationLine Name="abilitiesCreator" Type="AbilitiesCreator">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.066" Y="0.63" />
-      </MemberNameLabel>
-    </AssociationLine>
     <AssociationLine Name="creature" Type="Creature">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.081" Y="0.407" />
       </MemberNameLabel>
     </AssociationLine>
+    <AssociationLine Name="netCreator" Type="NetworkEditor">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.307" Y="0.249" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="abilitiesCreator" Type="AbilitiesEditor">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.066" Y="0.63" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>BDAICAAgACIAACEAAAAAAQAKABQAYBKgAAAEAAAAACA=</HashCode>
-      <FileName>Assets\Scripts\CreatureCreator.cs</FileName>
+      <FileName>Assets\Scripts\CreatureEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="creature" />
       <Field Name="netCreator" />
       <Field Name="resourceCreator" />
       <Field Name="abilitiesCreator" />
-      <Field Name="creature" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="NetworkCreator">
+  <Class Name="NetworkEditor">
     <Position X="26.75" Y="2.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AhAAAAAAAAQAAAAAAAAAAAAAAAAAAABABAgAAAAAIAA=</HashCode>
-      <FileName>Assets\Scripts\NetworkCreator.cs</FileName>
+      <FileName>Assets\Scripts\NetworkEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SensoryInputNodeCreator">
+  <Class Name="SensoryInputNodeEditor">
     <Position X="9.75" Y="7.25" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAgAAAAAAAAAAEAAAAAAgBAAAgAACAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\SensoryInputNodeCreator.cs</FileName>
+      <FileName>Assets\Scripts\SensoryInputNodeEditor.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="NodeCreator">
+  <Class Name="NodeEditor">
     <Position X="13.5" Y="3.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAwAAAAAAAAAAEIAAEAAAAAAEAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\NodeCreator.cs</FileName>
+      <FileName>Assets\Scripts\NodeEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CommNodeCreator">
+  <Class Name="CommNodeEditor">
     <Position X="13.5" Y="7.25" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAgAEAAAAAAQAEAgAAAAABAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\CommNodeCreator.cs</FileName>
+      <FileName>Assets\Scripts\CommNodeEditor.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -224,7 +229,7 @@
       <FileName>Assets\Scripts\BoostRequirement.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ResourceCreator">
+  <Class Name="ResourceEditor">
     <Position X="17.5" Y="4" Width="3" />
     <AssociationLine Name="resource" Type="CreatureResource">
       <MemberNameLabel ManuallyPlaced="true">
@@ -233,61 +238,28 @@
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAADAAQAACAAAAIAAAAABAAAAAAIAAEAA=</HashCode>
-      <FileName>Assets\Scripts\ResourceCreator.cs</FileName>
+      <FileName>Assets\Scripts\ResourceEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="resource" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="AbilitiesCreator">
+  <Class Name="AbilitiesEditor">
     <Position X="22" Y="1.5" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBAAAAEE=</HashCode>
-      <FileName>Assets\Scripts\AbilitiesCreator.cs</FileName>
+      <FileName>Assets\Scripts\AbilitiesEditor.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="EcosystemCreator">
-    <Position X="34" Y="5.5" Width="3.75" />
-    <AssociationLine Name="ecosystem" Type="Ecosystem">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.649" Y="0.092" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <AssociationLine Name="lrc" Type="LandResourceCreator">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.11" Y="0.341" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <AssociationLine Name="mapEditor" Type="MapEditor">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.082" Y="0.253" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <AssociationLine Name="speciesPopulator" Type="SpeciesPopulator">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.171" Y="0.06" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <TypeIdentifier>
-      <HashCode>FQAAJABAgBABgAMAYAACMAgAARAAABBEAAAAAQQAAAA=</HashCode>
-      <FileName>Assets\Scripts\EcosystemCreator.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="ecosystem" />
-      <Field Name="lrc" />
-      <Field Name="mapEditor" />
-      <Field Name="speciesPopulator" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="MapEditor">
-    <Position X="34.25" Y="1.75" Width="3.75" />
+    <Position X="36.5" Y="2" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAGIABAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\MapEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LandResourceCreator">
-    <Position X="34" Y="12.25" Width="4.25" />
+  <Class Name="LandResourceEditor">
+    <Position X="33.75" Y="12.75" Width="4.25" />
     <AssociationLine Name="resourceStore" Type="ResourceStore">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.049" Y="0.634" />
@@ -295,7 +267,7 @@
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAABAAAAEEAIAEAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\LandResourceCreator.cs</FileName>
+      <FileName>Assets\Scripts\LandResourceEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="resourceStore" />
@@ -330,18 +302,12 @@
       <FileName>Assets\Scripts\ReproNetwork.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="NetworksCreator" Collapsed="true">
-    <Position X="5.25" Y="0.5" Width="1.5" />
+  <Class Name="SimRunnerUser">
+    <Position X="29.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAAAQAAAAAAAAAAAAAAIAAAAAAAAAAIAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\NetworksCreator.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SimRunner" Collapsed="true">
-    <Position X="7" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ABQAAAAAASAAAAEAAAgAAgAAAgAAAAAAAAAAAAIAAAA=</HashCode>
-      <FileName>Assets\Scripts\SimRunner.cs</FileName>
+      <HashCode>ABQAAAQAAQAAAAAAAAggAgAAAgAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\SimRunnerUser.cs</FileName>
+      <NewMemberFileName>Assets\Scripts\SimRunnerTest.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Population">
@@ -351,29 +317,29 @@
       <FileName>Assets\Scripts\Population.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="OutputNodeCreator">
+  <Class Name="OutputNodeEditor">
     <Position X="6.5" Y="7.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAQAAAAAAABEAAAAAAABAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\OutputNodeCreator.cs</FileName>
+      <FileName>Assets\Scripts\OutputNodeEditor.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ActionCreatorAbstract">
+  <Class Name="ActionEditorAbstract">
     <Position X="14" Y="25.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAABQAAAAAAAAAAAAABEAABAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\ActionCreatorAbstract.cs</FileName>
+      <FileName>Assets\Scripts\ActionEditorAbstract.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="action" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="CommActionCreator">
+  <Class Name="CommActionEditor">
     <Position X="13.5" Y="23.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\CommActionCreator.cs</FileName>
+      <FileName>Assets\Scripts\CommActionEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MoveAction">
@@ -383,27 +349,22 @@
       <FileName>Assets\Scripts\MoveAction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="InnerInputNodeCreator">
+  <Class Name="InnerInputNodeEditor">
     <Position X="3.5" Y="7.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAgAAAAAAAAAACAAAABAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\InnerInputNodeCreator.cs</FileName>
+      <FileName>Assets\Scripts\InnerInputNodeEditor.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="EcoManager">
-    <Position X="30" Y="2.25" Width="2.75" />
-    <AssociationLine Name="ecosystem" Type="Ecosystem">
-      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="0.078" Y="0.564" Height="0.182" Width="0.93" />
-      </MemberNameLabel>
-    </AssociationLine>
+    <Position X="33.25" Y="1.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>ACAAAAAggAAAGAEAAAAAAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
       <FileName>Assets\Scripts\EcoManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="ecosystem" />
+      <Field Name="ecoCreator" />
     </ShowAsAssociation>
   </Class>
   <Class Name="LogisticWithNegActivBehav">
@@ -419,10 +380,11 @@
     <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
       <Path>
         <Point X="25.25" Y="12.86" />
-        <Point X="28.25" Y="12.86" />
+        <Point X="29.5" Y="12.86" />
+        <Point X="29.5" Y="15" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.414" Y="-0.24" />
+        <Position X="-0.24" Y="0.414" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -432,13 +394,6 @@
     <ShowAsCollectionAssociation>
       <Field Name="neighborLands" />
     </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="MoveActionCreator">
-    <Position X="12.75" Y="28.25" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAIAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\MoveActionCreator.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="TanhActivBehav">
     <Position X="6.75" Y="21.25" Width="2" />
@@ -455,18 +410,18 @@
       <FileName>Assets\Scripts\Action.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ConsumeFromLandCreator">
+  <Class Name="ConsumeFromLandEditor">
     <Position X="10.75" Y="25.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAABA=</HashCode>
-      <FileName>Assets\Scripts\ConsumeFromLandCreator.cs</FileName>
+      <FileName>Assets\Scripts\ConsumeFromLandEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="NodeCreatorInterface">
+  <Interface Name="NodeEditorInterface">
     <Position X="10.5" Y="4.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\NodeCreatorInterface.cs</FileName>
+      <FileName>Assets\Scripts\NodeEditorInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ActivationBehavior">
@@ -476,18 +431,18 @@
       <FileName>Assets\Scripts\ActivationBehavior.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="abilityType" Collapsed="true">
-    <Position X="5.25" Y="1.75" Width="1.5" />
+  <Enum Name="abilityType">
+    <Position X="5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAI=</HashCode>
-      <FileName>Assets\Scripts\AbilitiesCreator.cs</FileName>
+      <FileName>Assets\Scripts\AbilitiesEditor.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="NodeCreatorType" Collapsed="true">
-    <Position X="7" Y="1.75" Width="1.5" />
+  <Enum Name="NodeCreatorType">
+    <Position X="5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AYAAAAAAACAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\NodeCreator.cs</FileName>
+      <FileName>Assets\Scripts\NodeEditor.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

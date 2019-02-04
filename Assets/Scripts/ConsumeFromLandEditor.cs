@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class ConsumeFromLandCreator : ActionCreatorAbstract
+public class ConsumeFromLandEditor : ActionEditorAbstract
 {
     ConsumeFromLand actionRef;
 
-    public ConsumeFromLandCreator(ConsumeFromLand inAction)
+    public ConsumeFromLandEditor(ConsumeFromLand inAction)
     {
         action = inAction;
         actionRef = inAction;

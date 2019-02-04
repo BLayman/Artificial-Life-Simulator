@@ -7,13 +7,13 @@ using UnityEngine;
 /// <summary>
 /// API for Network objects. Stored by EcosystemCreator.
 /// </summary>
-public class NetworkCreator
+public class NetworkEditor
 {
     public Network network;
-    public NodeCreator nodeCreator;
-    public CreatureCreator parentCreatureCreator;
+    public NodeEditor nodeCreator;
+    public CreatureEditor parentCreatureCreator;
 
-    public NetworkCreator(Network net, CreatureCreator parentCreatureCreator)
+    public NetworkEditor(Network net, CreatureEditor parentCreatureCreator)
     {
         network = net;
         this.parentCreatureCreator = parentCreatureCreator;
@@ -52,10 +52,10 @@ public class NetworkCreator
         network.net[nodeCreator.nodeLayer].Add(nodeCreator.getCreatedNode());
     }
 
-    public NodeCreator addNode(int layer)
+    public NodeEditor addNode(int layer)
     {
         //Debug.Log("called addNode");
-        nodeCreator = new NodeCreator(layer, this);
+        nodeCreator = new NodeEditor(layer, this);
         return nodeCreator;
     }
 }

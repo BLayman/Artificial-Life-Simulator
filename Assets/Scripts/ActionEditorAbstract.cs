@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ActionCreatorAbstract
+public abstract class ActionEditorAbstract
 {
     public Action action;
 

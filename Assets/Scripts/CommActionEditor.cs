@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommActionCreator : ActionCreatorAbstract
+public class CommActionEditor : ActionEditorAbstract
 {
-    public CommActionCreator(CommAction a)
+    public CommActionEditor(CommAction a)
     {
         action = a;
     }

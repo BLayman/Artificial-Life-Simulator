@@ -5,20 +5,20 @@ using System.Text;
 using UnityEngine;
 
 /// <remarks>API for creature class. Stored by EcosystemCreator.</remarks>
-public class CreatureCreator
+public class CreatureEditor
 {
     public Creature creature;
-    public NetworkCreator netCreator;
-    public ResourceCreator resourceCreator;
-    public AbilitiesCreator abilitiesCreator;
-    public ActionCreator actionCreator;
+    public NetworkEditor netCreator;
+    public ResourceEditor resourceCreator;
+    public AbilitiesEditor abilitiesCreator;
+    public ActionEditor actionCreator;
     public int distinctPhenotypes;
-    EcosystemCreator ecoCreator;
+    EcosystemEditor ecoCreator;
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public CreatureCreator(Creature creature, EcosystemCreator ecoCreator)
+    public CreatureEditor(Creature creature, EcosystemEditor ecoCreator)
     {
         this.creature = creature;
         initializeNetworkStructure();
@@ -33,6 +33,7 @@ public class CreatureCreator
     /// </summary>
     private void initializeNetworkStructure()
     {
+        // currently hard coded to support 2 layers of networks (input processing and action recommending)
         creature.networks.Add(new Dictionary<string, Network>());
         creature.networks.Add(new Dictionary<string, Network>());
     }
@@ -104,9 +105,9 @@ public class CreatureCreator
     /// <summary>
     /// Resets creatures resource creator, allowing the user to create a resource for the creature to use for survival or attribute benefits.
     /// </summary>
-    public ResourceCreator addResource()
+    public ResourceEditor addResource()
     {
-        resourceCreator = new ResourceCreator(new CreatureResource());
+        resourceCreator = new ResourceEditor(new CreatureResource());
         return resourceCreator;
     }
 
@@ -129,15 +130,15 @@ public class CreatureCreator
     /// <summary>
     /// Resets netCreator, allowing for the creation of a new network.
     /// </summary>
-    public NetworkCreator addNetwork()
+    public NetworkEditor addNetwork()
     {
-        netCreator = new NetworkCreator(new Network(), this);
+        netCreator = new NetworkEditor(new Network(), this);
         return netCreator;
     }
 
-    public ActionCreator addAction()
+    public ActionEditor addAction()
     {
-        actionCreator = new ActionCreator(this);
+        actionCreator = new ActionEditor(this);
         return actionCreator;
     }
 
@@ -159,9 +160,9 @@ public class CreatureCreator
     public void generateDefaultActionPool()
     {
         // create move up action
-        ActionCreator ac = addAction();
+        ActionEditor ac = addAction();
         ac.setCreator(ActionCreatorType.moveActionCreator);
-        MoveActionCreator mac = (MoveActionCreator)ac.getActionCreator();
+        MoveActionEditor mac = (MoveActionEditor)ac.getActionCreator();
         mac.setName("moveUp");
         mac.setDirection(moveDir.up);
         mac.setPriority(1);
@@ -170,9 +171,9 @@ public class CreatureCreator
         saveAction();
 
         // create move up action
-        ActionCreator acd = addAction();
+        ActionEditor acd = addAction();
         acd.setCreator(ActionCreatorType.moveActionCreator);
-        MoveActionCreator macd = (MoveActionCreator)acd.getActionCreator();
+        MoveActionEditor macd = (MoveActionEditor)acd.getActionCreator();
         macd.setName("moveDown");
         macd.setDirection(moveDir.down);
         macd.setPriority(1);
@@ -181,9 +182,9 @@ public class CreatureCreator
         saveAction();
 
         // create move up action
-        ActionCreator acl = addAction();
+        ActionEditor acl = addAction();
         acl.setCreator(ActionCreatorType.moveActionCreator);
-        MoveActionCreator macl = (MoveActionCreator)acl.getActionCreator();
+        MoveActionEditor macl = (MoveActionEditor)acl.getActionCreator();
         macl.setName("moveLeft");
         macl.setDirection(moveDir.left);
         macl.setPriority(1);
@@ -192,9 +193,9 @@ public class CreatureCreator
         saveAction();
 
         // create move up action
-        ActionCreator acr = addAction();
+        ActionEditor acr = addAction();
         acr.setCreator(ActionCreatorType.moveActionCreator);
-        MoveActionCreator macr = (MoveActionCreator)acr.getActionCreator();
+        MoveActionEditor macr = (MoveActionEditor)acr.getActionCreator();
         macr.setName("moveRight");
         macr.setDirection(moveDir.right);
         macr.setPriority(1);

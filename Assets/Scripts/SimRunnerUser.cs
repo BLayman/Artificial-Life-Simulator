@@ -2,55 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimRunner : MonoBehaviour {
-    EcoManager ecoMan;
+/// <summary>
+/// Class for running simulation.
+/// </summary>
+public class SimRunnerUser : MonoBehaviour
+{
+    Ecosystem eco;
     public GameObject tilePrefab;
     List<List<GameObject>> tiles = new List<List<GameObject>>();
     float elapsedTime = 0.0f;
     float intervalTime = .2f;
+    bool run = false;
+    int stepInterval = 1;
 
-	// Use this for initialization
-	void Start () {
-        ecoMan = new EcoManager();
-        ecoMan.makeEco();
-        startRender(ecoMan.getEcosystem());
-        updateRender(ecoMan.getEcosystem());
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        // only update every intervalTime seconds
-        elapsedTime += Time.deltaTime;
-        if (elapsedTime > intervalTime)
-        {
-            updateRender(ecoMan.getEcosystem());
-            ecoMan.runSystem(1);
-            elapsedTime = 0.0f;
-        }
 
-        /*
-        ecoMan.runSystem(1);
-        render(ecoMan.getEcosystem());
-        clearOldMap();
-
-        GameObject tile = GameObject.Instantiate(tilePrefab, new Vector3(1, 1, 0), Quaternion.identity);
-        GameObject tile2 = GameObject.Instantiate(tilePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-
-        tiles.Add(tile);
-        tiles.Add(tile2);
-        */
-    }
-
-    /*
-    private void clearOldMap()
+    // Update is called once per frame
+    void Update()
     {
-        for (int i = 0; i < tiles.Count; i++)
+        if (run)
         {
-            GameObject.Destroy(tiles[i]);
+            // only update every intervalTime seconds
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime > intervalTime)
+            {
+                updateRender(eco);
+                eco.runSystem(stepInterval);
+                elapsedTime = 0.0f;
+            }
         }
-        tiles.Clear();
     }
-    */
+
+    public void startSim(int interval)
+    {
+        stepInterval = interval;
+        startRender(eco);
+        updateRender(eco);
+        run = true;
+    }
 
     private void startRender(Ecosystem sys)
     {
@@ -74,7 +62,7 @@ public class SimRunner : MonoBehaviour {
         //Debug.Log("in render");
         GameObject tile;
         ResourceStore store;
-        Color updatedColor = new Color(1,1,1);
+        Color updatedColor = new Color(1, 1, 1);
         float proportionStored;
         List<List<Land>> map = sys.map;
 
@@ -98,7 +86,7 @@ public class SimRunner : MonoBehaviour {
                     updatedColor.b = proportionStored;
                     tile.GetComponent<SpriteRenderer>().color = updatedColor;
                 }
-                
+
             }
         }
     }

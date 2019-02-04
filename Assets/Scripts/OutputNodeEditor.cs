@@ -5,12 +5,12 @@ using UnityEngine;
 /// <summary>
 /// API for OutputNodes.
 /// </summary>
-public class OutputNodeCreator : NodeCreatorInterface
+public class OutputNodeEditor : NodeEditorInterface
 {
     public OutputNode foNode;
     public int nodeLayer;
 
-    public OutputNodeCreator(OutputNode foNode, int nodeLayer)
+    public OutputNodeEditor(OutputNode foNode, int nodeLayer)
     {
         this.foNode = foNode;
         this.nodeLayer = nodeLayer;

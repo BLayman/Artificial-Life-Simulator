@@ -6,13 +6,13 @@ using System.Text;
 /// <summary>
 /// API for Comm Nodes
 /// </summary>
-public class CommNodeCreator : NodeCreatorInterface
+public class CommNodeEditor : NodeEditorInterface
 {
     public CommInputNode commNode;
     public int nodeLayer;
-    private NetworkCreator parentNetCreator;
+    private NetworkEditor parentNetCreator;
 
-    public CommNodeCreator(CommInputNode _commNode, int _nodeLayer)
+    public CommNodeEditor(CommInputNode _commNode, int _nodeLayer)
     {
         commNode = _commNode;
         nodeLayer = _nodeLayer;

@@ -6,13 +6,13 @@ using System.Text;
 /// <summary>
 /// API for SensoryInputNodes.
 /// </summary>
-public class SensoryInputNodeCreator : NodeCreatorInterface
+public class SensoryInputNodeEditor : NodeEditorInterface
 {
     public SensoryInputNode siNode;
     public int nodeLayer;
-    private NetworkCreator parentNetCreator;
+    private NetworkEditor parentNetCreator;
 
-    public SensoryInputNodeCreator(SensoryInputNode _siNode, int _nodeLayer)
+    public SensoryInputNodeEditor(SensoryInputNode _siNode, int _nodeLayer)
     {
         siNode = _siNode;
         nodeLayer = _nodeLayer;

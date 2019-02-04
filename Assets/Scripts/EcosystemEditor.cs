@@ -9,7 +9,7 @@ using UnityEngine;
 /// <summary>
 /// API for alterning ecosystem.
 /// </summary>
-public class EcosystemCreator
+public class EcosystemEditor
 {
     /// <summary>
     /// Ecosystem to be created.
@@ -18,7 +18,7 @@ public class EcosystemCreator
     /// <summary>
     /// Creates Lands to add to EcoSystem resourceOptions.
     /// </summary>
-    public LandResourceCreator lrc;
+    public LandResourceEditor lrc;
     /// <summary>
     /// Edits map of lands.
     /// </summary>
@@ -26,7 +26,7 @@ public class EcosystemCreator
     /// <summary>
     /// For generating founder creatures.
     /// </summary>
-    public CreatureCreator creatureCreator;
+    public CreatureEditor creatureCreator;
     /// <summary>
     /// Creatures used to generate populations.
     /// </summary>
@@ -51,7 +51,7 @@ public class EcosystemCreator
     // population created by SpeciesPopulator
     private Population currentPopulation;
 
-    public EcosystemCreator(Ecosystem _ecosystem)
+    public EcosystemEditor(Ecosystem _ecosystem)
     {
         //Debug.Log("ecosystem created");
         ecosystem = _ecosystem;
@@ -80,7 +80,7 @@ public class EcosystemCreator
     /// <param name="resourceName">Name of resource: used as key in dictionary.</param>
     public void addResource(string resourceName)
     {
-        lrc = new LandResourceCreator(new ResourceStore(resourceName));
+        lrc = new LandResourceEditor(new ResourceStore(resourceName));
     }
 
     /// <summary>
@@ -153,9 +153,12 @@ public class EcosystemCreator
         Debug.Log("map size: " + tentativeMap.Count);
     }
 
-    public CreatureCreator addCreature()
+    /// <summary>
+    /// Creature new creature
+    /// </summary>
+    public CreatureEditor addCreature()
     {
-        creatureCreator = new CreatureCreator(new Creature(ecosystem.abilityPointsPerCreature), this);
+        creatureCreator = new CreatureEditor(new Creature(ecosystem.abilityPointsPerCreature), this);
         return creatureCreator;
     }
 
@@ -170,5 +173,13 @@ public class EcosystemCreator
             currentPopulation.creatures[i].map = tentativeMap;
             tentativeMap[currentPopulation.creatures[i].position[0]][currentPopulation.creatures[i].position[1]].creatureOn = currentPopulation.creatures[i];
         }
+    }
+
+    /// <summary>
+    /// sets name of dictionary to use when loading
+    /// </summary>
+    public void setName(string name)
+    {
+        ecosystem.name = name;
     }
 }

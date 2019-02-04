@@ -8,12 +8,12 @@ public enum abilityType {comsumption, defense, attack}
 /// <summary>
 /// API for Abilities objects.
 /// </summary>
-public class AbilitiesCreator
+public class AbilitiesEditor
 {
     public List<Ability> abilities;
     public int abilityPoints;
 
-    public AbilitiesCreator(List<Ability> _abilities, int _abilityPoints)
+    public AbilitiesEditor(List<Ability> _abilities, int _abilityPoints)
     {
         abilities = _abilities;
         abilityPoints = _abilityPoints;

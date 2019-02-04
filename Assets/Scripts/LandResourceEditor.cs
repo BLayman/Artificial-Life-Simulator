@@ -6,11 +6,11 @@ using System.Text;
 /// <summary>
 /// Used as interface for generating ResourceStore objects.
 /// </summary>
-public class LandResourceCreator
+public class LandResourceEditor
 {
     public ResourceStore resourceStore;
 
-    public LandResourceCreator(ResourceStore _resourceStore)
+    public LandResourceEditor(ResourceStore _resourceStore)
     {
         resourceStore = _resourceStore;
     }

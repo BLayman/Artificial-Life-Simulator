@@ -4,14 +4,14 @@ using UnityEngine;
 
 public enum ActionCreatorType { commActionCreator, moveActionCreator, consumeCreator }
 
-public class ActionCreator
+public class ActionEditor
 {
-    ActionCreatorAbstract actionCreator;
+    ActionEditorAbstract actionCreator;
     ActionCreatorType actionType;
-    CreatureCreator creatureCreator;
+    CreatureEditor creatureCreator;
 
     // user picks layer to create node in, initializing a node creator
-    public ActionCreator(CreatureCreator cc)
+    public ActionEditor(CreatureEditor cc)
     {
         creatureCreator = cc;
     }
@@ -26,14 +26,14 @@ public class ActionCreator
         {
             case ActionCreatorType.commActionCreator:
                 // now node will be modified by siNodeCreator
-                actionCreator = new CommActionCreator(new CommAction());
+                actionCreator = new CommActionEditor(new CommAction());
                 break;
             case ActionCreatorType.moveActionCreator:
                 // now node will be modified by siNodeCreator
-                actionCreator = new MoveActionCreator(new MoveAction());
+                actionCreator = new MoveActionEditor(new MoveAction());
                 break;
             case ActionCreatorType.consumeCreator:
-                actionCreator = new ConsumeFromLandCreator(new ConsumeFromLand());
+                actionCreator = new ConsumeFromLandEditor(new ConsumeFromLand());
                 break;
             default:
                 break;
@@ -42,16 +42,16 @@ public class ActionCreator
         // that only displays node edits for it's type and only uses the variable for that kind of nodeCreator      
     }
 
-    public ActionCreatorAbstract getActionCreator()
+    public ActionEditorAbstract getActionCreator()
     {
         switch (actionType)
         {
             case ActionCreatorType.commActionCreator:
-                return (CommActionCreator)actionCreator;
+                return (CommActionEditor)actionCreator;
             case ActionCreatorType.moveActionCreator:
-                return (MoveActionCreator)actionCreator;
+                return (MoveActionEditor)actionCreator;
             case ActionCreatorType.consumeCreator:
-                return (ConsumeFromLandCreator)actionCreator;
+                return (ConsumeFromLandEditor)actionCreator;
             default:
                 Debug.LogError("Invalid action creator type");
                 return null;
