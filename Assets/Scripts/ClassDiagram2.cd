@@ -85,11 +85,12 @@
       <FileName>Assets\Scripts\EcosystemEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="creatureCreator" />
-      <Field Name="mapEditor" />
       <Field Name="lrc" />
+      <Field Name="mapEditor" />
+      <Field Name="creatureCreator" />
       <Field Name="speciesPopulator" />
     </ShowAsAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ConsumeFromLand">
     <Position X="24.75" Y="26" Width="2.5" />
@@ -305,7 +306,7 @@
   <Class Name="SimRunnerUser">
     <Position X="29.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>ABQAAAQAAQAAAAAAAAggAgAAAgAAAAAAAAAAAAIAAAA=</HashCode>
+      <HashCode>ABQAAgQAAQAAAAAAAAggAgAAAwAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Assets\Scripts\SimRunnerUser.cs</FileName>
       <NewMemberFileName>Assets\Scripts\SimRunnerTest.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -359,6 +360,11 @@
   </Class>
   <Class Name="EcoManager">
     <Position X="33.25" Y="1.25" Width="2.75" />
+    <AssociationLine Name="ecoCreator" Type="EcosystemEditor">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.066" Y="0.483" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>ACAAAAAggAAAGAEAAAAAAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
       <FileName>Assets\Scripts\EcoManager.cs</FileName>

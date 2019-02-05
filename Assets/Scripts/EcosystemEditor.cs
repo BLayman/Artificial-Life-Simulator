@@ -9,7 +9,7 @@ using UnityEngine;
 /// <summary>
 /// API for alterning ecosystem.
 /// </summary>
-public class EcosystemEditor
+public class EcosystemEditor : IEcosystemEditor
 {
     /// <summary>
     /// Ecosystem to be created.
@@ -63,16 +63,19 @@ public class EcosystemEditor
     public void setAbilityPointsPerCreature(int abilityPoints)
     {
         ecosystem.abilityPointsPerCreature = abilityPoints;
+        Debug.Log("ability points set to: " + abilityPoints);
     }
 
     public void setCommBits(int numBits)
     {
         ecosystem.commBits = numBits;
+        Debug.Log("comm bits set to " + numBits);
     }
 
     public void setDistinctPhenotypeNum(int numPhenotypes)
     {
         ecosystem.distictPhenotypes = numPhenotypes;
+        Debug.Log("distinct phenotypes set to " + numPhenotypes);
     }
 
 
@@ -102,6 +105,7 @@ public class EcosystemEditor
     public void setTimeUnitsPerTurn(int timeUnits)
     {
         ecosystem.timeUnitsPerTurn = timeUnits;
+        Debug.Log("time units per turn set to " + timeUnits);
     }
 
     public void addToFounders()
@@ -181,5 +185,6 @@ public class EcosystemEditor
     public void setName(string name)
     {
         ecosystem.name = name;
+        Debug.Log("Ecosystem name set to " + name);
     }
 }
