@@ -10,7 +10,12 @@ public class EcoMenuBehav : MonoBehaviour
 {
     public GameObject uIParent;
     public GameObject errorObj;
+
     public GameObject creatureMenuObj;
+    CreatMenuBehav creatMenuBehav;
+
+    public GameObject lrMenuObj;
+    LRMenuBehav lrMenuBehav;
 
     public GameObject ecoNameTextBox;
     public GameObject abilityPtsPerCreatTextBox;
@@ -18,13 +23,13 @@ public class EcoMenuBehav : MonoBehaviour
     public GameObject distinctPhenoText;
     public GameObject timeUnitsText;
 
-    CreatMenuBehav creatMenuBehav;
     public EcosystemEditor ecoCreator;
 
     // Start is called before the first frame update
     void Start()
     {
         creatMenuBehav = creatureMenuObj.GetComponent<CreatMenuBehav>();
+        lrMenuBehav = lrMenuObj.GetComponent<LRMenuBehav>();
         // TODO: set other child menus
     }
 
@@ -41,10 +46,10 @@ public class EcoMenuBehav : MonoBehaviour
     /// <summary>
     /// load the creature editor menu and pass it the current ecosystem editor
     /// </summary>
-    public void createCreature()
+    public void addCreature()
     {
         creatMenuBehav.loadCreatMenu(ecoCreator);
-
+        uIParent.SetActive(false);
     }
 
 
@@ -55,6 +60,9 @@ public class EcoMenuBehav : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// saves all information that the user entered into the menu
+    /// </summary>
     public void saveSettings()
     {
         bool a = setEcoName();
@@ -67,8 +75,21 @@ public class EcoMenuBehav : MonoBehaviour
         IntFunct setTUPT = new IntFunct(ecoCreator.setTimeUnitsPerTurn);
         bool e = setIntegerFunct(timeUnitsText, setTUPT);
 
+        // saves tentative resource options to Ecosystem object
+        ecoCreator.saveResourceOptions();
+
+        // TODO : don't forget to call EcosystemEditor save methods
     }
 
+    public void addResource()
+    {
+        // TODO: change from creature menu to resource menu
+        lrMenuBehav.loadLandResMenu(ecoCreator);
+        uIParent.SetActive(false);
+    }
+
+
+    // calls EcosystemEditor method to save ecosystem name
     public bool setEcoName()
     {
         bool valid = false;
@@ -88,6 +109,8 @@ public class EcoMenuBehav : MonoBehaviour
         return valid;
     }
 
+
+    // calls set functions in EcosystemEditor that take an int
     public bool setIntegerFunct(GameObject go, IntFunct setInt)
     {
         bool valid = false;

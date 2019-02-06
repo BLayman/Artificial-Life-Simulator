@@ -39,25 +39,25 @@ public class EcoManager
 
         // create and save resources
         ecoCreator.addResource("grass");
-        ecoCreator.lrc.setAmountOfResource(1500);
-        ecoCreator.lrc.setMaxAmt(1500);
-        ecoCreator.lrc.setAmtConsumedPerTime(100);
-        ecoCreator.lrc.setProportionExtracted(.05f);
-        ecoCreator.lrc.setRenewalAmt(10);
+        ecoCreator.lre.setAmountOfResource(1500);
+        ecoCreator.lre.setMaxAmt(1500);
+        ecoCreator.lre.setAmtConsumedPerTime(100);
+        ecoCreator.lre.setProportionExtracted(.05f);
+        ecoCreator.lre.setRenewalAmt(10);
         ecoCreator.saveResource();
 
         ecoCreator.addResource("flowers");
-        ecoCreator.lrc.setAmountOfResource(500);
-        ecoCreator.lrc.setMaxAmt(500);
-        ecoCreator.lrc.setAmtConsumedPerTime(100);
-        ecoCreator.lrc.setProportionExtracted(.1f);
-        ecoCreator.lrc.setRenewalAmt(1);
+        ecoCreator.lre.setAmountOfResource(500);
+        ecoCreator.lre.setMaxAmt(500);
+        ecoCreator.lre.setAmtConsumedPerTime(100);
+        ecoCreator.lre.setProportionExtracted(.1f);
+        ecoCreator.lre.setRenewalAmt(1);
         ecoCreator.saveResource();// saves to tentative resources
 
         ecoCreator.saveResourceOptions(); // adds all resources to ecosystem resources
 
         // generate map
-        ecoCreator.mapEditor = new MapEditor(ecoCreator.tentativeMap, ecoCreator.tentativeResourceOptions);
+        ecoCreator.createMap();
         ecoCreator.mapEditor.generateMap(100, 100);
         ecoCreator.mapEditor.addLERPXResource("grass", 1f);
         ecoCreator.mapEditor.addLERPXResource("flowers", 1f);

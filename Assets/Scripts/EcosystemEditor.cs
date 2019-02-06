@@ -18,7 +18,7 @@ public class EcosystemEditor : IEcosystemEditor
     /// <summary>
     /// Creates Lands to add to EcoSystem resourceOptions.
     /// </summary>
-    public LandResourceEditor lrc;
+    public LandResourceEditor lre;
     /// <summary>
     /// Edits map of lands.
     /// </summary>
@@ -60,6 +60,8 @@ public class EcosystemEditor : IEcosystemEditor
 
     }
 
+    /* set methods */
+    
     public void setAbilityPointsPerCreature(int abilityPoints)
     {
         ecosystem.abilityPointsPerCreature = abilityPoints;
@@ -78,20 +80,60 @@ public class EcosystemEditor : IEcosystemEditor
         Debug.Log("distinct phenotypes set to " + numPhenotypes);
     }
 
+    public void setTimeUnitsPerTurn(int timeUnits)
+    {
+        ecosystem.timeUnitsPerTurn = timeUnits;
+        Debug.Log("time units per turn set to " + timeUnits);
+    }
 
+    /// <summary>
+    /// sets name of dictionary to use when loading
+    /// </summary>
+    public void setName(string name)
+    {
+        ecosystem.name = name;
+        Debug.Log("Ecosystem name set to " + name);
+    }
+
+
+    /* add methods */
 
     /// <param name="resourceName">Name of resource: used as key in dictionary.</param>
     public void addResource(string resourceName)
     {
-        lrc = new LandResourceEditor(new ResourceStore(resourceName));
+        lre = new LandResourceEditor(new ResourceStore(resourceName));
     }
+
+    /// <summary>
+    /// Creature new creature
+    /// </summary>
+    public CreatureEditor addCreature()
+    {
+        creatureCreator = new CreatureEditor(new Creature(ecosystem.abilityPointsPerCreature), this);
+        return creatureCreator;
+    }
+
+    public SpeciesPopulator populateSpecies(string founderSpecies)
+    {
+        speciesPopulator = new SpeciesPopulator(founderCreatures[founderSpecies], tentativeMap);
+        return speciesPopulator;
+    }
+
+    public MapEditor createMap()
+    {
+        mapEditor = new MapEditor(tentativeMap, tentativeResourceOptions);
+        return mapEditor;
+    }
+
+
+    /* save methods */
 
     /// <summary>
     /// Saves a newly created resource to resourceOptions.
     /// </summary>
     public void saveResource()
     {
-        tentativeResourceOptions.Add(lrc.resourceStore.name, lrc.resourceStore);
+        tentativeResourceOptions.Add(lre.resourceStore.name, lre.resourceStore);
     }
 
     /// <summary>
@@ -102,11 +144,6 @@ public class EcosystemEditor : IEcosystemEditor
         ecosystem.resourceOptions = tentativeResourceOptions;
     }
 
-    public void setTimeUnitsPerTurn(int timeUnits)
-    {
-        ecosystem.timeUnitsPerTurn = timeUnits;
-        Debug.Log("time units per turn set to " + timeUnits);
-    }
 
     public void addToFounders()
     {
@@ -121,26 +158,12 @@ public class EcosystemEditor : IEcosystemEditor
         ecosystem.species = founderCreatures;
     }
 
-    public SpeciesPopulator populateSpecies(string founderSpecies)
-    {
-        speciesPopulator = new SpeciesPopulator(founderCreatures[founderSpecies], tentativeMap);
-        return speciesPopulator;
-    }
-
     /// <summary>
     /// Saves population creatured by speciesPopulator to currentPopulation.
     /// </summary>
     public void saveCurrentPopulation()
     {
         currentPopulation = speciesPopulator.population;
-    }
-
-    /// <summary>
-    /// Saves currentPopulation to ecosystem.populations
-    /// </summary>
-    public void addCurrentPopulationToEcosystem()
-    {
-        ecosystem.populations.Add(currentPopulation.founder.species, currentPopulation);
     }
 
     public void saveEditedMap()
@@ -158,12 +181,11 @@ public class EcosystemEditor : IEcosystemEditor
     }
 
     /// <summary>
-    /// Creature new creature
+    /// Saves currentPopulation to ecosystem.populations
     /// </summary>
-    public CreatureEditor addCreature()
+    public void addCurrentPopulationToEcosystem()
     {
-        creatureCreator = new CreatureEditor(new Creature(ecosystem.abilityPointsPerCreature), this);
-        return creatureCreator;
+        ecosystem.populations.Add(currentPopulation.founder.species, currentPopulation);
     }
 
     /// <summary>
@@ -179,12 +201,5 @@ public class EcosystemEditor : IEcosystemEditor
         }
     }
 
-    /// <summary>
-    /// sets name of dictionary to use when loading
-    /// </summary>
-    public void setName(string name)
-    {
-        ecosystem.name = name;
-        Debug.Log("Ecosystem name set to " + name);
-    }
+    
 }

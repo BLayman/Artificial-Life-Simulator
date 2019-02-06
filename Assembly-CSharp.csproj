@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\LandResourceEditor.cs" />
     <Compile Include="Assets\Scripts\LogisticActivBehavior.cs" />
     <Compile Include="Assets\Scripts\LogisticWithNegActivBehav.cs" />
+    <Compile Include="Assets\Scripts\LRMenuBehav.cs" />
     <Compile Include="Assets\Scripts\MainMenuBehav.cs" />
     <Compile Include="Assets\Scripts\MapEditor.cs" />
     <Compile Include="Assets\Scripts\MemoryInputNode.cs" />

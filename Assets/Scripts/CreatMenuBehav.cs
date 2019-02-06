@@ -7,6 +7,8 @@ public class CreatMenuBehav : MonoBehaviour
     CreatureEditor creatureCreator;
     EcosystemEditor ecoCreator;
 
+    public GameObject uIParent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,9 @@ public class CreatMenuBehav : MonoBehaviour
     {
         ecoCreator = ec;
         creatureCreator = ec.creatureCreator;
-        //TODO: display creature menu game object
+        uIParent.SetActive(true);
+
+        //TODO: load information into menu from prev created creature
     }
 
     /// <summary>
