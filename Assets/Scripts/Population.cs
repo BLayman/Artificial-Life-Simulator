@@ -24,4 +24,9 @@ public class Population
         //Debug.Log("copy species: " + c.species);
         return c;
     }
+
+    public Population shallowCopy()
+    {
+        return (Population)this.MemberwiseClone();
+    }
 }

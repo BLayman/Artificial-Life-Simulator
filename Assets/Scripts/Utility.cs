@@ -13,17 +13,55 @@ public class Utility
     public static Ecosystem getEcosystemCopy(Ecosystem eco)
     {
         Ecosystem copy = eco.shallowCopy();
-        copy.populations = new Dictionary<string, Population>();
-        // TODO: fill in 
 
+        // copy map, but removing creatures
         copy.map = new List<List<Land>>();
-        // fill in 
+        for (int i = 0; i < eco.map.Count; i++)
+        {
+            copy.map.Add(new List<Land>());
+            for (int j = 0; j < eco.map[i].Count; j++)
+            {
+                Land landCopy = GetLandCopy(eco.map[i][j]);
+                copy.map[i].Add(landCopy);
+            }
+        }
+        
+        // copy populations and add creatures back to map
+        copy.populations = new Dictionary<string, Population>();
+        foreach (string popName in eco.populations.Keys)
+        {
+            copy.populations[popName] = eco.populations[popName].shallowCopy();
+            copy.populations[popName].founder = getCreatureCopy(eco.populations[popName].founder);
+            copy.populations[popName].creatures = new List<Creature>();
+            foreach (Creature creat in eco.populations[popName].creatures)
+            {
+                Creature creatCopy = getCreatureCopy(creat);
+                // set map on creatCopy to new map
+                creatCopy.map = copy.map;
+                // place creature on new map
+                copy.map[creatCopy.position[0]][creatCopy.position[1]].creatureOn = creatCopy;
+                // set new neighborlands list to reference map lands
+                creatCopy.updateNeighbors();
 
+                copy.populations[popName].creatures.Add(creatCopy);
+
+            }
+        }
+
+        // copy species dictionary
         copy.species = new Dictionary<string, Creature>();
-        // fill in
+        foreach (string speciesName in eco.species.Keys)
+        {
+            copy.species[speciesName] = getCreatureCopy(eco.species[speciesName]);
+            copy.species[speciesName].map = copy.map; // not sure if this line is necessary (sets map for founder)
+        }
 
+        // copy resource options
         copy.resourceOptions = new Dictionary<string, ResourceStore>();
-        // fill in
+        foreach (string resName in eco.resourceOptions.Keys)
+        {
+            copy.resourceOptions[resName] = eco.resourceOptions[resName].shallowCopy();
+        }
 
         return copy;
     }
@@ -36,6 +74,19 @@ public class Utility
         //Debug.Log("generated normal rv: " + randStdNormal);
         return (float) (sd * randStdNormal);
 
+    }
+
+    // copy a land but remove the creature from the land
+    public static Land GetLandCopy(Land land)
+    {
+        Land landCopy = land.shallowCopy();
+        landCopy.creatureOn = null;
+        landCopy.propertyDict = new Dictionary<string, ResourceStore>();
+        foreach (string resName in land.propertyDict.Keys)
+        {
+            landCopy.propertyDict[resName] = land.propertyDict[resName].shallowCopy();
+        }
+        return landCopy;
     }
 
     public static Creature getCreatureCopy(Creature c)

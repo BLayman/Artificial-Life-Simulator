@@ -11,26 +11,30 @@ class ThreadExample : MonoBehaviour
     Ecosystem unityEco;
     System.Object funcToRunLock = new System.Object();
 
-    public delegate void anony();
+    public delegate void anony(); // anony represents an anonymous function with no inputs or outputs. To be stored in the queue
 
     Queue<anony> functToRun;
 
     // Thread safe?
-    int steps = 1000000;
+    int steps = 10000;
 
     void Start()
     {
+        functToRun = new Queue<anony>(); // queue for callback functions
+        // create ecosystem using EcoManager
         ecoMan = new EcoManager();
         ecoMan.makeEco();
 
+        // get newly created ecosystem and set unityEco to reference it
         unityEco = ecoMan.getEcosystem();
-        unityEco.name = "Bob";
+
         // TODO: finish getEcosystemCopy
+        // Get a copy of the ecosystem and have simulationEco reference the copy
         Ecosystem simulationEco = Utility.getEcosystemCopy(unityEco);
-        functToRun = new Queue<anony>();
+
         
         Debug.Log("calling threaded function");
-
+        // create new thread to execute runSystem with the simulationEco copy, for a particular number of steps
         StartThreadedFunction(() => { runSystem(simulationEco, steps); });
         //Debug.Log("start done");
         //Debug.Log(unityEco.name);
@@ -43,28 +47,33 @@ class ThreadExample : MonoBehaviour
 
     void Update()
     {
-
+        // if functToRun is not being modified by the child thread
         lock (funcToRunLock)
         {
+            // run all functions in the function to run queue
             while (functToRun.Count > 0)
             {
+                // take off a function
                 anony funct = functToRun.Dequeue();
-                // eventually this line should print Bob, because seperate thread should be modifying seperate Ecosystem object
                 //Debug.Log(unityEco.name);
-                // calls applyEcoData();
+
+                // run the function: calls applyEcoData(), which sets unityEco to reference the modified copy
                 funct();
+
                 //Debug.Log(unityEco.name);
 
                 // TODO: finish getEcosystemCopy
-                Ecosystem simulationEco = Utility.getEcosystemCopy(unityEco);
 
+                // start the process over again
+                // create a copy, and set simulationEco to set the copy, then use the copy for the simulation
+                Ecosystem simulationEco = Utility.getEcosystemCopy(unityEco);
                 StartThreadedFunction(() => { runSystem(simulationEco, steps); });
             }
         }
         
     }
 
-
+    // start a new thread that calls a function: runSystem(simulationEco, steps)
     public void StartThreadedFunction(ThreadStart someFunction)
     {
         Thread t = new Thread(someFunction);
@@ -92,13 +101,13 @@ class ThreadExample : MonoBehaviour
         //eco.name = eco.name + "1";
 
         eco.runSystem(steps);
-
         // this function will be called from main thread
         // it gives unityEco the address of eco, so that it points at the new and updated ecosystem
         anony applyEcoData = () =>
         {
-            Debug.Log("safely applying data created in thread."); 
+            Debug.Log("safely applying data created in thread.");
             // make unityEco reference modified copy of itself, NOTE: this won't change all references to the ecosystem, such as those used in the UI 
+            
             unityEco = eco;
             Debug.Log("ecosystem age:" + unityEco.count);
         };

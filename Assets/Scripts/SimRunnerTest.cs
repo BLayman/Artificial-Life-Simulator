@@ -31,6 +31,7 @@ public class SimRunnerTest : MonoBehaviour
         {
             updateRender(ecoMan.getEcosystem());
             ecoMan.runSystem(1);
+            //Debug.Log("age: " + ecoMan.getEcosystem().count);
             elapsedTime = 0.0f;
         }
 
@@ -58,6 +59,7 @@ public class SimRunnerTest : MonoBehaviour
     }
     */
 
+    // first render: called from Start function
     private void startRender(Ecosystem sys)
     {
         //Debug.Log("in render");
@@ -75,6 +77,7 @@ public class SimRunnerTest : MonoBehaviour
         }
     }
 
+    // called from update loop
     private void updateRender(Ecosystem sys)
     {
         //Debug.Log("in render");

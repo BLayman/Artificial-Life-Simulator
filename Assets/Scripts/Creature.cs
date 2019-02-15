@@ -16,7 +16,7 @@ public class Creature
 {
 
     public Creature founder;
-    public Land dummyLand = new Land();
+    public Land dummyLand = new Land(); // dummyLand used for edges of map
     public int index;
     public System.Random rand = new System.Random();
 
@@ -25,7 +25,7 @@ public class Creature
     /// </summary>
     public List<Dictionary<string, Network>> networks = new List<Dictionary<string, Network>>();
     public string species = "default";
-    public List<List<Land>> map = new List<List<Land>>(); // x coord by y coord
+    public List<List<Land>> map; // x coord by y coord
     public int[] position = new int[2]; // x y
     /// <summary>
     /// Neighbors are up, down, left, and right. Index 0 for land creature is on.
@@ -298,6 +298,7 @@ public class Creature
     /// </summary>
     public bool isDead()
     {
+
         if (health <= 0)
         {
             map[position[0]][position[1]].creatureOn = null;
@@ -307,7 +308,6 @@ public class Creature
         {
             return false;
         }
-
     }
 
     /// <summary>

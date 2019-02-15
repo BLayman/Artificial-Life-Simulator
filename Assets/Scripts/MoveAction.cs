@@ -23,7 +23,8 @@ public class MoveAction : Action
 
         //Debug.Log("resource after: " + creature.storedResources["grass"].currentLevel);
 
-        // TODO: finish 
+        // TODO: other directions
+        // TODO: what if creature moves to space where other creature is?
         switch (direction)
         {
             case moveDir.up:

@@ -56,7 +56,7 @@ public class Ecosystem
     {
         for (int i = 0; i < timeSteps; i++)
         {
-            
+            count++;
             foreach (string species in populations.Keys)
             {
                 Population population = populations[species];
@@ -65,7 +65,6 @@ public class Ecosystem
                     List<Creature> toRemove = new List<Creature>();
                     foreach (Creature creature in population.creatures)
                     {
-                        count++;
                         creature.startTurn();
                         if (creature.isDead())
                         {

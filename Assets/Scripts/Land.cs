@@ -38,5 +38,9 @@ public class Land
         throw new System.NotImplementedException();
     }
 
+    public Land shallowCopy()
+    {
+        return (Land)this.MemberwiseClone();
+    }
 
 }
