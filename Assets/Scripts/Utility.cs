@@ -101,6 +101,10 @@ public class Utility
         copyCreatureNetworks(origNetworks, networks, creatureCopy);
 
         creatureCopy.position = new int[2];
+        // copy position (overridden when populating)
+        creatureCopy.position[0] = c.position[0];
+        creatureCopy.position[1] = c.position[1];
+
         creatureCopy.neighborLands = new Land[5];
         creatureCopy.actionQueue = new SimplePriorityQueue<Action>();
         creatureCopy.outputCommSignals = new List<CommSignal>();

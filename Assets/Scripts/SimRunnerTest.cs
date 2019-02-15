@@ -7,19 +7,22 @@ using UnityEngine;
 /// </summary>
 public class SimRunnerTest : MonoBehaviour
 {
-    EcoManager ecoMan;
     public GameObject tilePrefab;
     List<List<GameObject>> tiles = new List<List<GameObject>>();
     float elapsedTime = 0.0f;
-    float intervalTime = .2f;
+    float intervalTime = .5f; // updates every fraction of a second if possible
+    ThreadManager threader;
+    int intervalSteps = 1;
 
     // Use this for initialization
     void Start()
     {
-        ecoMan = new EcoManager();
-        ecoMan.makeEco();
-        startRender(ecoMan.getEcosystem());
-        updateRender(ecoMan.getEcosystem());
+        threader = gameObject.GetComponent<ThreadManager>();
+        startRender(threader.getEcosystem());
+        updateRender(threader.getEcosystem());
+        threader.steps = intervalSteps;
+        threader.StartEcoSim();
+
     }
 
     // Update is called once per frame
@@ -29,9 +32,11 @@ public class SimRunnerTest : MonoBehaviour
         elapsedTime += Time.deltaTime;
         if (elapsedTime > intervalTime)
         {
-            updateRender(ecoMan.getEcosystem());
-            ecoMan.runSystem(1);
-            //Debug.Log("age: " + ecoMan.getEcosystem().count);
+            bool updated = threader.updateEcoIfReady();
+            if (updated)
+            {
+                updateRender(threader.getEcosystem());
+            }
             elapsedTime = 0.0f;
         }
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 
-class ThreadExample : MonoBehaviour
+class ThreadManager : MonoBehaviour
 {
     EcoManager ecoMan;
     Ecosystem unityEco;
@@ -16,9 +16,10 @@ class ThreadExample : MonoBehaviour
     Queue<anony> functToRun;
 
     // Thread safe?
-    int steps = 10000;
+    [HideInInspector]
+    public int steps = 1;
 
-    void Start()
+    void Awake()
     {
         functToRun = new Queue<anony>(); // queue for callback functions
         // create ecosystem using EcoManager
@@ -30,32 +31,51 @@ class ThreadExample : MonoBehaviour
 
         // TODO: finish getEcosystemCopy
         // Get a copy of the ecosystem and have simulationEco reference the copy
-        Ecosystem simulationEco = Utility.getEcosystemCopy(unityEco);
+        //Ecosystem simulationEco = Utility.getEcosystemCopy(unityEco);
 
         
-        Debug.Log("calling threaded function");
+        //Debug.Log("calling threaded function");
         // create new thread to execute runSystem with the simulationEco copy, for a particular number of steps
-        StartThreadedFunction(() => { runSystem(simulationEco, steps); });
+        //StartThreadedFunction(() => { runSystem(simulationEco, steps); });
         //Debug.Log("start done");
         //Debug.Log(unityEco.name);
     }
 
-    Ecosystem getEcosystem()
+    public Ecosystem getEcosystem()
     {
         return unityEco;
     }
 
+    /*
     void Update()
     {
+        updateEcoIfReady();   
+    }
+    */
+
+    public void StartEcoSim()
+    {
+        // create a copy, and set simulationEco to set the copy, then use the copy for the simulation
+        Ecosystem simulationEco = Utility.getEcosystemCopy(unityEco);
+        StartThreadedFunction(() => { runSystem(simulationEco, steps); });
+    }
+
+    public bool updateEcoIfReady()
+    {
+
+        bool updateOccured = false;
         // if functToRun is not being modified by the child thread
         lock (funcToRunLock)
         {
-            // run all functions in the function to run queue
-            while (functToRun.Count > 0)
+
+            /** run one function from the queue **/
+            if (functToRun.Count > 0)
             {
+                updateOccured = true;
                 // take off a function
                 anony funct = functToRun.Dequeue();
-                //Debug.Log(unityEco.name);
+
+                Debug.Log(functToRun.Count);
 
                 // run the function: calls applyEcoData(), which sets unityEco to reference the modified copy
                 funct();
@@ -70,7 +90,8 @@ class ThreadExample : MonoBehaviour
                 StartThreadedFunction(() => { runSystem(simulationEco, steps); });
             }
         }
-        
+
+        return updateOccured;
     }
 
     // start a new thread that calls a function: runSystem(simulationEco, steps)
