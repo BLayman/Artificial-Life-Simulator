@@ -47,6 +47,8 @@ public class Ecosystem
 
     public int timeUnitsPerTurn;
 
+    public int count = 0;
+
     /// <summary>
     /// run ecosystem for a certain number of time steps
     /// </summary>
@@ -54,6 +56,7 @@ public class Ecosystem
     {
         for (int i = 0; i < timeSteps; i++)
         {
+            
             foreach (string species in populations.Keys)
             {
                 Population population = populations[species];
@@ -62,6 +65,7 @@ public class Ecosystem
                     List<Creature> toRemove = new List<Creature>();
                     foreach (Creature creature in population.creatures)
                     {
+                        count++;
                         creature.startTurn();
                         if (creature.isDead())
                         {
@@ -93,4 +97,11 @@ public class Ecosystem
     {
 
     }
+
+
+    public Ecosystem shallowCopy()
+    {
+        return (Ecosystem) this.MemberwiseClone();
+    }
+
 }

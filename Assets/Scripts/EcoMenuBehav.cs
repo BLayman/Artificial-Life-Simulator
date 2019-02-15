@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public delegate void IntFunct(int x);
+
 
 public class EcoMenuBehav : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class EcoMenuBehav : MonoBehaviour
     public GameObject distinctPhenoText;
     public GameObject timeUnitsText;
 
-    public EcosystemEditor ecoCreator;
+    public EcosystemEditor ecoEditor;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +38,7 @@ public class EcoMenuBehav : MonoBehaviour
     /// </summary>
     public void loadEcoMenu(Ecosystem eco)
     {
-        ecoCreator = new EcosystemEditor(eco);
+        ecoEditor = new EcosystemEditor(eco);
         uIParent.SetActive(true);
         // TODO: properly populate menu from eco data
     }
@@ -48,7 +48,7 @@ public class EcoMenuBehav : MonoBehaviour
     /// </summary>
     public void addCreature()
     {
-        creatMenuBehav.loadCreatMenu(ecoCreator);
+        creatMenuBehav.loadCreatMenu(ecoEditor);
         uIParent.SetActive(false);
     }
 
@@ -65,88 +65,42 @@ public class EcoMenuBehav : MonoBehaviour
     /// </summary>
     public void saveSettings()
     {
-        bool a = setEcoName();
-        IntFunct setAPPC = new IntFunct(ecoCreator.setAbilityPointsPerCreature);
-        bool b = setIntegerFunct(abilityPtsPerCreatTextBox, setAPPC);
-        IntFunct setCommBits = new IntFunct(ecoCreator.setCommBits);
-        bool c = setIntegerFunct(commBitsText, setCommBits);
-        IntFunct setDistinctPheno = new IntFunct(ecoCreator.setDistinctPhenotypeNum);
-        bool d = setIntegerFunct(distinctPhenoText, setDistinctPheno);
-        IntFunct setTUPT = new IntFunct(ecoCreator.setTimeUnitsPerTurn);
-        bool e = setIntegerFunct(timeUnitsText, setTUPT);
+
+        // TODO : covert HelperSetter to ValidationHelper
+        StringFunct setEcoName = new StringFunct(ecoEditor.setName);
+        bool a = HelperSetter.setName(ecoNameTextBox,errorObj,setEcoName);
+        IntFunct setAPPC = new IntFunct(ecoEditor.setAbilityPointsPerCreature);
+        bool b = HelperSetter.setIntegerFunct(abilityPtsPerCreatTextBox, setAPPC, errorObj);
+        IntFunct setCommBits = new IntFunct(ecoEditor.setCommBits);
+        bool c = HelperSetter.setIntegerFunct(commBitsText, setCommBits, errorObj);
+        IntFunct setDistinctPheno = new IntFunct(ecoEditor.setDistinctPhenotypeNum);
+        bool d = HelperSetter.setIntegerFunct(distinctPhenoText, setDistinctPheno, errorObj);
+        IntFunct setTUPT = new IntFunct(ecoEditor.setTimeUnitsPerTurn);
+        bool e = HelperSetter.setIntegerFunct(timeUnitsText, setTUPT, errorObj);
 
         // saves tentative resource options to Ecosystem object
-        ecoCreator.saveResourceOptions();
+        ecoEditor.saveResourceOptions();
 
         // TODO : don't forget to call EcosystemEditor save methods
+
+
+        /** call methods to save ecoEditor data to actual Ecosystem object **/
+
+        // saves tentative resource options to Ecosystem object
+        ecoEditor.saveResourceOptions();
+
+        ecoEditor.saveFoundersToSpecies();
+
+        ecoEditor.addCurrentPopulationToEcosystem();
+
+        ecoEditor.saveMap();
     }
 
     public void addResource()
     {
         // TODO: change from creature menu to resource menu
-        lrMenuBehav.loadLandResMenu(ecoCreator);
+        lrMenuBehav.loadLandResMenu(ecoEditor);
         uIParent.SetActive(false);
     }
-
-
-    // calls EcosystemEditor method to save ecosystem name
-    public bool setEcoName()
-    {
-        bool valid = false;
-        string nameText = ecoNameTextBox.GetComponent<Text>().text;
-        if (nameText.Equals(""))
-        {
-            string errorText = "Empty input error.";
-            Debug.LogError(errorText);
-            errorObj.GetComponent<Text>().text = errorText;
-            errorObj.SetActive(true);
-        }
-        else
-        {
-            ecoCreator.setName(nameText);
-            valid = true;
-        }
-        return valid;
-    }
-
-
-    // calls set functions in EcosystemEditor that take an int
-    public bool setIntegerFunct(GameObject go, IntFunct setInt)
-    {
-        bool valid = false;
-        string text = go.GetComponent<Text>().text;
-        int intVal;
-        if (text.Equals(""))
-        {
-            string errorText = "Empty input error.";
-            Debug.LogError(errorText);
-            errorObj.GetComponent<Text>().text = errorText;
-            errorObj.SetActive(true);
-        }
-        else if (text.Contains("."))
-        {
-            string errorText = "Floating point given instead of integer.";
-            Debug.LogError(errorText);
-            errorObj.GetComponent<Text>().text = errorText;
-            errorObj.SetActive(true);
-        }
-        else if (Int32.TryParse(text, out intVal))
-        {
-            setInt(intVal);
-            valid = true;
-        }
-        else
-        {
-            string errorText = "Error parsing integer from string.";
-            Debug.LogError(errorText);
-            Debug.LogError(text);
-            errorObj.GetComponent<Text>().text = errorText;
-            errorObj.SetActive(true);
-        }
-        return valid;
-    }
-
-
-
 
 }

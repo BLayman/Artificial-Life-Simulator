@@ -9,36 +9,24 @@ public class Utility
 {
 
     public static System.Random rand = new System.Random();
-    /*
-    public static object getDeepCopy(object toCopy)
+
+    public static Ecosystem getEcosystemCopy(Ecosystem eco)
     {
-        Type sourceType = toCopy.GetType();
-        object instance = Activator.CreateInstance(sourceType);
-        PropertyInfo[] properties = sourceType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-        foreach (PropertyInfo property in properties)
-        {
-            if (property.CanWrite)
-            {
-                if (property.PropertyType.IsValueType || property.PropertyType.IsEnum || property.PropertyType.Equals(typeof(System.String)))
-                {
-                    property.SetValue(instance, property.GetValue(toCopy, null), null);
-                }
-                else
-                {
-                    object propertyVal = property.GetValue(toCopy, null);
-                    if (propertyVal == null)
-                    {
-                        property.SetValue(instance, null, null);
-                    }
-                    else
-                    {
-                        property.SetValue(instance, getDeepCopy(propertyVal), null);
-                    }
-                }
-            }
-        }
-        return instance;
-    }*/
+        Ecosystem copy = eco.shallowCopy();
+        copy.populations = new Dictionary<string, Population>();
+        // TODO: fill in 
+
+        copy.map = new List<List<Land>>();
+        // fill in 
+
+        copy.species = new Dictionary<string, Creature>();
+        // fill in
+
+        copy.resourceOptions = new Dictionary<string, ResourceStore>();
+        // fill in
+
+        return copy;
+    }
 
     public static float normRand(float sd)
     {
@@ -126,6 +114,8 @@ public class Utility
         return creatureCopy;
     }
 
+
+
     public static void copyCreatureNetworks(List<Dictionary<string, Network>> origNetworks, List<Dictionary<string, Network>> networks, Creature creatureCopy)
     {
         for (int i = 0; i < origNetworks.Count; i++)
@@ -149,6 +139,8 @@ public class Utility
             }
         }
     }
+
+
 
     public static Ability getNewAbility(Ability oldAbility)
     {
@@ -179,6 +171,8 @@ public class Utility
         }
         return newAction;
     }
+
+
 
     public static Node getNewNode(Node oldNode, Creature creatureCopy, Network parentNet)
     {

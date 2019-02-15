@@ -248,6 +248,7 @@ public class EcoManager
         // this applies to both the MapEditor, and SpeciesPopulator.
     }
 
+    // this will be the multi-threaded part
     public void runSystem(int steps)
     {
         ecosystem.runSystem(steps);

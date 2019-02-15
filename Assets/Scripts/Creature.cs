@@ -294,7 +294,7 @@ public class Creature
     }
 
     /// <summary>
-    /// Returns true if health is 0 or below.
+    /// Returns true if health is 0 or below, also deletes creature from map if dead
     /// </summary>
     public bool isDead()
     {
@@ -307,6 +307,7 @@ public class Creature
         {
             return false;
         }
+
     }
 
     /// <summary>

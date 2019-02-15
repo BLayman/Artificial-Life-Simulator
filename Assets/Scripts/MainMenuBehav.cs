@@ -33,7 +33,7 @@ public class MainMenuBehav : MonoBehaviour
     /// </summary>
     public void saveCurrentEcosystem()
     {
-        gm.addEcosystem(ecoMenuBehav.ecoCreator.ecosystem);
+        gm.addEcosystem(ecoMenuBehav.ecoEditor.ecosystem);
     }
 
     public void startSimulation()

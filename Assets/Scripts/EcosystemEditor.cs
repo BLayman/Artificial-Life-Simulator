@@ -102,6 +102,7 @@ public class EcosystemEditor : IEcosystemEditor
     public void addResource(string resourceName)
     {
         lre = new LandResourceEditor(new ResourceStore(resourceName));
+        Debug.Log("resource being created: " + resourceName);
     }
 
     /// <summary>

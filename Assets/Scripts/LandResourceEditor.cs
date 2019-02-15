@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 /// <summary>
 /// Used as interface for generating ResourceStore objects.
@@ -15,19 +16,33 @@ public class LandResourceEditor
         resourceStore = _resourceStore;
     }
 
+    /* set functions */
+
+    /// <summary>
+    /// Amount of the resource consumped per time unit.
+    /// </summary>
     public void setAmtConsumedPerTime(int amountConsumed)
     {
         resourceStore.amountConsumedPerTimeUnit = amountConsumed;
+        Debug.Log("amount consumed per time set to " + amountConsumed);
     }
 
+    /// <summary>
+    /// Set how much the resource increases at the end of each turn
+    /// </summary>
     public void setRenewalAmt(int amountRenewed)
     {
         resourceStore.renewalAmt = amountRenewed;
+        Debug.Log("renewal amount per turn set to " + amountRenewed);
     }
 
+    /// <summary>
+    /// Set amount being stored
+    /// </summary>
     public void setAmountOfResource(int amount)
     {
         resourceStore.amountStored = amount;
+        Debug.Log("amount of resource set to " + amount);
     }
 
     /// <summary>
@@ -37,6 +52,7 @@ public class LandResourceEditor
     public void setProportionExtracted(float proportion)
     {
         resourceStore.proportionExtracted = proportion;
+        Debug.Log("proportion extracted set to " + proportion);
     }
 
     /// <summary>
@@ -45,5 +61,6 @@ public class LandResourceEditor
     public void setMaxAmt(int maxAmount)
     {
         resourceStore.maxAmount = maxAmount;
+        Debug.Log("maximum amount set to " + maxAmount);
     }
 }

@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\EcosystemEditor.cs" />
     <Compile Include="Assets\Scripts\EmptyActivBehavior.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\HelperSetter.cs" />
     <Compile Include="Assets\Scripts\IEcosystemEditor.cs" />
     <Compile Include="Assets\Scripts\InnerInputNode.cs" />
     <Compile Include="Assets\Scripts\InnerInputNodeEditor.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Assets\Scripts\SimRunnerUser.cs" />
     <Compile Include="Assets\Scripts\SpeciesPopulator.cs" />
     <Compile Include="Assets\Scripts\TanhActivBehav.cs" />
+    <Compile Include="Assets\Scripts\ThreadExample.cs" />
     <Compile Include="Assets\Scripts\Utility.cs" />
     <None Include="Assets\Scripts\ClassDiagram2.cd" />
     <None Include="Assets\CSharpPackages\OptimizedPriorityQueue.4.1.1\lib\net20\Priority Queue.xml" />
