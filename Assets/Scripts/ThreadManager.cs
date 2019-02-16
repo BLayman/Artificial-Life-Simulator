@@ -11,9 +11,9 @@ class ThreadManager : MonoBehaviour
     Ecosystem unityEco;
     System.Object ecoQueueLock = new System.Object();
     System.Object threadFinishedLock = new System.Object();
-    private int bufferLength = 100;
+    private int bufferLength = 20;
     private bool threadFinished = false;
-    private int childThreadSleepTime = 100;
+    private int childThreadSleepTime = 1;
 
     public delegate void anony(Ecosystem eco); // anony represents an anonymous function with no inputs or outputs. To be stored in the queue
 
@@ -79,7 +79,15 @@ class ThreadManager : MonoBehaviour
             lock (ecoQueueLock)
             {
                 queueLength = ecoQueue.Count;
-                lastEnqueued = ecoQueue.Last.Value;
+                if(ecoQueue.Last != null)
+                {
+                    lastEnqueued = ecoQueue.Last.Value;
+                }
+                else
+                {
+                    lastEnqueued = unityEco;
+                }
+                
             }
             // if the last thread has finished and the queue length is getting short, run the simulation some more.
             if (queueLength < bufferLength)

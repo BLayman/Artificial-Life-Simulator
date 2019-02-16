@@ -308,6 +308,7 @@ public class Creature
         {
             return false;
         }
+        
     }
 
     /// <summary>

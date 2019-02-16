@@ -10,7 +10,7 @@ public class SimRunnerTest : MonoBehaviour
     public GameObject tilePrefab;
     List<List<GameObject>> tiles = new List<List<GameObject>>();
     float elapsedTime = 0.0f;
-    float intervalTime = .5f; // updates every fraction of a second if possible
+    float intervalTime = .25f; // updates every fraction of a second if possible
     ThreadManager threader;
     int intervalSteps = 1;
 
@@ -23,6 +23,12 @@ public class SimRunnerTest : MonoBehaviour
         threader.steps = intervalSteps;
         threader.StartEcoSim();
 
+    }
+
+    public void getValFromSlider(float value)
+    {
+        // TODO: don't hard code slider
+        intervalTime = .5f - value;
     }
 
     // Update is called once per frame
