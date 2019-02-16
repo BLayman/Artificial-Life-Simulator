@@ -9,19 +9,23 @@ class ThreadManager : MonoBehaviour
 {
     EcoManager ecoMan;
     Ecosystem unityEco;
-    System.Object funcToRunLock = new System.Object();
+    System.Object ecoQueueLock = new System.Object();
+    System.Object threadFinishedLock = new System.Object();
+    private int bufferLength = 100;
+    private bool threadFinished = false;
+    private int childThreadSleepTime = 100;
 
-    public delegate void anony(); // anony represents an anonymous function with no inputs or outputs. To be stored in the queue
+    public delegate void anony(Ecosystem eco); // anony represents an anonymous function with no inputs or outputs. To be stored in the queue
 
-    Queue<anony> functToRun;
+    LinkedList<Ecosystem> ecoQueue;
 
     // Thread safe?
     [HideInInspector]
-    public int steps = 1;
+    public int steps;
 
     void Awake()
     {
-        functToRun = new Queue<anony>(); // queue for callback functions
+        ecoQueue = new LinkedList<Ecosystem>(); // queue for callback functions
         // create ecosystem using EcoManager
         ecoMan = new EcoManager();
         ecoMan.makeEco();
@@ -57,38 +61,62 @@ class ThreadManager : MonoBehaviour
     {
         // create a copy, and set simulationEco to set the copy, then use the copy for the simulation
         Ecosystem simulationEco = Utility.getEcosystemCopy(unityEco);
-        StartThreadedFunction(() => { runSystem(simulationEco, steps); });
+        StartThreadedFunction(() => { runSystem(simulationEco, steps, Thread.CurrentThread); });
+    }
+
+    // update will restart the threaded function when necessary
+    private void Update()
+    {
+        Ecosystem lastEnqueued;
+        bool checkFinished;
+        lock (threadFinishedLock)
+        {
+            checkFinished = threadFinished;
+        }
+        if (checkFinished)
+        {
+            int queueLength;
+            lock (ecoQueueLock)
+            {
+                queueLength = ecoQueue.Count;
+                lastEnqueued = ecoQueue.Last.Value;
+            }
+            // if the last thread has finished and the queue length is getting short, run the simulation some more.
+            if (queueLength < bufferLength)
+            {
+                // create a copy, and set simulationEco to set the copy, then use the copy for the simulation
+                Ecosystem simulationEco = Utility.getEcosystemCopy(lastEnqueued);
+                // this will reset checkFinished to false
+                StartThreadedFunction(() => { runSystem(simulationEco, steps, Thread.CurrentThread); });
+            }
+        }
+
+        
     }
 
     public bool updateEcoIfReady()
     {
-
         bool updateOccured = false;
-        // if functToRun is not being modified by the child thread
-        lock (funcToRunLock)
-        {
 
-            /** run one function from the queue **/
-            if (functToRun.Count > 0)
+        // if ecoQueue is not being modified by the child thread
+        lock (ecoQueueLock)
+        {
+            // if the queue isn't empty, update ecosystem with what's on it
+            if (ecoQueue.Count > 0)
             {
                 updateOccured = true;
                 // take off a function
-                anony funct = functToRun.Dequeue();
+                Ecosystem updatedEco = ecoQueue.First.Value;
+                ecoQueue.RemoveFirst();
 
-                Debug.Log(functToRun.Count);
+                Debug.Log("Length of Queue: " + ecoQueue.Count);
 
-                // run the function: calls applyEcoData(), which sets unityEco to reference the modified copy
-                funct();
+                // call applyEcoData(), which sets unityEco to reference the modified copy
+                applyEcosystemData(updatedEco);
 
-                //Debug.Log(unityEco.name);
-
-                // TODO: finish getEcosystemCopy
-
-                // start the process over again
-                // create a copy, and set simulationEco to set the copy, then use the copy for the simulation
-                Ecosystem simulationEco = Utility.getEcosystemCopy(unityEco);
-                StartThreadedFunction(() => { runSystem(simulationEco, steps); });
+                
             }
+
         }
 
         return updateOccured;
@@ -101,39 +129,61 @@ class ThreadManager : MonoBehaviour
         t.Start();
     }
 
-    // called from child thread to enqueue functions to run
-    public void QueueMainThread(anony someFunction)
+
+    void applyEcosystemData(Ecosystem eco)
     {
-        // functToRun is instance variable, also modified by main thread, so need to lock
-        lock (funcToRunLock)
+        Debug.Log("safely applying data created in thread.");
+        // make unityEco reference modified copy of itself, NOTE: this won't change all references to the ecosystem, such as those used in the UI 
+        unityEco = eco;
+        Debug.Log("ecosystem age:" + unityEco.count);
+    }
+
+
+    // called from child thread to enqueue functions to run
+    public void QueueMainThread(Ecosystem ecosys)
+    {
+        // lock ecoQueue before enqueueing
+        lock (ecoQueueLock)
         {
-            functToRun.Enqueue(someFunction);
+            ecoQueue.AddLast(ecosys);
+            //Debug.Log("adding to queue with length: " + ecoQueue.Count);
         }
-        
+
     }
 
     // eco is address pointing copy of unityEco
     // don't use any variables besides what's sent into the function, or created in the function (to avoid threading issues)
-    void runSystem(Ecosystem eco, int steps)
+    void runSystem(Ecosystem eco, int steps, Thread mainThread)
     {
-        // do slow thing
-        //Thread.Sleep(2000);
+
+        lock (threadFinishedLock)
+        {
+            threadFinished = false;
+        }
         // change data in copy
         //eco.name = eco.name + "1";
-
-        eco.runSystem(steps);
-        // this function will be called from main thread
-        // it gives unityEco the address of eco, so that it points at the new and updated ecosystem
-        anony applyEcoData = () =>
+        for (int i = 0; i < bufferLength; i++)
         {
-            Debug.Log("safely applying data created in thread.");
-            // make unityEco reference modified copy of itself, NOTE: this won't change all references to the ecosystem, such as those used in the UI 
-            
-            unityEco = eco;
-            Debug.Log("ecosystem age:" + unityEco.count);
-        };
+            // terminate thread if main thread dies
+            if (!mainThread.IsAlive)
+            {
+                Thread.CurrentThread.Abort();
+            }
+        
+            eco.runSystem(steps); // run ecosystem
 
-        QueueMainThread(applyEcoData);
+            QueueMainThread(eco); // queue main with ecosystem
+
+            eco = Utility.getEcosystemCopy(eco); // make eco point to a new ecosystem object, so that each object in the queue is different
+
+            Thread.Sleep(childThreadSleepTime); // give time for other thread to catch up
+        }
+
+        lock (threadFinishedLock)
+        {
+            threadFinished = true;
+        }
+        
     }
 
 }
