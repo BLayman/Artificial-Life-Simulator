@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 /// <summary>
 /// API for editing the map: a 2D array of Land spaces. Used to generate the map, and add resources.
@@ -67,15 +68,16 @@ public class MapEditor
     {
         for (int i = 0; i < length; i++)
         {
-            List<Land> row = new List<Land>();
+            List<Land> column = new List<Land>();
             // add each row
-            map.Add(row);
+            map.Add(column);
             for (int j = 0; j < width; j++)
             {
                 // add land to each column
-                row.Add(new Land());
+                column.Add(new Land());
             }
 
         }
+        Debug.Log("finished generating map");
     }
 }

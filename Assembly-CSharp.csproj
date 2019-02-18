@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\ActivationBehavior.cs" />
     <Compile Include="Assets\Scripts\BiasNode.cs" />
     <Compile Include="Assets\Scripts\BoostRequirement.cs" />
+    <Compile Include="Assets\Scripts\CameraPositioner.cs" />
     <Compile Include="Assets\Scripts\CommAction.cs" />
     <Compile Include="Assets\Scripts\CommActionEditor.cs" />
     <Compile Include="Assets\Scripts\CommInputNode.cs" />
@@ -86,7 +87,9 @@
     <Compile Include="Assets\Scripts\EcoMenuTester.cs" />
     <Compile Include="Assets\Scripts\Ecosystem.cs" />
     <Compile Include="Assets\Scripts\EcosystemEditor.cs" />
+    <Compile Include="Assets\Scripts\EcosystemGetter.cs" />
     <Compile Include="Assets\Scripts\EmptyActivBehavior.cs" />
+    <Compile Include="Assets\Scripts\ErrorManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HelperSetter.cs" />
     <Compile Include="Assets\Scripts\IEcosystemEditor.cs" />

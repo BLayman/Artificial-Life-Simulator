@@ -77,40 +77,11 @@ public class SpeciesPopulator
 
             //Debug.Log("x " + x);
             //Debug.Log("y " + y);
-            addedCreature.updateNeighbors();
-
-
-            /*
-            // fix inner input node references to linked nodes
-            foreach (Dictionary<string, Network> dict in addedCreature.networks)
-            {
-                foreach (Network net in dict.Values)
-                {
-                    foreach (List<Node> layer in net.net)
-                    {
-                        foreach (InnerInputNode iiNode in layer.OfType<InnerInputNode>())
-                        {
-                            Network linkedNet = addedCreature.networks[iiNode.linkedNodeNetworkLayer][iiNode.netName];
-                            iiNode.linkedNode = linkedNet.net[linkedNet.net.Count - 1][iiNode.linkedNodeIndex];
-                        }
-                        foreach (NonInputNode niNode in layer.OfType<NonInputNode>())
-                        {
-                            niNode.assignPrevNodes();
-                        }
-                    }
-                }
-            }
-            */
-
-            //addedCreature.addActionsToQueue();
+            //addedCreature.updateNeighbors();
         }
-        //Debug.Log("************************************************");
-        /*
-        for (int i = 0; i < population.creatures.Count; i++)
-        {
-            population.creatures[i].printNetworks();
-        }
-        */
+
+        Debug.Log("finished populating");
+
         population.size = size;
     }
 

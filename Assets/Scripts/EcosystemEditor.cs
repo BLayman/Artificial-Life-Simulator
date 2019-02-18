@@ -200,6 +200,11 @@ public class EcosystemEditor : IEcosystemEditor
             currentPopulation.creatures[i].map = tentativeMap;
             tentativeMap[currentPopulation.creatures[i].position[0]][currentPopulation.creatures[i].position[1]].creatureOn = currentPopulation.creatures[i];
         }
+        for (int i = 0; i < currentPopulation.creatures.Count; i++)
+        {
+            currentPopulation.creatures[i].updateNeighbors();
+        }
+        Debug.Log("finished adding population to map");
     }
 
     
