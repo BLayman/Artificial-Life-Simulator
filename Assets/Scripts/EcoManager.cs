@@ -45,7 +45,7 @@ public class EcoManager
         ecoCreator.lre.setProportionExtracted(.05f);
         ecoCreator.lre.setRenewalAmt(10);
         ecoCreator.saveResource();
-
+        /*
         ecoCreator.addResource("flowers");
         ecoCreator.lre.setAmountOfResource(500);
         ecoCreator.lre.setMaxAmt(500);
@@ -53,6 +53,7 @@ public class EcoManager
         ecoCreator.lre.setProportionExtracted(.1f);
         ecoCreator.lre.setRenewalAmt(1);
         ecoCreator.saveResource();// saves to tentative resources
+        */
 
         ecoCreator.saveResourceOptions(); // adds all resources to ecosystem resources
 
@@ -62,7 +63,7 @@ public class EcoManager
         // TODO: account for asymetric maps
         ecoCreator.mapEditor.generateMap(200, 200);
         ecoCreator.mapEditor.addLERPXResource("grass", 1f);
-        ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
+        //ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
         
@@ -112,6 +113,7 @@ public class EcoManager
 
         resourceCreator = cc.addResource();
 
+        /*
         resourceCreator.setName(ecosystemResources[1]);
         resourceCreator.setMaxLevel(100);
         resourceCreator.setLevel(90);
@@ -122,7 +124,7 @@ public class EcoManager
         resourceCreator.setBaseUsage(1);
 
         cc.saveResource();
-
+        */
 
         List<string> creatureResources = new List<string>(cc.creature.storedResources.Keys);
 
@@ -131,6 +133,36 @@ public class EcoManager
         // (should use add an action creator to creature creator)
         cc.generateDefaultActionPool();
 
+        /* MUST GENERATE ACTIONS AND ADD THEM TO CREATURE'S ACTION POOL BEFORE CREATING OUTPUT NODES FOR THOSE ACTIONS */
+      
+        // create action for consuming grass from neighbor to right
+        ActionEditor ae = cc.addAction();
+        ae.setCreator(ActionCreatorType.consumeCreator);
+        ConsumeFromLandEditor cle = (ConsumeFromLandEditor)ae.getActionCreator();
+        cle.setName("eatGrass");
+        cle.setNeighborIndex(4);
+        cle.setResourceToConsume("grass");
+        cle.setPriority(1);
+        cle.setTimeCost(5);
+        cle.addResourceCost("grass", 1);
+        cc.saveAction();
+
+        // TODO: Need to implement abilities system before resource consumption can work
+
+        // create action for consuming flowers from neighbor to left
+
+        /*
+        ActionEditor ae2 = cc.addAction();
+        ae2.setCreator(ActionCreatorType.consumeCreator);
+        ConsumeFromLandEditor cle2 = (ConsumeFromLandEditor)ae2.getActionCreator();
+        cle2.setName("eat");
+        cle2.setNeighborIndex(3);
+        cle2.setResourceToConsume("flowers");
+        cle2.setPriority(1);
+        cle2.setTimeCost(5);
+        cle2.addResourceCost("flowers", 1);
+        cc.saveAction();
+        */
 
         // user opens networks creator for that creature
 
@@ -145,35 +177,45 @@ public class EcoManager
         /* Node net1 0,0 */
         makeSensoryInputNode(netCreator, 1, creatureResources[0]);
 
+        /* Node net1 0,1 */
+        makeSensoryInputNode(netCreator, 2, creatureResources[0]);
+
         /* Node net1 1,0 */
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
         /* Node net1 1,1 */
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
+        /* Node net1 1,2 */
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
 
         // user clicks save on network creator
         cc.saveNetwork();
 
 
-
+        
         /**** net2 ****/
-
+        /*
         // user adds a network
         NetworkEditor netCreator3 = cc.addNetwork();
         netCreator3.setInLayer(0); // called by default with index of layer user clicked
         netCreator3.setName("net2");
 
-        /* Node net2 0,0 */
+        // Node net2 0,0 
+        // sense resource up
         makeSensoryInputNode(netCreator3, 1, creatureResources[1]);
 
-        /* Node net2 1,0 */
+        // Node net2 0,1 
+        // sense resource down
+        makeSensoryInputNode(netCreator3, 2, creatureResources[1]);
+
+        // Node net2 1,0 
         makeOutputNode(netCreator3, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
-        /* Node net2 1,1 */
+        // Node net2 1,1 
         makeOutputNode(netCreator3, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
 
         // user clicks save on network creator
         cc.saveNetwork();
-
-
+        */
+        
 
         /**** outNetUp ****/
 
@@ -184,10 +226,11 @@ public class EcoManager
         netCreator2.setName("outNetUp");
 
         /* Node outNet 0,0 */
+        // insert a node into 0th layer new network. Connect it to the 0th node in the last layer of net1 (net1 is in layer 0)
         makeInnerInputNode(netCreator2, 0, "net1", 0, 0);
 
         /* Node outNet 0,1 */
-        makeInnerInputNode(netCreator2, 0, "net2", 0, 0);
+        //makeInnerInputNode(netCreator2, 0, "net2", 0, 0);
 
         /* Node outNet 1,0 */
         makeOutputNode(netCreator2, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
@@ -204,13 +247,34 @@ public class EcoManager
         netCreator4.setName("outNetDown");
 
         /* Node outNet 0,0 */
+        // insert a node into 0th layer new network. Connect it to the index 1 node in the last layer of net1 (net1 is in layer 0)
         makeInnerInputNode(netCreator4, 0, "net1", 0, 1);
 
         /* Node outNet 0,1 */
-        makeInnerInputNode(netCreator4, 0, "net2", 0, 1);
+        //makeInnerInputNode(netCreator4, 0, "net2", 0, 1);
 
         /* Node outNet 1,0 */
         makeOutputNode(netCreator4, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
+        // user clicks save on creature creator
+        cc.saveNetwork();
+
+
+        /**** outNetConsume ****/
+
+        // user adds a second network
+        NetworkEditor netCreator5 = cc.addNetwork();
+        // network added to second layer of networks
+        netCreator5.setInLayer(1); // called by default with index of layer user clicked
+        netCreator5.setName("outNetEat");
+
+        /* Node outNet 0,0 */
+        makeInnerInputNode(netCreator5, 0, "net1", 0, 2);
+
+        /* Node outNet 0,1 */
+        //makeInnerInputNode(netCreator5, 0, "net2", 0, 2);
+
+        /* Node outNet 1,0 */
+        makeOutputNode(netCreator5, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -291,6 +355,7 @@ public class EcoManager
         // user clicks save on network creator
     }
 
+    
     public void makeInnerInputNode(NetworkEditor netCreator, int layer, string linkedNetName, int linkedNetIndex, int linkedNodeIndex)
     {
         // user adds nodes to input layer (0)

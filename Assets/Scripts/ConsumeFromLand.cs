@@ -28,7 +28,9 @@ public class ConsumeFromLand : Action
     /// </summary>
     public override void perform(Creature creature)
     {
-        throw new NotImplementedException();
+        Land land = creature.neighborLands[neighborIndex];
+        float consumed = land.attemptResourceConsumption(resourceToConsume, timeCost, creature.abilities[resourceToConsume].level);
+        creature.storedResources[resourceToConsume].currentLevel += (int) Math.Round((double)consumed);
     }
 
     public Object clone()

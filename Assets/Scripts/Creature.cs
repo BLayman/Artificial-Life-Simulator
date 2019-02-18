@@ -233,6 +233,15 @@ public class Creature
             neighborLands[2] = map[position[0]][position[1] - 1];
         }
 
+        if (position[0] - 1 < 0)
+        {
+            neighborLands[3] = dummyLand;
+        }
+        else
+        {
+            neighborLands[3] = map[position[0] - 1][position[1]];
+        }
+
         if (position[0] + 1 >= map.Count)
         {
             neighborLands[4] = dummyLand;
@@ -242,14 +251,7 @@ public class Creature
             neighborLands[4] = map[position[0] + 1][position[1]];
         }
 
-        if (position[0] - 1 < 0)
-        {
-            neighborLands[3] = dummyLand;
-        }
-        else
-        {
-            neighborLands[3] = map[position[0] - 1][position[1]];
-        }
+        
     }
 
     /// <summary>

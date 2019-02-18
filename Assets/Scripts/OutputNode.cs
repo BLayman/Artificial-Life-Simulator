@@ -30,6 +30,7 @@ public class OutputNode : NonInputNode
         parentCreature.actionQueue.Enqueue(action, action.priority);
     }
 
+    // action is assigned using action pool of creature
     public void setAction(string actionKey)
     {
         action = parentCreature.actionPool[actionKey];
