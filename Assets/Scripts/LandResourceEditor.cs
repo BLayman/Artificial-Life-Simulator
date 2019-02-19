@@ -21,7 +21,7 @@ public class LandResourceEditor
     /// <summary>
     /// Amount of the resource consumped per time unit.
     /// </summary>
-    public void setAmtConsumedPerTime(int amountConsumed)
+    public void setAmtConsumedPerTime(float amountConsumed)
     {
         resourceStore.amountConsumedPerTimeUnit = amountConsumed;
         Debug.Log("amount consumed per time set to " + amountConsumed);
@@ -30,7 +30,7 @@ public class LandResourceEditor
     /// <summary>
     /// Set how much the resource increases at the end of each turn
     /// </summary>
-    public void setRenewalAmt(int amountRenewed)
+    public void setRenewalAmt(float amountRenewed)
     {
         resourceStore.renewalAmt = amountRenewed;
         Debug.Log("renewal amount per turn set to " + amountRenewed);
@@ -39,7 +39,7 @@ public class LandResourceEditor
     /// <summary>
     /// Set amount being stored
     /// </summary>
-    public void setAmountOfResource(int amount)
+    public void setAmountOfResource(float amount)
     {
         resourceStore.amountStored = amount;
         Debug.Log("amount of resource set to " + amount);
@@ -58,7 +58,7 @@ public class LandResourceEditor
     /// <summary>
     /// Sets maximum amount of the resource that can be stored.
     /// </summary>
-    public void setMaxAmt(int maxAmount)
+    public void setMaxAmt(float maxAmount)
     {
         resourceStore.maxAmount = maxAmount;
         Debug.Log("maximum amount set to " + maxAmount);

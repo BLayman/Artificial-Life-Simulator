@@ -12,7 +12,7 @@ public class ResourceStore
     /// <summary>
     /// Amount of resource stored.
     /// </summary>
-    public int amountStored;
+    public float amountStored;
     /// <summary>
     /// Possible values: [0,1]. Proportion of the attempted amount that will be successfully extracted on one attempt. Modified by creature's extraction ability.
     /// </summary>
@@ -20,17 +20,17 @@ public class ResourceStore
     /// <summary>
     /// Amount of resource that can be taken by one action.
     /// </summary>
-    public int amountConsumedPerTimeUnit;
+    public float amountConsumedPerTimeUnit;
     /// <summary>
     /// Amount renewed on a renewal step.
     /// </summary>
-    public int renewalAmt;
+    public float renewalAmt;
 
     public string name;
     /// <summary>
     /// Maximum amount of resource that can be stored in this land location.
     /// </summary>
-    public int maxAmount;
+    public float maxAmount;
 
     public ResourceStore(string _name)
     {
@@ -48,11 +48,13 @@ public class ResourceStore
     /// <summary>
     /// Resolves amount of resource consumed in given amount of time.
     /// </summary>
-    public int attemptConsumption(int timeDedicated, int creatureAbility)
+    public float attemptConsumption(float timeDedicated, float creatureAbility)
     {
-        // Max(proportion * 2 ^ creatureAbility, 1) 
-        float actualProportion = Math.Max(proportionExtracted * (float)Math.Pow((double)2, (double)creatureAbility), 1f);
-        int amountToTake = (int)Math.Round(timeDedicated * amountConsumedPerTimeUnit * actualProportion);
+        // proportion * (2 ^ creatureAbility) 
+        // if creatureAbility = 0, actualProportion = proportion
+        float actualProportion = proportionExtracted * (float)Math.Pow((double)2, (double)creatureAbility);
+        // amount = time * amount consumed per time * proportion consumed
+        float amountToTake = (int)Math.Round(timeDedicated * amountConsumedPerTimeUnit * actualProportion);
         // if amount taken would be less than total amount
         if (amountToTake < amountStored)
         {

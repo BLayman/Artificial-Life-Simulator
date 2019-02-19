@@ -38,12 +38,12 @@ public class EcoManager
         ecoCreator.setTimeUnitsPerTurn(10);
 
         // create and save resources
-        ecoCreator.addResource("grass");
-        ecoCreator.lre.setAmountOfResource(1500);
-        ecoCreator.lre.setMaxAmt(1500);
-        ecoCreator.lre.setAmtConsumedPerTime(100);
-        ecoCreator.lre.setProportionExtracted(.05f);
-        ecoCreator.lre.setRenewalAmt(10);
+        LandResourceEditor lre = ecoCreator.addResource("grass");
+        lre.setAmountOfResource(1500);
+        lre.setMaxAmt(1500);
+        lre.setAmtConsumedPerTime(100);
+        lre.setProportionExtracted(.05f);
+        lre.setRenewalAmt(10);
         ecoCreator.saveResource();
         /*
         ecoCreator.addResource("flowers");
@@ -147,9 +147,11 @@ public class EcoManager
         cle.addResourceCost("grass", 1);
         cc.saveAction();
 
-        // TODO: Need to implement abilities system before resource consumption can work
+        // add default abilities for consuming resources
+        cc.addDefaultResourceAbilities();
+        cc.saveAbilities();
 
-        // create action for consuming flowers from neighbor to left
+        // TODO: create action for consuming flowers from neighbor to left
 
         /*
         ActionEditor ae2 = cc.addAction();

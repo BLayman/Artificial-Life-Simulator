@@ -45,7 +45,7 @@ public class Ecosystem
     /// </summary>
     public Dictionary<string, ResourceStore> resourceOptions = new Dictionary<string, ResourceStore>();
 
-    public int timeUnitsPerTurn;
+    public float timeUnitsPerTurn;
 
     public int count = 0;
 

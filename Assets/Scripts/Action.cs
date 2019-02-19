@@ -12,7 +12,7 @@ public abstract class Action
     /// Stores which resources are spent, and the amount spent
     /// </summary>
     public Dictionary<string, int> resourceCosts = new Dictionary<string, int>();
-    public int timeCost;
+    public float timeCost;
 
     /// <summary>
     /// Performs the action.

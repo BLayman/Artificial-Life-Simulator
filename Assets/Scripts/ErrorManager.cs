@@ -8,7 +8,7 @@ public class ErrorManager : MonoBehaviour
 
     private void Awake()
     {
-        HelperSetter.errorObj = errorObj;
+        HelperValidator.errorObj = errorObj;
     }
 
 }

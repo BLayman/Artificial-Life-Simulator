@@ -13,25 +13,25 @@ public class CreatureResource
     /// <summary>
     /// Threshold below which resource causes health damage.
     /// </summary>
-    public int deficiencyThreshold;
+    public float deficiencyThreshold;
     /// <summary>
     /// Amount of health drain from deficiency in one time step.
     /// </summary>
-    public int deficiencyHealthDrain;
+    public float deficiencyHealthDrain;
     /// <summary>
     /// Amount of the resource currently stored.
     /// </summary>
-    public int currentLevel;
+    public float currentLevel;
     /// <summary>
     /// Amount of health gained when resource is adequate.
     /// </summary>
-    public int healthGain;
+    public float healthGain;
     /// <summary>
     /// Threshold above which health is gained.
     /// </summary>
-    public int healthGainThreshold;
-    public int maxLevel;
-    public int baseUsage;
+    public float healthGainThreshold;
+    public float maxLevel;
+    public float baseUsage;
     public string name;
 
     /// <summary>

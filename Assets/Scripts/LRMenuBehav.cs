@@ -54,14 +54,31 @@ public class LRMenuBehav : MonoBehaviour
         lrEditor = ecoEditor.lre;
 
         // TODO : covert HelperSetter to ValidationHelper
-        IntFunct setAmtStored = new IntFunct(lrEditor.setAmountOfResource);
-        bool b = HelperSetter.setIntegerFunct(amtStoredText, setAmtStored, errorObj);
-        IntFunct setMaxAmt = new IntFunct(lrEditor.setMaxAmt);
-        bool c = HelperSetter.setIntegerFunct(maxAmtText, setMaxAmt, errorObj);
-        IntFunct setRenewAmt = new IntFunct(lrEditor.setRenewalAmt);
-        bool d = HelperSetter.setIntegerFunct(renewAmtText, setRenewAmt, errorObj);
-        IntFunct setAmtConsumed = new IntFunct(lrEditor.setAmtConsumedPerTime);
-        bool e = HelperSetter.setIntegerFunct(amtConsText, setAmtConsumed, errorObj);
+
+        string amtstoredString = amtStoredText.GetComponent<Text>().text;
+        if (HelperValidator.validateFloatString(amtstoredString))
+        {
+            lrEditor.setAmountOfResource(float.Parse(amtstoredString));
+        }
+
+        string maxAmtString = maxAmtText.GetComponent<Text>().text;
+        if (HelperValidator.validateFloatString(maxAmtString))
+        {
+            lrEditor.setMaxAmt(float.Parse(maxAmtString));
+        }
+
+        string renAmtString = renewAmtText.GetComponent<Text>().text;
+        if (HelperValidator.validateFloatString(renAmtString))
+        {
+            lrEditor.setRenewalAmt(float.Parse(renAmtString));
+        }
+
+        string amtConsString = amtConsText.GetComponent<Text>().text;
+        if (HelperValidator.validateFloatString(amtConsString))
+        {
+            lrEditor.setAmtConsumedPerTime(float.Parse(amtConsString));
+        }
+
 
         // TODO: validate floats ( < 1)
         float prop;

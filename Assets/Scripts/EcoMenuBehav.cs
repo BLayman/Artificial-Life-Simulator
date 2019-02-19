@@ -68,15 +68,15 @@ public class EcoMenuBehav : MonoBehaviour
 
         // TODO : covert HelperSetter to ValidationHelper
         StringFunct setEcoName = new StringFunct(ecoEditor.setName);
-        bool a = HelperSetter.setName(ecoNameTextBox,errorObj,setEcoName);
+        bool a = HelperValidator.setName(ecoNameTextBox,errorObj,setEcoName);
         IntFunct setAPPC = new IntFunct(ecoEditor.setAbilityPointsPerCreature);
-        bool b = HelperSetter.setIntegerFunct(abilityPtsPerCreatTextBox, setAPPC, errorObj);
+        bool b = HelperValidator.setIntegerFunct(abilityPtsPerCreatTextBox, setAPPC, errorObj);
         IntFunct setCommBits = new IntFunct(ecoEditor.setCommBits);
-        bool c = HelperSetter.setIntegerFunct(commBitsText, setCommBits, errorObj);
+        bool c = HelperValidator.setIntegerFunct(commBitsText, setCommBits, errorObj);
         IntFunct setDistinctPheno = new IntFunct(ecoEditor.setDistinctPhenotypeNum);
-        bool d = HelperSetter.setIntegerFunct(distinctPhenoText, setDistinctPheno, errorObj);
+        bool d = HelperValidator.setIntegerFunct(distinctPhenoText, setDistinctPheno, errorObj);
         IntFunct setTUPT = new IntFunct(ecoEditor.setTimeUnitsPerTurn);
-        bool e = HelperSetter.setIntegerFunct(timeUnitsText, setTUPT, errorObj);
+        bool e = HelperValidator.setIntegerFunct(timeUnitsText, setTUPT, errorObj);
 
         // saves tentative resource options to Ecosystem object
         ecoEditor.saveResourceOptions();

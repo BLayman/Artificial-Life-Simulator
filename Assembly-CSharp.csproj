@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\CommSignal.cs" />
     <Compile Include="Assets\Scripts\ConsumeFromLand.cs" />
     <Compile Include="Assets\Scripts\ConsumeFromLandEditor.cs" />
+    <Compile Include="Assets\Scripts\Copier.cs" />
     <Compile Include="Assets\Scripts\CreatMenuBehav.cs" />
     <Compile Include="Assets\Scripts\Creature.cs" />
     <Compile Include="Assets\Scripts\CreatureEditor.cs" />
@@ -91,7 +92,7 @@
     <Compile Include="Assets\Scripts\EmptyActivBehavior.cs" />
     <Compile Include="Assets\Scripts\ErrorManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\HelperSetter.cs" />
+    <Compile Include="Assets\Scripts\HelperValidator.cs" />
     <Compile Include="Assets\Scripts\IEcosystemEditor.cs" />
     <Compile Include="Assets\Scripts\InnerInputNode.cs" />
     <Compile Include="Assets\Scripts\InnerInputNodeEditor.cs" />
@@ -125,7 +126,6 @@
     <Compile Include="Assets\Scripts\SpeciesPopulator.cs" />
     <Compile Include="Assets\Scripts\TanhActivBehav.cs" />
     <Compile Include="Assets\Scripts\ThreadManager.cs" />
-    <Compile Include="Assets\Scripts\Utility.cs" />
     <None Include="Assets\Scripts\ClassDiagram2.cd" />
     <None Include="Assets\CSharpPackages\OptimizedPriorityQueue.4.1.1\lib\net20\Priority Queue.xml" />
     <Reference Include="Unity.TextMeshPro.Editor">

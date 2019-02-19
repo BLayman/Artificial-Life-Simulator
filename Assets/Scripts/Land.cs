@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using UnityEngine;
 
 /// <summary>
 /// Class for storing data about a location on the map. Also facilitates creature's interaction with the environment.
@@ -33,9 +33,10 @@ public class Land
     /// </summary>
     /// <param name="resourceKey">Resource name.</param>
     /// <param name="timeDedicated">Comes from action timeCost variable.</param>
-    public float attemptResourceConsumption(string resourceKey, int timeDedicated, int creatureAbility)
+    public float attemptResourceConsumption(string resourceKey, float timeDedicated, float creatureAbility)
     {
-        throw new System.NotImplementedException();
+        //Debug.Log("consuming resource: " + resourceKey);
+        return propertyDict[resourceKey].attemptConsumption(timeDedicated, creatureAbility);
     }
 
     public Land shallowCopy()

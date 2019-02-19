@@ -51,8 +51,10 @@ class ThreadManager : MonoBehaviour
 
     public void StartEcoSim()
     {
+        
         // create a copy, and set simulationEco to set the copy, then use the copy for the simulation
-        Ecosystem simulationEco = Utility.getEcosystemCopy(unityEco);
+        Ecosystem simulationEco = Copier.getEcosystemCopy(unityEco);
+        
         int localSteps = steps; // just in case next line causes threading error
         StartThreadedFunction(() => { runSystem(simulationEco, localSteps, Thread.CurrentThread); });
     }
@@ -98,7 +100,8 @@ class ThreadManager : MonoBehaviour
                     lastEnqueued = unityEco;
                 }
                 // create a copy using the latest ecosystem, then use the copy for the simulation
-                Ecosystem simulationEco = Utility.getEcosystemCopy(lastEnqueued);
+                Ecosystem simulationEco = Copier.getEcosystemCopy(lastEnqueued);
+                Debug.Log("Updating sim, grass stored at 10,10: " + simulationEco.map[10][10].propertyDict["grass"].amountStored);
                 // this will start the child thread, reseting checkFinished to false
                 int localSteps = steps; // just in case next line causes threading error
                 StartThreadedFunction(() => { runSystem(simulationEco, localSteps, Thread.CurrentThread); });
@@ -171,7 +174,7 @@ class ThreadManager : MonoBehaviour
 
             QueueMainThread(eco); // queue main with ecosystem
 
-            eco = Utility.getEcosystemCopy(eco); // make eco point to a new ecosystem object, so that each object in the queue is different
+            eco = Copier.getEcosystemCopy(eco); // make eco point to a new ecosystem object, so that each object in the queue is different
 
             Thread.Sleep(childThreadSleepTime); // give time for other thread to catch up
         }

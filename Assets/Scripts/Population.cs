@@ -20,7 +20,7 @@ public class Population
     public Creature generateMember()
     {
         //Debug.Log("founder species: " + founder.species);
-        Creature c = Utility.getCreatureCopy(founder);
+        Creature c = Copier.getCreatureCopy(founder);
         //Debug.Log("copy species: " + c.species);
         return c;
     }

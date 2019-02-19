@@ -49,7 +49,7 @@ public class SimRunnerTest : MonoBehaviour
     public void setSteps()
     {
         string text = stepsText.GetComponent<Text>().text;
-        bool valid = HelperSetter.validateIntegerString(text);
+        bool valid = HelperValidator.validateIntegerString(text);
         if (valid)
         {
             threader.setSteps(Int32.Parse(text));

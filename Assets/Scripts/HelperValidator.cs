@@ -10,7 +10,7 @@ public delegate void StringFunct(string s);
 
 
 // TODO: change from setter to validator
-public class HelperSetter
+public class HelperValidator
 {
     public static GameObject errorObj;
 
@@ -39,6 +39,32 @@ public class HelperSetter
         else
         {
             string errorText = "Error parsing integer from string.";
+            Debug.LogError(errorText);
+            Debug.LogError(text);
+            errorObj.GetComponent<Text>().text = errorText;
+            errorObj.SetActive(true);
+        }
+        return valid;
+    }
+
+    public static bool validateFloatString(string text)
+    {
+        bool valid = false;
+        float floatVal;
+        if (text.Equals(""))
+        {
+            string errorText = "Empty input error.";
+            Debug.LogError(errorText);
+            errorObj.GetComponent<Text>().text = errorText;
+            errorObj.SetActive(true);
+        }
+        else if (float.TryParse(text, out floatVal))
+        {
+            valid = true;
+        }
+        else
+        {
+            string errorText = "Error parsing float from string.";
             Debug.LogError(errorText);
             Debug.LogError(text);
             errorObj.GetComponent<Text>().text = errorText;

@@ -15,6 +15,8 @@ public class CreatureEditor
     public int distinctPhenotypes;
     EcosystemEditor ecoCreator;
 
+    Dictionary<string, Ability> tentativeAbilities;
+
     /// <summary>
     /// Constructor
     /// </summary>
@@ -24,6 +26,14 @@ public class CreatureEditor
         initializeNetworkStructure();
         this.distinctPhenotypes = ecoCreator.ecosystem.distictPhenotypes;
         this.ecoCreator = ecoCreator;
+        tentativeAbilities = new Dictionary<string, Ability>();
+
+        // copy abilities in from creature
+        foreach (string ability in creature.abilities.Keys)
+        {
+            tentativeAbilities[ability] = creature.abilities[ability];
+        }
+
     }
 
 
@@ -64,12 +74,12 @@ public class CreatureEditor
         creature.position[1] = yCoor;
     }
 
-    public void setMaxHealth(int maxHealth)
+    public void setMaxHealth(float maxHealth)
     {
         creature.maxHealth = maxHealth;
     }
 
-    public void setInitialHealth(int initialHealth)
+    public void setInitialHealth(float initialHealth)
     {
         creature.health = initialHealth;
     }
@@ -96,7 +106,7 @@ public class CreatureEditor
     /// <summary>
     /// Sets the amount of time alloted per turn.
     /// </summary>
-    public void setTurnTime(int time)
+    public void setTurnTime(float time)
     {
         creature.fullTurnTime = time;
         creature.remainingTurnTime = time;
@@ -120,11 +130,35 @@ public class CreatureEditor
     }
 
     /// <summary>
-    /// Resets and returns abilitiesCreator.
+    /// edit tentativeAbilities, returns AbilitesEditor
     /// </summary>
-    public void addAbilities()
+    public AbilitiesEditor editAbilities()
     {
-        throw new System.NotImplementedException();
+        abilitiesCreator = new AbilitiesEditor(tentativeAbilities, creature.remainingAbilityPoints);
+        return abilitiesCreator;
+    }
+
+    /// <summary>
+    /// reset tentativeAbilities if user cancels editing them
+    /// </summary>
+    public void cancelEditingAbilities()
+    {
+        tentativeAbilities = new Dictionary<string, Ability>();
+
+        // copy abilities in from creature
+        foreach (string ability in creature.abilities.Keys)
+        {
+            tentativeAbilities[ability] = creature.abilities[ability];
+        }
+    }
+
+    public void addDefaultResourceAbilities()
+    {
+        abilitiesCreator = new AbilitiesEditor(tentativeAbilities, creature.remainingAbilityPoints);
+        foreach (string resource in creature.storedResources.Keys)
+        {
+            abilitiesCreator.addAbility(resource, abilityType.comsumption);
+        }
     }
 
     /// <summary>
@@ -152,7 +186,7 @@ public class CreatureEditor
     /// </summary>
     public void saveAbilities()
     {
-        throw new System.NotImplementedException();
+        creature.abilities = tentativeAbilities;
     }
 
 

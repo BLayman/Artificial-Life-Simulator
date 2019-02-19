@@ -36,9 +36,9 @@ public class MapEditor
             for (int j = 0; j < map[i].Count; j++)
             {
                 // get copy of resource to be added
-                ResourceStore resStore = resourceOptions["grass"].shallowCopy();
+                ResourceStore resStore = resourceOptions[resource].shallowCopy();
                 // only store the fraction specified by level
-                resStore.amountStored = (int)Math.Round(resStore.amountStored * level);
+                resStore.amountStored = resStore.maxAmount * level;
                 // add resource to the properties of that land
                 map[i][j].propertyDict.Add(resource, resStore);
             }
@@ -53,15 +53,16 @@ public class MapEditor
         {
             for (int j = 0; j < map[i].Count; j++)
             {
-                level = ((float)j / (float)map[i].Count) * maxAmt;
+                level = ((float)j / (float)map[i].Count);
                 // get copy of resource to be added
                 ResourceStore resStore = resourceOptions[resource].shallowCopy();
                 // only store the fraction specified by level
-                resStore.amountStored = (int)Math.Round(resStore.amountStored * level);
+                resStore.amountStored = resStore.maxAmount * level;
                 // add resource to the properties of that land
                 map[i][j].propertyDict.Add(resource, resStore);
             }
         }
+        Debug.Log("grass stored at 10,10: " + map[10][10].propertyDict["grass"].amountStored);
     }
 
     public void generateMap(int length, int width)

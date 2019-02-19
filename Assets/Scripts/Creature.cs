@@ -38,9 +38,9 @@ public class Creature
     /// <summary>
     /// Time remaining in turn: limits number of actions that can be taken in one turn.
     /// </summary>
-    public int remainingTurnTime;
+    public float remainingTurnTime;
 
-    public int fullTurnTime;
+    public float fullTurnTime;
     /// <summary>
     /// The number of layers of Networks
     /// </summary>
@@ -60,7 +60,7 @@ public class Creature
     /// <summary>
     /// When health reaches zero, creature dies.
     /// </summary>
-    public int health;
+    public float health;
     public Dictionary<string, CreatureResource> storedResources = new Dictionary<string, CreatureResource>();
     /// <summary>
     /// Outward appearance of creature: for communication purposes. Typically 4 bits.
@@ -81,7 +81,7 @@ public class Creature
     /// <summary>
     /// Maximum health that creature can attain.
     /// </summary>
-    public int maxHealth;
+    public float maxHealth;
 
     public int remainingAbilityPoints;
     /// <summary>
@@ -371,7 +371,7 @@ public class Creature
                         for (int i = 0; i < node.weights.Count; i++)
                         {
                             //Debug.Log("old weight: " + node.weights[i]);
-                            node.weights[i] += Utility.normRand(standardDev);
+                            node.weights[i] += Copier.normRand(standardDev);
                             //Debug.Log("new weight: " + node.weights[i]);
                         }
                     }

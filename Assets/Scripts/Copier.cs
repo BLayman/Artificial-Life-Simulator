@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEngine;
 using Priority_Queue;
 
-public class Utility
+public class Copier
 {
 
     public static System.Random rand = new System.Random();

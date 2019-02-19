@@ -9,7 +9,7 @@ using UnityEngine;
 /// <summary>
 /// API for alterning ecosystem.
 /// </summary>
-public class EcosystemEditor : IEcosystemEditor
+public class EcosystemEditor
 {
     /// <summary>
     /// Ecosystem to be created.
@@ -99,10 +99,10 @@ public class EcosystemEditor : IEcosystemEditor
     /* add methods */
 
     /// <param name="resourceName">Name of resource: used as key in dictionary.</param>
-    public void addResource(string resourceName)
+    public LandResourceEditor addResource(string resourceName)
     {
         lre = new LandResourceEditor(new ResourceStore(resourceName));
-        Debug.Log("resource being created: " + resourceName);
+        return lre;
     }
 
     /// <summary>
@@ -134,7 +134,8 @@ public class EcosystemEditor : IEcosystemEditor
     /// </summary>
     public void saveResource()
     {
-        tentativeResourceOptions.Add(lre.resourceStore.name, lre.resourceStore);
+        Debug.Log("adding resource: " + lre.resourceStore.name + " to tentative resources");
+        tentativeResourceOptions[lre.resourceStore.name] = lre.resourceStore;
     }
 
     /// <summary>

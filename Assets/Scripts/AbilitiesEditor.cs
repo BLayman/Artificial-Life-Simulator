@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 public enum abilityType {comsumption, defense, attack}
 
 /// <summary>
-/// API for Abilities objects.
+/// API for Abilities objects. Modifies tentativeAbilities variable from CreatureEditor
 /// </summary>
 public class AbilitiesEditor
 {
-    public List<Ability> abilities;
-    public int abilityPoints;
+    public Dictionary<string, Ability> abilities;
+    public int remainingAbilityPoints;
 
-    public AbilitiesEditor(List<Ability> _abilities, int _abilityPoints)
+    public AbilitiesEditor(Dictionary<string, Ability> _abilities, int _abilityPoints)
     {
         abilities = _abilities;
-        abilityPoints = _abilityPoints;
+        remainingAbilityPoints = _abilityPoints;
     }
 
     /// <summary>
@@ -25,20 +26,32 @@ public class AbilitiesEditor
     /// <param name="target">The resource/species the ability is applied to.</param>
     public void addAbility(string target, abilityType type)
     {
-        throw new System.NotImplementedException();
+        Ability toAdd = new Ability();
+        toAdd.target = target;
+        toAdd.type = type;
+        toAdd.level = 0;
+        abilities[target] = toAdd;
     }
 
     /// <summary>
     /// Adds one to ability level.
     /// </summary>
     /// <param name="ability">Ability to be incremented.</param>
-    public void incrementAbility(string ability)
+    public void incrementAbility(string target)
     {
-        throw new System.NotImplementedException();
+        if(remainingAbilityPoints > 0)
+        {
+            abilities[target].level += 1;
+        }
+        else
+        {
+            Debug.Log("no remaining ability points");
+        }
+        
     }
 
     public int getAbilityPoints()
     {
-        return abilityPoints;
+        return remainingAbilityPoints;
     }
 }
