@@ -39,7 +39,7 @@ public class EcoManager
 
         // create and save resources
         LandResourceEditor lre = ecoCreator.addResource("grass");
-        lre.setAmountOfResource(1500);
+        lre.setAmountOfResource(1000);
         lre.setMaxAmt(1500);
         lre.setAmtConsumedPerTime(100);
         lre.setProportionExtracted(.05f);
@@ -61,7 +61,7 @@ public class EcoManager
         ecoCreator.createMap();
         // max size ~ 320 X 320 (100,000 cells)
         // TODO: account for asymetric maps
-        ecoCreator.mapEditor.generateMap(200, 200);
+        ecoCreator.mapEditor.generateMap(100, 100);
         ecoCreator.mapEditor.addLERPXResource("grass", 1f);
         //ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
         ecoCreator.saveEditedMap(); // saves to tentative map
@@ -140,7 +140,7 @@ public class EcoManager
         ae.setCreator(ActionCreatorType.consumeCreator);
         ConsumeFromLandEditor cle = (ConsumeFromLandEditor)ae.getActionCreator();
         cle.setName("eatGrass");
-        cle.setNeighborIndex(4);
+        cle.setNeighborIndex(0);
         cle.setResourceToConsume("grass");
         cle.setPriority(1);
         cle.setTimeCost(5);
@@ -306,7 +306,7 @@ public class EcoManager
         SpeciesPopulator populator = ecoCreator.populateSpecies("Cat");
         populator.SetAbilityStandardDeviation(1);
         populator.setNetworkWeightStandardDeviation(.1f);
-        populator.populateRandom(1000);
+        populator.populateRandom(100);
         ecoCreator.saveCurrentPopulation();
         ecoCreator.addCurrentPopulationToEcosystem();
         ecoCreator.addCurrentPopulationToMap();

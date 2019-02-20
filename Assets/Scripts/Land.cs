@@ -36,7 +36,16 @@ public class Land
     public float attemptResourceConsumption(string resourceKey, float timeDedicated, float creatureAbility)
     {
         //Debug.Log("consuming resource: " + resourceKey);
-        return propertyDict[resourceKey].attemptConsumption(timeDedicated, creatureAbility);
+        if (propertyDict.ContainsKey(resourceKey))
+        {
+            return propertyDict[resourceKey].attemptConsumption(timeDedicated, creatureAbility);
+        }
+        else
+        {
+            Debug.Log("resource not found");
+            return 0;
+        }
+        
     }
 
     public Land shallowCopy()

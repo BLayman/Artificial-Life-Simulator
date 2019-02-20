@@ -62,7 +62,7 @@ public class MapEditor
                 map[i][j].propertyDict.Add(resource, resStore);
             }
         }
-        Debug.Log("grass stored at 10,10: " + map[10][10].propertyDict["grass"].amountStored);
+        //Debug.Log("grass stored at 10,10: " + map[10][10].propertyDict["grass"].amountStored);
     }
 
     public void generateMap(int length, int width)

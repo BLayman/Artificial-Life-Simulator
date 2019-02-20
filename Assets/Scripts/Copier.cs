@@ -93,6 +93,9 @@ public class Copier
     {
         Creature creatureCopy = c.getShallowCopy();
 
+        creatureCopy.dummyLand = new Land();
+        creatureCopy.dummyLand.isDummy = true;
+
         // copy creature networks
         List<Dictionary<string, Network>> networks = new List<Dictionary<string, Network>>();
         creatureCopy.networks = networks;

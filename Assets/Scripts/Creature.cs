@@ -14,7 +14,6 @@ using UnityEngine;
 /// </summary>
 public class Creature
 {
-
     public Creature founder;
     public Land dummyLand = new Land(); // dummyLand used for edges of map
     public int index;
@@ -245,6 +244,8 @@ public class Creature
         if (position[0] + 1 >= map.Count)
         {
             neighborLands[4] = dummyLand;
+            //Debug.Log("set neighbor on right to dummy land " + dummyLand.isDummy);
+
         }
         else
         {

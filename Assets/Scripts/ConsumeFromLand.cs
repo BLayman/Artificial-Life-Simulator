@@ -29,8 +29,12 @@ public class ConsumeFromLand : Action
     public override void perform(Creature creature)
     {
         Land land = creature.neighborLands[neighborIndex];
-        float consumed = land.attemptResourceConsumption(resourceToConsume, timeCost, creature.abilities[resourceToConsume].level);
-        creature.storedResources[resourceToConsume].currentLevel += (int) Math.Round((double)consumed);
+        if (!land.isDummy)
+        {
+            float consumed = land.attemptResourceConsumption(resourceToConsume, timeCost, creature.abilities[resourceToConsume].level);
+            creature.storedResources[resourceToConsume].currentLevel += (int)Math.Round((double)consumed);
+        }
+        
     }
 
     public Object clone()

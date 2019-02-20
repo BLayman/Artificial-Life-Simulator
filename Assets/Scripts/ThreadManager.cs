@@ -101,7 +101,6 @@ class ThreadManager : MonoBehaviour
                 }
                 // create a copy using the latest ecosystem, then use the copy for the simulation
                 Ecosystem simulationEco = Copier.getEcosystemCopy(lastEnqueued);
-                Debug.Log("Updating sim, grass stored at 10,10: " + simulationEco.map[10][10].propertyDict["grass"].amountStored);
                 // this will start the child thread, reseting checkFinished to false
                 int localSteps = steps; // just in case next line causes threading error
                 StartThreadedFunction(() => { runSystem(simulationEco, localSteps, Thread.CurrentThread); });
@@ -119,12 +118,12 @@ class ThreadManager : MonoBehaviour
                 Ecosystem updatedEco = ecoQueue.First.Value;
                 ecoQueue.RemoveFirst();
 
-                Debug.Log("Length of Queue: " + ecoQueue.Count);
+                //Debug.Log("Length of Queue: " + ecoQueue.Count);
 
-                Debug.Log("safely applying data created in thread.");
+                //Debug.Log("safely applying data created in thread.");
                 // make unityEco reference modified copy of itself, NOTE: this won't change all references to the ecosystem, such as those used in the UI 
                 unityEco = updatedEco;
-                Debug.Log("ecosystem age:" + unityEco.count);
+                //Debug.Log("ecosystem age:" + unityEco.count);
             }
         }
 
