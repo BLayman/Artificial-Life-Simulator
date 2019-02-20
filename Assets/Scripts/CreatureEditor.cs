@@ -200,7 +200,7 @@ public class CreatureEditor
         mac.setName("moveUp");
         mac.setDirection(moveDir.up);
         mac.setPriority(1);
-        mac.setTimeCost(5);
+        mac.setTimeCost(10);
         mac.addResourceCost("grass", 1);
         saveAction();
 
@@ -211,7 +211,7 @@ public class CreatureEditor
         macd.setName("moveDown");
         macd.setDirection(moveDir.down);
         macd.setPriority(1);
-        macd.setTimeCost(5);
+        macd.setTimeCost(10);
         macd.addResourceCost("grass", 1);
         saveAction();
 
@@ -222,7 +222,7 @@ public class CreatureEditor
         macl.setName("moveLeft");
         macl.setDirection(moveDir.left);
         macl.setPriority(1);
-        macl.setTimeCost(5);
+        macl.setTimeCost(10);
         macl.addResourceCost("grass", 1);
         saveAction();
 
@@ -233,7 +233,7 @@ public class CreatureEditor
         macr.setName("moveRight");
         macr.setDirection(moveDir.right);
         macr.setPriority(1);
-        macr.setTimeCost(5);
+        macr.setTimeCost(10);
         macr.addResourceCost("grass", 1);
         saveAction();
 

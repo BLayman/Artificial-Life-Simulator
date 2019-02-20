@@ -39,11 +39,12 @@ public class EcoManager
 
         // create and save resources
         LandResourceEditor lre = ecoCreator.addResource("grass");
-        lre.setAmountOfResource(1000);
-        lre.setMaxAmt(1500);
-        lre.setAmtConsumedPerTime(100);
+        lre.setAmountOfResource(100);
+        lre.setMaxAmt(150);
+        lre.setAmtConsumedPerTime(10);
         lre.setProportionExtracted(.05f);
-        lre.setRenewalAmt(10);
+        lre.setRenewalAmt(.1f);
+
         ecoCreator.saveResource();
         /*
         ecoCreator.addResource("flowers");
@@ -61,7 +62,7 @@ public class EcoManager
         ecoCreator.createMap();
         // max size ~ 320 X 320 (100,000 cells)
         // TODO: account for asymetric maps
-        ecoCreator.mapEditor.generateMap(100, 100);
+        ecoCreator.mapEditor.generateMap(50, 50);
         ecoCreator.mapEditor.addLERPXResource("grass", 1f);
         //ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
         ecoCreator.saveEditedMap(); // saves to tentative map
@@ -87,9 +88,7 @@ public class EcoManager
         cc.setPhenotype(3);
         cc.setTurnTime(10);
         cc.setMaxHealth(100);
-        cc.setInitialHealth(50);
-
-
+        cc.setInitialHealth(70);
 
         // add resource for the creature to store
         ResourceEditor resourceCreator = cc.addResource();
@@ -100,7 +99,7 @@ public class EcoManager
 
         resourceCreator.setName(ecosystemResources[0]);
         resourceCreator.setMaxLevel(100);
-        resourceCreator.setLevel(90);
+        resourceCreator.setLevel(50);
         resourceCreator.setHealthGain(1);
         resourceCreator.setHealthGainThreshold(90);
         resourceCreator.setDeficiencyHealthDrain(5);
@@ -143,7 +142,7 @@ public class EcoManager
         cle.setNeighborIndex(0);
         cle.setResourceToConsume("grass");
         cle.setPriority(1);
-        cle.setTimeCost(5);
+        cle.setTimeCost(10);
         cle.addResourceCost("grass", 1);
         cc.saveAction();
 

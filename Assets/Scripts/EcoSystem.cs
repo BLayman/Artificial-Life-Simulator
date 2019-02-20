@@ -56,7 +56,9 @@ public class Ecosystem
     {
         for (int i = 0; i < timeSteps; i++)
         {
-            count++;
+            // for a given time step:
+
+            count++; // for keeming track of ecosystem age
             foreach (string species in populations.Keys)
             {
                 Population population = populations[species];
@@ -75,6 +77,17 @@ public class Ecosystem
                     foreach (Creature deadCreature in toRemove)
                     {
                         population.creatures.Remove(deadCreature);
+                    }
+                }
+                // renew land resources
+                for (int j = 0; j < map.Count; j++)
+                {
+                    for (int k = 0; k < map[j].Count; k++)
+                    {
+                        foreach (ResourceStore res in map[j][k].propertyDict.Values)
+                        {
+                            res.renewResource();
+                        }
                     }
                 }
 

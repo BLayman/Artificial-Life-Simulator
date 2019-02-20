@@ -54,7 +54,7 @@ public class ResourceStore
         // if creatureAbility = 0, actualProportion = proportion
         float actualProportion = proportionExtracted * (float)Math.Pow((double)2, (double)creatureAbility);
         // amount = time * amount consumed per time * proportion consumed
-        float amountToTake = (int)Math.Round(timeDedicated * amountConsumedPerTimeUnit * actualProportion);
+        float amountToTake = timeDedicated * amountConsumedPerTimeUnit * actualProportion;
         // if amount taken would be less than total amount
         if (amountToTake < amountStored)
         {
@@ -74,7 +74,14 @@ public class ResourceStore
     /// </summary>
     public void renewResource()
     {
-        throw new System.NotImplementedException();
+        if (amountStored + renewalAmt > maxAmount)
+        {
+            amountStored = maxAmount;
+        }
+        else
+        {
+            amountStored += renewalAmt;
+        }
     }
 
     public float getProportionStored()
