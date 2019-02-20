@@ -14,8 +14,11 @@ class ThreadManager : MonoBehaviour
     private int bufferLength = 20;
     private bool threadFinished = false;
     private int childThreadSleepTime = 1;
+    bool terminateChildThread = false;
 
-    public delegate void anony(Ecosystem eco); // anony represents an anonymous function with no inputs or outputs. To be stored in the queue
+
+    // anony represents an anonymous function with no inputs or outputs. To be stored in the queue
+    public delegate void anony(Ecosystem eco); 
 
     LinkedList<Ecosystem> ecoQueue;
 
@@ -38,10 +41,15 @@ class ThreadManager : MonoBehaviour
     public void setSteps(int _steps)
     {
         steps = _steps;
+        // reset the queue
         lock (ecoQueueLock)
         {
             ecoQueue.Clear();
         }
+
+        // signal child thread to stop looping, so new thread can start
+        terminateChildThread = true;
+        
     }
 
     public Ecosystem getEcosystem()
@@ -62,7 +70,7 @@ class ThreadManager : MonoBehaviour
 
     public bool updateEcoIfReady()
     {
-        bool updateOccured = false;
+        bool updateOccured = false; // change to true if update occured
         Ecosystem lastEnqueued;
         bool checkFinished;
 
@@ -138,7 +146,7 @@ class ThreadManager : MonoBehaviour
     }
 
 
-    // called from child thread to enqueue functions to run
+    // called on child thread to enqueue functions to run
     public void QueueMainThread(Ecosystem ecosys)
     {
         // lock ecoQueue before enqueueing
@@ -163,6 +171,13 @@ class ThreadManager : MonoBehaviour
         //eco.name = eco.name + "1";
         for (int i = 0; i < bufferLength; i++)
         {
+            if (terminateChildThread)
+            {
+                terminateChildThread = false;
+                threadFinished = true;
+                Thread.CurrentThread.Abort();
+            }
+            
             // terminate thread if main thread dies
             if (!mainThread.IsAlive)
             {

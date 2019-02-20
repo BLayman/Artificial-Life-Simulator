@@ -25,6 +25,7 @@ public class MoveAction : Action
 
         // TODO: other directions
         // TODO: what if creature moves to space where other creature is?
+        // TODO: reduce redundancy in code
         switch (direction)
         {
             case moveDir.up:

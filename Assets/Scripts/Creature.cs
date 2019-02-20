@@ -18,6 +18,7 @@ public class Creature
     public Land dummyLand = new Land(); // dummyLand used for edges of map
     public int index;
     public System.Random rand = new System.Random();
+    int count = 0;
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
@@ -131,6 +132,11 @@ public class Creature
             int finalLayer = network.net.Count - 1;
             foreach (OutputNode node in network.net[finalLayer])
             {
+                count++;
+                if(count > 1000000)
+                {
+                    rand = new System.Random();
+                }
                 double uniform = rand.NextDouble();
                 //Debug.Log("probability: " + node.value);
                 if (uniform < node.value)

@@ -58,7 +58,7 @@ public class SensoryInputNode : Node
             }
             else
             {
-                return 0;
+                return 0; // creature percieves wall as having no resource
             }
             
         }
