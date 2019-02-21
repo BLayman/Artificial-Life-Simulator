@@ -58,22 +58,31 @@ public class Ecosystem
         {
             // for a given time step:
 
-            count++; // for keeming track of ecosystem age
+            count++; // for keeping track of ecosystem age
+
+            // for each population
             foreach (string species in populations.Keys)
             {
                 Population population = populations[species];
+                // if population has any members
                 if (population.creatures.Count > 0)
                 {
                     List<Creature> toRemove = new List<Creature>();
+                    // for each creature in population
                     foreach (Creature creature in population.creatures)
                     {
-                        creature.startTurn();
+                        // remove creature if dead
                         if (creature.isDead())
                         {
                             toRemove.Add(creature);
                         }
+                        // otherwise start creature's turn
+                        else
+                        {
+                            creature.startTurn();
+                        }
                     }
-
+                    // remove each dead creature from population
                     foreach (Creature deadCreature in toRemove)
                     {
                         population.creatures.Remove(deadCreature);

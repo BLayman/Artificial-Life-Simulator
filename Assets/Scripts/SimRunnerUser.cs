@@ -21,6 +21,7 @@ public class SimRunnerUser : MonoBehaviour
     {
         if (run)
         {
+            Debug.Log("sim runner user running");
             // only update every intervalTime seconds
             elapsedTime += Time.deltaTime;
             if (elapsedTime > intervalTime)

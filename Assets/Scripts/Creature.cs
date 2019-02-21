@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
 using Priority_Queue;
 
 using UnityEngine;
@@ -17,8 +18,10 @@ public class Creature
     public Creature founder;
     public Land dummyLand = new Land(); // dummyLand used for edges of map
     public int index;
-    public System.Random rand = new System.Random();
+    public System.Random rand;
+    public System.Random seedGen;
     int count = 0;
+    int seedCount = 0;
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
@@ -100,13 +103,30 @@ public class Creature
     public Creature(int maxAbilityPoints)
     {
         remainingAbilityPoints = maxAbilityPoints;
+
+        dummyLand.isDummy = true;
+
+        rand = new System.Random();
+        Debug.Log("creature constructor called");
     }
 
+    // Not called during MemberwiseClone?
+    // TEST ONLY CONSTRUCTOR?
     public Creature()
     {
         // TODO: this is only test case, delete
         remainingAbilityPoints = 10;
         dummyLand.isDummy = true;
+
+        rand = new System.Random();
+
+    }
+
+    // not in use
+    public void initRandom()
+    {
+        rand = new System.Random();
+        seedGen = new System.Random();
     }
 
 
@@ -115,30 +135,50 @@ public class Creature
     /// </summary>
     public void startTurn()
     {
+        // reset turn time
         remainingTurnTime = fullTurnTime;
-        updateNets(); // only need to do first turn, and after movement
-        //printNetworks();
+        // run inputs through neural networks
+        updateNets(); 
+        // add actions to action queue
         addActionsToQueue();
+        // perform actions
         performActions();
+        // update health based on resource levels
         resourceHealthUpdate();
-        //printNetworks();
+
     }
 
+    // add actions from last layer of neural network to the queue
     public void addActionsToQueue()
     {
         int lastNetLayer = networks.Count - 1;
+
+        //Debug.Log("");
+        // for each network in last layer of networks
         foreach (Network network in networks[lastNetLayer].Values)
         {
             int finalLayer = network.net.Count - 1;
+            // for each node in final layer of network
             foreach (OutputNode node in network.net[finalLayer])
             {
+                // user random number generator to decide action based on probability
                 count++;
-                if(count > 1000000)
+                
+                // if random number generator generates 1 billion numbers, reset it
+                // TODO: make work indefinitely
+                if(count > 1000000000)
                 {
-                    rand = new System.Random();
+                    Debug.Log("creating new random number generator");
+                    // will also need to reset seed generator
+                    rand = new System.Random(seedGen.Next());
+                    count = 0;
                 }
+
+                //randSeed = seedGen.Next();
                 double uniform = rand.NextDouble();
-                //Debug.Log("probability: " + node.value);
+                //Debug.Log("Action: " + node.action.name + ", probability: " + node.value + " uniform: " + uniform);
+                //Debug.Log("random number " + uniform);
+                // treat node value as probability. If random number (0,1] is less than that probability, then enqueue action.
                 if (uniform < node.value)
                 {
                     actionQueue.Enqueue(node.action, node.action.priority);
@@ -191,13 +231,13 @@ public class Creature
 
     public void updateNets()
     {
-        //Debug.Log("network count: " + networks.Count);
         // for every layer of networks
         for (int i = 0; i < networks.Count; i++)
         {
             // for every network in that layer
             foreach (Network net in networks[i].Values)
             {
+                // pass inputs through neural network
                 net.feedForward();
             }
         }
@@ -274,9 +314,19 @@ public class Creature
     /// </summary>
     public void performActions()
     {
+
+        /** 
+         * TODO: allow for a certain number of actions to carry over,
+         * otherwise, only the first action put on the queue will be run each turn,
+         * which is biased: based on the order of the output nodes in the final layer
+         * one solution: sort the order in which output nodes are added to queue
+        **/ 
+
+        // remove all actions from queue each turn
         while (actionQueue.Count > 0)
         {
             Action nextAction = actionQueue.Dequeue();
+            // if there is time left for an action, perform it
             if (nextAction.timeCost <= remainingTurnTime)
             {
                 //Debug.Log("performing action");

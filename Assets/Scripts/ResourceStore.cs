@@ -48,6 +48,8 @@ public class ResourceStore
     /// <summary>
     /// Resolves amount of resource consumed in given amount of time.
     /// </summary>
+
+    // TODO: make sure creature can't eat more than amount they can store
     public float attemptConsumption(float timeDedicated, float creatureAbility)
     {
         // proportion * (2 ^ creatureAbility) 

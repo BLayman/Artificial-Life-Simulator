@@ -11,12 +11,21 @@ public class EcoManager
     /// </summary>
     Ecosystem ecosystem;
     EcosystemEditor ecoCreator;
+    bool called = false;
 
     public void makeEco()
     {
-        userCreatesEcosystem();
-        userAddsSpecies();
-        userPopulatesSpecies();
+        if (!called)
+        {
+            Debug.Log("**************************           Make eco called once?             **********************");
+            userCreatesEcosystem();
+            userAddsSpecies();
+            userPopulatesSpecies();
+        }
+        else
+        {
+            Debug.Log("**************************           Make eco called twice!             **********************");
+        }
     }
 
 
@@ -42,7 +51,7 @@ public class EcoManager
         lre.setAmountOfResource(100);
         lre.setMaxAmt(150);
         lre.setAmtConsumedPerTime(10);
-        lre.setProportionExtracted(.05f);
+        lre.setProportionExtracted(.5f);
         lre.setRenewalAmt(.1f);
 
         ecoCreator.saveResource();
@@ -84,7 +93,7 @@ public class EcoManager
         CreatureEditor cc = ecoCreator.addCreature();
 
         // user edits:
-        cc.setSpecies("Cat");
+        cc.setSpecies("cat");
         cc.setPhenotype(3);
         cc.setTurnTime(10);
         cc.setMaxHealth(100);
@@ -302,7 +311,7 @@ public class EcoManager
      * */
     public void userPopulatesSpecies()
     {
-        SpeciesPopulator populator = ecoCreator.populateSpecies("Cat");
+        SpeciesPopulator populator = ecoCreator.populateSpecies("cat");
         populator.SetAbilityStandardDeviation(1);
         populator.setNetworkWeightStandardDeviation(.1f);
         populator.populateRandom(100);

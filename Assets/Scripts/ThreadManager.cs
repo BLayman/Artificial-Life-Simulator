@@ -13,24 +13,25 @@ class ThreadManager : MonoBehaviour
     System.Object threadFinishedLock = new System.Object();
     private int bufferLength = 20;
     private bool threadFinished = false;
-    private int childThreadSleepTime = 1;
+    private int childThreadSleepTime = 0;
     bool terminateChildThread = false;
-
-
-    // anony represents an anonymous function with no inputs or outputs. To be stored in the queue
-    public delegate void anony(Ecosystem eco); 
-
     LinkedList<Ecosystem> ecoQueue;
 
     // Thread safe?
     [HideInInspector]
     public int steps;
 
+    // anony represents an anonymous function with no inputs or outputs. To be stored in the queue
+    public delegate void anony(Ecosystem eco); 
+
+
+
     void Awake()
     {
         ecoQueue = new LinkedList<Ecosystem>(); // queue for callback functions
         // create ecosystem using EcoManager
         ecoMan = new EcoManager();
+        Debug.Log("*********************            thread manager awake                     *************************");
         ecoMan.makeEco();
 
         // get newly created ecosystem and set unityEco to reference it
@@ -107,6 +108,7 @@ class ThreadManager : MonoBehaviour
                 {
                     lastEnqueued = unityEco;
                 }
+                // lastEnqueued.populations["cat"].creatures[0].printNetworks();
                 // create a copy using the latest ecosystem, then use the copy for the simulation
                 Ecosystem simulationEco = Copier.getEcosystemCopy(lastEnqueued);
                 // this will start the child thread, reseting checkFinished to false
@@ -160,7 +162,7 @@ class ThreadManager : MonoBehaviour
 
     // eco is address pointing copy of unityEco
     // don't use any variables besides what's sent into the function, or created in the function (to avoid threading issues)
-    void runSystem(Ecosystem eco, int steps, Thread mainThread)
+    void runSystem(Ecosystem eco, int Localsteps, Thread mainThread)
     {
 
         lock (threadFinishedLock)
@@ -171,12 +173,6 @@ class ThreadManager : MonoBehaviour
         //eco.name = eco.name + "1";
         for (int i = 0; i < bufferLength; i++)
         {
-            if (terminateChildThread)
-            {
-                terminateChildThread = false;
-                threadFinished = true;
-                Thread.CurrentThread.Abort();
-            }
             
             // terminate thread if main thread dies
             if (!mainThread.IsAlive)
@@ -184,7 +180,14 @@ class ThreadManager : MonoBehaviour
                 Thread.CurrentThread.Abort();
             }
         
-            eco.runSystem(steps); // run ecosystem
+            eco.runSystem(Localsteps); // run ecosystem
+
+            if (terminateChildThread)
+            {
+                terminateChildThread = false;
+                threadFinished = true;
+                Thread.CurrentThread.Abort();
+            }
 
             QueueMainThread(eco); // queue main with ecosystem
 

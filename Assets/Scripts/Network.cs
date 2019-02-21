@@ -19,7 +19,6 @@ public class Network
     {
         name = _name;
     }
-    */
 
     /// <summary>
     /// Connects two nodes in the network together
@@ -61,16 +60,20 @@ public class Network
     {
         throw new System.NotImplementedException();
     }
+    */
 
     /// <summary>
     /// Calls update value on each node in each layer
     /// </summary>
     public void feedForward()
     {
+        // for every layer
         for (int i = 0; i < net.Count; i++)
         {
+            // for every node
             for (int j = 0; j < net[i].Count; j++)
             {
+                // update the value of that node
                 net[i][j].updateValue();
             }
         }
