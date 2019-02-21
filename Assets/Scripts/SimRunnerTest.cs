@@ -21,6 +21,7 @@ public class SimRunnerTest : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Debug.LogWarning("*******************              simRunner awake              ******************");
         // create threader
         threader = gameObject.GetComponent<ThreadManager>();
         // perform initial renderings
@@ -66,6 +67,7 @@ public class SimRunnerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(StaticVariables.threadManagerAwake);
         if (!paused)
         {
             elapsedTime += Time.deltaTime;

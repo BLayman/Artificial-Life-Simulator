@@ -28,12 +28,14 @@ class ThreadManager : MonoBehaviour
 
     void Awake()
     {
-        ecoQueue = new LinkedList<Ecosystem>(); // queue for callback functions
-        // create ecosystem using EcoManager
-        ecoMan = new EcoManager();
-        Debug.Log("*********************            thread manager awake                     *************************");
-        ecoMan.makeEco();
+        // There is a bug where every class is reset mid way through program.
+        // I think it only occurs when there are too many debug statements on the child thread, but I'm not sure
+        Debug.LogWarning("*********************            thread manager awake                     *************************");
 
+        ecoQueue = new LinkedList<Ecosystem>(); // queue for callback functions
+                                                // create ecosystem using EcoManager
+        ecoMan = new EcoManager();
+        ecoMan.makeEco();
         // get newly created ecosystem and set unityEco to reference it
         unityEco = ecoMan.getEcosystem();
 
