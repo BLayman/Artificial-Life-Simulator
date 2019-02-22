@@ -9,6 +9,8 @@ public class Copier
 {
 
     public static System.Random rand = new System.Random();
+    public static System.Random seedGen = new System.Random();
+    public static int seed = 0;
 
     public static Ecosystem getEcosystemCopy(Ecosystem eco)
     {
@@ -92,6 +94,14 @@ public class Copier
     public static Creature getCreatureCopy(Creature c)
     {
         Creature creatureCopy = c.getShallowCopy();
+        if (seed == Int32.MaxValue - 1)
+        {
+            seed = 0;
+        }
+        seed++;
+        int actualSeed = seedGen.Next(seed);
+
+        creatureCopy.rand = new System.Random(actualSeed);
 
         creatureCopy.dummyLand = new Land();
         creatureCopy.dummyLand.isDummy = true;

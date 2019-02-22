@@ -20,9 +20,9 @@ public class Creature
     public int index;
     public System.Random rand;
     public System.Random seedGen;
-    int count = 0;
-    int seedCount = 0;
-
+    int count;
+    int seedCount;
+    int seed;
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
     /// </summary>
@@ -105,9 +105,13 @@ public class Creature
         remainingAbilityPoints = maxAbilityPoints;
 
         dummyLand.isDummy = true;
-
+        seedGen = new System.Random();
         rand = new System.Random();
+        count = 0;
+        seedCount = 0;
+        seed = 0;
         Debug.Log("creature constructor called");
+
     }
 
     // Not called during MemberwiseClone?
@@ -163,7 +167,7 @@ public class Creature
             {
                 // user random number generator to decide action based on probability
                 count++;
-                
+                seed++;
                 // if random number generator generates 1 billion numbers, reset it
                 // TODO: make work indefinitely
                 if(count > 1000000000)
@@ -172,10 +176,17 @@ public class Creature
                     // will also need to reset seed generator
                     rand = new System.Random(seedGen.Next());
                     count = 0;
+                    seed = 0;
                 }
 
-                //randSeed = seedGen.Next();
+                //int randSeed = seedGen.Next(seed);
+
+                //int actualSeed = rand.Next(randSeed);
+
+                //double uniform = (double) actualSeed / (double) Int32.MaxValue;
+
                 double uniform = rand.NextDouble();
+
                 //Debug.Log("Action: " + node.action.name + ", probability: " + node.value + " uniform: " + uniform);
                 //Debug.Log("random number " + uniform);
                 // treat node value as probability. If random number (0,1] is less than that probability, then enqueue action.
