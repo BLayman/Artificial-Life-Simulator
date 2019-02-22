@@ -12,6 +12,9 @@ public class Copier
     public static System.Random seedGen = new System.Random();
     public static int seed = 0;
 
+    private static System.Object randLock = new System.Object();
+    private static System.Object seedGenLock = new System.Object();
+
     public static Ecosystem getEcosystemCopy(Ecosystem eco)
     {
         Ecosystem copy = eco.shallowCopy();
@@ -23,6 +26,7 @@ public class Copier
             copy.map.Add(new List<Land>());
             for (int j = 0; j < eco.map[i].Count; j++)
             {
+                // copy each land
                 Land landCopy = GetLandCopy(eco.map[i][j]);
                 copy.map[i].Add(landCopy);
             }
@@ -32,8 +36,12 @@ public class Copier
         copy.populations = new Dictionary<string, Population>();
         foreach (string popName in eco.populations.Keys)
         {
+            // get shallow copy of each populaiton
             copy.populations[popName] = eco.populations[popName].shallowCopy();
+            // get copy of founder
             copy.populations[popName].founder = getCreatureCopy(eco.populations[popName].founder);
+
+            // copy each creature over
             copy.populations[popName].creatures = new List<Creature>();
             foreach (Creature creat in eco.populations[popName].creatures)
             {
@@ -70,8 +78,13 @@ public class Copier
 
     public static float normRand(float sd)
     {
-        double u1 = 1.0 - rand.NextDouble();
-        double u2 = 1.0 - rand.NextDouble();
+        double u1;
+        double u2;
+        lock (randLock)
+        {
+            u1 = 1.0 - rand.NextDouble();
+            u2 = 1.0 - rand.NextDouble();
+        }
         double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
         //Debug.Log("generated normal rv: " + randStdNormal);
         return (float) (sd * randStdNormal);
@@ -82,8 +95,9 @@ public class Copier
     public static Land GetLandCopy(Land land)
     {
         Land landCopy = land.shallowCopy();
-        landCopy.creatureOn = null;
+        landCopy.creatureOn = null; // remove creature (will be replaced)
         landCopy.propertyDict = new Dictionary<string, ResourceStore>();
+        // copy ResourceStores into new propertyDict by key
         foreach (string resName in land.propertyDict.Keys)
         {
             landCopy.propertyDict[resName] = land.propertyDict[resName].shallowCopy();
@@ -91,17 +105,27 @@ public class Copier
         return landCopy;
     }
 
+    // TODO: review this in new context
     public static Creature getCreatureCopy(Creature c)
     {
         Creature creatureCopy = c.getShallowCopy();
-        if (seed == Int32.MaxValue - 1)
+        int actualSeed;
+        int timeInMillis = System.DateTime.Now.Millisecond;
+        lock (seedGenLock)
         {
-            seed = 0;
+            // reset seed if too large
+            if (seed == Int32.MaxValue - 1)
+            {
+                seed = 0;
+            }
+            // increment seed
+            seed++;
+            // generate random seed
+            actualSeed = seedGen.Next(seed);
         }
-        seed++;
-        int actualSeed = seedGen.Next(seed);
-
-        creatureCopy.rand = new System.Random(actualSeed);
+        // Debug.Log("new rand gen seed: " + actualSeed);
+        // use combination of random seed and time in milliseconds to create random number generator for new creature
+        creatureCopy.rand = new System.Random(actualSeed + timeInMillis);
 
         creatureCopy.dummyLand = new Land();
         creatureCopy.dummyLand.isDummy = true;
@@ -118,11 +142,41 @@ public class Copier
         creatureCopy.position[0] = c.position[0];
         creatureCopy.position[1] = c.position[1];
 
-        creatureCopy.neighborLands = new Land[5];
+        creatureCopy.neighborLands = new Land[5]; // set lands called to assign these once placed on the map
         creatureCopy.actionQueue = new SimplePriorityQueue<Action>();
         creatureCopy.outputCommSignals = new List<CommSignal>();
         creatureCopy.prevNetStates = new List<List<Network>>();
         creatureCopy.abilities = new Dictionary<string, Ability>();
+
+        // copy actions
+        // TODO: test to make sure that order is maintained
+        while (c.actionQueue.Count > 0)
+        {
+            Action a = c.actionQueue.Dequeue();
+            creatureCopy.actionQueue.Enqueue(getNewAction(a), a.priority);
+        }
+
+        // copy output comm signals
+        creatureCopy.outputCommSignals = new List<CommSignal>();
+
+        foreach (CommSignal signal in c.outputCommSignals)
+        {
+            CommSignal signalCopy = new CommSignal();
+            foreach (string signalName in signal.commProperties.Keys)
+            {
+                bool[] commBits = new bool[signal.commProperties[signalName].Length];
+                for (int l = 0; l < signal.commProperties[signalName].Length; l++)
+                {
+                    commBits[l] = signal.commProperties[signalName][l];
+                }
+                signalCopy.commProperties[signalName] = commBits;
+            }
+
+            creatureCopy.outputCommSignals.Add(signalCopy);
+        }
+
+        // TODO: copy prevNetStates
+
 
         // copy abilities
         foreach (string ability in c.abilities.Keys)
@@ -154,7 +208,6 @@ public class Copier
                 newCommNet[j].Add(getNewNode(origCommNet[j][k], creatureCopy, creatureCopy.commInNetTemplate));
             }
         }
-
 
         creatureCopy.commOutNetTemplate = c.commOutNetTemplate.getShallowCopy();
         creatureCopy.commOutNetTemplate.net = new List<List<Node>>();

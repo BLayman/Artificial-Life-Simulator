@@ -19,10 +19,8 @@ public class Creature
     public Land dummyLand = new Land(); // dummyLand used for edges of map
     public int index;
     public System.Random rand;
-    public System.Random seedGen;
     int count;
-    int seedCount;
-    int seed;
+    int max;
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
     /// </summary>
@@ -105,11 +103,8 @@ public class Creature
         remainingAbilityPoints = maxAbilityPoints;
 
         dummyLand.isDummy = true;
-        seedGen = new System.Random();
         rand = new System.Random();
         count = 0;
-        seedCount = 0;
-        seed = 0;
         Debug.Log("creature constructor called");
 
     }
@@ -124,13 +119,6 @@ public class Creature
 
         rand = new System.Random();
 
-    }
-
-    // not in use
-    public void initRandom()
-    {
-        rand = new System.Random();
-        seedGen = new System.Random();
     }
 
 
@@ -167,23 +155,15 @@ public class Creature
             {
                 // user random number generator to decide action based on probability
                 count++;
-                seed++;
                 // if random number generator generates 1 billion numbers, reset it
                 // TODO: make work indefinitely
                 if(count > 1000000000)
                 {
                     Debug.Log("creating new random number generator");
                     // will also need to reset seed generator
-                    rand = new System.Random(seedGen.Next());
+                    rand = new System.Random();
                     count = 0;
-                    seed = 0;
                 }
-
-                //int randSeed = seedGen.Next(seed);
-
-                //int actualSeed = rand.Next(randSeed);
-
-                //double uniform = (double) actualSeed / (double) Int32.MaxValue;
 
                 double uniform = rand.NextDouble();
 
@@ -337,10 +317,12 @@ public class Creature
         while (actionQueue.Count > 0)
         {
             Action nextAction = actionQueue.Dequeue();
+            // TODO: remove old actions
+
             // if there is time left for an action, perform it
             if (nextAction.timeCost <= remainingTurnTime)
             {
-                //Debug.Log("performing action");
+                //Debug.Log("performing " + nextAction.name);
                 nextAction.perform(this);
             }
             else
@@ -348,6 +330,11 @@ public class Creature
                 actionQueue.Enqueue(nextAction, nextAction.priority);
                 break;
             }
+        }
+        // increment action age
+        foreach (Action a in actionQueue)
+        {
+            a.age++;
         }
     }
 

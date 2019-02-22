@@ -13,5 +13,5 @@ public class CommSignal
     /// <summary>
     /// Stores message, position, and phenotype.
     /// </summary>
-    private Dictionary<string, bool[]> commProperties;
+    public Dictionary<string, bool[]> commProperties;
 }

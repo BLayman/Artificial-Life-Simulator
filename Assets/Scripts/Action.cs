@@ -14,11 +14,17 @@ public abstract class Action
     public Dictionary<string, int> resourceCosts = new Dictionary<string, int>();
     public float timeCost;
 
+    public int age;
+
     /// <summary>
     /// Performs the action.
     /// </summary>
     public abstract void perform(Creature creature);
 
+    public Action()
+    {
+        age = 0;
+    }
 
     public bool spendTimeAndResources(Creature creature)
     {
