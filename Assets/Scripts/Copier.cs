@@ -114,7 +114,7 @@ public class Copier
         lock (seedGenLock)
         {
             // reset seed if too large
-            if (seed == Int32.MaxValue - 1)
+            if (seed == Int32.MaxValue - 1000)
             {
                 seed = 0;
             }
@@ -126,6 +126,7 @@ public class Copier
         // Debug.Log("new rand gen seed: " + actualSeed);
         // use combination of random seed and time in milliseconds to create random number generator for new creature
         creatureCopy.rand = new System.Random(actualSeed + timeInMillis);
+        creatureCopy.rand2 = new System.Random(actualSeed + timeInMillis + 999);
 
         creatureCopy.dummyLand = new Land();
         creatureCopy.dummyLand.isDummy = true;

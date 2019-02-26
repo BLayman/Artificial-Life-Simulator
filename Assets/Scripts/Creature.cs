@@ -18,7 +18,8 @@ public class Creature
     public Creature founder;
     public Land dummyLand = new Land(); // dummyLand used for edges of map
     public int index;
-    public System.Random rand;
+    public System.Random rand; // used for action probabilites
+    public System.Random rand2; // used for selecting actions from network
     int count;
     int max;
     /// <summary>
@@ -98,12 +99,20 @@ public class Creature
     /// </summary>
     public Dictionary<string, Action> actionPool = new Dictionary<string, Action>();
 
+    public int actionClearInterval = 5;
+
+    public int actionClearCount = 0;
+
+    public int actionClearSize = 10;
+
     public Creature(int maxAbilityPoints)
     {
         remainingAbilityPoints = maxAbilityPoints;
 
         dummyLand.isDummy = true;
         rand = new System.Random();
+        rand2 = new System.Random();
+
         count = 0;
         Debug.Log("creature constructor called");
 
@@ -118,6 +127,7 @@ public class Creature
         dummyLand.isDummy = true;
 
         rand = new System.Random();
+        rand2 = new System.Random();
 
     }
 
@@ -151,6 +161,8 @@ public class Creature
         {
             int finalLayer = network.net.Count - 1;
             // for each node in final layer of network
+            List<Action> tempList = new List<Action>();
+
             foreach (OutputNode node in network.net[finalLayer])
             {
                 // user random number generator to decide action based on probability
@@ -172,9 +184,16 @@ public class Creature
                 // treat node value as probability. If random number (0,1] is less than that probability, then enqueue action.
                 if (uniform < node.value)
                 {
-                    actionQueue.Enqueue(node.action, node.action.priority);
+                    tempList.Add(node.action);
                 }
+            }
 
+            int nodesLeft = tempList.Count;
+            while(nodesLeft > 0)
+            {
+                int randIndex = rand2.Next(nodesLeft);
+                actionQueue.Enqueue(tempList[randIndex], tempList[randIndex].priority);
+                nodesLeft--;
             }
         }
     }
@@ -305,7 +324,6 @@ public class Creature
     /// </summary>
     public void performActions()
     {
-
         /** 
          * TODO: allow for a certain number of actions to carry over,
          * otherwise, only the first action put on the queue will be run each turn,
@@ -313,29 +331,41 @@ public class Creature
          * one solution: sort the order in which output nodes are added to queue
         **/ 
 
+        
+
         // remove all actions from queue each turn
+        SimplePriorityQueue<Action> nextQueue = new SimplePriorityQueue<Action>();
+
         while (actionQueue.Count > 0)
         {
             Action nextAction = actionQueue.Dequeue();
-            // TODO: remove old actions
 
-            // if there is time left for an action, perform it
-            if (nextAction.timeCost <= remainingTurnTime)
+            // ignore actions that the creature doesn't have enough resources to perform
+            if (nextAction.enoughResources(this))
             {
-                //Debug.Log("performing " + nextAction.name);
-                nextAction.perform(this);
-            }
-            else
-            {
-                actionQueue.Enqueue(nextAction, nextAction.priority);
-                break;
+                // if there is time left for an action, perform it
+                if (nextAction.timeCost <= remainingTurnTime)
+                {
+                    //Debug.Log("performing " + nextAction.name);
+                    nextAction.performWrapper(this);
+                }
+                else
+                {
+                    // put actions that take too long on the next turns queue
+                    nextQueue.Enqueue(nextAction, nextAction.priority);
+                }
             }
         }
-        // increment action age
-        foreach (Action a in actionQueue)
+        // actionQueue is now the queue for next turn
+        actionQueue = nextQueue;
+        // Debug.Log("Queue size: " + actionQueue.Count);
+        // keep action queue a manageable size by clearing it every few steps, and clearing it if its size gets too big
+        if (actionClearCount > actionClearInterval || actionQueue.Count >= actionClearSize)
         {
-            a.age++;
+            actionClearCount = 0;
+            actionQueue.Clear();
         }
+        
     }
 
     /// <summary>

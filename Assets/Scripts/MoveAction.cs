@@ -17,11 +17,6 @@ public class MoveAction : Action
 
     public override void perform(Creature creature)
     {
-        //Debug.Log("resource before: " + creature.storedResources["grass"].currentLevel);
-        bool enoughResources = spendTimeAndResources(creature);
-        if (!enoughResources) { return; }
-
-        //Debug.Log("resource after: " + creature.storedResources["grass"].currentLevel);
 
         // TODO: other directions
         // TODO: what if creature moves to space where other creature is?

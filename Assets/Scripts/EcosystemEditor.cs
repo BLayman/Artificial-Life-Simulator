@@ -95,6 +95,14 @@ public class EcosystemEditor
         Debug.Log("Ecosystem name set to " + name);
     }
 
+    /// <summary>
+    /// sets number of steps between each renewal of resources.
+    /// </summary>
+    public void setRenewInterval(int renewSteps)
+    {
+        ecosystem.renewIntervalSteps = renewSteps;
+    }
+
 
     /* add methods */
 

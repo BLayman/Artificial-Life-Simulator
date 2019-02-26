@@ -28,7 +28,7 @@ public class LandResourceEditor
     }
 
     /// <summary>
-    /// Set how much the resource increases at the end of each turn
+    /// Set how much the resource increases at the end of each interval number of turns (default interval is 10 turns)
     /// </summary>
     public void setRenewalAmt(float amountRenewed)
     {

@@ -14,21 +14,41 @@ public abstract class Action
     public Dictionary<string, int> resourceCosts = new Dictionary<string, int>();
     public float timeCost;
 
-    public int age;
+    public int age; // not currently in use
+
+    
+    public abstract void perform(Creature creature);
 
     /// <summary>
-    /// Performs the action.
+    /// Performs the action, and spends creatures time and resources
     /// </summary>
-    public abstract void perform(Creature creature);
+    public void performWrapper(Creature c)
+    {
+        spendTimeAndResources(c);
+        perform(c);
+    }
 
     public Action()
     {
         age = 0;
     }
 
-    public bool spendTimeAndResources(Creature creature)
+    public bool enoughResources(Creature creature)
     {
         bool enoughToSpend = true;
+
+        foreach (string resource in resourceCosts.Keys)
+        {
+            if (creature.storedResources[resource].currentLevel <= resourceCosts[resource])
+            {
+                enoughToSpend = false;
+            }
+        }
+        return enoughToSpend;
+    }
+
+    public void spendTimeAndResources(Creature creature)
+    {
         creature.remainingTurnTime -= timeCost;
         foreach (string resource in resourceCosts.Keys)
         {
@@ -36,12 +56,7 @@ public abstract class Action
             {
                 creature.storedResources[resource].currentLevel -= resourceCosts[resource];
             }
-            else
-            {
-                enoughToSpend = false;
-            }
         }
-        return enoughToSpend;
     }
 
     public Action getShallowCopy()

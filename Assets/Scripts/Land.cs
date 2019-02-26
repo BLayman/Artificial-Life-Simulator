@@ -33,12 +33,12 @@ public class Land
     /// </summary>
     /// <param name="resourceKey">Resource name.</param>
     /// <param name="timeDedicated">Comes from action timeCost variable.</param>
-    public float attemptResourceConsumption(string resourceKey, float timeDedicated, float creatureAbility)
+    public float attemptResourceConsumption(string resourceKey, float timeDedicated, float creatureAbility, float cStorageSpace)
     {
         //Debug.Log("consuming resource: " + resourceKey);
         if (propertyDict.ContainsKey(resourceKey))
         {
-            return propertyDict[resourceKey].attemptConsumption(timeDedicated, creatureAbility);
+            return propertyDict[resourceKey].attemptConsumption(timeDedicated, creatureAbility, cStorageSpace);
         }
         else
         {

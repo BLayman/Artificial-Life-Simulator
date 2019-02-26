@@ -50,13 +50,19 @@ public class ResourceStore
     /// </summary>
 
     // TODO: make sure creature can't eat more than amount they can store
-    public float attemptConsumption(float timeDedicated, float creatureAbility)
+    public float attemptConsumption(float timeDedicated, float creatureAbility, float cStorageSpace)
     {
         // proportion * (2 ^ creatureAbility) 
         // if creatureAbility = 0, actualProportion = proportion
         float actualProportion = proportionExtracted * (float)Math.Pow((double)2, (double)creatureAbility);
         // amount = time * amount consumed per time * proportion consumed
         float amountToTake = timeDedicated * amountConsumedPerTimeUnit * actualProportion;
+        // don't take more of the resource than the creature can store
+        if(amountToTake > cStorageSpace)
+        {
+            amountToTake = cStorageSpace;
+        }
+
         // if amount taken would be less than total amount
         if (amountToTake < amountStored)
         {

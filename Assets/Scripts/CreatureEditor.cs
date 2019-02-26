@@ -56,14 +56,7 @@ public class CreatureEditor
         creature.species = species;
     }
 
-    /// <summary>
-    /// Used to save network that is created by NetCreator.
-    /// </summary>
-    public void saveNetwork()
-    {
-        // TODO: account for comm network templates
-        creature.networks[netCreator.network.inLayer][netCreator.network.name] = netCreator.network;
-    }
+
 
     /// <summary>
     /// Sets creature's position on the map.
@@ -101,6 +94,22 @@ public class CreatureEditor
             creature.phenotype[phenotype - 1] = true;
         }
 
+    }
+
+    /// <summary>
+    /// Sets the number of steps between deleting all actions in action queue. This is used to keep the action queue current.
+    /// </summary>
+    public void setActionClearInterval(int steps)
+    {
+        creature.actionClearInterval = steps;
+    }
+
+    /// <summary>
+    /// Sets the size of the action queue required for the queue to be cleared
+    /// </summary>
+    public void setActionClearSize(int size)
+    {
+        creature.actionClearSize = size;
     }
 
     /// <summary>
@@ -179,6 +188,15 @@ public class CreatureEditor
     public void saveAction()
     {
         creature.actionPool.Add(actionCreator.getCreatedAction().name, actionCreator.getCreatedAction());
+    }
+
+    /// <summary>
+    /// Used to save network that is created by NetCreator.
+    /// </summary>
+    public void saveNetwork()
+    {
+        // TODO: account for comm network templates
+        creature.networks[netCreator.network.inLayer][netCreator.network.name] = netCreator.network;
     }
 
     /// <summary>

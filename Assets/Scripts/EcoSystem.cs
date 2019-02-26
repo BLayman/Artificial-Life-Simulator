@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using UnityEngine;
 
 /// <summary>
 /// This class contains all of the data about the state of the ecosystem including the populations, species templates, map, resources, and other general parameters.
@@ -49,6 +49,8 @@ public class Ecosystem
 
     public int count = 0;
 
+    public int renewIntervalSteps = 10;
+
     /// <summary>
     /// run ecosystem for a certain number of time steps
     /// </summary>
@@ -88,19 +90,29 @@ public class Ecosystem
                         population.creatures.Remove(deadCreature);
                     }
                 }
-                // renew land resources
-                for (int j = 0; j < map.Count; j++)
+                // renew land resources every renewIntervalSteps
+                if (count % renewIntervalSteps == 0)
                 {
-                    for (int k = 0; k < map[j].Count; k++)
+                    for (int j = 0; j < map.Count; j++)
                     {
-                        foreach (ResourceStore res in map[j][k].propertyDict.Values)
+                        for (int k = 0; k < map[j].Count; k++)
                         {
-                            res.renewResource();
+                            foreach (ResourceStore res in map[j][k].propertyDict.Values)
+                            {
+                                res.renewResource();
+                            }
                         }
                     }
                 }
+                
 
             }
+        }
+        // assuming user has set timeSteps to be 1 million or less
+        if(count > int.MaxValue - 1000001)
+        {
+            Debug.Log("reseting ecosystem age");
+            count = 0;
         }
 
     }

@@ -45,6 +45,7 @@ public class EcoManager
         ecoCreator.setCommBits(4);
         ecoCreator.setDistinctPhenotypeNum(32);
         ecoCreator.setTimeUnitsPerTurn(10);
+        ecoCreator.setRenewInterval(10);
 
         // create and save resources
         LandResourceEditor lre = ecoCreator.addResource("grass");
@@ -52,7 +53,7 @@ public class EcoManager
         lre.setMaxAmt(150);
         lre.setAmtConsumedPerTime(10);
         lre.setProportionExtracted(.5f);
-        lre.setRenewalAmt(.1f);
+        lre.setRenewalAmt(1f);
 
         ecoCreator.saveResource();
         /*
@@ -98,6 +99,8 @@ public class EcoManager
         cc.setTurnTime(10);
         cc.setMaxHealth(100);
         cc.setInitialHealth(70);
+        cc.setActionClearInterval(3);
+        cc.setActionClearSize(10);
 
         // add resource for the creature to store
         ResourceEditor resourceCreator = cc.addResource();
