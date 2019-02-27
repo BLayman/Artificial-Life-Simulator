@@ -9,6 +9,7 @@ using UnityEngine;
 /// </summary>
 public class SpeciesPopulator
 {
+    public static int creatureNum = 0; // for assigning each creature a unique number
     /// <summary>
     /// Stores Information about the population.
     /// </summary>
@@ -60,7 +61,8 @@ public class SpeciesPopulator
         {
             Creature addedCreature = population.generateMember();
             population.creatures.Add(addedCreature);
-            addedCreature.index = i;
+            addedCreature.index = creatureNum;
+            creatureNum++;
             addedCreature.addVariationToWeights(population.weightStandardDev);
             //population.creatures[i].printNetworks();
             int x;

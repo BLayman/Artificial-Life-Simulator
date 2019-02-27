@@ -11,6 +11,7 @@ public class Copier
     public static System.Random rand = new System.Random();
     public static System.Random seedGen = new System.Random();
     public static int seed = 0;
+    public static int creatureNum = 0;
 
     private static System.Object randLock = new System.Object();
     private static System.Object seedGenLock = new System.Object();
@@ -128,6 +129,7 @@ public class Copier
         creatureCopy.rand = new System.Random(actualSeed + timeInMillis);
         creatureCopy.rand2 = new System.Random(actualSeed + timeInMillis + 999);
 
+        // copy dummy land
         creatureCopy.dummyLand = new Land();
         creatureCopy.dummyLand.isDummy = true;
 
@@ -135,22 +137,18 @@ public class Copier
         List<Dictionary<string, Network>> networks = new List<Dictionary<string, Network>>();
         creatureCopy.networks = networks;
         List<Dictionary<string, Network>> origNetworks = c.networks;
-
         copyCreatureNetworks(origNetworks, networks, creatureCopy);
 
-        creatureCopy.position = new int[2];
         // copy position (overridden when populating)
+        creatureCopy.position = new int[2];
         creatureCopy.position[0] = c.position[0];
         creatureCopy.position[1] = c.position[1];
 
-        creatureCopy.neighborLands = new Land[5]; // set lands called to assign these once placed on the map
-        creatureCopy.actionQueue = new SimplePriorityQueue<Action>();
-        creatureCopy.outputCommSignals = new List<CommSignal>();
-        creatureCopy.prevNetStates = new List<List<Network>>();
-        creatureCopy.abilities = new Dictionary<string, Ability>();
+        creatureCopy.neighborLands = new Land[5]; // assigne when creature is placed on the map
 
         // copy actions
         // TODO: test to make sure that order is maintained
+        creatureCopy.actionQueue = new SimplePriorityQueue<Action>();
         while (c.actionQueue.Count > 0)
         {
             Action a = c.actionQueue.Dequeue();
@@ -159,27 +157,19 @@ public class Copier
 
         // copy output comm signals
         creatureCopy.outputCommSignals = new List<CommSignal>();
+        copyCommList(c.outputCommSignals, creatureCopy.outputCommSignals);
 
-        foreach (CommSignal signal in c.outputCommSignals)
+        // copy prevNetStates
+        creatureCopy.prevNetStates = new List<List<Dictionary<string, Network>>>();
+        foreach (List <Dictionary<string, Network>> origState in c.prevNetStates)
         {
-            CommSignal signalCopy = new CommSignal();
-            foreach (string signalName in signal.commProperties.Keys)
-            {
-                bool[] commBits = new bool[signal.commProperties[signalName].Length];
-                for (int l = 0; l < signal.commProperties[signalName].Length; l++)
-                {
-                    commBits[l] = signal.commProperties[signalName][l];
-                }
-                signalCopy.commProperties[signalName] = commBits;
-            }
-
-            creatureCopy.outputCommSignals.Add(signalCopy);
+            List<Dictionary<string, Network>> stateCopy = new List<Dictionary<string, Network>>();
+            copyCreatureNetworks(origState, stateCopy, creatureCopy);
+            creatureCopy.prevNetStates.Add(stateCopy);
         }
 
-        // TODO: copy prevNetStates
-
-
         // copy abilities
+        creatureCopy.abilities = new Dictionary<string, Ability>();
         foreach (string ability in c.abilities.Keys)
         {
             Ability oldAbility = c.abilities[ability];
@@ -187,15 +177,22 @@ public class Copier
             creatureCopy.abilities[ability] = newAbility;
         }
 
+        // copy stored resources
         creatureCopy.storedResources = new Dictionary<string, CreatureResource>();
         foreach (string resKey in c.storedResources.Keys)
         {
             creatureCopy.storedResources[resKey] = c.storedResources[resKey].getShallowCopy();
         }
+
+        // copy phenotype
         creatureCopy.phenotype = new bool[c.phenotype.Length];
         Array.Copy(c.phenotype, creatureCopy.phenotype, c.phenotype.Length);
-        creatureCopy.inputCommList = new List<CommSignal>();
 
+        // copy inputCommList
+        creatureCopy.inputCommList = new List<CommSignal>();
+        copyCommList(c.inputCommList, creatureCopy.inputCommList);
+
+        // copy commInNetTemplate
         creatureCopy.commInNetTemplate = c.commInNetTemplate.getShallowCopy();
         creatureCopy.commInNetTemplate.net = new List<List<Node>>();
         List<List<Node>> newCommNet = creatureCopy.commInNetTemplate.net;
@@ -209,7 +206,7 @@ public class Copier
                 newCommNet[j].Add(getNewNode(origCommNet[j][k], creatureCopy, creatureCopy.commInNetTemplate));
             }
         }
-
+        // copy commOutNetTemplate
         creatureCopy.commOutNetTemplate = c.commOutNetTemplate.getShallowCopy();
         creatureCopy.commOutNetTemplate.net = new List<List<Node>>();
         List<List<Node>> newCommOutNet = creatureCopy.commOutNetTemplate.net;
@@ -224,26 +221,55 @@ public class Copier
             }
         }
 
+        // copy reproductionRequests
         creatureCopy.reproductionRequests = new List<ReproAction>();
+        foreach (ReproAction reproAction in c.reproductionRequests)
+        {
+            ReproAction reproActionCopy = reproAction.shallowCopy();
+            reproActionCopy.creature = creatureCopy;
+            creatureCopy.reproductionRequests.Add(reproActionCopy);
 
+        }
+
+        // TODO: copy reproduction decider network
+
+
+        // copy action pool
         creatureCopy.actionPool = new Dictionary<string, Action>();
         foreach (string key in c.actionPool.Keys)
         {
             creatureCopy.actionPool[key] = getNewAction(c.actionPool[key]);
         }
 
-        // TODO: create instances of reference variables
         return creatureCopy;
     }
 
 
+    public static void copyCommList(List<CommSignal> origList, List<CommSignal> copyList)
+    {
 
-    public static void copyCreatureNetworks(List<Dictionary<string, Network>> origNetworks, List<Dictionary<string, Network>> networks, Creature creatureCopy)
+        foreach (CommSignal signal in origList)
+        {
+            CommSignal signalCopy = new CommSignal();
+            foreach (string signalName in signal.commProperties.Keys)
+            {
+                bool[] commBits = new bool[signal.commProperties[signalName].Length];
+                for (int l = 0; l < signal.commProperties[signalName].Length; l++)
+                {
+                    commBits[l] = signal.commProperties[signalName][l];
+                }
+                signalCopy.commProperties[signalName] = commBits;
+            }
+            copyList.Add(signalCopy);
+        }
+    }
+
+    public static void copyCreatureNetworks(List<Dictionary<string, Network>> origNetworks, List<Dictionary<string, Network>> copyNetworks, Creature creatureCopy)
     {
         for (int i = 0; i < origNetworks.Count; i++)
         {
             Dictionary<string, Network> dict = new Dictionary<string, Network>();
-            networks.Add(dict);
+            copyNetworks.Add(dict);
             foreach (string key in origNetworks[i].Keys)
             {
                 dict[key] = origNetworks[i][key].getShallowCopy();

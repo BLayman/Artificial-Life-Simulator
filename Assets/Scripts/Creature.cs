@@ -17,11 +17,12 @@ public class Creature
 {
     public Creature founder;
     public Land dummyLand = new Land(); // dummyLand used for edges of map
-    public int index;
+    public int index; // unique number assigned upon creation in species populator
     public System.Random rand; // used for action probabilites
     public System.Random rand2; // used for selecting actions from network
     int count;
     int max;
+
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
     /// </summary>
@@ -52,9 +53,9 @@ public class Creature
     /// </summary>
     public List<CommSignal> outputCommSignals = new List<CommSignal>();
     /// <summary>
-    /// stores the state of the network for the past 3 time steps. The front of the queue is the most recent network state (t-1).
+    /// Not implememted yet. Stores the state of the networks for previous time steps. The front of the queue is the most recent network state (t-1).
     /// </summary>
-    public List<List<Network>> prevNetStates = new List<List<Network>>();
+    public List<List<Dictionary<string, Network>>> prevNetStates = new List<List<Dictionary<string, Network>>>();
     /// <summary>
     /// Designates which resources or species the creature has an advantage in consuming, attacking, or defending against. Certain combinations of excess resources can boost abilities.
     /// </summary>
@@ -89,11 +90,11 @@ public class Creature
     /// <summary>
     /// List of requests for reproduction from neighbors.
     /// </summary>
-    public List<ReproAction> reproductionRequests;
+    public List<ReproAction> reproductionRequests = new List<ReproAction>();
     /// <summary>
     /// Network to decide whether a creature should reproduce with a neightbor.
     /// </summary>
-    public ReproNetwork reproductionDeciderNetwork;
+    public ReproNetwork reproductionDeciderNetwork = new ReproNetwork();
     /// <summary>
     /// Dictionary of potential actions that the creature can take if assigned to an output node.
     /// </summary>
