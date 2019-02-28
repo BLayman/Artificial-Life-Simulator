@@ -188,15 +188,34 @@ public class EcoManager
         netCreator.setName("net1");
 
         /* Node net1 0,0 */
+        // sense resource 0 up
         makeSensoryInputNode(netCreator, 1, creatureResources[0]);
 
         /* Node net1 0,1 */
+        // sense resource 0 down
         makeSensoryInputNode(netCreator, 2, creatureResources[0]);
+
+        /* Node net1 0,2 */
+        // sense resource 0 left
+        makeSensoryInputNode(netCreator, 3, creatureResources[0]);
+
+        /* Node net1 0,3 */
+        // sense resource 0 right
+        makeSensoryInputNode(netCreator, 4, creatureResources[0]);
+
+        /* Node net1 0,4 */
+        // sense resource 0 at current location
+        makeSensoryInputNode(netCreator, 0, creatureResources[0]);
 
         /* Node net1 1,0 */
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
         /* Node net1 1,1 */
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
+        /* Node net1 1,0 */
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
+        /* Node net1 1,0 */
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
+
         /* Node net1 1,2 */
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
 
@@ -272,6 +291,42 @@ public class EcoManager
         cc.saveNetwork();
 
 
+        /**** outNetLeft ****/
+
+        // user adds a second network
+        NetworkEditor netCreator6 = cc.addNetwork();
+        // network added to second layer of networks
+        netCreator6.setInLayer(1); // called by default with index of layer user clicked
+        netCreator6.setName("outNetLeft");
+
+        /* Node outNet 0,0 */
+        // insert a node into 0th layer new network. Connect it to the index 1 node in the last layer of net1 (net1 is in layer 0)
+        makeInnerInputNode(netCreator6, 0, "net1", 0, 2);
+
+        /* Node outNet 1,0 */
+        makeOutputNode(netCreator6, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
+        // user clicks save on creature creator
+        cc.saveNetwork();
+
+
+        /**** outNetRight ****/
+
+        // user adds a second network
+        NetworkEditor netCreator7 = cc.addNetwork();
+        // network added to second layer of networks
+        netCreator7.setInLayer(1); // called by default with index of layer user clicked
+        netCreator7.setName("outNetRight");
+
+        /* Node outNet 0,0 */
+        // insert a node into 0th layer new network. Connect it to the index 1 node in the last layer of net1 (net1 is in layer 0)
+        makeInnerInputNode(netCreator7, 0, "net1", 0, 3);
+
+
+        /* Node outNet 1,0 */
+        makeOutputNode(netCreator7, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
+        // user clicks save on creature creator
+        cc.saveNetwork();
+
         /**** outNetConsume ****/
 
         // user adds a second network
@@ -281,7 +336,7 @@ public class EcoManager
         netCreator5.setName("outNetEat");
 
         /* Node outNet 0,0 */
-        makeInnerInputNode(netCreator5, 0, "net1", 0, 2);
+        makeInnerInputNode(netCreator5, 0, "net1", 0, 4);
 
         /* Node outNet 0,1 */
         //makeInnerInputNode(netCreator5, 0, "net2", 0, 2);
