@@ -72,7 +72,7 @@ public class EcoManager
         ecoCreator.createMap();
         // max size ~ 320 X 320 (100,000 cells)
         // TODO: account for asymetric maps
-        ecoCreator.mapEditor.generateMap(100, 100);
+        ecoCreator.mapEditor.generateMap(300, 300);
         ecoCreator.mapEditor.addLERPXResource("grass", 1f);
         //ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
         ecoCreator.saveEditedMap(); // saves to tentative map

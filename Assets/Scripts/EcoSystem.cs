@@ -90,7 +90,9 @@ public class Ecosystem
                         population.creatures.Remove(deadCreature);
                     }
                 }
+
                 // renew land resources every renewIntervalSteps
+                // TODO: spread this out over multiple steps somehow
                 if (count % renewIntervalSteps == 0)
                 {
                     for (int j = 0; j < map.Count; j++)

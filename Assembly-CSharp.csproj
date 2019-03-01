@@ -126,6 +126,7 @@
     <Compile Include="Assets\Scripts\SpeciesPopulator.cs" />
     <Compile Include="Assets\Scripts\staticVariables.cs" />
     <Compile Include="Assets\Scripts\TanhActivBehav.cs" />
+    <Compile Include="Assets\Scripts\TextureMakerExample.cs" />
     <Compile Include="Assets\Scripts\ThreadManager.cs" />
     <None Include="Assets\Scripts\ClassDiagram2.cd" />
     <None Include="Assets\CSharpPackages\OptimizedPriorityQueue.4.1.1\lib\net20\Priority Queue.xml" />

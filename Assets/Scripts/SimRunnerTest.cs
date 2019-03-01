@@ -11,29 +11,40 @@ public class SimRunnerTest : MonoBehaviour
 {
     public GameObject tilePrefab;
     public GameObject stepsText;
+    public GameObject mapSpriteObj;
+    SpriteRenderer sr;
+    Color[] colors;
+    Texture2D texture;
+
     List<List<GameObject>> tiles = new List<List<GameObject>>();
     float elapsedTime = 0.0f;
     float intervalTime = .25f; // updates every fraction of a second if possible
     ThreadManager threader;
     int intervalSteps = 1;
     bool paused = false;
+    
 
     // Use this for initialization
     void Start()
     {
+        sr = mapSpriteObj.GetComponent<SpriteRenderer>();
+
         Debug.LogWarning("*******************              simRunner awake              ******************");
         // create threader
         threader = gameObject.GetComponent<ThreadManager>();
         // perform initial renderings
-        startRender(threader.getEcosystem());
-        updateRender(threader.getEcosystem()); // is this one necessary? costly?
+        //startRender(threader.getEcosystem());
+        Ecosystem sys = threader.getEcosystem();
+        colors = new Color[sys.map.Count * sys.map[0].Count];
+        texture = new Texture2D(sys.map.Count, sys.map[0].Count, TextureFormat.ARGB32, false);
+
+        updateRenderT(sys); // is this one necessary? costly?
         // set steps for each interval
         threader.setSteps(intervalSteps);
         // initiate simulation on child thread
         threader.StartEcoSim();
 
     }
-
 
     public void flipPaused()
     {
@@ -79,7 +90,7 @@ public class SimRunnerTest : MonoBehaviour
                 // only re-render when necessary (the ecosystem has changed)
                 if (updated)
                 {
-                    updateRender(threader.getEcosystem());
+                    updateRenderT(threader.getEcosystem());
                 }
                 elapsedTime = 0.0f; // reset timer
             }
@@ -93,6 +104,39 @@ public class SimRunnerTest : MonoBehaviour
     }
 
 
+    private void updateRenderT(Ecosystem sys)
+    {
+        texture.filterMode = FilterMode.Point;
+
+        Color creatureColor = Color.blue;
+        float st = Time.realtimeSinceStartup;
+        for (int x = 0; x < sys.map.Count; x++)
+        {
+            for (int y = 0; y < sys.map[x].Count; y++)
+            {
+                if (sys.map[x][y].creatureIsOn())
+                {
+                    colors[y * sys.map.Count + x] = creatureColor;
+                }
+                else
+                {
+                    float proportionStored = sys.map[x][y].propertyDict["grass"].getProportionStored();
+                    Color resourceShade = new Color(proportionStored, proportionStored, proportionStored);
+                    colors[y * sys.map.Count + x] = resourceShade;
+                }
+            }
+        }
+        float et = Time.realtimeSinceStartup;
+        Debug.Log("Time to update texture:" + (et - st));
+
+        texture.SetPixels(colors);
+        texture.Apply();
+
+        sr.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, 0), 1, 0, SpriteMeshType.FullRect);
+        sr.sharedMaterials[0].mainTexture = texture;
+    }
+
+    /*
     // first render: called from Start function
     private void startRender(Ecosystem sys)
     {
@@ -134,7 +178,7 @@ public class SimRunnerTest : MonoBehaviour
                 else
                 {
                     store = map[x][y].propertyDict["grass"];
-                    proportionStored = (float)store.amountStored / (float)store.maxAmount;
+                    proportionStored = store.amountStored / store.maxAmount;
                     //Debug.Log(proportionStored);
                     updatedColor.r = proportionStored;
                     updatedColor.g = proportionStored;
@@ -145,6 +189,7 @@ public class SimRunnerTest : MonoBehaviour
             }
         }
     }
+    */
 
     // TODO : make Getter classes for ecosystem, creature, and other classes to retrieve information from them to use in the UI
 

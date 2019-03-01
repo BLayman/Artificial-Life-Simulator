@@ -11,7 +11,7 @@ class ThreadManager : MonoBehaviour
     Ecosystem unityEco;
     System.Object ecoQueueLock = new System.Object();
     System.Object threadFinishedLock = new System.Object();
-    private int bufferLength = 20;
+    private int bufferLength = 5;
     private bool threadFinished = false;
     private int childThreadSleepTime = 0;
     bool terminateChildThread = false;
@@ -179,6 +179,7 @@ class ThreadManager : MonoBehaviour
             // terminate thread if main thread dies
             if (!mainThread.IsAlive)
             {
+                Debug.Log("main thread dead, aborting simulation thread");
                 Thread.CurrentThread.Abort();
             }
         
