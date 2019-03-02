@@ -45,7 +45,7 @@ public class EcoManager
         ecoCreator.setCommBits(4);
         ecoCreator.setDistinctPhenotypeNum(32);
         ecoCreator.setTimeUnitsPerTurn(10);
-        ecoCreator.setRenewInterval(10);
+        ecoCreator.setRenewInterval(100);
 
         // create and save resources
         LandResourceEditor lre = ecoCreator.addResource("grass");
@@ -72,7 +72,7 @@ public class EcoManager
         ecoCreator.createMap();
         // max size ~ 320 X 320 (100,000 cells)
         // TODO: account for asymetric maps
-        ecoCreator.mapEditor.generateMap(300, 300);
+        ecoCreator.mapEditor.generateMap(500, 500);
         ecoCreator.mapEditor.addLERPXResource("grass", 1f);
         //ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
         ecoCreator.saveEditedMap(); // saves to tentative map
@@ -372,7 +372,7 @@ public class EcoManager
         SpeciesPopulator populator = ecoCreator.populateSpecies("cat");
         populator.SetAbilityStandardDeviation(1);
         populator.setNetworkWeightStandardDeviation(.1f);
-        populator.populateRandom(100);
+        populator.populateRandom(500);
         ecoCreator.saveCurrentPopulation();
         ecoCreator.addCurrentPopulationToEcosystem();
         ecoCreator.addCurrentPopulationToMap();

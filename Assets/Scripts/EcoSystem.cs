@@ -51,6 +51,10 @@ public class Ecosystem
 
     public int renewIntervalSteps = 10;
 
+    public Color[] colors;
+
+
+
     /// <summary>
     /// run ecosystem for a certain number of time steps
     /// </summary>
@@ -137,6 +141,36 @@ public class Ecosystem
     public Ecosystem shallowCopy()
     {
         return (Ecosystem) this.MemberwiseClone();
+    }
+
+
+    public void updateTexture()
+    {
+        colors = new Color[map.Count * map[0].Count]; // reference update for each ecosystem
+
+        Color creatureColor = Color.blue;
+        //float st = Time.realtimeSinceStartup;
+        for (int x = 0; x < map.Count; x++)
+        {
+            for (int y = 0; y < map[x].Count; y++)
+            {
+                if (map[x][y].creatureIsOn())
+                {
+                    colors[y * map.Count + x] = creatureColor;
+                }
+                else
+                {
+                    float proportionStored = map[x][y].propertyDict["grass"].getProportionStored();
+                    Color resourceShade = new Color(proportionStored, proportionStored, proportionStored);
+                    colors[y * map.Count + x] = resourceShade;
+                }
+            }
+        }
+
+        //float et = Time.realtimeSinceStartup;
+        //Debug.Log("Time to update texture:" + (et - st));
+
+
     }
 
 }

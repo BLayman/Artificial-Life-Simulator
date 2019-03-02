@@ -13,7 +13,6 @@ public class SimRunnerTest : MonoBehaviour
     public GameObject stepsText;
     public GameObject mapSpriteObj;
     SpriteRenderer sr;
-    Color[] colors;
     Texture2D texture;
 
     List<List<GameObject>> tiles = new List<List<GameObject>>();
@@ -28,17 +27,15 @@ public class SimRunnerTest : MonoBehaviour
     void Start()
     {
         sr = mapSpriteObj.GetComponent<SpriteRenderer>();
-
         Debug.LogWarning("*******************              simRunner awake              ******************");
         // create threader
         threader = gameObject.GetComponent<ThreadManager>();
         // perform initial renderings
         //startRender(threader.getEcosystem());
         Ecosystem sys = threader.getEcosystem();
-        colors = new Color[sys.map.Count * sys.map[0].Count];
         texture = new Texture2D(sys.map.Count, sys.map[0].Count, TextureFormat.ARGB32, false);
-
-        updateRenderT(sys); // is this one necessary? costly?
+        texture.filterMode = FilterMode.Point;
+        //updateRenderT(sys); // is this one necessary? costly?
         // set steps for each interval
         threader.setSteps(intervalSteps);
         // initiate simulation on child thread
@@ -106,32 +103,10 @@ public class SimRunnerTest : MonoBehaviour
 
     private void updateRenderT(Ecosystem sys)
     {
-        texture.filterMode = FilterMode.Point;
-
-        Color creatureColor = Color.blue;
-        float st = Time.realtimeSinceStartup;
-        for (int x = 0; x < sys.map.Count; x++)
-        {
-            for (int y = 0; y < sys.map[x].Count; y++)
-            {
-                if (sys.map[x][y].creatureIsOn())
-                {
-                    colors[y * sys.map.Count + x] = creatureColor;
-                }
-                else
-                {
-                    float proportionStored = sys.map[x][y].propertyDict["grass"].getProportionStored();
-                    Color resourceShade = new Color(proportionStored, proportionStored, proportionStored);
-                    colors[y * sys.map.Count + x] = resourceShade;
-                }
-            }
-        }
-        float et = Time.realtimeSinceStartup;
-        Debug.Log("Time to update texture:" + (et - st));
-
-        texture.SetPixels(colors);
+        texture.SetPixels(sys.colors);
         texture.Apply();
 
+        //Debug.Log(texture);
         sr.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, 0), 1, 0, SpriteMeshType.FullRect);
         sr.sharedMaterials[0].mainTexture = texture;
     }

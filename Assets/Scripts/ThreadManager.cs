@@ -11,10 +11,11 @@ class ThreadManager : MonoBehaviour
     Ecosystem unityEco;
     System.Object ecoQueueLock = new System.Object();
     System.Object threadFinishedLock = new System.Object();
+    System.Object endThreadLock = new System.Object();
     private int bufferLength = 5;
     private bool threadFinished = false;
     private int childThreadSleepTime = 0;
-    bool terminateChildThread = false;
+    bool finishChildThread = false;
     LinkedList<Ecosystem> ecoQueue;
 
     // Thread safe?
@@ -51,8 +52,11 @@ class ThreadManager : MonoBehaviour
         }
 
         // signal child thread to stop looping, so new thread can start
-        terminateChildThread = true;
-        
+        lock (endThreadLock)
+        {
+            finishChildThread = true;
+        }
+
     }
 
     public Ecosystem getEcosystem()
@@ -175,29 +179,48 @@ class ThreadManager : MonoBehaviour
         //eco.name = eco.name + "1";
         for (int i = 0; i < bufferLength; i++)
         {
-            
+
+            /*
             // terminate thread if main thread dies
             if (!mainThread.IsAlive)
             {
                 Debug.Log("main thread dead, aborting simulation thread");
                 Thread.CurrentThread.Abort();
             }
-        
-            eco.runSystem(Localsteps); // run ecosystem
+            */
 
-            if (terminateChildThread)
+            // get whether finishChildThread is true
+            bool tempFinishChildThread;
+            lock (endThreadLock)
             {
-                terminateChildThread = false;
-                threadFinished = true;
-                Thread.CurrentThread.Abort();
+                tempFinishChildThread = finishChildThread;
             }
 
-            QueueMainThread(eco); // queue main with ecosystem
+            // if it shouldn't be ended, run simulation and add state to queue
+            if (!tempFinishChildThread)
+            {
+                eco.runSystem(Localsteps); // run ecosystem
+                eco.updateTexture();
 
-            eco = Copier.getEcosystemCopy(eco); // make eco point to a new ecosystem object, so that each object in the queue is different
+                QueueMainThread(eco); // queue main with ecosystem
 
-            Thread.Sleep(childThreadSleepTime); // give time for other thread to catch up
+                eco = Copier.getEcosystemCopy(eco); // make eco point to a new ecosystem object, so that each object in the queue is different
+
+                Thread.Sleep(childThreadSleepTime); // give time for other thread to catch up
+            }
+            // if it should be ended
+            else
+            {
+                // reset variable, and break out of loop
+                lock (endThreadLock)
+                {
+                    finishChildThread = false;
+                }
+                break;
+            }
+            
         }
+
 
         lock (threadFinishedLock)
         {

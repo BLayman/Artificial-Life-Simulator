@@ -19,7 +19,6 @@ public class Copier
     public static Ecosystem getEcosystemCopy(Ecosystem eco)
     {
         Ecosystem copy = eco.shallowCopy();
-
         // copy map, but removing creatures
         copy.map = new List<List<Land>>();
         for (int i = 0; i < eco.map.Count; i++)
