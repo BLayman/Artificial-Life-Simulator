@@ -54,8 +54,9 @@ public class Copier
                 creatCopy.updateNeighbors();
 
                 copy.populations[popName].creatures.Add(creatCopy);
-
             }
+            // offspring should have been saved to creatures by the end of the turn anyway
+            copy.populations[popName].offspring = new List<Creature>();
         }
 
         // copy species dictionary
@@ -105,7 +106,126 @@ public class Copier
         return landCopy;
     }
 
-    // TODO: review this in new context
+
+    // get child of creature (don't maintain all of state)
+    public static Creature getCreatureChild(Creature c)
+    {
+        Creature creatureCopy = c.getShallowCopy();
+        int actualSeed;
+        int timeInMillis = System.DateTime.Now.Millisecond;
+        lock (seedGenLock)
+        {
+            // reset seed if too large
+            if (seed == Int32.MaxValue - 1000)
+            {
+                seed = 0;
+            }
+            // increment seed
+            seed++;
+            // generate random seed
+            actualSeed = seedGen.Next(seed);
+        }
+        // Debug.Log("new rand gen seed: " + actualSeed);
+        // use combination of random seed and time in milliseconds to create random number generator for new creature
+        creatureCopy.rand = new System.Random(actualSeed + timeInMillis);
+        creatureCopy.rand2 = new System.Random(actualSeed + timeInMillis + 999);
+
+        // copy dummy land
+        creatureCopy.dummyLand = new Land();
+        creatureCopy.dummyLand.isDummy = true;
+
+        // copy creature networks
+        List<Dictionary<string, Network>> networks = new List<Dictionary<string, Network>>();
+        creatureCopy.networks = networks;
+        List<Dictionary<string, Network>> origNetworks = c.networks;
+        copyCreatureNetworks(origNetworks, networks, creatureCopy);
+
+        // position will be set by reproduction action
+        creatureCopy.position = new int[2];
+
+        creatureCopy.neighborLands = new Land[5]; // assigne when creature is placed on the map
+
+        // don't copy parent's actions
+        creatureCopy.actionQueue = new SimplePriorityQueue<Action>();
+
+
+        // don't copy output comm signals to child
+        creatureCopy.outputCommSignals = new List<CommSignal>();
+
+        // don't copy prevNetStates to child
+        creatureCopy.prevNetStates = new List<List<Dictionary<string, Network>>>();
+
+        // copy abilities
+        creatureCopy.abilities = new Dictionary<string, Ability>();
+        foreach (string ability in c.abilities.Keys)
+        {
+            Ability oldAbility = c.abilities[ability];
+            Ability newAbility = getNewAbility(oldAbility);
+            creatureCopy.abilities[ability] = newAbility;
+        }
+
+        // copy stored resources: child will have similar resource levels to parent
+        creatureCopy.storedResources = new Dictionary<string, CreatureResource>();
+        foreach (string resKey in c.storedResources.Keys)
+        {
+            creatureCopy.storedResources[resKey] = c.storedResources[resKey].getShallowCopy();
+        }
+
+        // copy phenotype
+        creatureCopy.phenotype = new bool[c.phenotype.Length];
+        Array.Copy(c.phenotype, creatureCopy.phenotype, c.phenotype.Length);
+
+        // don't copy inputCommList
+        creatureCopy.inputCommList = new List<CommSignal>();
+
+        // copy commInNetTemplate
+        creatureCopy.commInNetTemplate = c.commInNetTemplate.getShallowCopy();
+        creatureCopy.commInNetTemplate.net = new List<List<Node>>();
+        List<List<Node>> newCommNet = creatureCopy.commInNetTemplate.net;
+        List<List<Node>> origCommNet = c.commInNetTemplate.net;
+
+        for (int j = 0; j < origCommNet.Count; j++)
+        {
+            newCommNet.Add(new List<Node>());
+            for (int k = 0; k < origCommNet[j].Count; k++)
+            {
+                newCommNet[j].Add(getNewNode(origCommNet[j][k], creatureCopy, creatureCopy.commInNetTemplate));
+            }
+        }
+        // copy commOutNetTemplate
+        creatureCopy.commOutNetTemplate = c.commOutNetTemplate.getShallowCopy();
+        creatureCopy.commOutNetTemplate.net = new List<List<Node>>();
+        List<List<Node>> newCommOutNet = creatureCopy.commOutNetTemplate.net;
+        List<List<Node>> origCommOutNet = c.commOutNetTemplate.net;
+
+        for (int j = 0; j < origCommOutNet.Count; j++)
+        {
+            newCommOutNet.Add(new List<Node>());
+            for (int k = 0; k < origCommOutNet[j].Count; k++)
+            {
+                newCommOutNet[j].Add(getNewNode(origCommOutNet[j][k], creatureCopy, creatureCopy.commOutNetTemplate));
+            }
+        }
+
+        // don't copy reproductionRequests to child
+        creatureCopy.reproductionRequests = new List<ReproAction>();
+
+        // TODO: copy reproduction decider network
+
+
+        // copy action pool
+        creatureCopy.actionPool = new Dictionary<string, Action>();
+        foreach (string key in c.actionPool.Keys)
+        {
+            creatureCopy.actionPool[key] = getNewAction(c.actionPool[key]);
+        }
+
+        return creatureCopy;
+    }
+
+
+
+    // get exact clone of creature (maintains state)
     public static Creature getCreatureCopy(Creature c)
     {
         Creature creatureCopy = c.getShallowCopy();
@@ -225,7 +345,6 @@ public class Copier
         foreach (ReproAction reproAction in c.reproductionRequests)
         {
             ReproAction reproActionCopy = reproAction.shallowCopy();
-            reproActionCopy.creature = creatureCopy;
             creatureCopy.reproductionRequests.Add(reproActionCopy);
 
         }
@@ -309,7 +428,7 @@ public class Copier
 
     public static Action getNewAction(Action oldAction)
     {
-        Action newAction = oldAction.getShallowCopy();
+        Action newAction = oldAction.getShallowCopy(); // MemberwiseClone also includes subclass fields?
         Dictionary<string, int> dict = new Dictionary<string, int>();
         newAction.resourceCosts = dict;
         foreach (string key in oldAction.resourceCosts.Keys)

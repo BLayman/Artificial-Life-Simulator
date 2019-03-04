@@ -3,7 +3,7 @@
   <Class Name="Network">
     <Position X="7" Y="15" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAAgQAhgAAAAAEEAABAAAAAAIAGAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAAAAhAAAAAAAEAAAAAAAAAIAAAAA=</HashCode>
       <FileName>Assets\Scripts\Network.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -56,6 +56,9 @@
       <HashCode>AAAABAAAAAAAAAQAAAAABAAACAAAAAAAAAAAUAAAAAA=</HashCode>
       <FileName>Assets\Scripts\OutputNode.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="action" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="BiasNode">
     <Position X="13.25" Y="17.5" Width="1.75" />
@@ -81,18 +84,18 @@
   <Class Name="EcosystemEditor">
     <Position X="34" Y="6" Width="4" />
     <TypeIdentifier>
-      <HashCode>FQAAJABAgBABgAMAYAACMAgAERAAABBEAAAAAQQAAAA=</HashCode>
+      <HashCode>FQAApABAgBABgAMAYAACMAgAERAAABBEAAAAAQQAAAA=</HashCode>
       <FileName>Assets\Scripts\EcosystemEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="ecosystem" />
       <Field Name="mapEditor" />
       <Field Name="creatureCreator" />
       <Field Name="speciesPopulator" />
     </ShowAsAssociation>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ConsumeFromLand">
-    <Position X="24.75" Y="26" Width="2.5" />
+    <Position X="11" Y="28.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAAAAAAAABAAAAAAAAAAAAAAAgEAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ConsumeFromLand.cs</FileName>
@@ -113,21 +116,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CommSignal">
-    <Position X="16" Y="28.75" Width="3.5" />
+    <Position X="14.25" Y="31.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\CommSignal.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CommAction">
-    <Position X="21.25" Y="29" Width="2.75" />
+    <Position X="19.5" Y="31" Width="2.75" />
     <AssociationLine Name="signal" Type="CommSignal">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.633" Y="0.104" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAADAAAAAQAAAAAAAAAAAAAAIAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAADAAAAAQAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\CommAction.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -159,7 +162,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BDAICAAgACIAACEAAAAAAQAKABQAYBKgAAAEAAAAACA=</HashCode>
+      <HashCode>BDgICAAgACIAACEgAAAIAQACABQQYBKgAAAEACAAACA=</HashCode>
       <FileName>Assets\Scripts\CreatureEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -218,7 +221,7 @@
   <Class Name="Ability">
     <Position X="18" Y="1" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAAIAAAAAAAAAEAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAIAAAAAAAAAEBAACAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Ability.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -247,7 +250,7 @@
   <Class Name="AbilitiesEditor">
     <Position X="22" Y="1.5" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBAAAAEE=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBAAAAEE=</HashCode>
       <FileName>Assets\Scripts\AbilitiesEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -266,7 +269,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AEAAEAQAAAgAAAAMAAAAAAAAAAAAAAAAAIAAAAAgAAA=</HashCode>
+      <HashCode>AEAAEAQAAAgBAIAMAAAAAAAAAAAAAAAAAIAAAAAgAAA=</HashCode>
       <FileName>Assets\Scripts\SpeciesPopulator.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -274,9 +277,9 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ReproAction">
-    <Position X="23" Y="22.25" Width="3" />
+    <Position X="25" Y="23" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAADAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAAAAADAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ReproAction.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -298,7 +301,7 @@
   <Class Name="Population">
     <Position X="41" Y="2.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>MAAAAAAAAAAAAIIAIIAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>MAAAAAAAAAAAAIIAIIAAAAAAAAACIAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Population.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -328,7 +331,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MoveAction">
-    <Position X="25.25" Y="29.5" Width="2.75" />
+    <Position X="23.5" Y="31" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\MoveAction.cs</FileName>
@@ -350,7 +353,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ACAAAAAggAAAGAEAAAAAAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
+      <HashCode>ACACAAAggAAAGAEAAAAAAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
       <FileName>Assets\Scripts\EcoManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -366,11 +369,11 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Creature">
-    <Position X="21.5" Y="10.75" Width="3.75" />
+    <Position X="22" Y="11.5" Width="3.75" />
     <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
       <Path>
-        <Point X="25.25" Y="12.86" />
-        <Point X="29.5" Y="12.86" />
+        <Point X="25.75" Y="13.572" />
+        <Point X="29.5" Y="13.572" />
         <Point X="29.5" Y="15" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
@@ -378,7 +381,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAqIEKEZAaZAAyEIAAgCIQAgIRQAAIAQAAABIABhBAk=</HashCode>
+      <HashCode>IAqIEaEZAaZAAyEIBAgCIQQgIZQAAIAQAAABIABhBAk=</HashCode>
       <FileName>Assets\Scripts\Creature.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -393,10 +396,10 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Action" Collapsed="true">
-    <Position X="20.75" Y="26.25" Width="1.5" />
+  <Class Name="Action">
+    <Position X="20.75" Y="26.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAQQAAAAAAAAAAABAAAAEAAIAAAAAAAAAQAA=</HashCode>
+      <HashCode>AAAAAAACAQQAQAAAAAAAAABAAAAEAAIAAAAAAAAAQBE=</HashCode>
       <FileName>Assets\Scripts\Action.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -406,6 +409,9 @@
       <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAABA=</HashCode>
       <FileName>Assets\Scripts\ConsumeFromLandEditor.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="actionRef" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="LandResourceEditor">
     <Position X="33.75" Y="12.75" Width="4.25" />
@@ -421,6 +427,20 @@
     <ShowAsAssociation>
       <Field Name="resourceStore" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="Ecosystem">
+    <Position X="28.75" Y="6.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>EACAHAAEAAAAAAAARkAABQAAAIIEKMCAAAAAIAAQBAA=</HashCode>
+      <FileName>Assets\Scripts\Ecosystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ReproActionEditor">
+    <Position X="15" Y="28.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ReproActionEditor.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="NodeEditorInterface">
     <Position X="10.5" Y="4.75" Width="2" />

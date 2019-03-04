@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using System.Threading;
 
 /// <summary>
 /// This class contains all of the data about the state of the ecosystem including the populations, species templates, map, resources, and other general parameters.
@@ -47,13 +48,19 @@ public class Ecosystem
 
     public float timeUnitsPerTurn;
 
-    public int count = 0;
+    public int age = 0;
 
     public int renewIntervalSteps = 10;
 
     public Color[] colors;
 
+    int renewRow = 0;
 
+    int textureThreads = 4;
+
+    bool[] threadsFinished;
+
+    System.Object threadsFinishedLock = new System.Object();
 
     /// <summary>
     /// run ecosystem for a certain number of time steps
@@ -64,7 +71,7 @@ public class Ecosystem
         {
             // for a given time step:
 
-            count++; // for keeping track of ecosystem age
+            age++; // for keeping track of ecosystem age
 
             // for each population
             foreach (string species in populations.Keys)
@@ -75,8 +82,9 @@ public class Ecosystem
                 {
                     List<Creature> toRemove = new List<Creature>();
                     // for each creature in population
-                    foreach (Creature creature in population.creatures)
+                    for (int l = 0; l < population.creatures.Count; l++)
                     {
+                        Creature creature = population.creatures[l];
                         // remove creature if dead
                         if (creature.isDead())
                         {
@@ -85,40 +93,86 @@ public class Ecosystem
                         // otherwise start creature's turn
                         else
                         {
-                            creature.startTurn();
+                            creature.startTurn(this);
                         }
                     }
+
                     // remove each dead creature from population
                     foreach (Creature deadCreature in toRemove)
                     {
                         population.creatures.Remove(deadCreature);
+                        population.size--;
                     }
+
+                    population.creatures.AddRange(population.offspring);
+                    population.offspring = new List<Creature>();
+
                 }
 
-                // renew land resources every renewIntervalSteps
-                // TODO: spread this out over multiple steps somehow
-                if (count % renewIntervalSteps == 0)
+                // renew all land resources every renewIntervalSteps
+                // but spread out over every step
+
+                bool renewAllAtOnce = false;
+                int intervalRows = (int) Math.Round(map.Count / (double)renewIntervalSteps);
+                if(intervalRows == 0) { renewAllAtOnce = true; }
+
+
+                // if renew happens less often than the number of columns in the map, then renew everything at that interval
+                if (renewAllAtOnce)
                 {
-                    for (int j = 0; j < map.Count; j++)
+                    if (age % renewIntervalSteps == 0)
                     {
-                        for (int k = 0; k < map[j].Count; k++)
+                        for (int j = 0; j < map.Count; j++)
                         {
-                            foreach (ResourceStore res in map[j][k].propertyDict.Values)
+                            for (int k = 0; k < map[j].Count; k++)
+                            {
+                                foreach (ResourceStore res in map[j][k].propertyDict.Values)
+                                {
+                                    res.renewResource();
+                                }
+                            }
+                        }
+                    }
+                }
+                // renew a little each turn
+                else
+                {
+                    int stopAt = renewRow + (intervalRows);
+                    if (stopAt > map.Count)
+                    {
+                        // if renewRow has reached the end, reset it
+                        if (renewRow == map.Count)
+                        {
+                            renewRow = 0;
+                            stopAt = renewRow + intervalRows;
+                        }
+                        // if stop at has gone beyond the end of the map, and renewRow hasn't reached the end yet, then stop at the end
+                        else
+                        {
+                            stopAt = map.Count;
+                        }
+                    }
+                    for (; renewRow < stopAt; renewRow++)
+                    {
+                        for (int k = 0; k < map[renewRow].Count; k++)
+                        {
+                            foreach (ResourceStore res in map[renewRow][k].propertyDict.Values)
                             {
                                 res.renewResource();
                             }
                         }
                     }
                 }
-                
-
             }
         }
+
+        Debug.Log("age: " + age);
+        Debug.Log("pop size: " + populations["cat"].size);
         // assuming user has set timeSteps to be 1 million or less
-        if(count > int.MaxValue - 1000001)
+        if(age > int.MaxValue - 1000001)
         {
             Debug.Log("reseting ecosystem age");
-            count = 0;
+            age = 0;
         }
 
     }
@@ -142,6 +196,10 @@ public class Ecosystem
     {
         return (Ecosystem) this.MemberwiseClone();
     }
+
+
+
+    /** Texture stuff below **/
 
 
     public void updateTexture()
@@ -169,8 +227,85 @@ public class Ecosystem
 
         //float et = Time.realtimeSinceStartup;
         //Debug.Log("Time to update texture:" + (et - st));
+    }
+    
+    /** tried using multi-threading with textures, but can't find benefit **/
 
+    /*
+    public void startTextureThreads()
+    {
 
+        threadsFinished = new bool[textureThreads + 1];
+        colors = new Color[map.Count * map[0].Count]; // reference update for each ecosystem
+        int interval = (int)Math.Round(colors.Length / (double)textureThreads); // number of pixels processed by each thread
+        int startAt = 0;
+        int threadIndex = 0;
+        int stopAt;
+
+        while (startAt < colors.Length)
+        {
+             stopAt = startAt + (interval);
+
+            if (stopAt > colors.Length)
+            {
+                stopAt = colors.Length;
+            }
+            //Debug.Log("starting thread: " + threadIndex);
+            int indexCopy = threadIndex;
+            int startCopy = startAt;
+            int stopCopy = stopAt;
+            Thread t = new Thread(() => { threadUpdateTexture(startCopy, stopCopy, indexCopy); });
+            t.Start();
+            threadIndex++;
+            startAt = stopAt;
+        }
+        
     }
 
+
+    public void threadUpdateTexture(int startIndex, int endIndex, int threadIndex)
+    {
+        Color creatureColor = Color.blue;
+        //Debug.Log("thread called: " + threadIndex);
+        //float st = Time.realtimeSinceStartup;
+        for (int i = startIndex; i < endIndex; i++)
+        {
+            int y = (int)((double)i / map.Count);
+            int x = i % map.Count;
+            if (map[x][y].creatureIsOn())
+            {
+                colors[i] = creatureColor;
+            }
+            else
+            {
+                float proportionStored = map[x][y].propertyDict["grass"].getProportionStored();
+                Color resourceShade = new Color(proportionStored, proportionStored, proportionStored);
+                colors[i] = resourceShade;
+            }
+        }
+        lock (threadsFinishedLock)
+        {
+            threadsFinished[threadIndex] = true;
+            //Debug.Log("thread finished: " + threadIndex);
+
+        }
+    }
+
+    public bool checkThreadsFinished()
+    {
+        bool finished = true;
+        lock (threadsFinishedLock)
+        {
+            for (int i = 0; i < threadsFinished.Length - 1; i++)
+            {
+                //Debug.Log("thread: " + i + " finished: " + threadsFinished[i]);
+                if (!threadsFinished[i])
+                {
+                    finished = false;
+                }
+            }
+        }
+        return finished;
+    }
+    */
 }

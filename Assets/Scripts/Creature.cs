@@ -21,7 +21,6 @@ public class Creature
     public System.Random rand; // used for action probabilites
     public System.Random rand2; // used for selecting actions from network
     int count;
-    int max;
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
@@ -136,7 +135,7 @@ public class Creature
     /// <summary>
     /// Starts creatures turn
     /// </summary>
-    public void startTurn()
+    public void startTurn(Ecosystem eco)
     {
         // reset turn time
         remainingTurnTime = fullTurnTime;
@@ -145,7 +144,7 @@ public class Creature
         // add actions to action queue
         addActionsToQueue();
         // perform actions
-        performActions();
+        performActions(eco);
         // update health based on resource levels
         resourceHealthUpdate();
 
@@ -323,7 +322,7 @@ public class Creature
     /// <summary>
     /// Performs whatever actions in the queue it can.
     /// </summary>
-    public void performActions()
+    public void performActions(Ecosystem eco)
     {
         /** 
          * TODO: allow for a certain number of actions to carry over,
@@ -348,7 +347,7 @@ public class Creature
                 if (nextAction.timeCost <= remainingTurnTime)
                 {
                     //Debug.Log("performing " + nextAction.name);
-                    nextAction.performWrapper(this);
+                    nextAction.performWrapper(this, eco);
                 }
                 else
                 {

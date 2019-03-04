@@ -78,7 +78,7 @@ public class SimRunnerTest : MonoBehaviour
         //Debug.Log(StaticVariables.threadManagerAwake);
         if (!paused)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.realtimeSinceStartup;
             // only update every intervalTime seconds
             if (elapsedTime > intervalTime)
             {
@@ -105,8 +105,6 @@ public class SimRunnerTest : MonoBehaviour
     {
         texture.SetPixels(sys.colors);
         texture.Apply();
-
-        //Debug.Log(texture);
         sr.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, 0), 1, 0, SpriteMeshType.FullRect);
         sr.sharedMaterials[0].mainTexture = texture;
     }

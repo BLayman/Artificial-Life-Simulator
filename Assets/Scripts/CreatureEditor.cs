@@ -77,6 +77,7 @@ public class CreatureEditor
         creature.health = initialHealth;
     }
 
+
     /// <summary>
     /// Sets phenotype of creature. Takes in int: [1,x], where there are x distinct phenotypes allowed in the ecosystem,
     /// and assigns corrresponding bool array to creatures phenotype. The bool array contains all falses, except for a true at the x-1 index.
@@ -219,7 +220,7 @@ public class CreatureEditor
         mac.setDirection(moveDir.up);
         mac.setPriority(1);
         mac.setTimeCost(10);
-        mac.addResourceCost("grass", 1);
+        mac.addResourceCost("grass", 5);
         saveAction();
 
         // create move up action
@@ -230,7 +231,7 @@ public class CreatureEditor
         macd.setDirection(moveDir.down);
         macd.setPriority(1);
         macd.setTimeCost(10);
-        macd.addResourceCost("grass", 1);
+        macd.addResourceCost("grass", 5);
         saveAction();
 
         // create move up action
@@ -241,7 +242,7 @@ public class CreatureEditor
         macl.setDirection(moveDir.left);
         macl.setPriority(1);
         macl.setTimeCost(10);
-        macl.addResourceCost("grass", 1);
+        macl.addResourceCost("grass", 5);
         saveAction();
 
         // create move up action
@@ -252,7 +253,7 @@ public class CreatureEditor
         macr.setDirection(moveDir.right);
         macr.setPriority(1);
         macr.setTimeCost(10);
-        macr.addResourceCost("grass", 1);
+        macr.addResourceCost("grass", 5);
         saveAction();
 
     }

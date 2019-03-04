@@ -200,7 +200,24 @@ class ThreadManager : MonoBehaviour
             if (!tempFinishChildThread)
             {
                 eco.runSystem(Localsteps); // run ecosystem
+                //float st = System.DateTime.Now.Second;
+                //Debug.Log("starting threads");
                 eco.updateTexture();
+                /*
+                eco.startTextureThreads();
+                
+                while (!eco.checkThreadsFinished())
+                {
+                    Thread.Sleep(20);
+                }
+                */
+
+                //Debug.Log("threads done");
+                //float et = System.DateTime.Now.Second;
+                //Debug.Log(et - st);
+
+
+                //Debug.Log("all threads finished");
 
                 QueueMainThread(eco); // queue main with ecosystem
 

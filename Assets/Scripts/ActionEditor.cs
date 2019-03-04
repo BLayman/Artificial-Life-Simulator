@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ActionCreatorType { commActionCreator, moveActionCreator, consumeCreator }
+public enum ActionCreatorType { commActionCreator, moveActionCreator, consumeCreator, reproduceCreator }
 
 public class ActionEditor
 {
@@ -35,6 +35,9 @@ public class ActionEditor
             case ActionCreatorType.consumeCreator:
                 actionCreator = new ConsumeFromLandEditor(new ConsumeFromLand());
                 break;
+            case ActionCreatorType.reproduceCreator:
+                actionCreator = new ReproActionEditor(new ReproAction());
+                break;
             default:
                 break;
         }
@@ -52,6 +55,8 @@ public class ActionEditor
                 return (MoveActionEditor)actionCreator;
             case ActionCreatorType.consumeCreator:
                 return (ConsumeFromLandEditor)actionCreator;
+            case ActionCreatorType.reproduceCreator:
+                return (ReproActionEditor)actionCreator;
             default:
                 Debug.LogError("Invalid action creator type");
                 return null;

@@ -14,15 +14,11 @@ public class CommAction : Action
     /// Index of neighbor comm signal is being sent to.
     /// </summary>
     private int targetNeighborIndex;
-    /// <summary>
-    /// Creature this action belongs to.
-    /// </summary>
-    private Creature creature;
 
     /// <summary>
     /// Adds signal to creatures output comm signals. (to be iterated over and passed to neighbors).
     /// </summary>
-    public override void perform(Creature creature)
+    public override void perform(Creature creature, Ecosystem eco)
     {
         throw new NotImplementedException();
     }

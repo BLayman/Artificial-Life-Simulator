@@ -11,6 +11,7 @@ public class Network
 {
     public List<List<Node>> net = new List<List<Node>>();
 
+    // used later to place network in the correct part of the creature's networks
     public string name;
     public int inLayer;
 

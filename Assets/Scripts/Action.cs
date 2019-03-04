@@ -17,15 +17,15 @@ public abstract class Action
     public int age; // not currently in use
 
     
-    public abstract void perform(Creature creature);
+    public abstract void perform(Creature creature, Ecosystem eco);
 
     /// <summary>
     /// Performs the action, and spends creatures time and resources
     /// </summary>
-    public void performWrapper(Creature c)
+    public void performWrapper(Creature c, Ecosystem e)
     {
         spendTimeAndResources(c);
-        perform(c);
+        perform(c, e);
     }
 
     public Action()

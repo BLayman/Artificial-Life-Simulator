@@ -26,7 +26,7 @@ public class ConsumeFromLand : Action
     /// <summary>
     /// Accesses land via neighborIndex, and attemps to consume resource.
     /// </summary>
-    public override void perform(Creature creature)
+    public override void perform(Creature creature, Ecosystem eco)
     {
         Land land = creature.neighborLands[neighborIndex];
         if (!land.isDummy)

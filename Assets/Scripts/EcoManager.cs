@@ -45,15 +45,15 @@ public class EcoManager
         ecoCreator.setCommBits(4);
         ecoCreator.setDistinctPhenotypeNum(32);
         ecoCreator.setTimeUnitsPerTurn(10);
-        ecoCreator.setRenewInterval(100);
+        ecoCreator.setRenewInterval(50);
 
         // create and save resources
         LandResourceEditor lre = ecoCreator.addResource("grass");
         lre.setAmountOfResource(100);
         lre.setMaxAmt(150);
         lre.setAmtConsumedPerTime(10);
-        lre.setProportionExtracted(.5f);
-        lre.setRenewalAmt(1f);
+        lre.setProportionExtracted(.2f);
+        lre.setRenewalAmt(2f);
 
         ecoCreator.saveResource();
         /*
@@ -72,7 +72,7 @@ public class EcoManager
         ecoCreator.createMap();
         // max size ~ 320 X 320 (100,000 cells)
         // TODO: account for asymetric maps
-        ecoCreator.mapEditor.generateMap(500, 500);
+        ecoCreator.mapEditor.generateMap(200, 200);
         ecoCreator.mapEditor.addLERPXResource("grass", 1f);
         //ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
         ecoCreator.saveEditedMap(); // saves to tentative map
@@ -97,8 +97,8 @@ public class EcoManager
         cc.setSpecies("cat");
         cc.setPhenotype(3);
         cc.setTurnTime(10);
-        cc.setMaxHealth(100);
-        cc.setInitialHealth(70);
+        cc.setMaxHealth(1000);
+        cc.setInitialHealth(700);
         cc.setActionClearInterval(3);
         cc.setActionClearSize(10);
 
@@ -114,7 +114,7 @@ public class EcoManager
         resourceCreator.setLevel(50);
         resourceCreator.setHealthGain(1);
         resourceCreator.setHealthGainThreshold(90);
-        resourceCreator.setDeficiencyHealthDrain(5);
+        resourceCreator.setDeficiencyHealthDrain(10);
         resourceCreator.setDeficiencyThreshold(20);
         resourceCreator.setBaseUsage(1);
 
@@ -156,6 +156,20 @@ public class EcoManager
         cle.setPriority(1);
         cle.setTimeCost(10);
         cle.addResourceCost("grass", 1);
+        cc.saveAction();
+
+        // add default abilities for consuming resources
+        cc.addDefaultResourceAbilities();
+        cc.saveAbilities();
+
+        // create action for consuming grass from neighbor to right
+        ActionEditor ae2 = cc.addAction();
+        ae2.setCreator(ActionCreatorType.reproduceCreator);
+        ReproActionEditor rae = (ReproActionEditor)ae2.getActionCreator();
+        rae.setName("reproduce");
+        rae.setPriority(1);
+        rae.setTimeCost(10);
+        rae.addResourceCost("grass", 20);
         cc.saveAction();
 
         // add default abilities for consuming resources
@@ -211,13 +225,14 @@ public class EcoManager
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
         /* Node net1 1,1 */
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
-        /* Node net1 1,0 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
-        /* Node net1 1,0 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
-
         /* Node net1 1,2 */
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
+        /* Node net1 1,3 */
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
+        /* Node net1 1,4 */
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
+        /* Node net1 1,5 */
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
 
         // user clicks save on network creator
         cc.saveNetwork();
@@ -347,6 +362,26 @@ public class EcoManager
         cc.saveNetwork();
 
 
+        /**** outNetReproduce ****/
+
+        // user adds a second network
+        NetworkEditor netCreatorOutRepro = cc.addNetwork();
+        // network added to second layer of networks
+        netCreatorOutRepro.setInLayer(1); // called by default with index of layer user clicked
+        netCreatorOutRepro.setName("outNetRepro");
+
+        /* Node outNet 0,0 */
+        makeInnerInputNode(netCreatorOutRepro, 0, "net1", 0, 5);
+
+        /* Node outNet 0,1 */
+        //makeInnerInputNode(netCreator5, 0, "net2", 0, 2);
+
+        /* Node outNet 1,0 */
+        makeOutputNode(netCreatorOutRepro, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
+        // user clicks save on creature creator
+        cc.saveNetwork();
+
+
         //cc.creature.printNetworks();
 
         // adds creature to list of founders
@@ -355,7 +390,6 @@ public class EcoManager
         ecoCreator.saveFoundersToSpecies();
 
 
-        
     }
 
 
@@ -372,7 +406,8 @@ public class EcoManager
         SpeciesPopulator populator = ecoCreator.populateSpecies("cat");
         populator.SetAbilityStandardDeviation(1);
         populator.setNetworkWeightStandardDeviation(.1f);
-        populator.populateRandom(500);
+        populator.setMaxPopSize(1000);
+        populator.populateRandom(200);
         ecoCreator.saveCurrentPopulation();
         ecoCreator.addCurrentPopulationToEcosystem();
         ecoCreator.addCurrentPopulationToMap();

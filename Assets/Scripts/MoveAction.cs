@@ -15,7 +15,7 @@ public class MoveAction : Action
         direction = dir;
     }
 
-    public override void perform(Creature creature)
+    public override void perform(Creature creature, Ecosystem eco)
     {
 
         // TODO: other directions

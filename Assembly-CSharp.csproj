@@ -116,6 +116,7 @@
     <Compile Include="Assets\Scripts\OutputNodeEditor.cs" />
     <Compile Include="Assets\Scripts\Population.cs" />
     <Compile Include="Assets\Scripts\ReproAction.cs" />
+    <Compile Include="Assets\Scripts\ReproActionEditor.cs" />
     <Compile Include="Assets\Scripts\ReproNetwork.cs" />
     <Compile Include="Assets\Scripts\ResourceEditor.cs" />
     <Compile Include="Assets\Scripts\ResourceStore.cs" />

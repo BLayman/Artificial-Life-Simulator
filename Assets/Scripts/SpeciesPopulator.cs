@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 /// <summary>
-/// Class for using a founder species to generate a population on the map.
+/// Class for using a founder species to generate a population on the map. Wraps Population class.
 /// </summary>
 public class SpeciesPopulator
 {
@@ -41,6 +41,11 @@ public class SpeciesPopulator
         population.weightStandardDev = standardDeviation;
     }
 
+    public void setMaxPopSize(int max)
+    {
+        population.maxSize = max;
+    }
+
     /// <summary>
     /// Creates set number of creatures, sets their locations randomly across the map (to be added later). Adds them to population variable.
     /// </summary>
@@ -57,10 +62,12 @@ public class SpeciesPopulator
             return;
         }
 
+
         for (int i = 0; i < size; i++)
         {
             Creature addedCreature = population.generateMember();
             population.creatures.Add(addedCreature);
+            population.size++;
             addedCreature.index = creatureNum;
             creatureNum++;
             addedCreature.addVariationToWeights(population.weightStandardDev);
