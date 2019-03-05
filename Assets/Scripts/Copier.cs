@@ -454,6 +454,7 @@ public class Copier
         {
             OutputNode oldNode2 = (OutputNode)oldNode;
             OutputNode newNode = oldNode2.clone();
+            newNode.resetRand();
             newNode.parentNet = parentNet;
             newNode.parentCreature = creatureCopy;
             newNode.action = getNewAction(oldNode2.action);

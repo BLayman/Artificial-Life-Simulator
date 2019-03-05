@@ -138,6 +138,11 @@ public class NonInputNode : Node
         return (float)((rand.NextDouble() * 2.0) - 1);
     }
 
+    public void resetRand()
+    {
+        rand = new System.Random(System.DateTime.Now.Millisecond);
+    }
+
     public object clone()
     {
         return this.MemberwiseClone();

@@ -18,13 +18,13 @@ public class EcoManager
         if (!called)
         {
             Debug.Log("**************************           Make eco called once?             **********************");
-            userCreatesEcosystem(300);
+            userCreatesEcosystem(1000);
             userAddsSpecies("cat", ColorChoice.blue, .01f);
-            userPopulatesSpecies("cat", .1f, 100, 300);
+            userPopulatesSpecies("cat", .1f, 300, 500);
             userAddsSpecies("dog", ColorChoice.green, .01f);
-            userPopulatesSpecies("dog", .1f, 100, 300);
+            userPopulatesSpecies("dog", .1f, 300, 500);
             userAddsSpecies("cow", ColorChoice.red, .01f);
-            userPopulatesSpecies("cow", .1f, 100, 300);
+            userPopulatesSpecies("cow", .1f, 300, 500);
         }
         else
         {
