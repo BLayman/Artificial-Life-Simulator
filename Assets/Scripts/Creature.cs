@@ -42,6 +42,8 @@ public class Creature
     /// </summary>
     public float remainingTurnTime;
 
+    public float mutationStandardDeviation;
+
     public float fullTurnTime;
     /// <summary>
     /// The number of layers of Networks

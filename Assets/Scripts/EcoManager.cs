@@ -101,6 +101,7 @@ public class EcoManager
         cc.setInitialHealth(700);
         cc.setActionClearInterval(3);
         cc.setActionClearSize(10);
+        cc.setMutationStandardDeviation(1f);
 
         // add resource for the creature to store
         ResourceEditor resourceCreator = cc.addResource();
@@ -405,7 +406,7 @@ public class EcoManager
     {
         SpeciesPopulator populator = ecoCreator.populateSpecies("cat");
         populator.SetAbilityStandardDeviation(1);
-        populator.setNetworkWeightStandardDeviation(.1f);
+        populator.setNetworkWeightStandardDeviation(1f);
         populator.setMaxPopSize(1000);
         populator.populateRandom(200);
         ecoCreator.saveCurrentPopulation();

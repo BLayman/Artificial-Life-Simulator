@@ -32,7 +32,7 @@ public class ReproAction : Action
             Creature childCreature = Copier.getCreatureChild(creature);
             setPosition(creature.position, childLoc, childCreature.position);
             childCreature.updateNeighbors();
-            childCreature.addVariationToWeights(parentPop.weightStandardDev);
+            childCreature.addVariationToWeights(creature.mutationStandardDeviation);
             creature.neighborLands[childLoc].creatureOn = childCreature;
             parentPop.offspring.Add(childCreature);
             parentPop.size++;

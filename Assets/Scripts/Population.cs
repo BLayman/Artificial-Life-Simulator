@@ -16,8 +16,10 @@ public class Population
     public Creature founder;
     public float weightStandardDev;
     public float abilityStandardDev;
+    public float mutationStandardDev;
     public int size = 0;
     public int maxSize = 1000;
+    
 
     public Creature generateMember()
     {

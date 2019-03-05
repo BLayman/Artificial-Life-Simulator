@@ -114,6 +114,14 @@ public class CreatureEditor
     }
 
     /// <summary>
+    /// Sets the amount of deviation added to the weights during reproduction
+    /// </summary>
+    public void setMutationStandardDeviation(float deviation)
+    {
+        creature.mutationStandardDeviation = deviation;
+    }
+
+    /// <summary>
     /// Sets the amount of time alloted per turn.
     /// </summary>
     public void setTurnTime(float time)
