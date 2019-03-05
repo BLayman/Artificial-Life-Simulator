@@ -21,6 +21,7 @@ public class Creature
     public System.Random rand; // used for action probabilites
     public System.Random rand2; // used for selecting actions from network
     int count;
+    public Color color; // color displayed on map
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum

@@ -163,13 +163,15 @@ public class Ecosystem
                         }
                     }
                 }
+
             }
         }
 
         Debug.Log("age: " + age);
-        Debug.Log("pop size: " + populations["cat"].size);
+        Debug.Log("cat pop size: " + populations["cat"].size);
+        Debug.Log("dog pop size: " + populations["dog"].size);
         // assuming user has set timeSteps to be 1 million or less
-        if(age > int.MaxValue - 1000001)
+        if (age > int.MaxValue - 1000001)
         {
             Debug.Log("reseting ecosystem age");
             age = 0;
@@ -214,7 +216,7 @@ public class Ecosystem
             {
                 if (map[x][y].creatureIsOn())
                 {
-                    colors[y * map.Count + x] = creatureColor;
+                    colors[y * map.Count + x] = map[x][y].creatureOn.color;
                 }
                 else
                 {

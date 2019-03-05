@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+public enum ColorChoice {red,green,blue};
+
 /// <remarks>API for creature class. Stored by EcosystemCreator.</remarks>
 public class CreatureEditor
 {
@@ -75,6 +77,26 @@ public class CreatureEditor
     public void setInitialHealth(float initialHealth)
     {
         creature.health = initialHealth;
+    }
+
+    public void setColor(ColorChoice c)
+    {
+        Color color = new Color(1, 0, 1); // default
+        switch (c)
+        {
+            case ColorChoice.red:
+                color = new Color(1,0,0);
+                break;
+            case ColorChoice.green:
+                color = new Color(0,1,0);
+                break;
+            case ColorChoice.blue:
+                color = new Color(0,0,1);
+                break;
+            default:
+                break;
+        }
+        creature.color = color;
     }
 
 

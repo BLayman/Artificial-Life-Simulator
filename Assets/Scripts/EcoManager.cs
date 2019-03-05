@@ -18,9 +18,13 @@ public class EcoManager
         if (!called)
         {
             Debug.Log("**************************           Make eco called once?             **********************");
-            userCreatesEcosystem();
-            userAddsSpecies();
-            userPopulatesSpecies();
+            userCreatesEcosystem(300);
+            userAddsSpecies("cat", ColorChoice.blue, .01f);
+            userPopulatesSpecies("cat", .1f, 100, 300);
+            userAddsSpecies("dog", ColorChoice.green, .01f);
+            userPopulatesSpecies("dog", .1f, 100, 300);
+            userAddsSpecies("cow", ColorChoice.red, .01f);
+            userPopulatesSpecies("cow", .1f, 100, 300);
         }
         else
         {
@@ -29,13 +33,14 @@ public class EcoManager
     }
 
 
+
     /*
      * set ecosystem parameters,
      * create resources,
      * create map,
      * add resource to map
      * */
-    public void userCreatesEcosystem()
+    public void userCreatesEcosystem(int mapWidth)
     {
         ecosystem = new Ecosystem();
 
@@ -72,7 +77,7 @@ public class EcoManager
         ecoCreator.createMap();
         // max size ~ 320 X 320 (100,000 cells)
         // TODO: account for asymetric maps
-        ecoCreator.mapEditor.generateMap(200, 200);
+        ecoCreator.mapEditor.generateMap(mapWidth, mapWidth);
         ecoCreator.mapEditor.addLERPXResource("grass", 1f);
         //ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
         ecoCreator.saveEditedMap(); // saves to tentative map
@@ -88,20 +93,21 @@ public class EcoManager
      * add resource to node, 
      * save creature to founder creatures dict and species dict
      */
-    public void userAddsSpecies()
+    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation)
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
 
         // user edits:
-        cc.setSpecies("cat");
+        cc.setSpecies(name);
         cc.setPhenotype(3);
         cc.setTurnTime(10);
         cc.setMaxHealth(1000);
         cc.setInitialHealth(700);
         cc.setActionClearInterval(3);
         cc.setActionClearSize(10);
-        cc.setMutationStandardDeviation(1f);
+        cc.setMutationStandardDeviation(mutationDeviation);
+        cc.setColor(color);
 
         // add resource for the creature to store
         ResourceEditor resourceCreator = cc.addResource();
@@ -402,13 +408,13 @@ public class EcoManager
      * saves population and adds it to list of populations
      * adds population to map, and saves map
      * */
-    public void userPopulatesSpecies()
+    public void userPopulatesSpecies(string name, float populationDeviation, int popSize, int maxPopSize)
     {
-        SpeciesPopulator populator = ecoCreator.populateSpecies("cat");
+        SpeciesPopulator populator = ecoCreator.populateSpecies(name);
         populator.SetAbilityStandardDeviation(1);
-        populator.setNetworkWeightStandardDeviation(1f);
-        populator.setMaxPopSize(1000);
-        populator.populateRandom(200);
+        populator.setNetworkWeightStandardDeviation(populationDeviation);
+        populator.setMaxPopSize(maxPopSize);
+        populator.populateRandom(popSize);
         ecoCreator.saveCurrentPopulation();
         ecoCreator.addCurrentPopulationToEcosystem();
         ecoCreator.addCurrentPopulationToMap();
