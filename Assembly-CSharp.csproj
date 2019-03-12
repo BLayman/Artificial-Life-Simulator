@@ -86,7 +86,7 @@
     <Compile Include="Assets\Scripts\EcoManager.cs" />
     <Compile Include="Assets\Scripts\EcoMenuBehav.cs" />
     <Compile Include="Assets\Scripts\EcoMenuTester.cs" />
-    <Compile Include="Assets\Scripts\Ecosystem.cs" />
+    <Compile Include="Assets\Scripts\EcoSystem.cs" />
     <Compile Include="Assets\Scripts\EcosystemEditor.cs" />
     <Compile Include="Assets\Scripts\EcosystemGetter.cs" />
     <Compile Include="Assets\Scripts\EmptyActivBehavior.cs" />
