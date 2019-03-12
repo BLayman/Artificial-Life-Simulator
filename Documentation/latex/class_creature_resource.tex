@@ -1,0 +1,133 @@
+\hypertarget{class_creature_resource}{}\section{Creature\+Resource Class Reference}
+\label{class_creature_resource}\index{Creature\+Resource@{Creature\+Resource}}
+
+
+Resource stored by a creature, and how that resource effects the creature.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_creature_resource_ae5678920b5302ad56650bdaec0fde5e5}{health\+Update}} (\mbox{\hyperlink{class_creature}{Creature}} creature)
+\begin{DoxyCompactList}\small\item\em Update creature health according to resource level. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_creature_resource}{Creature\+Resource}} \mbox{\hyperlink{class_creature_resource_a994286201a611ddfada1fced56e427e7}{get\+Shallow\+Copy}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_creature_resource_a1d8ce8cdf8414b708970f1e3c6742715}{deficiency\+Threshold}}
+\begin{DoxyCompactList}\small\item\em Threshold below which resource causes health damage. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_creature_resource_a3d2bf29f213887c3d85882ab71bf941c}{deficiency\+Health\+Drain}}
+\begin{DoxyCompactList}\small\item\em Amount of health drain from deficiency in one time step. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_creature_resource_a588a6af5013d944441028c859ab6cabe}{current\+Level}}
+\begin{DoxyCompactList}\small\item\em Amount of the resource currently stored. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_creature_resource_a6aaa2e2cde79ab61cbf3683eccc2abff}{health\+Gain}}
+\begin{DoxyCompactList}\small\item\em Amount of health gained when resource is adequate. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_creature_resource_a2c4cc459420f7200685c9f0978a63116}{health\+Gain\+Threshold}}
+\begin{DoxyCompactList}\small\item\em Threshold above which health is gained. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_creature_resource_ac971dcddb000d950d2bfe414e4a5ca7b}{max\+Level}}
+\item 
+float \mbox{\hyperlink{class_creature_resource_a6ed5ee9d74de65191323bd6bfd5764e5}{base\+Usage}}
+\item 
+string \mbox{\hyperlink{class_creature_resource_a4653faf953fa8384caf57e2b47893d3a}{name}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Resource stored by a creature, and how that resource effects the creature. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_creature_resource_a994286201a611ddfada1fced56e427e7}\label{class_creature_resource_a994286201a611ddfada1fced56e427e7}} 
+\index{Creature\+Resource@{Creature\+Resource}!get\+Shallow\+Copy@{get\+Shallow\+Copy}}
+\index{get\+Shallow\+Copy@{get\+Shallow\+Copy}!Creature\+Resource@{Creature\+Resource}}
+\subsubsection{\texorpdfstring{get\+Shallow\+Copy()}{getShallowCopy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_creature_resource}{Creature\+Resource}} Creature\+Resource.\+get\+Shallow\+Copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_resource_ae5678920b5302ad56650bdaec0fde5e5}\label{class_creature_resource_ae5678920b5302ad56650bdaec0fde5e5}} 
+\index{Creature\+Resource@{Creature\+Resource}!health\+Update@{health\+Update}}
+\index{health\+Update@{health\+Update}!Creature\+Resource@{Creature\+Resource}}
+\subsubsection{\texorpdfstring{health\+Update()}{healthUpdate()}}
+{\footnotesize\ttfamily void Creature\+Resource.\+health\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{creature }\end{DoxyParamCaption})}
+
+
+
+Update creature health according to resource level. 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_creature_resource_a6ed5ee9d74de65191323bd6bfd5764e5}\label{class_creature_resource_a6ed5ee9d74de65191323bd6bfd5764e5}} 
+\index{Creature\+Resource@{Creature\+Resource}!base\+Usage@{base\+Usage}}
+\index{base\+Usage@{base\+Usage}!Creature\+Resource@{Creature\+Resource}}
+\subsubsection{\texorpdfstring{base\+Usage}{baseUsage}}
+{\footnotesize\ttfamily float Creature\+Resource.\+base\+Usage}
+
+\mbox{\Hypertarget{class_creature_resource_a588a6af5013d944441028c859ab6cabe}\label{class_creature_resource_a588a6af5013d944441028c859ab6cabe}} 
+\index{Creature\+Resource@{Creature\+Resource}!current\+Level@{current\+Level}}
+\index{current\+Level@{current\+Level}!Creature\+Resource@{Creature\+Resource}}
+\subsubsection{\texorpdfstring{current\+Level}{currentLevel}}
+{\footnotesize\ttfamily float Creature\+Resource.\+current\+Level}
+
+
+
+Amount of the resource currently stored. 
+
+\mbox{\Hypertarget{class_creature_resource_a3d2bf29f213887c3d85882ab71bf941c}\label{class_creature_resource_a3d2bf29f213887c3d85882ab71bf941c}} 
+\index{Creature\+Resource@{Creature\+Resource}!deficiency\+Health\+Drain@{deficiency\+Health\+Drain}}
+\index{deficiency\+Health\+Drain@{deficiency\+Health\+Drain}!Creature\+Resource@{Creature\+Resource}}
+\subsubsection{\texorpdfstring{deficiency\+Health\+Drain}{deficiencyHealthDrain}}
+{\footnotesize\ttfamily float Creature\+Resource.\+deficiency\+Health\+Drain}
+
+
+
+Amount of health drain from deficiency in one time step. 
+
+\mbox{\Hypertarget{class_creature_resource_a1d8ce8cdf8414b708970f1e3c6742715}\label{class_creature_resource_a1d8ce8cdf8414b708970f1e3c6742715}} 
+\index{Creature\+Resource@{Creature\+Resource}!deficiency\+Threshold@{deficiency\+Threshold}}
+\index{deficiency\+Threshold@{deficiency\+Threshold}!Creature\+Resource@{Creature\+Resource}}
+\subsubsection{\texorpdfstring{deficiency\+Threshold}{deficiencyThreshold}}
+{\footnotesize\ttfamily float Creature\+Resource.\+deficiency\+Threshold}
+
+
+
+Threshold below which resource causes health damage. 
+
+\mbox{\Hypertarget{class_creature_resource_a6aaa2e2cde79ab61cbf3683eccc2abff}\label{class_creature_resource_a6aaa2e2cde79ab61cbf3683eccc2abff}} 
+\index{Creature\+Resource@{Creature\+Resource}!health\+Gain@{health\+Gain}}
+\index{health\+Gain@{health\+Gain}!Creature\+Resource@{Creature\+Resource}}
+\subsubsection{\texorpdfstring{health\+Gain}{healthGain}}
+{\footnotesize\ttfamily float Creature\+Resource.\+health\+Gain}
+
+
+
+Amount of health gained when resource is adequate. 
+
+\mbox{\Hypertarget{class_creature_resource_a2c4cc459420f7200685c9f0978a63116}\label{class_creature_resource_a2c4cc459420f7200685c9f0978a63116}} 
+\index{Creature\+Resource@{Creature\+Resource}!health\+Gain\+Threshold@{health\+Gain\+Threshold}}
+\index{health\+Gain\+Threshold@{health\+Gain\+Threshold}!Creature\+Resource@{Creature\+Resource}}
+\subsubsection{\texorpdfstring{health\+Gain\+Threshold}{healthGainThreshold}}
+{\footnotesize\ttfamily float Creature\+Resource.\+health\+Gain\+Threshold}
+
+
+
+Threshold above which health is gained. 
+
+\mbox{\Hypertarget{class_creature_resource_ac971dcddb000d950d2bfe414e4a5ca7b}\label{class_creature_resource_ac971dcddb000d950d2bfe414e4a5ca7b}} 
+\index{Creature\+Resource@{Creature\+Resource}!max\+Level@{max\+Level}}
+\index{max\+Level@{max\+Level}!Creature\+Resource@{Creature\+Resource}}
+\subsubsection{\texorpdfstring{max\+Level}{maxLevel}}
+{\footnotesize\ttfamily float Creature\+Resource.\+max\+Level}
+
+\mbox{\Hypertarget{class_creature_resource_a4653faf953fa8384caf57e2b47893d3a}\label{class_creature_resource_a4653faf953fa8384caf57e2b47893d3a}} 
+\index{Creature\+Resource@{Creature\+Resource}!name@{name}}
+\index{name@{name}!Creature\+Resource@{Creature\+Resource}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Creature\+Resource.\+name}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_creature_resource_8cs}{Creature\+Resource.\+cs}}\end{DoxyCompactItemize}

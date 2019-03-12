@@ -1,0 +1,221 @@
+\hypertarget{class_ecosystem}{}\section{Ecosystem Class Reference}
+\label{class_ecosystem}\index{Ecosystem@{Ecosystem}}
+
+
+This class contains all of the data about the state of the ecosystem including the populations, species templates, map, resources, and other general parameters.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_ecosystem_a2102d1d4f820c9913cccaf917df9879f}{run\+System}} (int time\+Steps)
+\begin{DoxyCompactList}\small\item\em run ecosystem for a certain number of time steps \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ecosystem_a3d2b11c7fe8b6699eee72fc77fa02d1d}{add\+Species}} (\mbox{\hyperlink{class_creature}{Creature}} creature)
+\begin{DoxyCompactList}\small\item\em creates new species in dictionary based on given creature \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ecosystem_a887af939d4bf8e17701dc1a4af875e7f}{create\+Population}} (int size, \mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_ecosystem_a3cd0f83955fce1623326b58666a6a9af}{species}})
+\item 
+\mbox{\hyperlink{class_ecosystem}{Ecosystem}} \mbox{\hyperlink{class_ecosystem_a0e082a9b5c6e6df9cbe20da26d1d6968}{shallow\+Copy}} ()
+\item 
+void \mbox{\hyperlink{class_ecosystem_a24d493832618dbfccb61812635c2fbdf}{update\+Texture}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_ecosystem_ae22d1e48d43e1818705c5eda52785f63}{name}} = \char`\"{}default\char`\"{}
+\item 
+Dictionary$<$ string, \mbox{\hyperlink{class_population}{Population}} $>$ \mbox{\hyperlink{class_ecosystem_a8b17a9aebf9aa2619901cd3fe96c8d66}{populations}} = new Dictionary$<$string, \mbox{\hyperlink{class_population}{Population}}$>$()
+\begin{DoxyCompactList}\small\item\em Lists of creatures, organized by species name in dictionary. \end{DoxyCompactList}\item 
+List$<$ List$<$ \mbox{\hyperlink{class_land}{Land}} $>$ $>$ \mbox{\hyperlink{class_ecosystem_a03ba5f09ddfade51a644ec7f47349607}{map}} = new List$<$List$<$\mbox{\hyperlink{class_land}{Land}}$>$$>$()
+\begin{DoxyCompactList}\small\item\em map of land spaces \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_ecosystem_a3aa718428180c38f22774b736fb4b9d3}{length}}
+\begin{DoxyCompactList}\small\item\em Length of map \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_ecosystem_acd13711fb3bdc5aafb4d70ccd069d385}{width}}
+\begin{DoxyCompactList}\small\item\em Width of map \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_ecosystem_a7371b349e3dcf7f22a0ab2cab61e48c8}{comm\+Bits}}
+\item 
+Dictionary$<$ string, \mbox{\hyperlink{class_creature}{Creature}} $>$ \mbox{\hyperlink{class_ecosystem_a3cd0f83955fce1623326b58666a6a9af}{species}} = new Dictionary$<$string, \mbox{\hyperlink{class_creature}{Creature}}$>$()
+\begin{DoxyCompactList}\small\item\em Pool of species (proto-\/creatures) that can be used to generate new populations. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_ecosystem_a7347a85ab0ac674a837ceefa63a3173c}{distict\+Phenotypes}}
+\begin{DoxyCompactList}\small\item\em Number of possible phenotypes a creature can take on. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_ecosystem_af1e2bcc0bc7096df0c326953813ca94d}{ability\+Points\+Per\+Creature}}
+\begin{DoxyCompactList}\small\item\em Max number of ability points that each creature has to assign. \end{DoxyCompactList}\item 
+Dictionary$<$ string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}} $>$ \mbox{\hyperlink{class_ecosystem_adf42dce1cde9124f1ffb5b729967fc1a}{resource\+Options}} = new Dictionary$<$string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}}$>$()
+\begin{DoxyCompactList}\small\item\em List of resources that can be stored on Lands. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_ecosystem_a4eb1b47f3b158dc533ad6c2983b2f481}{time\+Units\+Per\+Turn}}
+\item 
+int \mbox{\hyperlink{class_ecosystem_aad967a97d8bc9886ad764bdb3c85a83a}{age}} = 0
+\item 
+int \mbox{\hyperlink{class_ecosystem_a6856c0300199a5acee23d631f18f4a46}{renew\+Interval\+Steps}} = 10
+\item 
+Color \mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_ecosystem_ac2539557244002ab323da79ca480e281}{colors}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class contains all of the data about the state of the ecosystem including the populations, species templates, map, resources, and other general parameters. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ecosystem_a3d2b11c7fe8b6699eee72fc77fa02d1d}\label{class_ecosystem_a3d2b11c7fe8b6699eee72fc77fa02d1d}} 
+\index{Ecosystem@{Ecosystem}!add\+Species@{add\+Species}}
+\index{add\+Species@{add\+Species}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{add\+Species()}{addSpecies()}}
+{\footnotesize\ttfamily void Ecosystem.\+add\+Species (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{creature }\end{DoxyParamCaption})}
+
+
+
+creates new species in dictionary based on given creature 
+
+\mbox{\Hypertarget{class_ecosystem_a887af939d4bf8e17701dc1a4af875e7f}\label{class_ecosystem_a887af939d4bf8e17701dc1a4af875e7f}} 
+\index{Ecosystem@{Ecosystem}!create\+Population@{create\+Population}}
+\index{create\+Population@{create\+Population}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{create\+Population()}{createPopulation()}}
+{\footnotesize\ttfamily void Ecosystem.\+create\+Population (\begin{DoxyParamCaption}\item[{int}]{size,  }\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{species }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ecosystem_a2102d1d4f820c9913cccaf917df9879f}\label{class_ecosystem_a2102d1d4f820c9913cccaf917df9879f}} 
+\index{Ecosystem@{Ecosystem}!run\+System@{run\+System}}
+\index{run\+System@{run\+System}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{run\+System()}{runSystem()}}
+{\footnotesize\ttfamily void Ecosystem.\+run\+System (\begin{DoxyParamCaption}\item[{int}]{time\+Steps }\end{DoxyParamCaption})}
+
+
+
+run ecosystem for a certain number of time steps 
+
+\mbox{\Hypertarget{class_ecosystem_a0e082a9b5c6e6df9cbe20da26d1d6968}\label{class_ecosystem_a0e082a9b5c6e6df9cbe20da26d1d6968}} 
+\index{Ecosystem@{Ecosystem}!shallow\+Copy@{shallow\+Copy}}
+\index{shallow\+Copy@{shallow\+Copy}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{shallow\+Copy()}{shallowCopy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_ecosystem}{Ecosystem}} Ecosystem.\+shallow\+Copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ecosystem_a24d493832618dbfccb61812635c2fbdf}\label{class_ecosystem_a24d493832618dbfccb61812635c2fbdf}} 
+\index{Ecosystem@{Ecosystem}!update\+Texture@{update\+Texture}}
+\index{update\+Texture@{update\+Texture}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{update\+Texture()}{updateTexture()}}
+{\footnotesize\ttfamily void Ecosystem.\+update\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Texture stuff below 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_ecosystem_af1e2bcc0bc7096df0c326953813ca94d}\label{class_ecosystem_af1e2bcc0bc7096df0c326953813ca94d}} 
+\index{Ecosystem@{Ecosystem}!ability\+Points\+Per\+Creature@{ability\+Points\+Per\+Creature}}
+\index{ability\+Points\+Per\+Creature@{ability\+Points\+Per\+Creature}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{ability\+Points\+Per\+Creature}{abilityPointsPerCreature}}
+{\footnotesize\ttfamily int Ecosystem.\+ability\+Points\+Per\+Creature}
+
+
+
+Max number of ability points that each creature has to assign. 
+
+\mbox{\Hypertarget{class_ecosystem_aad967a97d8bc9886ad764bdb3c85a83a}\label{class_ecosystem_aad967a97d8bc9886ad764bdb3c85a83a}} 
+\index{Ecosystem@{Ecosystem}!age@{age}}
+\index{age@{age}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{age}{age}}
+{\footnotesize\ttfamily int Ecosystem.\+age = 0}
+
+\mbox{\Hypertarget{class_ecosystem_ac2539557244002ab323da79ca480e281}\label{class_ecosystem_ac2539557244002ab323da79ca480e281}} 
+\index{Ecosystem@{Ecosystem}!colors@{colors}}
+\index{colors@{colors}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{colors}{colors}}
+{\footnotesize\ttfamily Color \mbox{[}$\,$\mbox{]} Ecosystem.\+colors}
+
+\mbox{\Hypertarget{class_ecosystem_a7371b349e3dcf7f22a0ab2cab61e48c8}\label{class_ecosystem_a7371b349e3dcf7f22a0ab2cab61e48c8}} 
+\index{Ecosystem@{Ecosystem}!comm\+Bits@{comm\+Bits}}
+\index{comm\+Bits@{comm\+Bits}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{comm\+Bits}{commBits}}
+{\footnotesize\ttfamily int Ecosystem.\+comm\+Bits}
+
+\mbox{\Hypertarget{class_ecosystem_a7347a85ab0ac674a837ceefa63a3173c}\label{class_ecosystem_a7347a85ab0ac674a837ceefa63a3173c}} 
+\index{Ecosystem@{Ecosystem}!distict\+Phenotypes@{distict\+Phenotypes}}
+\index{distict\+Phenotypes@{distict\+Phenotypes}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{distict\+Phenotypes}{distictPhenotypes}}
+{\footnotesize\ttfamily int Ecosystem.\+distict\+Phenotypes}
+
+
+
+Number of possible phenotypes a creature can take on. 
+
+\mbox{\Hypertarget{class_ecosystem_a3aa718428180c38f22774b736fb4b9d3}\label{class_ecosystem_a3aa718428180c38f22774b736fb4b9d3}} 
+\index{Ecosystem@{Ecosystem}!length@{length}}
+\index{length@{length}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{length}{length}}
+{\footnotesize\ttfamily int Ecosystem.\+length}
+
+
+
+Length of map 
+
+\mbox{\Hypertarget{class_ecosystem_a03ba5f09ddfade51a644ec7f47349607}\label{class_ecosystem_a03ba5f09ddfade51a644ec7f47349607}} 
+\index{Ecosystem@{Ecosystem}!map@{map}}
+\index{map@{map}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{map}{map}}
+{\footnotesize\ttfamily List$<$List$<$\mbox{\hyperlink{class_land}{Land}}$>$ $>$ Ecosystem.\+map = new List$<$List$<$\mbox{\hyperlink{class_land}{Land}}$>$$>$()}
+
+
+
+map of land spaces 
+
+\mbox{\Hypertarget{class_ecosystem_ae22d1e48d43e1818705c5eda52785f63}\label{class_ecosystem_ae22d1e48d43e1818705c5eda52785f63}} 
+\index{Ecosystem@{Ecosystem}!name@{name}}
+\index{name@{name}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Ecosystem.\+name = \char`\"{}default\char`\"{}}
+
+\mbox{\Hypertarget{class_ecosystem_a8b17a9aebf9aa2619901cd3fe96c8d66}\label{class_ecosystem_a8b17a9aebf9aa2619901cd3fe96c8d66}} 
+\index{Ecosystem@{Ecosystem}!populations@{populations}}
+\index{populations@{populations}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{populations}{populations}}
+{\footnotesize\ttfamily Dictionary$<$string, \mbox{\hyperlink{class_population}{Population}}$>$ Ecosystem.\+populations = new Dictionary$<$string, \mbox{\hyperlink{class_population}{Population}}$>$()}
+
+
+
+Lists of creatures, organized by species name in dictionary. 
+
+\mbox{\Hypertarget{class_ecosystem_a6856c0300199a5acee23d631f18f4a46}\label{class_ecosystem_a6856c0300199a5acee23d631f18f4a46}} 
+\index{Ecosystem@{Ecosystem}!renew\+Interval\+Steps@{renew\+Interval\+Steps}}
+\index{renew\+Interval\+Steps@{renew\+Interval\+Steps}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{renew\+Interval\+Steps}{renewIntervalSteps}}
+{\footnotesize\ttfamily int Ecosystem.\+renew\+Interval\+Steps = 10}
+
+\mbox{\Hypertarget{class_ecosystem_adf42dce1cde9124f1ffb5b729967fc1a}\label{class_ecosystem_adf42dce1cde9124f1ffb5b729967fc1a}} 
+\index{Ecosystem@{Ecosystem}!resource\+Options@{resource\+Options}}
+\index{resource\+Options@{resource\+Options}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{resource\+Options}{resourceOptions}}
+{\footnotesize\ttfamily Dictionary$<$string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}}$>$ Ecosystem.\+resource\+Options = new Dictionary$<$string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}}$>$()}
+
+
+
+List of resources that can be stored on Lands. 
+
+\mbox{\Hypertarget{class_ecosystem_a3cd0f83955fce1623326b58666a6a9af}\label{class_ecosystem_a3cd0f83955fce1623326b58666a6a9af}} 
+\index{Ecosystem@{Ecosystem}!species@{species}}
+\index{species@{species}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{species}{species}}
+{\footnotesize\ttfamily Dictionary$<$string, \mbox{\hyperlink{class_creature}{Creature}}$>$ Ecosystem.\+species = new Dictionary$<$string, \mbox{\hyperlink{class_creature}{Creature}}$>$()}
+
+
+
+Pool of species (proto-\/creatures) that can be used to generate new populations. 
+
+\mbox{\Hypertarget{class_ecosystem_a4eb1b47f3b158dc533ad6c2983b2f481}\label{class_ecosystem_a4eb1b47f3b158dc533ad6c2983b2f481}} 
+\index{Ecosystem@{Ecosystem}!time\+Units\+Per\+Turn@{time\+Units\+Per\+Turn}}
+\index{time\+Units\+Per\+Turn@{time\+Units\+Per\+Turn}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{time\+Units\+Per\+Turn}{timeUnitsPerTurn}}
+{\footnotesize\ttfamily float Ecosystem.\+time\+Units\+Per\+Turn}
+
+\mbox{\Hypertarget{class_ecosystem_acd13711fb3bdc5aafb4d70ccd069d385}\label{class_ecosystem_acd13711fb3bdc5aafb4d70ccd069d385}} 
+\index{Ecosystem@{Ecosystem}!width@{width}}
+\index{width@{width}!Ecosystem@{Ecosystem}}
+\subsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily int Ecosystem.\+width}
+
+
+
+Width of map 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_ecosystem_8cs}{Ecosystem.\+cs}}\end{DoxyCompactItemize}

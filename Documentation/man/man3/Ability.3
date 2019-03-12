@@ -1,0 +1,67 @@
+.TH "Ability" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Ability \- Modifies creature's ability to consume certain resources or attack certain species\&. Each creature has a specific number of ability points to assign to different abilities\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAbility\fP \fBgetShallowCopy\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "string \fBtarget\fP"
+.br
+.RI "Name of resource to consume, or species to attack or defend against\&. "
+.ti -1c
+.RI "\fBabilityType\fP \fBtype\fP"
+.br
+.RI "Groups ability into a category for the user to see "
+.ti -1c
+.RI "int \fBlevel\fP"
+.br
+.RI "Strength of ability\&. (multiplier to increase chances) "
+.ti -1c
+.RI "List< \fBBoostRequirement\fP > \fBboostOptions\fP = new List<\fBBoostRequirement\fP>()"
+.br
+.RI "NOT IN USE\&. List of BoostRequirements that could give this ability a boost if the resource needs are met\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Modifies creature's ability to consume certain resources or attack certain species\&. Each creature has a specific number of ability points to assign to different abilities\&. 
+
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBAbility\fP Ability\&.getShallowCopy ()"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "List<\fBBoostRequirement\fP> Ability\&.boostOptions = new List<\fBBoostRequirement\fP>()"
+
+.PP
+NOT IN USE\&. List of BoostRequirements that could give this ability a boost if the resource needs are met\&. 
+.SS "int Ability\&.level"
+
+.PP
+Strength of ability\&. (multiplier to increase chances) 
+.SS "string Ability\&.target"
+
+.PP
+Name of resource to consume, or species to attack or defend against\&. 
+.SS "\fBabilityType\fP Ability\&.type"
+
+.PP
+Groups ability into a category for the user to see 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

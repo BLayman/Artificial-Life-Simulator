@@ -1,0 +1,251 @@
+.TH "EcosystemEditor" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EcosystemEditor \- API for alterning ecosystem\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEcosystemEditor\fP (\fBEcosystem\fP _ecosystem)"
+.br
+.ti -1c
+.RI "void \fBsetAbilityPointsPerCreature\fP (int abilityPoints)"
+.br
+.ti -1c
+.RI "void \fBsetCommBits\fP (int numBits)"
+.br
+.ti -1c
+.RI "void \fBsetDistinctPhenotypeNum\fP (int numPhenotypes)"
+.br
+.ti -1c
+.RI "void \fBsetTimeUnitsPerTurn\fP (int timeUnits)"
+.br
+.ti -1c
+.RI "void \fBsetName\fP (string name)"
+.br
+.RI "sets name of dictionary to use when loading "
+.ti -1c
+.RI "void \fBsetRenewInterval\fP (int renewSteps)"
+.br
+.RI "sets number of steps between each renewal of resources\&. "
+.ti -1c
+.RI "\fBLandResourceEditor\fP \fBaddResource\fP (string resourceName)"
+.br
+.RI "
+.PP
+\fBParameters:\fP
+.RS 4
+\fIresourceName\fP Name of resource: used as key in dictionary\&.
+.RE
+.PP
+"
+.ti -1c
+.RI "\fBCreatureEditor\fP \fBaddCreature\fP ()"
+.br
+.RI "\fBCreature\fP new creature "
+.ti -1c
+.RI "\fBSpeciesPopulator\fP \fBpopulateSpecies\fP (string founderSpecies)"
+.br
+.ti -1c
+.RI "\fBMapEditor\fP \fBcreateMap\fP ()"
+.br
+.ti -1c
+.RI "void \fBsaveResource\fP ()"
+.br
+.RI "Saves a newly created resource to resourceOptions\&. "
+.ti -1c
+.RI "void \fBsaveResourceOptions\fP ()"
+.br
+.RI "Saves created resourceOptions to ecosystems actual resource options\&. "
+.ti -1c
+.RI "void \fBaddToFounders\fP ()"
+.br
+.ti -1c
+.RI "void \fBsaveFoundersToSpecies\fP ()"
+.br
+.RI "Saves founders to ecosystem's species dictionary\&. "
+.ti -1c
+.RI "void \fBsaveCurrentPopulation\fP ()"
+.br
+.RI "Saves population creatured by speciesPopulator to currentPopulation\&. "
+.ti -1c
+.RI "void \fBsaveEditedMap\fP ()"
+.br
+.ti -1c
+.RI "void \fBsaveMap\fP ()"
+.br
+.RI "Saves tentative map to actual ecosystem map\&. "
+.ti -1c
+.RI "void \fBaddCurrentPopulationToEcosystem\fP ()"
+.br
+.RI "Saves currentPopulation to ecosystem\&.populations "
+.ti -1c
+.RI "void \fBaddCurrentPopulationToMap\fP ()"
+.br
+.RI "adds a population to the tentative map\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBEcosystem\fP \fBecosystem\fP"
+.br
+.RI "\fBEcosystem\fP to be created\&. "
+.ti -1c
+.RI "\fBLandResourceEditor\fP \fBlre\fP"
+.br
+.RI "Creates Lands to add to EcoSystem resourceOptions\&. "
+.ti -1c
+.RI "\fBMapEditor\fP \fBmapEditor\fP"
+.br
+.RI "Edits map of lands\&. "
+.ti -1c
+.RI "\fBCreatureEditor\fP \fBcreatureCreator\fP"
+.br
+.RI "For generating founder creatures\&. "
+.ti -1c
+.RI "Dictionary< string, \fBCreature\fP > \fBfounderCreatures\fP"
+.br
+.RI "Creatures used to generate populations\&. "
+.ti -1c
+.RI "\fBSpeciesPopulator\fP \fBspeciesPopulator\fP"
+.br
+.RI "Users founder and map to populate species\&. "
+.ti -1c
+.RI "Dictionary< string, List< \fBCreature\fP > > \fBpopulations\fP = new Dictionary<string, List<\fBCreature\fP>>()"
+.br
+.RI "Stores populations of creatures\&. "
+.ti -1c
+.RI "Dictionary< string, \fBResourceStore\fP > \fBtentativeResourceOptions\fP"
+.br
+.RI "Tenative list of resource options\&. "
+.ti -1c
+.RI "List< List< \fBLand\fP > > \fBtentativeMap\fP = new List<List<\fBLand\fP>>()"
+.br
+.RI "Tentative map to be saved to ecosystem map when saveMap is called\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+API for alterning ecosystem\&. 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "EcosystemEditor\&.EcosystemEditor (\fBEcosystem\fP _ecosystem)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBCreatureEditor\fP EcosystemEditor\&.addCreature ()"
+
+.PP
+\fBCreature\fP new creature 
+.SS "void EcosystemEditor\&.addCurrentPopulationToEcosystem ()"
+
+.PP
+Saves currentPopulation to ecosystem\&.populations 
+.SS "void EcosystemEditor\&.addCurrentPopulationToMap ()"
+
+.PP
+adds a population to the tentative map\&. 
+.SS "\fBLandResourceEditor\fP EcosystemEditor\&.addResource (string resourceName)"
+
+.PP
+
+.PP
+\fBParameters:\fP
+.RS 4
+\fIresourceName\fP Name of resource: used as key in dictionary\&.
+.RE
+.PP
+
+.SS "void EcosystemEditor\&.addToFounders ()"
+
+.SS "\fBMapEditor\fP EcosystemEditor\&.createMap ()"
+
+.SS "\fBSpeciesPopulator\fP EcosystemEditor\&.populateSpecies (string founderSpecies)"
+
+.SS "void EcosystemEditor\&.saveCurrentPopulation ()"
+
+.PP
+Saves population creatured by speciesPopulator to currentPopulation\&. 
+.SS "void EcosystemEditor\&.saveEditedMap ()"
+
+.SS "void EcosystemEditor\&.saveFoundersToSpecies ()"
+
+.PP
+Saves founders to ecosystem's species dictionary\&. 
+.SS "void EcosystemEditor\&.saveMap ()"
+
+.PP
+Saves tentative map to actual ecosystem map\&. 
+.SS "void EcosystemEditor\&.saveResource ()"
+
+.PP
+Saves a newly created resource to resourceOptions\&. 
+.SS "void EcosystemEditor\&.saveResourceOptions ()"
+
+.PP
+Saves created resourceOptions to ecosystems actual resource options\&. 
+.SS "void EcosystemEditor\&.setAbilityPointsPerCreature (int abilityPoints)"
+
+.SS "void EcosystemEditor\&.setCommBits (int numBits)"
+
+.SS "void EcosystemEditor\&.setDistinctPhenotypeNum (int numPhenotypes)"
+
+.SS "void EcosystemEditor\&.setName (string name)"
+
+.PP
+sets name of dictionary to use when loading 
+.SS "void EcosystemEditor\&.setRenewInterval (int renewSteps)"
+
+.PP
+sets number of steps between each renewal of resources\&. 
+.SS "void EcosystemEditor\&.setTimeUnitsPerTurn (int timeUnits)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBCreatureEditor\fP EcosystemEditor\&.creatureCreator"
+
+.PP
+For generating founder creatures\&. 
+.SS "\fBEcosystem\fP EcosystemEditor\&.ecosystem"
+
+.PP
+\fBEcosystem\fP to be created\&. 
+.SS "Dictionary<string, \fBCreature\fP> EcosystemEditor\&.founderCreatures"
+
+.PP
+Creatures used to generate populations\&. 
+.SS "\fBLandResourceEditor\fP EcosystemEditor\&.lre"
+
+.PP
+Creates Lands to add to EcoSystem resourceOptions\&. 
+.SS "\fBMapEditor\fP EcosystemEditor\&.mapEditor"
+
+.PP
+Edits map of lands\&. 
+.SS "Dictionary<string, List<\fBCreature\fP> > EcosystemEditor\&.populations = new Dictionary<string, List<\fBCreature\fP>>()"
+
+.PP
+Stores populations of creatures\&. 
+.SS "\fBSpeciesPopulator\fP EcosystemEditor\&.speciesPopulator"
+
+.PP
+Users founder and map to populate species\&. 
+.SS "List<List<\fBLand\fP> > EcosystemEditor\&.tentativeMap = new List<List<\fBLand\fP>>()"
+
+.PP
+Tentative map to be saved to ecosystem map when saveMap is called\&. 
+.SS "Dictionary<string, \fBResourceStore\fP> EcosystemEditor\&.tentativeResourceOptions"
+
+.PP
+Tenative list of resource options\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

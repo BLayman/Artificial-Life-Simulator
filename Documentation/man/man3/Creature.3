@@ -1,0 +1,385 @@
+.TH "Creature" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Creature \- Class for storing all data about a creature/agent, including its neural networks, queued actions, stored resources, location and other parameters\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCreature\fP (int maxAbilityPoints)"
+.br
+.ti -1c
+.RI "\fBCreature\fP ()"
+.br
+.ti -1c
+.RI "void \fBstartTurn\fP (\fBEcosystem\fP eco)"
+.br
+.RI "Starts creatures turn "
+.ti -1c
+.RI "void \fBaddActionsToQueue\fP ()"
+.br
+.ti -1c
+.RI "void \fBprintNetworks\fP ()"
+.br
+.ti -1c
+.RI "void \fBupdateNets\fP ()"
+.br
+.ti -1c
+.RI "void \fBupdateNeighbors\fP ()"
+.br
+.RI "Called at beginning of each turn\&. "
+.ti -1c
+.RI "void \fBstoreCurrentNetState\fP ()"
+.br
+.RI "Stores the state of networks in prevNetStates "
+.ti -1c
+.RI "void \fBperformActions\fP (\fBEcosystem\fP eco)"
+.br
+.RI "Performs whatever actions in the queue it can\&. "
+.ti -1c
+.RI "void \fBresourceHealthUpdate\fP ()"
+.br
+.RI "Updates health based on resource levels\&. "
+.ti -1c
+.RI "bool \fBisDead\fP ()"
+.br
+.RI "Returns true if health is 0 or below, also deletes creature from map if dead "
+.ti -1c
+.RI "void \fBaddCommNetworks\fP ()"
+.br
+.RI "Creates and adds comm networks to the first layer of 'networks' using commSignals, and commNetTemplate "
+.ti -1c
+.RI "int \fBaddNetwork\fP (int layerOfNets)"
+.br
+.RI "Adds network in given layer, and returns index of added layer\&. "
+.ti -1c
+.RI "void \fBsendCommOutputSignals\fP ()"
+.br
+.RI "Iterates over neightbors and passes comm signals to them\&. "
+.ti -1c
+.RI "void \fBprocessReproRequests\fP ()"
+.br
+.RI "process requests for reproduction\&. "
+.ti -1c
+.RI "void \fBreproduce\fP (\fBCreature\fP mate)"
+.br
+.RI "Reproduce with neighboring creature\&. "
+.ti -1c
+.RI "void \fBaddVariationToWeights\fP (float standardDev)"
+.br
+.ti -1c
+.RI "\fBCreature\fP \fBgetShallowCopy\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBCreature\fP \fBfounder\fP"
+.br
+.ti -1c
+.RI "\fBLand\fP \fBdummyLand\fP = new \fBLand\fP()"
+.br
+.ti -1c
+.RI "int \fBindex\fP"
+.br
+.ti -1c
+.RI "System\&.Random \fBrand\fP"
+.br
+.ti -1c
+.RI "System\&.Random \fBrand2\fP"
+.br
+.ti -1c
+.RI "Color \fBcolor\fP"
+.br
+.ti -1c
+.RI "List< Dictionary< string, \fBNetwork\fP > > \fBnetworks\fP = new List<Dictionary<string, \fBNetwork\fP>>()"
+.br
+.RI "Stores all networks into layers of lists of Networks\&. 10 Maximum "
+.ti -1c
+.RI "string \fBspecies\fP = 'default'"
+.br
+.ti -1c
+.RI "List< List< \fBLand\fP > > \fBmap\fP"
+.br
+.ti -1c
+.RI "int [] \fBposition\fP = new int[2]"
+.br
+.ti -1c
+.RI "\fBLand\fP [] \fBneighborLands\fP = new \fBLand\fP[5]"
+.br
+.RI "Neighbors are up, down, left, and right\&. Index 0 for land creature is on\&. "
+.ti -1c
+.RI "SimplePriorityQueue< \fBAction\fP > \fBactionQueue\fP = new SimplePriorityQueue<\fBAction\fP>()"
+.br
+.RI "Actions to be taken by creature "
+.ti -1c
+.RI "float \fBremainingTurnTime\fP"
+.br
+.RI "Time remaining in turn: limits number of actions that can be taken in one turn\&. "
+.ti -1c
+.RI "float \fBmutationStandardDeviation\fP"
+.br
+.ti -1c
+.RI "float \fBfullTurnTime\fP"
+.br
+.ti -1c
+.RI "int \fBnumLayersOfNets\fP"
+.br
+.RI "The number of layers of Networks "
+.ti -1c
+.RI "List< \fBCommSignal\fP > \fBoutputCommSignals\fP = new List<\fBCommSignal\fP>()"
+.br
+.RI "stores an array of booleans for each neighbor for communication\&. e\&.g\&. 8 neighbors by 3 bools each\&. "
+.ti -1c
+.RI "List< List< Dictionary< string, \fBNetwork\fP > > > \fBprevNetStates\fP = new List<List<Dictionary<string, \fBNetwork\fP>>>()"
+.br
+.RI "Not implememted yet\&. Stores the state of the networks for previous time steps\&. The front of the queue is the most recent network state (t-1)\&. "
+.ti -1c
+.RI "Dictionary< string, \fBAbility\fP > \fBabilities\fP = new Dictionary<string, \fBAbility\fP>()"
+.br
+.RI "Designates which resources or species the creature has an advantage in consuming, attacking, or defending against\&. Certain combinations of excess resources can boost abilities\&. "
+.ti -1c
+.RI "float \fBhealth\fP"
+.br
+.RI "When health reaches zero, creature dies\&. "
+.ti -1c
+.RI "Dictionary< string, \fBCreatureResource\fP > \fBstoredResources\fP = new Dictionary<string, \fBCreatureResource\fP>()"
+.br
+.ti -1c
+.RI "bool [] \fBphenotype\fP"
+.br
+.RI "Outward appearance of creature: for communication purposes\&. Typically 4 bits\&. "
+.ti -1c
+.RI "List< \fBCommSignal\fP > \fBinputCommList\fP = new List<\fBCommSignal\fP>()"
+.br
+.RI "A list of incoming comm signals\&. "
+.ti -1c
+.RI "\fBCommNetwork\fP \fBcommInNetTemplate\fP = new \fBCommNetwork\fP()"
+.br
+.RI "A comm network will be created for each \fBCommSignal\fP in commList, and added to the first layer of networks in 'networks' (the input layer)\&. "
+.ti -1c
+.RI "\fBCommNetwork\fP \fBcommOutNetTemplate\fP = new \fBCommNetwork\fP()"
+.br
+.RI "A template for the network that generates actions towards a specific neighbor in response to comm input from that neighbor\&. "
+.ti -1c
+.RI "float \fBmaxHealth\fP"
+.br
+.RI "Maximum health that creature can attain\&. "
+.ti -1c
+.RI "int \fBremainingAbilityPoints\fP"
+.br
+.ti -1c
+.RI "List< \fBReproAction\fP > \fBreproductionRequests\fP = new List<\fBReproAction\fP>()"
+.br
+.RI "List of requests for reproduction from neighbors\&. "
+.ti -1c
+.RI "\fBReproNetwork\fP \fBreproductionDeciderNetwork\fP = new \fBReproNetwork\fP()"
+.br
+.RI "\fBNetwork\fP to decide whether a creature should reproduce with a neightbor\&. "
+.ti -1c
+.RI "Dictionary< string, \fBAction\fP > \fBactionPool\fP = new Dictionary<string, \fBAction\fP>()"
+.br
+.RI "Dictionary of potential actions that the creature can take if assigned to an output node\&. "
+.ti -1c
+.RI "int \fBactionClearInterval\fP = 5"
+.br
+.ti -1c
+.RI "int \fBactionClearCount\fP = 0"
+.br
+.ti -1c
+.RI "int \fBactionClearSize\fP = 10"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class for storing all data about a creature/agent, including its neural networks, queued actions, stored resources, location and other parameters\&. 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Creature\&.Creature (int maxAbilityPoints)"
+
+.SS "Creature\&.Creature ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void Creature\&.addActionsToQueue ()"
+
+.SS "void Creature\&.addCommNetworks ()"
+
+.PP
+Creates and adds comm networks to the first layer of 'networks' using commSignals, and commNetTemplate 
+.SS "int Creature\&.addNetwork (int layerOfNets)"
+
+.PP
+Adds network in given layer, and returns index of added layer\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlayerOfNets\fP 0 to add to input nets, 1 to add to output nets\&.
+.RE
+.PP
+
+.SS "void Creature\&.addVariationToWeights (float standardDev)"
+
+.SS "\fBCreature\fP Creature\&.getShallowCopy ()"
+
+.SS "bool Creature\&.isDead ()"
+
+.PP
+Returns true if health is 0 or below, also deletes creature from map if dead 
+.SS "void Creature\&.performActions (\fBEcosystem\fP eco)"
+
+.PP
+Performs whatever actions in the queue it can\&. TODO: allow for a certain number of actions to carry over, otherwise, only the first action put on the queue will be run each turn, which is biased: based on the order of the output nodes in the final layer one solution: sort the order in which output nodes are added to queue
+.SS "void Creature\&.printNetworks ()"
+
+.SS "void Creature\&.processReproRequests ()"
+
+.PP
+process requests for reproduction\&. 
+.SS "void Creature\&.reproduce (\fBCreature\fP mate)"
+
+.PP
+Reproduce with neighboring creature\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImate\fP \fBCreature\fP to reproduce with\&.
+.RE
+.PP
+
+.SS "void Creature\&.resourceHealthUpdate ()"
+
+.PP
+Updates health based on resource levels\&. 
+.SS "void Creature\&.sendCommOutputSignals ()"
+
+.PP
+Iterates over neightbors and passes comm signals to them\&. 
+.SS "void Creature\&.startTurn (\fBEcosystem\fP eco)"
+
+.PP
+Starts creatures turn 
+.SS "void Creature\&.storeCurrentNetState ()"
+
+.PP
+Stores the state of networks in prevNetStates 
+.SS "void Creature\&.updateNeighbors ()"
+
+.PP
+Called at beginning of each turn\&. 
+.SS "void Creature\&.updateNets ()"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "Dictionary<string, \fBAbility\fP> Creature\&.abilities = new Dictionary<string, \fBAbility\fP>()"
+
+.PP
+Designates which resources or species the creature has an advantage in consuming, attacking, or defending against\&. Certain combinations of excess resources can boost abilities\&. 
+.SS "int Creature\&.actionClearCount = 0"
+
+.SS "int Creature\&.actionClearInterval = 5"
+
+.SS "int Creature\&.actionClearSize = 10"
+
+.SS "Dictionary<string, \fBAction\fP> Creature\&.actionPool = new Dictionary<string, \fBAction\fP>()"
+
+.PP
+Dictionary of potential actions that the creature can take if assigned to an output node\&. 
+.SS "SimplePriorityQueue<\fBAction\fP> Creature\&.actionQueue = new SimplePriorityQueue<\fBAction\fP>()"
+
+.PP
+Actions to be taken by creature 
+.SS "Color Creature\&.color"
+
+.SS "\fBCommNetwork\fP Creature\&.commInNetTemplate = new \fBCommNetwork\fP()"
+
+.PP
+A comm network will be created for each \fBCommSignal\fP in commList, and added to the first layer of networks in 'networks' (the input layer)\&. 
+.SS "\fBCommNetwork\fP Creature\&.commOutNetTemplate = new \fBCommNetwork\fP()"
+
+.PP
+A template for the network that generates actions towards a specific neighbor in response to comm input from that neighbor\&. 
+.SS "\fBLand\fP Creature\&.dummyLand = new \fBLand\fP()"
+
+.SS "\fBCreature\fP Creature\&.founder"
+
+.SS "float Creature\&.fullTurnTime"
+
+.SS "float Creature\&.health"
+
+.PP
+When health reaches zero, creature dies\&. 
+.SS "int Creature\&.index"
+
+.SS "List<\fBCommSignal\fP> Creature\&.inputCommList = new List<\fBCommSignal\fP>()"
+
+.PP
+A list of incoming comm signals\&. 
+.SS "List<List<\fBLand\fP> > Creature\&.map"
+
+.SS "float Creature\&.maxHealth"
+
+.PP
+Maximum health that creature can attain\&. 
+.SS "float Creature\&.mutationStandardDeviation"
+
+.SS "\fBLand\fP [] Creature\&.neighborLands = new \fBLand\fP[5]"
+
+.PP
+Neighbors are up, down, left, and right\&. Index 0 for land creature is on\&. 
+.SS "List<Dictionary<string, \fBNetwork\fP> > Creature\&.networks = new List<Dictionary<string, \fBNetwork\fP>>()"
+
+.PP
+Stores all networks into layers of lists of Networks\&. 10 Maximum 
+.SS "int Creature\&.numLayersOfNets"
+
+.PP
+The number of layers of Networks 
+.SS "List<\fBCommSignal\fP> Creature\&.outputCommSignals = new List<\fBCommSignal\fP>()"
+
+.PP
+stores an array of booleans for each neighbor for communication\&. e\&.g\&. 8 neighbors by 3 bools each\&. 
+.SS "bool [] Creature\&.phenotype"
+
+.PP
+Outward appearance of creature: for communication purposes\&. Typically 4 bits\&. 
+.SS "int [] Creature\&.position = new int[2]"
+
+.SS "List<List<Dictionary<string, \fBNetwork\fP> > > Creature\&.prevNetStates = new List<List<Dictionary<string, \fBNetwork\fP>>>()"
+
+.PP
+Not implememted yet\&. Stores the state of the networks for previous time steps\&. The front of the queue is the most recent network state (t-1)\&. 
+.SS "System\&.Random Creature\&.rand"
+
+.SS "System\&.Random Creature\&.rand2"
+
+.SS "int Creature\&.remainingAbilityPoints"
+
+.SS "float Creature\&.remainingTurnTime"
+
+.PP
+Time remaining in turn: limits number of actions that can be taken in one turn\&. 
+.SS "\fBReproNetwork\fP Creature\&.reproductionDeciderNetwork = new \fBReproNetwork\fP()"
+
+.PP
+\fBNetwork\fP to decide whether a creature should reproduce with a neightbor\&. 
+.SS "List<\fBReproAction\fP> Creature\&.reproductionRequests = new List<\fBReproAction\fP>()"
+
+.PP
+List of requests for reproduction from neighbors\&. 
+.SS "string Creature\&.species = 'default'"
+
+.SS "Dictionary<string, \fBCreatureResource\fP> Creature\&.storedResources = new Dictionary<string, \fBCreatureResource\fP>()"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

@@ -1,0 +1,236 @@
+\hypertarget{class_non_input_node}{}\section{Non\+Input\+Node Class Reference}
+\label{class_non_input_node}\index{Non\+Input\+Node@{Non\+Input\+Node}}
+
+
+Encompasses hidden nodes (which use this class directly) and output nodes (which use the \mbox{\hyperlink{class_output_node}{Output\+Node}} class).  
+
+
+Inheritance diagram for Non\+Input\+Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_non_input_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_non_input_node_a3facbd688b6a772cf1259420238255c8}{Non\+Input\+Node}} ()
+\item 
+\mbox{\hyperlink{class_non_input_node_a2805394951d04ebab266877c5723132b}{Non\+Input\+Node}} (\mbox{\hyperlink{class_network}{Network}} \mbox{\hyperlink{class_non_input_node_ac79615aee9a2b85aa9c31f98451da37a}{parent\+Net}}, int \mbox{\hyperlink{class_non_input_node_a5614e202d11fbe3ca55ec88e6e803cb8}{layer}})
+\item 
+override void \mbox{\hyperlink{class_non_input_node_a075d0278c5500f0d2455a3d8eeb04f55}{update\+Value}} ()
+\begin{DoxyCompactList}\small\item\em Updates node value \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_non_input_node_a458bad6de5c7d5e82d85998d456be3ec}{append\+Prev\+Node}} (\mbox{\hyperlink{class_node}{Node}} new\+Node)
+\item 
+void \mbox{\hyperlink{class_non_input_node_a2318ad48afb979bc655d67b4f7f6dca2}{remove\+Prev\+Node}} (int index)
+\item 
+void \mbox{\hyperlink{class_non_input_node_a7c1d1f3d6b86394ade501797f1733472}{set\+Prev\+Node\+Weight}} (int index, float weight)
+\item 
+float \mbox{\hyperlink{class_non_input_node_ab6f9a79605853e0e4aec8c7034345aa0}{perform\+Activ\+Behavior}} (float input)
+\begin{DoxyCompactList}\small\item\em Calls activation function of activ\+Behavior. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_non_input_node_a44be3d4caebaa9f9fc8d6c9659bdb674}{set\+Activ\+Behavior}} (\mbox{\hyperlink{interface_activation_behavior}{Activation\+Behavior}} behavior)
+\begin{DoxyCompactList}\small\item\em Sets a new activation behavior, thus altering the activation function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_non_input_node_a703986aac246746c6269522d7a03e13e}{reset\+All\+Previous\+Nodes}} ()
+\begin{DoxyCompactList}\small\item\em Sets prev\+Nodes to include all nodes in previous layer. Resets nodes and weights \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_non_input_node_abd2e854cfd7c52bc91bd8a14df972a79}{assign\+Prev\+Nodes}} ()
+\item 
+float \mbox{\hyperlink{class_non_input_node_a8368526477286eba442737fa000fef16}{generate\+New\+Random\+Weight}} ()
+\item 
+void \mbox{\hyperlink{class_non_input_node_a7d9c289b2c8d666a3d9ae69e1f536cfa}{reset\+Rand}} ()
+\item 
+object \mbox{\hyperlink{class_non_input_node_a4aadcefa9b95598c8d8c985e0e690041}{clone}} ()
+\item 
+void \mbox{\hyperlink{class_non_input_node_a67de84779fee28a0db7b5b10b84f9db6}{print\+Inputs\+And\+Weights}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ int $>$ \mbox{\hyperlink{class_non_input_node_a8bbea5d8230dac63fd88d987e5eb41a7}{taboo\+Prev\+Node\+Indicies}} = new List$<$int$>$()
+\item 
+List$<$ \mbox{\hyperlink{class_node}{Node}} $>$ \mbox{\hyperlink{class_non_input_node_ad4f05e0609cd43ea03edfd9937f4e3b9}{prev\+Nodes}} = new List$<$\mbox{\hyperlink{class_node}{Node}}$>$()
+\item 
+List$<$ float $>$ \mbox{\hyperlink{class_non_input_node_a4c2ddced3cd3b741bbf5253dd69661d2}{weights}} = new List$<$float$>$()
+\begin{DoxyCompactList}\small\item\em List of weights to be multiplied by previous node values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_network}{Network}} \mbox{\hyperlink{class_non_input_node_ac79615aee9a2b85aa9c31f98451da37a}{parent\+Net}}
+\item 
+int \mbox{\hyperlink{class_non_input_node_a5614e202d11fbe3ca55ec88e6e803cb8}{layer}}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_activation_behavior}{Activation\+Behavior}} \mbox{\hyperlink{class_non_input_node_ab33f9a611488e5dfcb697941736f5cfc}{activ\+Behavior}}
+\begin{DoxyCompactList}\small\item\em Holds an object that carries out an activation function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Encompasses hidden nodes (which use this class directly) and output nodes (which use the \mbox{\hyperlink{class_output_node}{Output\+Node}} class). 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_non_input_node_a3facbd688b6a772cf1259420238255c8}\label{class_non_input_node_a3facbd688b6a772cf1259420238255c8}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!Non\+Input\+Node@{Non\+Input\+Node}}
+\index{Non\+Input\+Node@{Non\+Input\+Node}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{Non\+Input\+Node()}{NonInputNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Non\+Input\+Node.\+Non\+Input\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_non_input_node_a2805394951d04ebab266877c5723132b}\label{class_non_input_node_a2805394951d04ebab266877c5723132b}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!Non\+Input\+Node@{Non\+Input\+Node}}
+\index{Non\+Input\+Node@{Non\+Input\+Node}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{Non\+Input\+Node()}{NonInputNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Non\+Input\+Node.\+Non\+Input\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_network}{Network}}}]{parent\+Net,  }\item[{int}]{layer }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_non_input_node_a458bad6de5c7d5e82d85998d456be3ec}\label{class_non_input_node_a458bad6de5c7d5e82d85998d456be3ec}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!append\+Prev\+Node@{append\+Prev\+Node}}
+\index{append\+Prev\+Node@{append\+Prev\+Node}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{append\+Prev\+Node()}{appendPrevNode()}}
+{\footnotesize\ttfamily void Non\+Input\+Node.\+append\+Prev\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}}}]{new\+Node }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_non_input_node_abd2e854cfd7c52bc91bd8a14df972a79}\label{class_non_input_node_abd2e854cfd7c52bc91bd8a14df972a79}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!assign\+Prev\+Nodes@{assign\+Prev\+Nodes}}
+\index{assign\+Prev\+Nodes@{assign\+Prev\+Nodes}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{assign\+Prev\+Nodes()}{assignPrevNodes()}}
+{\footnotesize\ttfamily void Non\+Input\+Node.\+assign\+Prev\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_non_input_node_a4aadcefa9b95598c8d8c985e0e690041}\label{class_non_input_node_a4aadcefa9b95598c8d8c985e0e690041}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!clone@{clone}}
+\index{clone@{clone}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily object Non\+Input\+Node.\+clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_non_input_node_a8368526477286eba442737fa000fef16}\label{class_non_input_node_a8368526477286eba442737fa000fef16}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!generate\+New\+Random\+Weight@{generate\+New\+Random\+Weight}}
+\index{generate\+New\+Random\+Weight@{generate\+New\+Random\+Weight}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{generate\+New\+Random\+Weight()}{generateNewRandomWeight()}}
+{\footnotesize\ttfamily float Non\+Input\+Node.\+generate\+New\+Random\+Weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_non_input_node_ab6f9a79605853e0e4aec8c7034345aa0}\label{class_non_input_node_ab6f9a79605853e0e4aec8c7034345aa0}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!perform\+Activ\+Behavior@{perform\+Activ\+Behavior}}
+\index{perform\+Activ\+Behavior@{perform\+Activ\+Behavior}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{perform\+Activ\+Behavior()}{performActivBehavior()}}
+{\footnotesize\ttfamily float Non\+Input\+Node.\+perform\+Activ\+Behavior (\begin{DoxyParamCaption}\item[{float}]{input }\end{DoxyParamCaption})}
+
+
+
+Calls activation function of activ\+Behavior. 
+
+\mbox{\Hypertarget{class_non_input_node_a67de84779fee28a0db7b5b10b84f9db6}\label{class_non_input_node_a67de84779fee28a0db7b5b10b84f9db6}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!print\+Inputs\+And\+Weights@{print\+Inputs\+And\+Weights}}
+\index{print\+Inputs\+And\+Weights@{print\+Inputs\+And\+Weights}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{print\+Inputs\+And\+Weights()}{printInputsAndWeights()}}
+{\footnotesize\ttfamily void Non\+Input\+Node.\+print\+Inputs\+And\+Weights (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_non_input_node_a2318ad48afb979bc655d67b4f7f6dca2}\label{class_non_input_node_a2318ad48afb979bc655d67b4f7f6dca2}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!remove\+Prev\+Node@{remove\+Prev\+Node}}
+\index{remove\+Prev\+Node@{remove\+Prev\+Node}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{remove\+Prev\+Node()}{removePrevNode()}}
+{\footnotesize\ttfamily void Non\+Input\+Node.\+remove\+Prev\+Node (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_non_input_node_a703986aac246746c6269522d7a03e13e}\label{class_non_input_node_a703986aac246746c6269522d7a03e13e}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!reset\+All\+Previous\+Nodes@{reset\+All\+Previous\+Nodes}}
+\index{reset\+All\+Previous\+Nodes@{reset\+All\+Previous\+Nodes}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{reset\+All\+Previous\+Nodes()}{resetAllPreviousNodes()}}
+{\footnotesize\ttfamily void Non\+Input\+Node.\+reset\+All\+Previous\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets prev\+Nodes to include all nodes in previous layer. Resets nodes and weights 
+
+\mbox{\Hypertarget{class_non_input_node_a7d9c289b2c8d666a3d9ae69e1f536cfa}\label{class_non_input_node_a7d9c289b2c8d666a3d9ae69e1f536cfa}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!reset\+Rand@{reset\+Rand}}
+\index{reset\+Rand@{reset\+Rand}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{reset\+Rand()}{resetRand()}}
+{\footnotesize\ttfamily void Non\+Input\+Node.\+reset\+Rand (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_non_input_node_a44be3d4caebaa9f9fc8d6c9659bdb674}\label{class_non_input_node_a44be3d4caebaa9f9fc8d6c9659bdb674}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!set\+Activ\+Behavior@{set\+Activ\+Behavior}}
+\index{set\+Activ\+Behavior@{set\+Activ\+Behavior}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{set\+Activ\+Behavior()}{setActivBehavior()}}
+{\footnotesize\ttfamily void Non\+Input\+Node.\+set\+Activ\+Behavior (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_activation_behavior}{Activation\+Behavior}}}]{behavior }\end{DoxyParamCaption})}
+
+
+
+Sets a new activation behavior, thus altering the activation function. 
+
+\mbox{\Hypertarget{class_non_input_node_a7c1d1f3d6b86394ade501797f1733472}\label{class_non_input_node_a7c1d1f3d6b86394ade501797f1733472}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!set\+Prev\+Node\+Weight@{set\+Prev\+Node\+Weight}}
+\index{set\+Prev\+Node\+Weight@{set\+Prev\+Node\+Weight}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{set\+Prev\+Node\+Weight()}{setPrevNodeWeight()}}
+{\footnotesize\ttfamily void Non\+Input\+Node.\+set\+Prev\+Node\+Weight (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{float}]{weight }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index of previous node.\\
+\hline
+{\em value} & Weight coming from previous node.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_non_input_node_a075d0278c5500f0d2455a3d8eeb04f55}\label{class_non_input_node_a075d0278c5500f0d2455a3d8eeb04f55}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily override void Non\+Input\+Node.\+update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Updates node value 
+
+
+
+Implements \mbox{\hyperlink{class_node_a85ebd0e36c25430570b94f923afd2a62}{Node}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_non_input_node_ab33f9a611488e5dfcb697941736f5cfc}\label{class_non_input_node_ab33f9a611488e5dfcb697941736f5cfc}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!activ\+Behavior@{activ\+Behavior}}
+\index{activ\+Behavior@{activ\+Behavior}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{activ\+Behavior}{activBehavior}}
+{\footnotesize\ttfamily \mbox{\hyperlink{interface_activation_behavior}{Activation\+Behavior}} Non\+Input\+Node.\+activ\+Behavior\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Holds an object that carries out an activation function. 
+
+\mbox{\Hypertarget{class_non_input_node_a5614e202d11fbe3ca55ec88e6e803cb8}\label{class_non_input_node_a5614e202d11fbe3ca55ec88e6e803cb8}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!layer@{layer}}
+\index{layer@{layer}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{layer}{layer}}
+{\footnotesize\ttfamily int Non\+Input\+Node.\+layer}
+
+\mbox{\Hypertarget{class_non_input_node_ac79615aee9a2b85aa9c31f98451da37a}\label{class_non_input_node_ac79615aee9a2b85aa9c31f98451da37a}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!parent\+Net@{parent\+Net}}
+\index{parent\+Net@{parent\+Net}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{parent\+Net}{parentNet}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_network}{Network}} Non\+Input\+Node.\+parent\+Net}
+
+\mbox{\Hypertarget{class_non_input_node_ad4f05e0609cd43ea03edfd9937f4e3b9}\label{class_non_input_node_ad4f05e0609cd43ea03edfd9937f4e3b9}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!prev\+Nodes@{prev\+Nodes}}
+\index{prev\+Nodes@{prev\+Nodes}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{prev\+Nodes}{prevNodes}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_node}{Node}}$>$ Non\+Input\+Node.\+prev\+Nodes = new List$<$\mbox{\hyperlink{class_node}{Node}}$>$()}
+
+\mbox{\Hypertarget{class_non_input_node_a8bbea5d8230dac63fd88d987e5eb41a7}\label{class_non_input_node_a8bbea5d8230dac63fd88d987e5eb41a7}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!taboo\+Prev\+Node\+Indicies@{taboo\+Prev\+Node\+Indicies}}
+\index{taboo\+Prev\+Node\+Indicies@{taboo\+Prev\+Node\+Indicies}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{taboo\+Prev\+Node\+Indicies}{tabooPrevNodeIndicies}}
+{\footnotesize\ttfamily List$<$int$>$ Non\+Input\+Node.\+taboo\+Prev\+Node\+Indicies = new List$<$int$>$()}
+
+\mbox{\Hypertarget{class_non_input_node_a4c2ddced3cd3b741bbf5253dd69661d2}\label{class_non_input_node_a4c2ddced3cd3b741bbf5253dd69661d2}} 
+\index{Non\+Input\+Node@{Non\+Input\+Node}!weights@{weights}}
+\index{weights@{weights}!Non\+Input\+Node@{Non\+Input\+Node}}
+\subsubsection{\texorpdfstring{weights}{weights}}
+{\footnotesize\ttfamily List$<$float$>$ Non\+Input\+Node.\+weights = new List$<$float$>$()}
+
+
+
+List of weights to be multiplied by previous node values. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_non_input_node_8cs}{Non\+Input\+Node.\+cs}}\end{DoxyCompactItemize}

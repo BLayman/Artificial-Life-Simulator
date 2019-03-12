@@ -1,0 +1,111 @@
+.TH "ResourceStore" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ResourceStore \- Basic unit of a resource to be stored in a \fBLand\fP object\&. \fBCreature\fP can attempt to consume this resource from the land\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBResourceStore\fP (string _name)"
+.br
+.ti -1c
+.RI "\fBResourceStore\fP \fBshallowCopy\fP ()"
+.br
+.RI "this returns a new instance of a resource store with shallow copies of all of the instance variables "
+.ti -1c
+.RI "float \fBattemptConsumption\fP (float timeDedicated, float creatureAbility, float cStorageSpace)"
+.br
+.RI "Resolves amount of resource consumed in given amount of time\&. "
+.ti -1c
+.RI "void \fBrenewResource\fP ()"
+.br
+.RI "Renews resource according to renewalAmt (called each time step)\&. "
+.ti -1c
+.RI "float \fBgetProportionStored\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "float \fBamountStored\fP"
+.br
+.RI "Amount of resource stored\&. "
+.ti -1c
+.RI "float \fBproportionExtracted\fP"
+.br
+.RI "Possible values: [0,1]\&. Proportion of the attempted amount that will be successfully extracted on one attempt\&. Modified by creature's extraction ability\&. "
+.ti -1c
+.RI "float \fBamountConsumedPerTimeUnit\fP"
+.br
+.RI "Amount of resource that can be taken by one action\&. "
+.ti -1c
+.RI "float \fBrenewalAmt\fP"
+.br
+.RI "Amount renewed on a renewal step\&. "
+.ti -1c
+.RI "string \fBname\fP"
+.br
+.ti -1c
+.RI "float \fBmaxAmount\fP"
+.br
+.RI "Maximum amount of resource that can be stored in this land location\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Basic unit of a resource to be stored in a \fBLand\fP object\&. \fBCreature\fP can attempt to consume this resource from the land\&. 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ResourceStore\&.ResourceStore (string _name)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "float ResourceStore\&.attemptConsumption (float timeDedicated, float creatureAbility, float cStorageSpace)"
+
+.PP
+Resolves amount of resource consumed in given amount of time\&. 
+.SS "float ResourceStore\&.getProportionStored ()"
+
+.SS "void ResourceStore\&.renewResource ()"
+
+.PP
+Renews resource according to renewalAmt (called each time step)\&. 
+.SS "\fBResourceStore\fP ResourceStore\&.shallowCopy ()"
+
+.PP
+this returns a new instance of a resource store with shallow copies of all of the instance variables 
+.SH "Member Data Documentation"
+.PP 
+.SS "float ResourceStore\&.amountConsumedPerTimeUnit"
+
+.PP
+Amount of resource that can be taken by one action\&. 
+.SS "float ResourceStore\&.amountStored"
+
+.PP
+Amount of resource stored\&. 
+.SS "float ResourceStore\&.maxAmount"
+
+.PP
+Maximum amount of resource that can be stored in this land location\&. 
+.SS "string ResourceStore\&.name"
+
+.SS "float ResourceStore\&.proportionExtracted"
+
+.PP
+Possible values: [0,1]\&. Proportion of the attempted amount that will be successfully extracted on one attempt\&. Modified by creature's extraction ability\&. 
+.SS "float ResourceStore\&.renewalAmt"
+
+.PP
+Amount renewed on a renewal step\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

@@ -1,0 +1,91 @@
+.TH "Action" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Action
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherited by \fBCommAction\fP, \fBConsumeFromLand\fP, \fBMoveAction\fP, and \fBReproAction\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "abstract void \fBperform\fP (\fBCreature\fP creature, \fBEcosystem\fP eco)"
+.br
+.ti -1c
+.RI "void \fBperformWrapper\fP (\fBCreature\fP c, \fBEcosystem\fP e)"
+.br
+.RI "Performs the action, and spends creatures time and resources "
+.ti -1c
+.RI "\fBAction\fP ()"
+.br
+.ti -1c
+.RI "bool \fBenoughResources\fP (\fBCreature\fP creature)"
+.br
+.ti -1c
+.RI "void \fBspendTimeAndResources\fP (\fBCreature\fP creature)"
+.br
+.ti -1c
+.RI "\fBAction\fP \fBgetShallowCopy\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "string \fBname\fP"
+.br
+.ti -1c
+.RI "int \fBpriority\fP"
+.br
+.ti -1c
+.RI "Dictionary< string, int > \fBresourceCosts\fP = new Dictionary<string, int>()"
+.br
+.RI "Stores which resources are spent, and the amount spent "
+.ti -1c
+.RI "float \fBtimeCost\fP"
+.br
+.ti -1c
+.RI "int \fBage\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Action\&.Action ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "bool Action\&.enoughResources (\fBCreature\fP creature)"
+
+.SS "\fBAction\fP Action\&.getShallowCopy ()"
+
+.SS "abstract void Action\&.perform (\fBCreature\fP creature, \fBEcosystem\fP eco)\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBConsumeFromLand\fP, \fBCommAction\fP, \fBMoveAction\fP, and \fBReproAction\fP\&.
+.SS "void Action\&.performWrapper (\fBCreature\fP c, \fBEcosystem\fP e)"
+
+.PP
+Performs the action, and spends creatures time and resources 
+.SS "void Action\&.spendTimeAndResources (\fBCreature\fP creature)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "int Action\&.age"
+
+.SS "string Action\&.name"
+
+.SS "int Action\&.priority"
+
+.SS "Dictionary<string, int> Action\&.resourceCosts = new Dictionary<string, int>()"
+
+.PP
+Stores which resources are spent, and the amount spent 
+.SS "float Action\&.timeCost"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

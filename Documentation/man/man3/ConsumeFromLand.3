@@ -1,0 +1,69 @@
+.TH "ConsumeFromLand" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ConsumeFromLand
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBAction\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBConsumeFromLand\fP ()"
+.br
+.ti -1c
+.RI "\fBConsumeFromLand\fP (int \fBneighborIndex\fP, string \fBresourceToConsume\fP)"
+.br
+.ti -1c
+.RI "override void \fBperform\fP (\fBCreature\fP creature, \fBEcosystem\fP eco)"
+.br
+.RI "Accesses land via neighborIndex, and attemps to consume resource\&. "
+.ti -1c
+.RI "System\&.Object \fBclone\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBneighborIndex\fP"
+.br
+.RI "Index of neighboring land to access\&. "
+.ti -1c
+.RI "string \fBresourceToConsume\fP"
+.br
+.RI "Name of resource to consume\&. "
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ConsumeFromLand\&.ConsumeFromLand ()"
+
+.SS "ConsumeFromLand\&.ConsumeFromLand (int neighborIndex, string resourceToConsume)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "System\&.Object ConsumeFromLand\&.clone ()"
+
+.SS "override void ConsumeFromLand\&.perform (\fBCreature\fP creature, \fBEcosystem\fP eco)\fC [virtual]\fP"
+
+.PP
+Accesses land via neighborIndex, and attemps to consume resource\&. 
+.PP
+Implements \fBAction\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "int ConsumeFromLand\&.neighborIndex"
+
+.PP
+Index of neighboring land to access\&. 
+.SS "string ConsumeFromLand\&.resourceToConsume"
+
+.PP
+Name of resource to consume\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

@@ -1,0 +1,94 @@
+.TH "Copier" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Copier
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBEcosystem\fP \fBgetEcosystemCopy\fP (\fBEcosystem\fP eco)"
+.br
+.ti -1c
+.RI "static float \fBnormRand\fP (float sd)"
+.br
+.ti -1c
+.RI "static \fBLand\fP \fBGetLandCopy\fP (\fBLand\fP land)"
+.br
+.ti -1c
+.RI "static \fBCreature\fP \fBgetCreatureChild\fP (\fBCreature\fP c)"
+.br
+.ti -1c
+.RI "static \fBCreature\fP \fBgetCreatureCopy\fP (\fBCreature\fP c)"
+.br
+.ti -1c
+.RI "static void \fBcopyCommList\fP (List< \fBCommSignal\fP > origList, List< \fBCommSignal\fP > copyList)"
+.br
+.ti -1c
+.RI "static void \fBcopyCreatureNetworks\fP (List< Dictionary< string, \fBNetwork\fP >> origNetworks, List< Dictionary< string, \fBNetwork\fP >> copyNetworks, \fBCreature\fP creatureCopy)"
+.br
+.ti -1c
+.RI "static \fBAbility\fP \fBgetNewAbility\fP (\fBAbility\fP oldAbility)"
+.br
+.ti -1c
+.RI "static \fBAction\fP \fBgetNewAction\fP (\fBAction\fP oldAction)"
+.br
+.ti -1c
+.RI "static \fBNode\fP \fBgetNewNode\fP (\fBNode\fP oldNode, \fBCreature\fP creatureCopy, \fBNetwork\fP parentNet)"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static System\&.Random \fBrand\fP = new System\&.Random()"
+.br
+.ti -1c
+.RI "static System\&.Random \fBseedGen\fP = new System\&.Random()"
+.br
+.ti -1c
+.RI "static int \fBseed\fP = 0"
+.br
+.ti -1c
+.RI "static int \fBcreatureNum\fP = 0"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "static void Copier\&.copyCommList (List< \fBCommSignal\fP > origList, List< \fBCommSignal\fP > copyList)\fC [static]\fP"
+
+.SS "static void Copier\&.copyCreatureNetworks (List< Dictionary< string, \fBNetwork\fP >> origNetworks, List< Dictionary< string, \fBNetwork\fP >> copyNetworks, \fBCreature\fP creatureCopy)\fC [static]\fP"
+
+.SS "static \fBCreature\fP Copier\&.getCreatureChild (\fBCreature\fP c)\fC [static]\fP"
+
+.SS "static \fBCreature\fP Copier\&.getCreatureCopy (\fBCreature\fP c)\fC [static]\fP"
+
+.SS "static \fBEcosystem\fP Copier\&.getEcosystemCopy (\fBEcosystem\fP eco)\fC [static]\fP"
+
+.SS "static \fBLand\fP Copier\&.GetLandCopy (\fBLand\fP land)\fC [static]\fP"
+
+.SS "static \fBAbility\fP Copier\&.getNewAbility (\fBAbility\fP oldAbility)\fC [static]\fP"
+
+.SS "static \fBAction\fP Copier\&.getNewAction (\fBAction\fP oldAction)\fC [static]\fP"
+
+.SS "static \fBNode\fP Copier\&.getNewNode (\fBNode\fP oldNode, \fBCreature\fP creatureCopy, \fBNetwork\fP parentNet)\fC [static]\fP"
+
+.SS "static float Copier\&.normRand (float sd)\fC [static]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "int Copier\&.creatureNum = 0\fC [static]\fP"
+
+.SS "System\&.Random Copier\&.rand = new System\&.Random()\fC [static]\fP"
+
+.SS "int Copier\&.seed = 0\fC [static]\fP"
+
+.SS "System\&.Random Copier\&.seedGen = new System\&.Random()\fC [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

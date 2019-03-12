@@ -1,0 +1,124 @@
+\hypertarget{class_sensory_input_node}{}\section{Sensory\+Input\+Node Class Reference}
+\label{class_sensory_input_node}\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+Inheritance diagram for Sensory\+Input\+Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sensory_input_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sensory_input_node_a45013c0e606dabbdeb51cdb12f56108d}{Sensory\+Input\+Node}} ()
+\item 
+\mbox{\hyperlink{class_sensory_input_node_a0af1e3930af4acd24155c7887fe38043}{Sensory\+Input\+Node}} (\mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_sensory_input_node_a2886b0729565781d8e27cbfe72726625}{creature}})
+\item 
+void \mbox{\hyperlink{class_sensory_input_node_a31e18eb14cbeb233c8097e53b9f6c896}{set\+Creature}} (\mbox{\hyperlink{class_creature}{Creature}} parent\+Creature)
+\item 
+float \mbox{\hyperlink{class_sensory_input_node_a32f65537039b935585d204770eba89eb}{sense\+Val\+From\+Neighbor}} ()
+\begin{DoxyCompactList}\small\item\em Uses neighbor\+Index and key with property\+Dict to get an updated value \end{DoxyCompactList}\item 
+override void \mbox{\hyperlink{class_sensory_input_node_a3db8f13a203e1e604a3b79a20153cfa7}{update\+Value}} ()
+\begin{DoxyCompactList}\small\item\em calls sense\+Val\+From\+Neighbor to update\+Value \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sensory_input_node}{Sensory\+Input\+Node}} \mbox{\hyperlink{class_sensory_input_node_afc439eb6875fbc26de67e4c546d1797c}{clone}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_sensory_input_node_aed52405e2e63c5e5ca6ad0142b3aaede}{neighbor\+Land\+Index}}
+\begin{DoxyCompactList}\small\item\em specifies which neighbor \mbox{\hyperlink{class_land}{Land}} (0 -\/ 8) this node gets it\textquotesingle{}s input from\+: 0 for current\+Pos \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_sensory_input_node_a928c67bebc7f59466c91cbc6c5552bb4}{sensed\+Resource}}
+\begin{DoxyCompactList}\small\item\em string designating resource to be found in neighbor dictionary \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_sensory_input_node_a2886b0729565781d8e27cbfe72726625}{creature}}
+\begin{DoxyCompactList}\small\item\em stores a reference to the creature it belongs to (for getting neighbors) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_sensory_input_node_a45013c0e606dabbdeb51cdb12f56108d}\label{class_sensory_input_node_a45013c0e606dabbdeb51cdb12f56108d}} 
+\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}!Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}!Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+\subsubsection{\texorpdfstring{Sensory\+Input\+Node()}{SensoryInputNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Sensory\+Input\+Node.\+Sensory\+Input\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_sensory_input_node_a0af1e3930af4acd24155c7887fe38043}\label{class_sensory_input_node_a0af1e3930af4acd24155c7887fe38043}} 
+\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}!Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}!Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+\subsubsection{\texorpdfstring{Sensory\+Input\+Node()}{SensoryInputNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Sensory\+Input\+Node.\+Sensory\+Input\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{creature }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sensory_input_node_afc439eb6875fbc26de67e4c546d1797c}\label{class_sensory_input_node_afc439eb6875fbc26de67e4c546d1797c}} 
+\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}!clone@{clone}}
+\index{clone@{clone}!Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+\subsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sensory_input_node}{Sensory\+Input\+Node}} Sensory\+Input\+Node.\+clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_sensory_input_node_a32f65537039b935585d204770eba89eb}\label{class_sensory_input_node_a32f65537039b935585d204770eba89eb}} 
+\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}!sense\+Val\+From\+Neighbor@{sense\+Val\+From\+Neighbor}}
+\index{sense\+Val\+From\+Neighbor@{sense\+Val\+From\+Neighbor}!Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+\subsubsection{\texorpdfstring{sense\+Val\+From\+Neighbor()}{senseValFromNeighbor()}}
+{\footnotesize\ttfamily float Sensory\+Input\+Node.\+sense\+Val\+From\+Neighbor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Uses neighbor\+Index and key with property\+Dict to get an updated value 
+
+\mbox{\Hypertarget{class_sensory_input_node_a31e18eb14cbeb233c8097e53b9f6c896}\label{class_sensory_input_node_a31e18eb14cbeb233c8097e53b9f6c896}} 
+\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}!set\+Creature@{set\+Creature}}
+\index{set\+Creature@{set\+Creature}!Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+\subsubsection{\texorpdfstring{set\+Creature()}{setCreature()}}
+{\footnotesize\ttfamily void Sensory\+Input\+Node.\+set\+Creature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{parent\+Creature }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_sensory_input_node_a3db8f13a203e1e604a3b79a20153cfa7}\label{class_sensory_input_node_a3db8f13a203e1e604a3b79a20153cfa7}} 
+\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily override void Sensory\+Input\+Node.\+update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+calls sense\+Val\+From\+Neighbor to update\+Value 
+
+
+
+Implements \mbox{\hyperlink{class_node_a85ebd0e36c25430570b94f923afd2a62}{Node}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_sensory_input_node_a2886b0729565781d8e27cbfe72726625}\label{class_sensory_input_node_a2886b0729565781d8e27cbfe72726625}} 
+\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}!creature@{creature}}
+\index{creature@{creature}!Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+\subsubsection{\texorpdfstring{creature}{creature}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_creature}{Creature}} Sensory\+Input\+Node.\+creature}
+
+
+
+stores a reference to the creature it belongs to (for getting neighbors) 
+
+\mbox{\Hypertarget{class_sensory_input_node_aed52405e2e63c5e5ca6ad0142b3aaede}\label{class_sensory_input_node_aed52405e2e63c5e5ca6ad0142b3aaede}} 
+\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}!neighbor\+Land\+Index@{neighbor\+Land\+Index}}
+\index{neighbor\+Land\+Index@{neighbor\+Land\+Index}!Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+\subsubsection{\texorpdfstring{neighbor\+Land\+Index}{neighborLandIndex}}
+{\footnotesize\ttfamily int Sensory\+Input\+Node.\+neighbor\+Land\+Index}
+
+
+
+specifies which neighbor \mbox{\hyperlink{class_land}{Land}} (0 -\/ 8) this node gets it\textquotesingle{}s input from\+: 0 for current\+Pos 
+
+\mbox{\Hypertarget{class_sensory_input_node_a928c67bebc7f59466c91cbc6c5552bb4}\label{class_sensory_input_node_a928c67bebc7f59466c91cbc6c5552bb4}} 
+\index{Sensory\+Input\+Node@{Sensory\+Input\+Node}!sensed\+Resource@{sensed\+Resource}}
+\index{sensed\+Resource@{sensed\+Resource}!Sensory\+Input\+Node@{Sensory\+Input\+Node}}
+\subsubsection{\texorpdfstring{sensed\+Resource}{sensedResource}}
+{\footnotesize\ttfamily string Sensory\+Input\+Node.\+sensed\+Resource}
+
+
+
+string designating resource to be found in neighbor dictionary 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_sensory_input_node_8cs}{Sensory\+Input\+Node.\+cs}}\end{DoxyCompactItemize}

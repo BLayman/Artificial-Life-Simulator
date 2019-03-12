@@ -1,0 +1,221 @@
+.TH "CreatureEditor" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CreatureEditor
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCreatureEditor\fP (\fBCreature\fP \fBcreature\fP, \fBEcosystemEditor\fP ecoCreator)"
+.br
+.RI "Constructor "
+.ti -1c
+.RI "void \fBsetSpecies\fP (string species)"
+.br
+.RI "Sets name of species to which the creature belongs\&. "
+.ti -1c
+.RI "void \fBsetPosition\fP (int xCoor, int yCoor)"
+.br
+.RI "Sets creature's position on the map\&. "
+.ti -1c
+.RI "void \fBsetMaxHealth\fP (float maxHealth)"
+.br
+.ti -1c
+.RI "void \fBsetInitialHealth\fP (float initialHealth)"
+.br
+.ti -1c
+.RI "void \fBsetColor\fP (\fBColorChoice\fP c)"
+.br
+.ti -1c
+.RI "void \fBsetPhenotype\fP (int phenotype)"
+.br
+.RI "Sets phenotype of creature\&. Takes in int: [1,x], where there are x distinct phenotypes allowed in the ecosystem, and assigns corrresponding bool array to creatures phenotype\&. The bool array contains all falses, except for a true at the x-1 index\&. "
+.ti -1c
+.RI "void \fBsetActionClearInterval\fP (int steps)"
+.br
+.RI "Sets the number of steps between deleting all actions in action queue\&. This is used to keep the action queue current\&. "
+.ti -1c
+.RI "void \fBsetActionClearSize\fP (int size)"
+.br
+.RI "Sets the size of the action queue required for the queue to be cleared "
+.ti -1c
+.RI "void \fBsetMutationStandardDeviation\fP (float deviation)"
+.br
+.RI "Sets the amount of deviation added to the weights during reproduction "
+.ti -1c
+.RI "void \fBsetTurnTime\fP (float time)"
+.br
+.RI "Sets the amount of time alloted per turn\&. "
+.ti -1c
+.RI "\fBResourceEditor\fP \fBaddResource\fP ()"
+.br
+.RI "Resets creatures resource creator, allowing the user to create a resource for the creature to use for survival or attribute benefits\&. "
+.ti -1c
+.RI "void \fBsaveResource\fP ()"
+.br
+.RI "Saves resource created by resource creator\&. "
+.ti -1c
+.RI "\fBAbilitiesEditor\fP \fBeditAbilities\fP ()"
+.br
+.RI "edit tentativeAbilities, returns AbilitesEditor "
+.ti -1c
+.RI "void \fBcancelEditingAbilities\fP ()"
+.br
+.RI "reset tentativeAbilities if user cancels editing them "
+.ti -1c
+.RI "void \fBaddDefaultResourceAbilities\fP ()"
+.br
+.ti -1c
+.RI "\fBNetworkEditor\fP \fBaddNetwork\fP ()"
+.br
+.RI "Resets netCreator, allowing for the creation of a new network\&. "
+.ti -1c
+.RI "\fBActionEditor\fP \fBaddAction\fP ()"
+.br
+.ti -1c
+.RI "void \fBsaveAction\fP ()"
+.br
+.ti -1c
+.RI "void \fBsaveNetwork\fP ()"
+.br
+.RI "Used to save network that is created by NetCreator\&. "
+.ti -1c
+.RI "void \fBsaveAbilities\fP ()"
+.br
+.RI "Saves abilities set by abilities creator\&. "
+.ti -1c
+.RI "void \fBgenerateDefaultActionPool\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBCreature\fP \fBcreature\fP"
+.br
+.ti -1c
+.RI "\fBNetworkEditor\fP \fBnetCreator\fP"
+.br
+.ti -1c
+.RI "\fBResourceEditor\fP \fBresourceCreator\fP"
+.br
+.ti -1c
+.RI "\fBAbilitiesEditor\fP \fBabilitiesCreator\fP"
+.br
+.ti -1c
+.RI "\fBActionEditor\fP \fBactionCreator\fP"
+.br
+.ti -1c
+.RI "int \fBdistinctPhenotypes\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+API for creature class\&. Stored by EcosystemCreator\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "CreatureEditor\&.CreatureEditor (\fBCreature\fP creature, \fBEcosystemEditor\fP ecoCreator)"
+
+.PP
+Constructor 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBActionEditor\fP CreatureEditor\&.addAction ()"
+
+.SS "void CreatureEditor\&.addDefaultResourceAbilities ()"
+
+.SS "\fBNetworkEditor\fP CreatureEditor\&.addNetwork ()"
+
+.PP
+Resets netCreator, allowing for the creation of a new network\&. 
+.SS "\fBResourceEditor\fP CreatureEditor\&.addResource ()"
+
+.PP
+Resets creatures resource creator, allowing the user to create a resource for the creature to use for survival or attribute benefits\&. 
+.SS "void CreatureEditor\&.cancelEditingAbilities ()"
+
+.PP
+reset tentativeAbilities if user cancels editing them 
+.SS "\fBAbilitiesEditor\fP CreatureEditor\&.editAbilities ()"
+
+.PP
+edit tentativeAbilities, returns AbilitesEditor 
+.SS "void CreatureEditor\&.generateDefaultActionPool ()"
+
+.SS "void CreatureEditor\&.saveAbilities ()"
+
+.PP
+Saves abilities set by abilities creator\&. 
+.SS "void CreatureEditor\&.saveAction ()"
+
+.SS "void CreatureEditor\&.saveNetwork ()"
+
+.PP
+Used to save network that is created by NetCreator\&. 
+.SS "void CreatureEditor\&.saveResource ()"
+
+.PP
+Saves resource created by resource creator\&. 
+.SS "void CreatureEditor\&.setActionClearInterval (int steps)"
+
+.PP
+Sets the number of steps between deleting all actions in action queue\&. This is used to keep the action queue current\&. 
+.SS "void CreatureEditor\&.setActionClearSize (int size)"
+
+.PP
+Sets the size of the action queue required for the queue to be cleared 
+.SS "void CreatureEditor\&.setColor (\fBColorChoice\fP c)"
+
+.SS "void CreatureEditor\&.setInitialHealth (float initialHealth)"
+
+.SS "void CreatureEditor\&.setMaxHealth (float maxHealth)"
+
+.SS "void CreatureEditor\&.setMutationStandardDeviation (float deviation)"
+
+.PP
+Sets the amount of deviation added to the weights during reproduction 
+.SS "void CreatureEditor\&.setPhenotype (int phenotype)"
+
+.PP
+Sets phenotype of creature\&. Takes in int: [1,x], where there are x distinct phenotypes allowed in the ecosystem, and assigns corrresponding bool array to creatures phenotype\&. The bool array contains all falses, except for a true at the x-1 index\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIphenotype\fP Must be 1 - x: Where there are x distinct phenotypes allowed in the ecosystem (set in \fBEcosystem\fP class)\&.
+.RE
+.PP
+
+.SS "void CreatureEditor\&.setPosition (int xCoor, int yCoor)"
+
+.PP
+Sets creature's position on the map\&. 
+.SS "void CreatureEditor\&.setSpecies (string species)"
+
+.PP
+Sets name of species to which the creature belongs\&. 
+.SS "void CreatureEditor\&.setTurnTime (float time)"
+
+.PP
+Sets the amount of time alloted per turn\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBAbilitiesEditor\fP CreatureEditor\&.abilitiesCreator"
+
+.SS "\fBActionEditor\fP CreatureEditor\&.actionCreator"
+
+.SS "\fBCreature\fP CreatureEditor\&.creature"
+
+.SS "int CreatureEditor\&.distinctPhenotypes"
+
+.SS "\fBNetworkEditor\fP CreatureEditor\&.netCreator"
+
+.SS "\fBResourceEditor\fP CreatureEditor\&.resourceCreator"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

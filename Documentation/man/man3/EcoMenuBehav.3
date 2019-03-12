@@ -1,0 +1,105 @@
+.TH "EcoMenuBehav" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EcoMenuBehav
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits MonoBehaviour\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBloadEcoMenu\fP (\fBEcosystem\fP eco)"
+.br
+.RI "creates an ecosystem creator from the provided ecosystem "
+.ti -1c
+.RI "void \fBaddCreature\fP ()"
+.br
+.RI "load the creature editor menu and pass it the current ecosystem editor "
+.ti -1c
+.RI "void \fBsaveSettings\fP ()"
+.br
+.RI "saves all information that the user entered into the menu "
+.ti -1c
+.RI "void \fBaddResource\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "GameObject \fBuIParent\fP"
+.br
+.ti -1c
+.RI "GameObject \fBerrorObj\fP"
+.br
+.ti -1c
+.RI "GameObject \fBcreatureMenuObj\fP"
+.br
+.ti -1c
+.RI "GameObject \fBlrMenuObj\fP"
+.br
+.ti -1c
+.RI "GameObject \fBecoNameTextBox\fP"
+.br
+.ti -1c
+.RI "GameObject \fBabilityPtsPerCreatTextBox\fP"
+.br
+.ti -1c
+.RI "GameObject \fBcommBitsText\fP"
+.br
+.ti -1c
+.RI "GameObject \fBdistinctPhenoText\fP"
+.br
+.ti -1c
+.RI "GameObject \fBtimeUnitsText\fP"
+.br
+.ti -1c
+.RI "\fBEcosystemEditor\fP \fBecoEditor\fP"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "void EcoMenuBehav\&.addCreature ()"
+
+.PP
+load the creature editor menu and pass it the current ecosystem editor 
+.SS "void EcoMenuBehav\&.addResource ()"
+
+.SS "void EcoMenuBehav\&.loadEcoMenu (\fBEcosystem\fP eco)"
+
+.PP
+creates an ecosystem creator from the provided ecosystem 
+.SS "void EcoMenuBehav\&.saveSettings ()"
+
+.PP
+saves all information that the user entered into the menu call methods to save ecoEditor data to actual \fBEcosystem\fP object 
+.SH "Member Data Documentation"
+.PP 
+.SS "GameObject EcoMenuBehav\&.abilityPtsPerCreatTextBox"
+
+.SS "GameObject EcoMenuBehav\&.commBitsText"
+
+.SS "GameObject EcoMenuBehav\&.creatureMenuObj"
+
+.SS "GameObject EcoMenuBehav\&.distinctPhenoText"
+
+.SS "\fBEcosystemEditor\fP EcoMenuBehav\&.ecoEditor"
+
+.SS "GameObject EcoMenuBehav\&.ecoNameTextBox"
+
+.SS "GameObject EcoMenuBehav\&.errorObj"
+
+.SS "GameObject EcoMenuBehav\&.lrMenuObj"
+
+.SS "GameObject EcoMenuBehav\&.timeUnitsText"
+
+.SS "GameObject EcoMenuBehav\&.uIParent"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

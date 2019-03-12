@@ -1,0 +1,89 @@
+.TH "LandResourceEditor" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LandResourceEditor \- Used as interface for generating \fBResourceStore\fP objects\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLandResourceEditor\fP (\fBResourceStore\fP _resourceStore)"
+.br
+.ti -1c
+.RI "void \fBsetAmtConsumedPerTime\fP (float amountConsumed)"
+.br
+.RI "Amount of the resource consumped per time unit\&. "
+.ti -1c
+.RI "void \fBsetRenewalAmt\fP (float amountRenewed)"
+.br
+.RI "Set how much the resource increases at the end of each interval number of turns (default interval is 10 turns) "
+.ti -1c
+.RI "void \fBsetAmountOfResource\fP (float amount)"
+.br
+.RI "Set amount being stored "
+.ti -1c
+.RI "void \fBsetProportionExtracted\fP (float proportion)"
+.br
+.RI "Sets fraction of resource consumed per time unit that the creature actually recieves if creature does not have an ability for this\&. "
+.ti -1c
+.RI "void \fBsetMaxAmt\fP (float maxAmount)"
+.br
+.RI "Sets maximum amount of the resource that can be stored\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBResourceStore\fP \fBresourceStore\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Used as interface for generating \fBResourceStore\fP objects\&. 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LandResourceEditor\&.LandResourceEditor (\fBResourceStore\fP _resourceStore)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void LandResourceEditor\&.setAmountOfResource (float amount)"
+
+.PP
+Set amount being stored 
+.SS "void LandResourceEditor\&.setAmtConsumedPerTime (float amountConsumed)"
+
+.PP
+Amount of the resource consumped per time unit\&. 
+.SS "void LandResourceEditor\&.setMaxAmt (float maxAmount)"
+
+.PP
+Sets maximum amount of the resource that can be stored\&. 
+.SS "void LandResourceEditor\&.setProportionExtracted (float proportion)"
+
+.PP
+Sets fraction of resource consumed per time unit that the creature actually recieves if creature does not have an ability for this\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIproportion\fP Must be between 0 and 1\&.
+.RE
+.PP
+
+.SS "void LandResourceEditor\&.setRenewalAmt (float amountRenewed)"
+
+.PP
+Set how much the resource increases at the end of each interval number of turns (default interval is 10 turns) 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBResourceStore\fP LandResourceEditor\&.resourceStore"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

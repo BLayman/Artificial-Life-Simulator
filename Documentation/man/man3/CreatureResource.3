@@ -1,0 +1,98 @@
+.TH "CreatureResource" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CreatureResource \- Resource stored by a creature, and how that resource effects the creature\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBhealthUpdate\fP (\fBCreature\fP creature)"
+.br
+.RI "Update creature health according to resource level\&. "
+.ti -1c
+.RI "\fBCreatureResource\fP \fBgetShallowCopy\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "float \fBdeficiencyThreshold\fP"
+.br
+.RI "Threshold below which resource causes health damage\&. "
+.ti -1c
+.RI "float \fBdeficiencyHealthDrain\fP"
+.br
+.RI "Amount of health drain from deficiency in one time step\&. "
+.ti -1c
+.RI "float \fBcurrentLevel\fP"
+.br
+.RI "Amount of the resource currently stored\&. "
+.ti -1c
+.RI "float \fBhealthGain\fP"
+.br
+.RI "Amount of health gained when resource is adequate\&. "
+.ti -1c
+.RI "float \fBhealthGainThreshold\fP"
+.br
+.RI "Threshold above which health is gained\&. "
+.ti -1c
+.RI "float \fBmaxLevel\fP"
+.br
+.ti -1c
+.RI "float \fBbaseUsage\fP"
+.br
+.ti -1c
+.RI "string \fBname\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Resource stored by a creature, and how that resource effects the creature\&. 
+
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBCreatureResource\fP CreatureResource\&.getShallowCopy ()"
+
+.SS "void CreatureResource\&.healthUpdate (\fBCreature\fP creature)"
+
+.PP
+Update creature health according to resource level\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "float CreatureResource\&.baseUsage"
+
+.SS "float CreatureResource\&.currentLevel"
+
+.PP
+Amount of the resource currently stored\&. 
+.SS "float CreatureResource\&.deficiencyHealthDrain"
+
+.PP
+Amount of health drain from deficiency in one time step\&. 
+.SS "float CreatureResource\&.deficiencyThreshold"
+
+.PP
+Threshold below which resource causes health damage\&. 
+.SS "float CreatureResource\&.healthGain"
+
+.PP
+Amount of health gained when resource is adequate\&. 
+.SS "float CreatureResource\&.healthGainThreshold"
+
+.PP
+Threshold above which health is gained\&. 
+.SS "float CreatureResource\&.maxLevel"
+
+.SS "string CreatureResource\&.name"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

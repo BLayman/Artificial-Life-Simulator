@@ -1,0 +1,90 @@
+.TH "SensoryInputNode" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SensoryInputNode
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBNode\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSensoryInputNode\fP ()"
+.br
+.ti -1c
+.RI "\fBSensoryInputNode\fP (\fBCreature\fP \fBcreature\fP)"
+.br
+.ti -1c
+.RI "void \fBsetCreature\fP (\fBCreature\fP parentCreature)"
+.br
+.ti -1c
+.RI "float \fBsenseValFromNeighbor\fP ()"
+.br
+.RI "Uses neighborIndex and key with propertyDict to get an updated value "
+.ti -1c
+.RI "override void \fBupdateValue\fP ()"
+.br
+.RI "calls senseValFromNeighbor to updateValue "
+.ti -1c
+.RI "\fBSensoryInputNode\fP \fBclone\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBneighborLandIndex\fP"
+.br
+.RI "specifies which neighbor \fBLand\fP (0 - 8) this node gets it's input from: 0 for currentPos "
+.ti -1c
+.RI "string \fBsensedResource\fP"
+.br
+.RI "string designating resource to be found in neighbor dictionary "
+.ti -1c
+.RI "\fBCreature\fP \fBcreature\fP"
+.br
+.RI "stores a reference to the creature it belongs to (for getting neighbors) "
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SensoryInputNode\&.SensoryInputNode ()"
+
+.SS "SensoryInputNode\&.SensoryInputNode (\fBCreature\fP creature)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBSensoryInputNode\fP SensoryInputNode\&.clone ()"
+
+.SS "float SensoryInputNode\&.senseValFromNeighbor ()"
+
+.PP
+Uses neighborIndex and key with propertyDict to get an updated value 
+.SS "void SensoryInputNode\&.setCreature (\fBCreature\fP parentCreature)"
+
+.SS "override void SensoryInputNode\&.updateValue ()\fC [virtual]\fP"
+
+.PP
+calls senseValFromNeighbor to updateValue 
+.PP
+Implements \fBNode\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBCreature\fP SensoryInputNode\&.creature"
+
+.PP
+stores a reference to the creature it belongs to (for getting neighbors) 
+.SS "int SensoryInputNode\&.neighborLandIndex"
+
+.PP
+specifies which neighbor \fBLand\fP (0 - 8) this node gets it's input from: 0 for currentPos 
+.SS "string SensoryInputNode\&.sensedResource"
+
+.PP
+string designating resource to be found in neighbor dictionary 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

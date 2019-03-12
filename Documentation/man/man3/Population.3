@@ -1,0 +1,80 @@
+.TH "Population" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Population \- A population stores information about a list of creatures, including it's founder, and initial variation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCreature\fP \fBgenerateMember\fP ()"
+.br
+.ti -1c
+.RI "\fBPopulation\fP \fBshallowCopy\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "List< \fBCreature\fP > \fBcreatures\fP"
+.br
+.ti -1c
+.RI "List< \fBCreature\fP > \fBoffspring\fP = new List<\fBCreature\fP>()"
+.br
+.ti -1c
+.RI "\fBCreature\fP \fBfounder\fP"
+.br
+.ti -1c
+.RI "float \fBweightStandardDev\fP"
+.br
+.ti -1c
+.RI "float \fBabilityStandardDev\fP"
+.br
+.ti -1c
+.RI "float \fBmutationStandardDev\fP"
+.br
+.ti -1c
+.RI "int \fBsize\fP = 0"
+.br
+.ti -1c
+.RI "int \fBmaxSize\fP = 1000"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A population stores information about a list of creatures, including it's founder, and initial variation\&. 
+
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBCreature\fP Population\&.generateMember ()"
+
+.SS "\fBPopulation\fP Population\&.shallowCopy ()"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "float Population\&.abilityStandardDev"
+
+.SS "List<\fBCreature\fP> Population\&.creatures"
+
+.SS "\fBCreature\fP Population\&.founder"
+
+.SS "int Population\&.maxSize = 1000"
+
+.SS "float Population\&.mutationStandardDev"
+
+.SS "List<\fBCreature\fP> Population\&.offspring = new List<\fBCreature\fP>()"
+
+.SS "int Population\&.size = 0"
+
+.SS "float Population\&.weightStandardDev"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

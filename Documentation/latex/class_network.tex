@@ -1,42 +1,79 @@
 \hypertarget{class_network}{}\section{Network Class Reference}
 \label{class_network}\index{Network@{Network}}
+
+
+A neural network of a creature, which consists of layers of nodes.  
+
+
+Inheritance diagram for Network\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_network}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \mbox{\hyperlink{class_network_a52c2afe3c1b3e462b5b18353d09c7a1b}{connect}} (int fromI, int fromj, int toI, int toJ)
+void \mbox{\hyperlink{class_network_a8285772739069a17a6cf3407208c25cb}{feed\+Forward}} ()
+\begin{DoxyCompactList}\small\item\em Calls update value on each node in each layer \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_network}{Network}} \mbox{\hyperlink{class_network_a08970b95e111e12a0463719c959db247}{get\+Shallow\+Copy}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{class_network_af6fbcc77b9555ee0a1e418139ac23918}{add\+Input}} (\mbox{\hyperlink{class_node}{Node}} input\+Node)
-\begin{DoxyCompactList}\small\item\em Appends node sent as argument to first layer of net. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_network_ac9a4adc38e0d136244168fea987b2784}\label{class_network_ac9a4adc38e0d136244168fea987b2784}} 
-bool {\bfseries add\+Hidden\+Layer} (int layer\+Index, int num\+Nodes)
+List$<$ List$<$ \mbox{\hyperlink{class_node}{Node}} $>$ $>$ \mbox{\hyperlink{class_network_a5575fb3cc8b86da6ff8ffed15634e4b4}{net}} = new List$<$List$<$\mbox{\hyperlink{class_node}{Node}}$>$$>$()
 \item 
-\mbox{\Hypertarget{class_network_a56f655a6b8575f46b03adbd5f624630f}\label{class_network_a56f655a6b8575f46b03adbd5f624630f}} 
-bool {\bfseries append\+Hidden\+Node} (int layer\+Index)
+string \mbox{\hyperlink{class_network_a9d47011c0cdd1c2c2a17f487fc20aa74}{name}}
 \item 
-\mbox{\Hypertarget{class_network_a5628c625df1dd36371a70f255145bbcc}\label{class_network_a5628c625df1dd36371a70f255145bbcc}} 
-void {\bfseries add\+Output} (\mbox{\hyperlink{class_node}{Node}} output\+Node)
+int \mbox{\hyperlink{class_network_a28e1ac9d80508cd8bb52624e4e1efede}{in\+Layer}}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+A neural network of a creature, which consists of layers of nodes. 
+
+
+
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_network_af6fbcc77b9555ee0a1e418139ac23918}\label{class_network_af6fbcc77b9555ee0a1e418139ac23918}} 
-\index{Network@{Network}!add\+Input@{add\+Input}}
-\index{add\+Input@{add\+Input}!Network@{Network}}
-\subsubsection{\texorpdfstring{add\+Input()}{addInput()}}
-{\footnotesize\ttfamily void Network.\+add\+Input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}}}]{input\+Node }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_network_a8285772739069a17a6cf3407208c25cb}\label{class_network_a8285772739069a17a6cf3407208c25cb}} 
+\index{Network@{Network}!feed\+Forward@{feed\+Forward}}
+\index{feed\+Forward@{feed\+Forward}!Network@{Network}}
+\subsubsection{\texorpdfstring{feed\+Forward()}{feedForward()}}
+{\footnotesize\ttfamily void Network.\+feed\+Forward (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Appends node sent as argument to first layer of net. 
+Calls update value on each node in each layer 
 
-\mbox{\Hypertarget{class_network_a52c2afe3c1b3e462b5b18353d09c7a1b}\label{class_network_a52c2afe3c1b3e462b5b18353d09c7a1b}} 
-\index{Network@{Network}!connect@{connect}}
-\index{connect@{connect}!Network@{Network}}
-\subsubsection{\texorpdfstring{connect()}{connect()}}
-{\footnotesize\ttfamily bool Network.\+connect (\begin{DoxyParamCaption}\item[{int}]{fromI,  }\item[{int}]{fromj,  }\item[{int}]{toI,  }\item[{int}]{toJ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_network_a08970b95e111e12a0463719c959db247}\label{class_network_a08970b95e111e12a0463719c959db247}} 
+\index{Network@{Network}!get\+Shallow\+Copy@{get\+Shallow\+Copy}}
+\index{get\+Shallow\+Copy@{get\+Shallow\+Copy}!Network@{Network}}
+\subsubsection{\texorpdfstring{get\+Shallow\+Copy()}{getShallowCopy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_network}{Network}} Network.\+get\+Shallow\+Copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Connects two nodes in the network together
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_network_a28e1ac9d80508cd8bb52624e4e1efede}\label{class_network_a28e1ac9d80508cd8bb52624e4e1efede}} 
+\index{Network@{Network}!in\+Layer@{in\+Layer}}
+\index{in\+Layer@{in\+Layer}!Network@{Network}}
+\subsubsection{\texorpdfstring{in\+Layer}{inLayer}}
+{\footnotesize\ttfamily int Network.\+in\+Layer}
+
+\mbox{\Hypertarget{class_network_a9d47011c0cdd1c2c2a17f487fc20aa74}\label{class_network_a9d47011c0cdd1c2c2a17f487fc20aa74}} 
+\index{Network@{Network}!name@{name}}
+\index{name@{name}!Network@{Network}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Network.\+name}
+
+\mbox{\Hypertarget{class_network_a5575fb3cc8b86da6ff8ffed15634e4b4}\label{class_network_a5575fb3cc8b86da6ff8ffed15634e4b4}} 
+\index{Network@{Network}!net@{net}}
+\index{net@{net}!Network@{Network}}
+\subsubsection{\texorpdfstring{net}{net}}
+{\footnotesize\ttfamily List$<$List$<$\mbox{\hyperlink{class_node}{Node}}$>$ $>$ Network.\+net = new List$<$List$<$\mbox{\hyperlink{class_node}{Node}}$>$$>$()}
+
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Brett/\+Documents/\+Git\+Hub/\+Unity/\+Eco\+Net/\+Assets/\+Scripts/Network.\+cs\end{DoxyCompactItemize}
+\mbox{\hyperlink{_network_8cs}{Network.\+cs}}\end{DoxyCompactItemize}

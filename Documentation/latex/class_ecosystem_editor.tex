@@ -1,0 +1,354 @@
+\hypertarget{class_ecosystem_editor}{}\section{Ecosystem\+Editor Class Reference}
+\label{class_ecosystem_editor}\index{Ecosystem\+Editor@{Ecosystem\+Editor}}
+
+
+A\+PI for alterning ecosystem.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ecosystem_editor_ae398c2a58464b4f994929f22c71c36cc}{Ecosystem\+Editor}} (\mbox{\hyperlink{class_ecosystem}{Ecosystem}} \+\_\+ecosystem)
+\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a9ac3559972dcc89445df6a6817c938f0}{set\+Ability\+Points\+Per\+Creature}} (int ability\+Points)
+\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a079f04c589520a420be5c749dcb81447}{set\+Comm\+Bits}} (int num\+Bits)
+\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a11d1e048c710c397a3cde9354d4117c3}{set\+Distinct\+Phenotype\+Num}} (int num\+Phenotypes)
+\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a5012174c9ae01075e7749739f2700f69}{set\+Time\+Units\+Per\+Turn}} (int time\+Units)
+\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a809bdfc28dc15c7cdbb2bde538bd34e9}{set\+Name}} (string name)
+\begin{DoxyCompactList}\small\item\em sets name of dictionary to use when loading \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a9ba5901625731091af68a400689a2c44}{set\+Renew\+Interval}} (int renew\+Steps)
+\begin{DoxyCompactList}\small\item\em sets number of steps between each renewal of resources. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_land_resource_editor}{Land\+Resource\+Editor}} \mbox{\hyperlink{class_ecosystem_editor_a8473ee588e7e2201b6c57bd7204ec803}{add\+Resource}} (string resource\+Name)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyParams}{Parameters}
+{\em resource\+Name} & Name of resource\+: used as key in dictionary.\\
+\hline
+\end{DoxyParams}
+\end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_creature_editor}{Creature\+Editor}} \mbox{\hyperlink{class_ecosystem_editor_a818800b8e8a812dd061e85a8f2a483b7}{add\+Creature}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_creature}{Creature}} new creature \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_species_populator}{Species\+Populator}} \mbox{\hyperlink{class_ecosystem_editor_a3f0623c56b5399b02f6b18a72652a1ba}{populate\+Species}} (string founder\+Species)
+\item 
+\mbox{\hyperlink{class_map_editor}{Map\+Editor}} \mbox{\hyperlink{class_ecosystem_editor_a34ac5bdf72932adfbdf5758a8f42a836}{create\+Map}} ()
+\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a1d369adb1216181a3db5cdde1baf50af}{save\+Resource}} ()
+\begin{DoxyCompactList}\small\item\em Saves a newly created resource to resource\+Options. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ecosystem_editor_af57a50510d4baf7cc372fc2b32c38ead}{save\+Resource\+Options}} ()
+\begin{DoxyCompactList}\small\item\em Saves created resource\+Options to ecosystems actual resource options. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a22b8b780750a21d6b893e417f623ba30}{add\+To\+Founders}} ()
+\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a5aa46063ae1157099b036e81cdcbe2ad}{save\+Founders\+To\+Species}} ()
+\begin{DoxyCompactList}\small\item\em Saves founders to ecosystem\textquotesingle{}s species dictionary. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a5df7d2d657419e3a35f2b55973f7c6ef}{save\+Current\+Population}} ()
+\begin{DoxyCompactList}\small\item\em Saves population creatured by species\+Populator to current\+Population. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a561f235d70f14111eba609e5d5ea869b}{save\+Edited\+Map}} ()
+\item 
+void \mbox{\hyperlink{class_ecosystem_editor_acfbb3166d4c0ef8567a36cf66b456141}{save\+Map}} ()
+\begin{DoxyCompactList}\small\item\em Saves tentative map to actual ecosystem map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ecosystem_editor_a8a9917b9c31e71e610d9e4b231930ce3}{add\+Current\+Population\+To\+Ecosystem}} ()
+\begin{DoxyCompactList}\small\item\em Saves current\+Population to ecosystem.\+populations \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ecosystem_editor_af6f631b9a71a8e1f7de9d48d18ddd08a}{add\+Current\+Population\+To\+Map}} ()
+\begin{DoxyCompactList}\small\item\em adds a population to the tentative map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ecosystem}{Ecosystem}} \mbox{\hyperlink{class_ecosystem_editor_a49e0702cf9757efdf05a098336737890}{ecosystem}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_ecosystem}{Ecosystem}} to be created. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_land_resource_editor}{Land\+Resource\+Editor}} \mbox{\hyperlink{class_ecosystem_editor_a1879450c7d71911c3a0f5b12cc287b2b}{lre}}
+\begin{DoxyCompactList}\small\item\em Creates Lands to add to Eco\+System resource\+Options. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_map_editor}{Map\+Editor}} \mbox{\hyperlink{class_ecosystem_editor_ae2dd3be1675ac49fe39d706cef093386}{map\+Editor}}
+\begin{DoxyCompactList}\small\item\em Edits map of lands. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_creature_editor}{Creature\+Editor}} \mbox{\hyperlink{class_ecosystem_editor_ae07c75810b8d9ff769bf1cd552786138}{creature\+Creator}}
+\begin{DoxyCompactList}\small\item\em For generating founder creatures. \end{DoxyCompactList}\item 
+Dictionary$<$ string, \mbox{\hyperlink{class_creature}{Creature}} $>$ \mbox{\hyperlink{class_ecosystem_editor_a3b9c67b19a314455f9eaf3eaa0cbe341}{founder\+Creatures}}
+\begin{DoxyCompactList}\small\item\em Creatures used to generate populations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_species_populator}{Species\+Populator}} \mbox{\hyperlink{class_ecosystem_editor_abe484ddd93b48d1300e88ab531d56aec}{species\+Populator}}
+\begin{DoxyCompactList}\small\item\em Users founder and map to populate species. \end{DoxyCompactList}\item 
+Dictionary$<$ string, List$<$ \mbox{\hyperlink{class_creature}{Creature}} $>$ $>$ \mbox{\hyperlink{class_ecosystem_editor_abea7f35b0d4980aad82dac92b6011993}{populations}} = new Dictionary$<$string, List$<$\mbox{\hyperlink{class_creature}{Creature}}$>$$>$()
+\begin{DoxyCompactList}\small\item\em Stores populations of creatures. \end{DoxyCompactList}\item 
+Dictionary$<$ string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}} $>$ \mbox{\hyperlink{class_ecosystem_editor_aa0e6ad8b42512f087178aca21464da02}{tentative\+Resource\+Options}}
+\begin{DoxyCompactList}\small\item\em Tenative list of resource options. \end{DoxyCompactList}\item 
+List$<$ List$<$ \mbox{\hyperlink{class_land}{Land}} $>$ $>$ \mbox{\hyperlink{class_ecosystem_editor_a40077803f584d6c42951feac3569a972}{tentative\+Map}} = new List$<$List$<$\mbox{\hyperlink{class_land}{Land}}$>$$>$()
+\begin{DoxyCompactList}\small\item\em Tentative map to be saved to ecosystem map when save\+Map is called. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+PI for alterning ecosystem. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_ecosystem_editor_ae398c2a58464b4f994929f22c71c36cc}\label{class_ecosystem_editor_ae398c2a58464b4f994929f22c71c36cc}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{Ecosystem\+Editor()}{EcosystemEditor()}}
+{\footnotesize\ttfamily Ecosystem\+Editor.\+Ecosystem\+Editor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ecosystem}{Ecosystem}}}]{\+\_\+ecosystem }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ecosystem_editor_a818800b8e8a812dd061e85a8f2a483b7}\label{class_ecosystem_editor_a818800b8e8a812dd061e85a8f2a483b7}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!add\+Creature@{add\+Creature}}
+\index{add\+Creature@{add\+Creature}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{add\+Creature()}{addCreature()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_creature_editor}{Creature\+Editor}} Ecosystem\+Editor.\+add\+Creature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_creature}{Creature}} new creature 
+
+\mbox{\Hypertarget{class_ecosystem_editor_a8a9917b9c31e71e610d9e4b231930ce3}\label{class_ecosystem_editor_a8a9917b9c31e71e610d9e4b231930ce3}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!add\+Current\+Population\+To\+Ecosystem@{add\+Current\+Population\+To\+Ecosystem}}
+\index{add\+Current\+Population\+To\+Ecosystem@{add\+Current\+Population\+To\+Ecosystem}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{add\+Current\+Population\+To\+Ecosystem()}{addCurrentPopulationToEcosystem()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+add\+Current\+Population\+To\+Ecosystem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Saves current\+Population to ecosystem.\+populations 
+
+\mbox{\Hypertarget{class_ecosystem_editor_af6f631b9a71a8e1f7de9d48d18ddd08a}\label{class_ecosystem_editor_af6f631b9a71a8e1f7de9d48d18ddd08a}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!add\+Current\+Population\+To\+Map@{add\+Current\+Population\+To\+Map}}
+\index{add\+Current\+Population\+To\+Map@{add\+Current\+Population\+To\+Map}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{add\+Current\+Population\+To\+Map()}{addCurrentPopulationToMap()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+add\+Current\+Population\+To\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+adds a population to the tentative map. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_a8473ee588e7e2201b6c57bd7204ec803}\label{class_ecosystem_editor_a8473ee588e7e2201b6c57bd7204ec803}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!add\+Resource@{add\+Resource}}
+\index{add\+Resource@{add\+Resource}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{add\+Resource()}{addResource()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_land_resource_editor}{Land\+Resource\+Editor}} Ecosystem\+Editor.\+add\+Resource (\begin{DoxyParamCaption}\item[{string}]{resource\+Name }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em resource\+Name} & Name of resource\+: used as key in dictionary.\\
+\hline
+\end{DoxyParams}
+
+
+\mbox{\Hypertarget{class_ecosystem_editor_a22b8b780750a21d6b893e417f623ba30}\label{class_ecosystem_editor_a22b8b780750a21d6b893e417f623ba30}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!add\+To\+Founders@{add\+To\+Founders}}
+\index{add\+To\+Founders@{add\+To\+Founders}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{add\+To\+Founders()}{addToFounders()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+add\+To\+Founders (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ecosystem_editor_a34ac5bdf72932adfbdf5758a8f42a836}\label{class_ecosystem_editor_a34ac5bdf72932adfbdf5758a8f42a836}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!create\+Map@{create\+Map}}
+\index{create\+Map@{create\+Map}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{create\+Map()}{createMap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_map_editor}{Map\+Editor}} Ecosystem\+Editor.\+create\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ecosystem_editor_a3f0623c56b5399b02f6b18a72652a1ba}\label{class_ecosystem_editor_a3f0623c56b5399b02f6b18a72652a1ba}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!populate\+Species@{populate\+Species}}
+\index{populate\+Species@{populate\+Species}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{populate\+Species()}{populateSpecies()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_species_populator}{Species\+Populator}} Ecosystem\+Editor.\+populate\+Species (\begin{DoxyParamCaption}\item[{string}]{founder\+Species }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ecosystem_editor_a5df7d2d657419e3a35f2b55973f7c6ef}\label{class_ecosystem_editor_a5df7d2d657419e3a35f2b55973f7c6ef}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!save\+Current\+Population@{save\+Current\+Population}}
+\index{save\+Current\+Population@{save\+Current\+Population}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{save\+Current\+Population()}{saveCurrentPopulation()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+save\+Current\+Population (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Saves population creatured by species\+Populator to current\+Population. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_a561f235d70f14111eba609e5d5ea869b}\label{class_ecosystem_editor_a561f235d70f14111eba609e5d5ea869b}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!save\+Edited\+Map@{save\+Edited\+Map}}
+\index{save\+Edited\+Map@{save\+Edited\+Map}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{save\+Edited\+Map()}{saveEditedMap()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+save\+Edited\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ecosystem_editor_a5aa46063ae1157099b036e81cdcbe2ad}\label{class_ecosystem_editor_a5aa46063ae1157099b036e81cdcbe2ad}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!save\+Founders\+To\+Species@{save\+Founders\+To\+Species}}
+\index{save\+Founders\+To\+Species@{save\+Founders\+To\+Species}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{save\+Founders\+To\+Species()}{saveFoundersToSpecies()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+save\+Founders\+To\+Species (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Saves founders to ecosystem\textquotesingle{}s species dictionary. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_acfbb3166d4c0ef8567a36cf66b456141}\label{class_ecosystem_editor_acfbb3166d4c0ef8567a36cf66b456141}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!save\+Map@{save\+Map}}
+\index{save\+Map@{save\+Map}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{save\+Map()}{saveMap()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+save\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Saves tentative map to actual ecosystem map. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_a1d369adb1216181a3db5cdde1baf50af}\label{class_ecosystem_editor_a1d369adb1216181a3db5cdde1baf50af}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!save\+Resource@{save\+Resource}}
+\index{save\+Resource@{save\+Resource}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{save\+Resource()}{saveResource()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+save\+Resource (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Saves a newly created resource to resource\+Options. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_af57a50510d4baf7cc372fc2b32c38ead}\label{class_ecosystem_editor_af57a50510d4baf7cc372fc2b32c38ead}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!save\+Resource\+Options@{save\+Resource\+Options}}
+\index{save\+Resource\+Options@{save\+Resource\+Options}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{save\+Resource\+Options()}{saveResourceOptions()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+save\+Resource\+Options (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Saves created resource\+Options to ecosystems actual resource options. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_a9ac3559972dcc89445df6a6817c938f0}\label{class_ecosystem_editor_a9ac3559972dcc89445df6a6817c938f0}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!set\+Ability\+Points\+Per\+Creature@{set\+Ability\+Points\+Per\+Creature}}
+\index{set\+Ability\+Points\+Per\+Creature@{set\+Ability\+Points\+Per\+Creature}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{set\+Ability\+Points\+Per\+Creature()}{setAbilityPointsPerCreature()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+set\+Ability\+Points\+Per\+Creature (\begin{DoxyParamCaption}\item[{int}]{ability\+Points }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ecosystem_editor_a079f04c589520a420be5c749dcb81447}\label{class_ecosystem_editor_a079f04c589520a420be5c749dcb81447}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!set\+Comm\+Bits@{set\+Comm\+Bits}}
+\index{set\+Comm\+Bits@{set\+Comm\+Bits}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{set\+Comm\+Bits()}{setCommBits()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+set\+Comm\+Bits (\begin{DoxyParamCaption}\item[{int}]{num\+Bits }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ecosystem_editor_a11d1e048c710c397a3cde9354d4117c3}\label{class_ecosystem_editor_a11d1e048c710c397a3cde9354d4117c3}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!set\+Distinct\+Phenotype\+Num@{set\+Distinct\+Phenotype\+Num}}
+\index{set\+Distinct\+Phenotype\+Num@{set\+Distinct\+Phenotype\+Num}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{set\+Distinct\+Phenotype\+Num()}{setDistinctPhenotypeNum()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+set\+Distinct\+Phenotype\+Num (\begin{DoxyParamCaption}\item[{int}]{num\+Phenotypes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_ecosystem_editor_a809bdfc28dc15c7cdbb2bde538bd34e9}\label{class_ecosystem_editor_a809bdfc28dc15c7cdbb2bde538bd34e9}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!set\+Name@{set\+Name}}
+\index{set\+Name@{set\+Name}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{set\+Name()}{setName()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+set\+Name (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+sets name of dictionary to use when loading 
+
+\mbox{\Hypertarget{class_ecosystem_editor_a9ba5901625731091af68a400689a2c44}\label{class_ecosystem_editor_a9ba5901625731091af68a400689a2c44}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!set\+Renew\+Interval@{set\+Renew\+Interval}}
+\index{set\+Renew\+Interval@{set\+Renew\+Interval}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{set\+Renew\+Interval()}{setRenewInterval()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+set\+Renew\+Interval (\begin{DoxyParamCaption}\item[{int}]{renew\+Steps }\end{DoxyParamCaption})}
+
+
+
+sets number of steps between each renewal of resources. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_a5012174c9ae01075e7749739f2700f69}\label{class_ecosystem_editor_a5012174c9ae01075e7749739f2700f69}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!set\+Time\+Units\+Per\+Turn@{set\+Time\+Units\+Per\+Turn}}
+\index{set\+Time\+Units\+Per\+Turn@{set\+Time\+Units\+Per\+Turn}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{set\+Time\+Units\+Per\+Turn()}{setTimeUnitsPerTurn()}}
+{\footnotesize\ttfamily void Ecosystem\+Editor.\+set\+Time\+Units\+Per\+Turn (\begin{DoxyParamCaption}\item[{int}]{time\+Units }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_ecosystem_editor_ae07c75810b8d9ff769bf1cd552786138}\label{class_ecosystem_editor_ae07c75810b8d9ff769bf1cd552786138}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!creature\+Creator@{creature\+Creator}}
+\index{creature\+Creator@{creature\+Creator}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{creature\+Creator}{creatureCreator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_creature_editor}{Creature\+Editor}} Ecosystem\+Editor.\+creature\+Creator}
+
+
+
+For generating founder creatures. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_a49e0702cf9757efdf05a098336737890}\label{class_ecosystem_editor_a49e0702cf9757efdf05a098336737890}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!ecosystem@{ecosystem}}
+\index{ecosystem@{ecosystem}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{ecosystem}{ecosystem}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_ecosystem}{Ecosystem}} Ecosystem\+Editor.\+ecosystem}
+
+
+
+\mbox{\hyperlink{class_ecosystem}{Ecosystem}} to be created. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_a3b9c67b19a314455f9eaf3eaa0cbe341}\label{class_ecosystem_editor_a3b9c67b19a314455f9eaf3eaa0cbe341}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!founder\+Creatures@{founder\+Creatures}}
+\index{founder\+Creatures@{founder\+Creatures}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{founder\+Creatures}{founderCreatures}}
+{\footnotesize\ttfamily Dictionary$<$string, \mbox{\hyperlink{class_creature}{Creature}}$>$ Ecosystem\+Editor.\+founder\+Creatures}
+
+
+
+Creatures used to generate populations. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_a1879450c7d71911c3a0f5b12cc287b2b}\label{class_ecosystem_editor_a1879450c7d71911c3a0f5b12cc287b2b}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!lre@{lre}}
+\index{lre@{lre}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{lre}{lre}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_land_resource_editor}{Land\+Resource\+Editor}} Ecosystem\+Editor.\+lre}
+
+
+
+Creates Lands to add to Eco\+System resource\+Options. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_ae2dd3be1675ac49fe39d706cef093386}\label{class_ecosystem_editor_ae2dd3be1675ac49fe39d706cef093386}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!map\+Editor@{map\+Editor}}
+\index{map\+Editor@{map\+Editor}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{map\+Editor}{mapEditor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_map_editor}{Map\+Editor}} Ecosystem\+Editor.\+map\+Editor}
+
+
+
+Edits map of lands. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_abea7f35b0d4980aad82dac92b6011993}\label{class_ecosystem_editor_abea7f35b0d4980aad82dac92b6011993}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!populations@{populations}}
+\index{populations@{populations}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{populations}{populations}}
+{\footnotesize\ttfamily Dictionary$<$string, List$<$\mbox{\hyperlink{class_creature}{Creature}}$>$ $>$ Ecosystem\+Editor.\+populations = new Dictionary$<$string, List$<$\mbox{\hyperlink{class_creature}{Creature}}$>$$>$()}
+
+
+
+Stores populations of creatures. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_abe484ddd93b48d1300e88ab531d56aec}\label{class_ecosystem_editor_abe484ddd93b48d1300e88ab531d56aec}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!species\+Populator@{species\+Populator}}
+\index{species\+Populator@{species\+Populator}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{species\+Populator}{speciesPopulator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_species_populator}{Species\+Populator}} Ecosystem\+Editor.\+species\+Populator}
+
+
+
+Users founder and map to populate species. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_a40077803f584d6c42951feac3569a972}\label{class_ecosystem_editor_a40077803f584d6c42951feac3569a972}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!tentative\+Map@{tentative\+Map}}
+\index{tentative\+Map@{tentative\+Map}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{tentative\+Map}{tentativeMap}}
+{\footnotesize\ttfamily List$<$List$<$\mbox{\hyperlink{class_land}{Land}}$>$ $>$ Ecosystem\+Editor.\+tentative\+Map = new List$<$List$<$\mbox{\hyperlink{class_land}{Land}}$>$$>$()}
+
+
+
+Tentative map to be saved to ecosystem map when save\+Map is called. 
+
+\mbox{\Hypertarget{class_ecosystem_editor_aa0e6ad8b42512f087178aca21464da02}\label{class_ecosystem_editor_aa0e6ad8b42512f087178aca21464da02}} 
+\index{Ecosystem\+Editor@{Ecosystem\+Editor}!tentative\+Resource\+Options@{tentative\+Resource\+Options}}
+\index{tentative\+Resource\+Options@{tentative\+Resource\+Options}!Ecosystem\+Editor@{Ecosystem\+Editor}}
+\subsubsection{\texorpdfstring{tentative\+Resource\+Options}{tentativeResourceOptions}}
+{\footnotesize\ttfamily Dictionary$<$string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}}$>$ Ecosystem\+Editor.\+tentative\+Resource\+Options}
+
+
+
+Tenative list of resource options. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_ecosystem_editor_8cs}{Ecosystem\+Editor.\+cs}}\end{DoxyCompactItemize}

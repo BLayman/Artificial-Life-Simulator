@@ -1,0 +1,60 @@
+.TH "Network" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Network \- A neural network of a creature, which consists of layers of nodes\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherited by \fBCommNetwork\fP, and \fBReproNetwork\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBfeedForward\fP ()"
+.br
+.RI "Calls update value on each node in each layer "
+.ti -1c
+.RI "\fBNetwork\fP \fBgetShallowCopy\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "List< List< \fBNode\fP > > \fBnet\fP = new List<List<\fBNode\fP>>()"
+.br
+.ti -1c
+.RI "string \fBname\fP"
+.br
+.ti -1c
+.RI "int \fBinLayer\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A neural network of a creature, which consists of layers of nodes\&. 
+
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void Network\&.feedForward ()"
+
+.PP
+Calls update value on each node in each layer 
+.SS "\fBNetwork\fP Network\&.getShallowCopy ()"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "int Network\&.inLayer"
+
+.SS "string Network\&.name"
+
+.SS "List<List<\fBNode\fP> > Network\&.net = new List<List<\fBNode\fP>>()"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

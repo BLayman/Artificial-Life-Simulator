@@ -1,5 +1,71 @@
 \section{Class List}
 Here are the classes, structs, unions and interfaces with brief descriptions\+:\begin{DoxyCompactList}
-\item\contentsline{section}{\mbox{\hyperlink{class_network}{Network}} }{\pageref{class_network}}{}
-\item\contentsline{section}{\mbox{\hyperlink{class_node}{Node}} }{\pageref{class_node}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_abilities_editor}{Abilities\+Editor}} \\*A\+PI for Abilities objects. Modifies tentative\+Abilities variable from \mbox{\hyperlink{class_creature_editor}{Creature\+Editor}} }{\pageref{class_abilities_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_ability}{Ability}} \\*Modifies creature\textquotesingle{}s ability to consume certain resources or attack certain species. Each creature has a specific number of ability points to assign to different abilities. }{\pageref{class_ability}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_action}{Action}} }{\pageref{class_action}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_action_editor}{Action\+Editor}} }{\pageref{class_action_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_action_editor_abstract}{Action\+Editor\+Abstract}} }{\pageref{class_action_editor_abstract}}{}
+\item\contentsline{section}{\mbox{\hyperlink{interface_activation_behavior}{Activation\+Behavior}} \\*Interface for objects that implement an activation function. }{\pageref{interface_activation_behavior}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_bias_node}{Bias\+Node}} }{\pageref{class_bias_node}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_boost_requirement}{Boost\+Requirement}} \\*Currently not used. Boost requirements allow for modifications to abilities, thus giving creatures with certain resources an advantage over other creatures. If all creatures are capable of this ability, and have the same boost requirements, they all have the opportunity to gain this advantage. However, it should be noted that the relationship between resources and abilities established here does give certain resources more inherent value than others. }{\pageref{class_boost_requirement}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_camera_positioner}{Camera\+Positioner}} }{\pageref{class_camera_positioner}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_comm_action}{Comm\+Action}} }{\pageref{class_comm_action}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_comm_action_editor}{Comm\+Action\+Editor}} }{\pageref{class_comm_action_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_comm_input_node}{Comm\+Input\+Node}} }{\pageref{class_comm_input_node}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_comm_network}{Comm\+Network}} \\*A network that converts incomming comm signals into action recommendations. A seperate comm network is needed for every neightbor that sends a comm signal. }{\pageref{class_comm_network}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_comm_node_editor}{Comm\+Node\+Editor}} \\*A\+PI for Comm Nodes }{\pageref{class_comm_node_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_comm_signal}{Comm\+Signal}} \\*The comm network must individually process each comm signal stored in the creatures comm\+List, and save the outputs as action recommendations. }{\pageref{class_comm_signal}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_consume_from_land}{Consume\+From\+Land}} }{\pageref{class_consume_from_land}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_consume_from_land_editor}{Consume\+From\+Land\+Editor}} }{\pageref{class_consume_from_land_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_copier}{Copier}} }{\pageref{class_copier}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_creat_menu_behav}{Creat\+Menu\+Behav}} }{\pageref{class_creat_menu_behav}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_creature}{Creature}} \\*Class for storing all data about a creature/agent, including its neural networks, queued actions, stored resources, location and other parameters. }{\pageref{class_creature}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_creature_editor}{Creature\+Editor}} }{\pageref{class_creature_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_creature_resource}{Creature\+Resource}} \\*Resource stored by a creature, and how that resource effects the creature. }{\pageref{class_creature_resource}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_eco_manager}{Eco\+Manager}} }{\pageref{class_eco_manager}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_eco_menu_behav}{Eco\+Menu\+Behav}} }{\pageref{class_eco_menu_behav}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_eco_menu_tester}{Eco\+Menu\+Tester}} }{\pageref{class_eco_menu_tester}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_ecosystem}{Ecosystem}} \\*This class contains all of the data about the state of the ecosystem including the populations, species templates, map, resources, and other general parameters. }{\pageref{class_ecosystem}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_ecosystem_editor}{Ecosystem\+Editor}} \\*A\+PI for alterning ecosystem. }{\pageref{class_ecosystem_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_ecosystem_getter}{Ecosystem\+Getter}} }{\pageref{class_ecosystem_getter}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_empty_activ_behavior}{Empty\+Activ\+Behavior}} \\*No activation function (node simply uses linear combination). }{\pageref{class_empty_activ_behavior}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_error_manager}{Error\+Manager}} }{\pageref{class_error_manager}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_game_manager}{Game\+Manager}} }{\pageref{class_game_manager}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_helper_validator}{Helper\+Validator}} }{\pageref{class_helper_validator}}{}
+\item\contentsline{section}{\mbox{\hyperlink{interface_i_ecosystem_editor}{I\+Ecosystem\+Editor}} }{\pageref{interface_i_ecosystem_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_inner_input_node}{Inner\+Input\+Node}} }{\pageref{class_inner_input_node}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_inner_input_node_editor}{Inner\+Input\+Node\+Editor}} \\*A\+PI for Inner\+Input\+Nodes. }{\pageref{class_inner_input_node_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_land}{Land}} \\*Class for storing data about a location on the map. Also facilitates creature\textquotesingle{}s interaction with the environment. }{\pageref{class_land}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_land_resource_editor}{Land\+Resource\+Editor}} \\*Used as interface for generating \mbox{\hyperlink{class_resource_store}{Resource\+Store}} objects. }{\pageref{class_land_resource_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_logistic_activ_behavior}{Logistic\+Activ\+Behavior}} \\*Implements logistic activation function. }{\pageref{class_logistic_activ_behavior}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_logistic_with_neg_activ_behav}{Logistic\+With\+Neg\+Activ\+Behav}} \\*Logistic activation function, but mapped to \mbox{[}-\/1,1\mbox{]} }{\pageref{class_logistic_with_neg_activ_behav}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_l_r_menu_behav}{L\+R\+Menu\+Behav}} }{\pageref{class_l_r_menu_behav}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_main_menu_behav}{Main\+Menu\+Behav}} }{\pageref{class_main_menu_behav}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_map_editor}{Map\+Editor}} \\*A\+PI for editing the map\+: a 2D array of \mbox{\hyperlink{class_land}{Land}} spaces. Used to generate the map, and add resources. }{\pageref{class_map_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_memory_input_node}{Memory\+Input\+Node}} }{\pageref{class_memory_input_node}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_move_action}{Move\+Action}} }{\pageref{class_move_action}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_move_action_editor}{Move\+Action\+Editor}} }{\pageref{class_move_action_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_network}{Network}} \\*A neural network of a creature, which consists of layers of nodes. }{\pageref{class_network}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_network_editor}{Network\+Editor}} \\*A\+PI for \mbox{\hyperlink{class_network}{Network}} objects. Stored by Ecosystem\+Creator. }{\pageref{class_network_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_node}{Node}} \\*Abstract parent class for all \mbox{\hyperlink{class_node}{Node}} types. A \mbox{\hyperlink{class_node}{Node}} represents a node in a creatures neural network. }{\pageref{class_node}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_node_editor}{Node\+Editor}} \\*A\+PI for storing different kinds of specific node creators. ex. -\/ could wrap a Sensory\+Input\+Node\+Creator. Stored by Network\+Creator. }{\pageref{class_node_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{interface_node_editor_interface}{Node\+Editor\+Interface}} \\*Interface that allows all specific node creator objects to be stored by Node\+Creator class. }{\pageref{interface_node_editor_interface}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_non_input_node}{Non\+Input\+Node}} \\*Encompasses hidden nodes (which use this class directly) and output nodes (which use the \mbox{\hyperlink{class_output_node}{Output\+Node}} class). }{\pageref{class_non_input_node}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_output_node}{Output\+Node}} \\*Maps a the value of the node (as calculated by \mbox{\hyperlink{class_non_input_node}{Non\+Input\+Node}} methods) to an action. }{\pageref{class_output_node}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_output_node_editor}{Output\+Node\+Editor}} \\*A\+PI for Output\+Nodes. }{\pageref{class_output_node_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_population}{Population}} \\*A population stores information about a list of creatures, including it\textquotesingle{}s founder, and initial variation. }{\pageref{class_population}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_repro_action}{Repro\+Action}} }{\pageref{class_repro_action}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_repro_action_editor}{Repro\+Action\+Editor}} }{\pageref{class_repro_action_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_repro_network}{Repro\+Network}} \\*A specific kind of network that decided whether a creature should reproduce. }{\pageref{class_repro_network}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_resource_editor}{Resource\+Editor}} \\*A\+PI for setting resources that creature can store, and how the resource effects the creature. }{\pageref{class_resource_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_resource_store}{Resource\+Store}} \\*Basic unit of a resource to be stored in a \mbox{\hyperlink{class_land}{Land}} object. \mbox{\hyperlink{class_creature}{Creature}} can attempt to consume this resource from the land. }{\pageref{class_resource_store}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_sensory_input_node}{Sensory\+Input\+Node}} }{\pageref{class_sensory_input_node}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_sensory_input_node_editor}{Sensory\+Input\+Node\+Editor}} \\*A\+PI for Sensory\+Input\+Nodes. }{\pageref{class_sensory_input_node_editor}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_sim_runner_test}{Sim\+Runner\+Test}} \\*Class for running simulation. }{\pageref{class_sim_runner_test}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_sim_runner_user}{Sim\+Runner\+User}} \\*Class for running simulation. }{\pageref{class_sim_runner_user}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_species_populator}{Species\+Populator}} \\*Class for using a founder species to generate a population on the map. Wraps \mbox{\hyperlink{class_population}{Population}} class. }{\pageref{class_species_populator}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_static_variables}{Static\+Variables}} }{\pageref{class_static_variables}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_tanh_activ_behav}{Tanh\+Activ\+Behav}} \\*Implements Tanh activation function. }{\pageref{class_tanh_activ_behav}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_texture_maker_example}{Texture\+Maker\+Example}} }{\pageref{class_texture_maker_example}}{}
+\item\contentsline{section}{\mbox{\hyperlink{class_thread_manager}{Thread\+Manager}} }{\pageref{class_thread_manager}}{}
 \end{DoxyCompactList}

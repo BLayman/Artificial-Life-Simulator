@@ -1,0 +1,121 @@
+.TH "SpeciesPopulator" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SpeciesPopulator \- Class for using a founder species to generate a population on the map\&. Wraps \fBPopulation\fP class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSpeciesPopulator\fP (\fBCreature\fP founder, List< List< \fBLand\fP >> \fBmap\fP)"
+.br
+.ti -1c
+.RI "void \fBpopulateRandomUniform\fP (float probability)"
+.br
+.RI "Populate uniformly across map, using given probability\&. "
+.ti -1c
+.RI "void \fBsetNetworkWeightStandardDeviation\fP (float standardDeviation)"
+.br
+.RI "Set the standard deviation of creature network weights\&. "
+.ti -1c
+.RI "void \fBsetMaxPopSize\fP (int max)"
+.br
+.ti -1c
+.RI "void \fBpopulateRandom\fP (int size)"
+.br
+.RI "Creates set number of creatures, sets their locations randomly across the map (to be added later)\&. Adds them to population variable\&. "
+.ti -1c
+.RI "void \fBSetAbilityStandardDeviation\fP (float standardDeviation)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBPopulation\fP \fBpopulation\fP = new \fBPopulation\fP()"
+.br
+.RI "Stores Information about the population\&. "
+.ti -1c
+.RI "List< List< \fBLand\fP > > \fBmap\fP"
+.br
+.ti -1c
+.RI "List< int[]> \fBspotsTaken\fP = new List<int[]>()"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static int \fBcreatureNum\fP = 0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class for using a founder species to generate a population on the map\&. Wraps \fBPopulation\fP class\&. 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SpeciesPopulator\&.SpeciesPopulator (\fBCreature\fP founder, List< List< \fBLand\fP >> map)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void SpeciesPopulator\&.populateRandom (int size)"
+
+.PP
+Creates set number of creatures, sets their locations randomly across the map (to be added later)\&. Adds them to population variable\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsize\fP Number of creatures\&.
+.RE
+.PP
+
+.SS "void SpeciesPopulator\&.populateRandomUniform (float probability)"
+
+.PP
+Populate uniformly across map, using given probability\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIprobability\fP Probability of making a creature in a given land\&. Must be between 0 and 1\&.
+.RE
+.PP
+
+.SS "void SpeciesPopulator\&.SetAbilityStandardDeviation (float standardDeviation)"
+
+.PP
+
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstandardDeviation\fP 
+.RE
+.PP
+
+.SS "void SpeciesPopulator\&.setMaxPopSize (int max)"
+
+.SS "void SpeciesPopulator\&.setNetworkWeightStandardDeviation (float standardDeviation)"
+
+.PP
+Set the standard deviation of creature network weights\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "int SpeciesPopulator\&.creatureNum = 0\fC [static]\fP"
+
+.SS "List<List<\fBLand\fP> > SpeciesPopulator\&.map"
+
+.SS "\fBPopulation\fP SpeciesPopulator\&.population = new \fBPopulation\fP()"
+
+.PP
+Stores Information about the population\&. 
+.SS "List<int[]> SpeciesPopulator\&.spotsTaken = new List<int[]>()"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

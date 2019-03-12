@@ -1,0 +1,131 @@
+\hypertarget{class_copier}{}\section{Copier Class Reference}
+\label{class_copier}\index{Copier@{Copier}}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_ecosystem}{Ecosystem}} \mbox{\hyperlink{class_copier_a19904060ea391728436f2f36ddf36a73}{get\+Ecosystem\+Copy}} (\mbox{\hyperlink{class_ecosystem}{Ecosystem}} eco)
+\item 
+static float \mbox{\hyperlink{class_copier_a187d00289a5f7c8d3b2d20a3468e9416}{norm\+Rand}} (float sd)
+\item 
+static \mbox{\hyperlink{class_land}{Land}} \mbox{\hyperlink{class_copier_ac38173e26db80dad92a6ca9cd083f058}{Get\+Land\+Copy}} (\mbox{\hyperlink{class_land}{Land}} land)
+\item 
+static \mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_copier_a399f96d475da045dd0e9434c9054f161}{get\+Creature\+Child}} (\mbox{\hyperlink{class_creature}{Creature}} c)
+\item 
+static \mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_copier_a468c753ccc3b2192bb49b8be03edf18c}{get\+Creature\+Copy}} (\mbox{\hyperlink{class_creature}{Creature}} c)
+\item 
+static void \mbox{\hyperlink{class_copier_a4013b1f8da509a6471f0feed3ec94ae3}{copy\+Comm\+List}} (List$<$ \mbox{\hyperlink{class_comm_signal}{Comm\+Signal}} $>$ orig\+List, List$<$ \mbox{\hyperlink{class_comm_signal}{Comm\+Signal}} $>$ copy\+List)
+\item 
+static void \mbox{\hyperlink{class_copier_a4c529b374830077f75db4520bb55e225}{copy\+Creature\+Networks}} (List$<$ Dictionary$<$ string, \mbox{\hyperlink{class_network}{Network}} $>$$>$ orig\+Networks, List$<$ Dictionary$<$ string, \mbox{\hyperlink{class_network}{Network}} $>$$>$ copy\+Networks, \mbox{\hyperlink{class_creature}{Creature}} creature\+Copy)
+\item 
+static \mbox{\hyperlink{class_ability}{Ability}} \mbox{\hyperlink{class_copier_a0912151eec03dadf8d375bde174522aa}{get\+New\+Ability}} (\mbox{\hyperlink{class_ability}{Ability}} old\+Ability)
+\item 
+static \mbox{\hyperlink{class_action}{Action}} \mbox{\hyperlink{class_copier_a12cae9390220b2dcee8472e3ab5ec38f}{get\+New\+Action}} (\mbox{\hyperlink{class_action}{Action}} old\+Action)
+\item 
+static \mbox{\hyperlink{class_node}{Node}} \mbox{\hyperlink{class_copier_a2bc3b60cb77fb710cf7e4802ceb16d03}{get\+New\+Node}} (\mbox{\hyperlink{class_node}{Node}} old\+Node, \mbox{\hyperlink{class_creature}{Creature}} creature\+Copy, \mbox{\hyperlink{class_network}{Network}} parent\+Net)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static System.\+Random \mbox{\hyperlink{class_copier_ac2bbed854907158508f714b65783418e}{rand}} = new System.\+Random()
+\item 
+static System.\+Random \mbox{\hyperlink{class_copier_a74089df571f0e9ffadd5879bf0199dac}{seed\+Gen}} = new System.\+Random()
+\item 
+static int \mbox{\hyperlink{class_copier_a5f70131c00bf001cc92dd4cee4a80540}{seed}} = 0
+\item 
+static int \mbox{\hyperlink{class_copier_ab7101a9420cdd74139f3c83d9ec8ed25}{creature\+Num}} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_copier_a4013b1f8da509a6471f0feed3ec94ae3}\label{class_copier_a4013b1f8da509a6471f0feed3ec94ae3}} 
+\index{Copier@{Copier}!copy\+Comm\+List@{copy\+Comm\+List}}
+\index{copy\+Comm\+List@{copy\+Comm\+List}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{copy\+Comm\+List()}{copyCommList()}}
+{\footnotesize\ttfamily static void Copier.\+copy\+Comm\+List (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{class_comm_signal}{Comm\+Signal}} $>$}]{orig\+List,  }\item[{List$<$ \mbox{\hyperlink{class_comm_signal}{Comm\+Signal}} $>$}]{copy\+List }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_a4c529b374830077f75db4520bb55e225}\label{class_copier_a4c529b374830077f75db4520bb55e225}} 
+\index{Copier@{Copier}!copy\+Creature\+Networks@{copy\+Creature\+Networks}}
+\index{copy\+Creature\+Networks@{copy\+Creature\+Networks}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{copy\+Creature\+Networks()}{copyCreatureNetworks()}}
+{\footnotesize\ttfamily static void Copier.\+copy\+Creature\+Networks (\begin{DoxyParamCaption}\item[{List$<$ Dictionary$<$ string, \mbox{\hyperlink{class_network}{Network}} $>$$>$}]{orig\+Networks,  }\item[{List$<$ Dictionary$<$ string, \mbox{\hyperlink{class_network}{Network}} $>$$>$}]{copy\+Networks,  }\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{creature\+Copy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_a399f96d475da045dd0e9434c9054f161}\label{class_copier_a399f96d475da045dd0e9434c9054f161}} 
+\index{Copier@{Copier}!get\+Creature\+Child@{get\+Creature\+Child}}
+\index{get\+Creature\+Child@{get\+Creature\+Child}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{get\+Creature\+Child()}{getCreatureChild()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_creature}{Creature}} Copier.\+get\+Creature\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_a468c753ccc3b2192bb49b8be03edf18c}\label{class_copier_a468c753ccc3b2192bb49b8be03edf18c}} 
+\index{Copier@{Copier}!get\+Creature\+Copy@{get\+Creature\+Copy}}
+\index{get\+Creature\+Copy@{get\+Creature\+Copy}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{get\+Creature\+Copy()}{getCreatureCopy()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_creature}{Creature}} Copier.\+get\+Creature\+Copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_a19904060ea391728436f2f36ddf36a73}\label{class_copier_a19904060ea391728436f2f36ddf36a73}} 
+\index{Copier@{Copier}!get\+Ecosystem\+Copy@{get\+Ecosystem\+Copy}}
+\index{get\+Ecosystem\+Copy@{get\+Ecosystem\+Copy}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{get\+Ecosystem\+Copy()}{getEcosystemCopy()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_ecosystem}{Ecosystem}} Copier.\+get\+Ecosystem\+Copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ecosystem}{Ecosystem}}}]{eco }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_ac38173e26db80dad92a6ca9cd083f058}\label{class_copier_ac38173e26db80dad92a6ca9cd083f058}} 
+\index{Copier@{Copier}!Get\+Land\+Copy@{Get\+Land\+Copy}}
+\index{Get\+Land\+Copy@{Get\+Land\+Copy}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{Get\+Land\+Copy()}{GetLandCopy()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_land}{Land}} Copier.\+Get\+Land\+Copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_land}{Land}}}]{land }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_a0912151eec03dadf8d375bde174522aa}\label{class_copier_a0912151eec03dadf8d375bde174522aa}} 
+\index{Copier@{Copier}!get\+New\+Ability@{get\+New\+Ability}}
+\index{get\+New\+Ability@{get\+New\+Ability}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{get\+New\+Ability()}{getNewAbility()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_ability}{Ability}} Copier.\+get\+New\+Ability (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ability}{Ability}}}]{old\+Ability }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_a12cae9390220b2dcee8472e3ab5ec38f}\label{class_copier_a12cae9390220b2dcee8472e3ab5ec38f}} 
+\index{Copier@{Copier}!get\+New\+Action@{get\+New\+Action}}
+\index{get\+New\+Action@{get\+New\+Action}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{get\+New\+Action()}{getNewAction()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_action}{Action}} Copier.\+get\+New\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_action}{Action}}}]{old\+Action }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_a2bc3b60cb77fb710cf7e4802ceb16d03}\label{class_copier_a2bc3b60cb77fb710cf7e4802ceb16d03}} 
+\index{Copier@{Copier}!get\+New\+Node@{get\+New\+Node}}
+\index{get\+New\+Node@{get\+New\+Node}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{get\+New\+Node()}{getNewNode()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_node}{Node}} Copier.\+get\+New\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}}}]{old\+Node,  }\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{creature\+Copy,  }\item[{\mbox{\hyperlink{class_network}{Network}}}]{parent\+Net }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_a187d00289a5f7c8d3b2d20a3468e9416}\label{class_copier_a187d00289a5f7c8d3b2d20a3468e9416}} 
+\index{Copier@{Copier}!norm\+Rand@{norm\+Rand}}
+\index{norm\+Rand@{norm\+Rand}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{norm\+Rand()}{normRand()}}
+{\footnotesize\ttfamily static float Copier.\+norm\+Rand (\begin{DoxyParamCaption}\item[{float}]{sd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_copier_ab7101a9420cdd74139f3c83d9ec8ed25}\label{class_copier_ab7101a9420cdd74139f3c83d9ec8ed25}} 
+\index{Copier@{Copier}!creature\+Num@{creature\+Num}}
+\index{creature\+Num@{creature\+Num}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{creature\+Num}{creatureNum}}
+{\footnotesize\ttfamily int Copier.\+creature\+Num = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_ac2bbed854907158508f714b65783418e}\label{class_copier_ac2bbed854907158508f714b65783418e}} 
+\index{Copier@{Copier}!rand@{rand}}
+\index{rand@{rand}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{rand}{rand}}
+{\footnotesize\ttfamily System.\+Random Copier.\+rand = new System.\+Random()\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_a5f70131c00bf001cc92dd4cee4a80540}\label{class_copier_a5f70131c00bf001cc92dd4cee4a80540}} 
+\index{Copier@{Copier}!seed@{seed}}
+\index{seed@{seed}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{seed}{seed}}
+{\footnotesize\ttfamily int Copier.\+seed = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_copier_a74089df571f0e9ffadd5879bf0199dac}\label{class_copier_a74089df571f0e9ffadd5879bf0199dac}} 
+\index{Copier@{Copier}!seed\+Gen@{seed\+Gen}}
+\index{seed\+Gen@{seed\+Gen}!Copier@{Copier}}
+\subsubsection{\texorpdfstring{seed\+Gen}{seedGen}}
+{\footnotesize\ttfamily System.\+Random Copier.\+seed\+Gen = new System.\+Random()\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_copier_8cs}{Copier.\+cs}}\end{DoxyCompactItemize}

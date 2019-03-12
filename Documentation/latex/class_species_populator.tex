@@ -1,0 +1,150 @@
+\hypertarget{class_species_populator}{}\section{Species\+Populator Class Reference}
+\label{class_species_populator}\index{Species\+Populator@{Species\+Populator}}
+
+
+Class for using a founder species to generate a population on the map. Wraps \mbox{\hyperlink{class_population}{Population}} class.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_species_populator_aa3187e4e8906a10d15365aafddd183f4}{Species\+Populator}} (\mbox{\hyperlink{class_creature}{Creature}} founder, List$<$ List$<$ \mbox{\hyperlink{class_land}{Land}} $>$$>$ \mbox{\hyperlink{class_species_populator_a886b0f7ecb2a21621178d68b00d637e3}{map}})
+\item 
+void \mbox{\hyperlink{class_species_populator_ac76623f1bd486e6981c7f7382ca70f1e}{populate\+Random\+Uniform}} (float probability)
+\begin{DoxyCompactList}\small\item\em Populate uniformly across map, using given probability. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_species_populator_aecdf7b73ed1506c1c879268c357200e4}{set\+Network\+Weight\+Standard\+Deviation}} (float standard\+Deviation)
+\begin{DoxyCompactList}\small\item\em Set the standard deviation of creature network weights. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_species_populator_af1c39ba08b340e3b23f42f7a67fc826d}{set\+Max\+Pop\+Size}} (int max)
+\item 
+void \mbox{\hyperlink{class_species_populator_a6d9571023b9d9edd44e28a11e638b001}{populate\+Random}} (int size)
+\begin{DoxyCompactList}\small\item\em Creates set number of creatures, sets their locations randomly across the map (to be added later). Adds them to population variable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_species_populator_ae1d2c7fc2142918304556b20a7f2f361}{Set\+Ability\+Standard\+Deviation}} (float standard\+Deviation)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_population}{Population}} \mbox{\hyperlink{class_species_populator_a119d16beaafe55f1a49d26daa08fcc5a}{population}} = new \mbox{\hyperlink{class_population}{Population}}()
+\begin{DoxyCompactList}\small\item\em Stores Information about the population. \end{DoxyCompactList}\item 
+List$<$ List$<$ \mbox{\hyperlink{class_land}{Land}} $>$ $>$ \mbox{\hyperlink{class_species_populator_a886b0f7ecb2a21621178d68b00d637e3}{map}}
+\item 
+List$<$ int\mbox{[}$\,$\mbox{]}$>$ \mbox{\hyperlink{class_species_populator_a795ce62b0794ced8ac231dab8a836c1d}{spots\+Taken}} = new List$<$int\mbox{[}$\,$\mbox{]}$>$()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_species_populator_ae63e5d9d4b3d8e83bf1c3c288d34a4d9}{creature\+Num}} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for using a founder species to generate a population on the map. Wraps \mbox{\hyperlink{class_population}{Population}} class. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_species_populator_aa3187e4e8906a10d15365aafddd183f4}\label{class_species_populator_aa3187e4e8906a10d15365aafddd183f4}} 
+\index{Species\+Populator@{Species\+Populator}!Species\+Populator@{Species\+Populator}}
+\index{Species\+Populator@{Species\+Populator}!Species\+Populator@{Species\+Populator}}
+\subsubsection{\texorpdfstring{Species\+Populator()}{SpeciesPopulator()}}
+{\footnotesize\ttfamily Species\+Populator.\+Species\+Populator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{founder,  }\item[{List$<$ List$<$ \mbox{\hyperlink{class_land}{Land}} $>$$>$}]{map }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_species_populator_a6d9571023b9d9edd44e28a11e638b001}\label{class_species_populator_a6d9571023b9d9edd44e28a11e638b001}} 
+\index{Species\+Populator@{Species\+Populator}!populate\+Random@{populate\+Random}}
+\index{populate\+Random@{populate\+Random}!Species\+Populator@{Species\+Populator}}
+\subsubsection{\texorpdfstring{populate\+Random()}{populateRandom()}}
+{\footnotesize\ttfamily void Species\+Populator.\+populate\+Random (\begin{DoxyParamCaption}\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Creates set number of creatures, sets their locations randomly across the map (to be added later). Adds them to population variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Number of creatures.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_species_populator_ac76623f1bd486e6981c7f7382ca70f1e}\label{class_species_populator_ac76623f1bd486e6981c7f7382ca70f1e}} 
+\index{Species\+Populator@{Species\+Populator}!populate\+Random\+Uniform@{populate\+Random\+Uniform}}
+\index{populate\+Random\+Uniform@{populate\+Random\+Uniform}!Species\+Populator@{Species\+Populator}}
+\subsubsection{\texorpdfstring{populate\+Random\+Uniform()}{populateRandomUniform()}}
+{\footnotesize\ttfamily void Species\+Populator.\+populate\+Random\+Uniform (\begin{DoxyParamCaption}\item[{float}]{probability }\end{DoxyParamCaption})}
+
+
+
+Populate uniformly across map, using given probability. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em probability} & Probability of making a creature in a given land. Must be between 0 and 1.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_species_populator_ae1d2c7fc2142918304556b20a7f2f361}\label{class_species_populator_ae1d2c7fc2142918304556b20a7f2f361}} 
+\index{Species\+Populator@{Species\+Populator}!Set\+Ability\+Standard\+Deviation@{Set\+Ability\+Standard\+Deviation}}
+\index{Set\+Ability\+Standard\+Deviation@{Set\+Ability\+Standard\+Deviation}!Species\+Populator@{Species\+Populator}}
+\subsubsection{\texorpdfstring{Set\+Ability\+Standard\+Deviation()}{SetAbilityStandardDeviation()}}
+{\footnotesize\ttfamily void Species\+Populator.\+Set\+Ability\+Standard\+Deviation (\begin{DoxyParamCaption}\item[{float}]{standard\+Deviation }\end{DoxyParamCaption})}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em standard\+Deviation} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_species_populator_af1c39ba08b340e3b23f42f7a67fc826d}\label{class_species_populator_af1c39ba08b340e3b23f42f7a67fc826d}} 
+\index{Species\+Populator@{Species\+Populator}!set\+Max\+Pop\+Size@{set\+Max\+Pop\+Size}}
+\index{set\+Max\+Pop\+Size@{set\+Max\+Pop\+Size}!Species\+Populator@{Species\+Populator}}
+\subsubsection{\texorpdfstring{set\+Max\+Pop\+Size()}{setMaxPopSize()}}
+{\footnotesize\ttfamily void Species\+Populator.\+set\+Max\+Pop\+Size (\begin{DoxyParamCaption}\item[{int}]{max }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_species_populator_aecdf7b73ed1506c1c879268c357200e4}\label{class_species_populator_aecdf7b73ed1506c1c879268c357200e4}} 
+\index{Species\+Populator@{Species\+Populator}!set\+Network\+Weight\+Standard\+Deviation@{set\+Network\+Weight\+Standard\+Deviation}}
+\index{set\+Network\+Weight\+Standard\+Deviation@{set\+Network\+Weight\+Standard\+Deviation}!Species\+Populator@{Species\+Populator}}
+\subsubsection{\texorpdfstring{set\+Network\+Weight\+Standard\+Deviation()}{setNetworkWeightStandardDeviation()}}
+{\footnotesize\ttfamily void Species\+Populator.\+set\+Network\+Weight\+Standard\+Deviation (\begin{DoxyParamCaption}\item[{float}]{standard\+Deviation }\end{DoxyParamCaption})}
+
+
+
+Set the standard deviation of creature network weights. 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_species_populator_ae63e5d9d4b3d8e83bf1c3c288d34a4d9}\label{class_species_populator_ae63e5d9d4b3d8e83bf1c3c288d34a4d9}} 
+\index{Species\+Populator@{Species\+Populator}!creature\+Num@{creature\+Num}}
+\index{creature\+Num@{creature\+Num}!Species\+Populator@{Species\+Populator}}
+\subsubsection{\texorpdfstring{creature\+Num}{creatureNum}}
+{\footnotesize\ttfamily int Species\+Populator.\+creature\+Num = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_species_populator_a886b0f7ecb2a21621178d68b00d637e3}\label{class_species_populator_a886b0f7ecb2a21621178d68b00d637e3}} 
+\index{Species\+Populator@{Species\+Populator}!map@{map}}
+\index{map@{map}!Species\+Populator@{Species\+Populator}}
+\subsubsection{\texorpdfstring{map}{map}}
+{\footnotesize\ttfamily List$<$List$<$\mbox{\hyperlink{class_land}{Land}}$>$ $>$ Species\+Populator.\+map}
+
+\mbox{\Hypertarget{class_species_populator_a119d16beaafe55f1a49d26daa08fcc5a}\label{class_species_populator_a119d16beaafe55f1a49d26daa08fcc5a}} 
+\index{Species\+Populator@{Species\+Populator}!population@{population}}
+\index{population@{population}!Species\+Populator@{Species\+Populator}}
+\subsubsection{\texorpdfstring{population}{population}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_population}{Population}} Species\+Populator.\+population = new \mbox{\hyperlink{class_population}{Population}}()}
+
+
+
+Stores Information about the population. 
+
+\mbox{\Hypertarget{class_species_populator_a795ce62b0794ced8ac231dab8a836c1d}\label{class_species_populator_a795ce62b0794ced8ac231dab8a836c1d}} 
+\index{Species\+Populator@{Species\+Populator}!spots\+Taken@{spots\+Taken}}
+\index{spots\+Taken@{spots\+Taken}!Species\+Populator@{Species\+Populator}}
+\subsubsection{\texorpdfstring{spots\+Taken}{spotsTaken}}
+{\footnotesize\ttfamily List$<$int\mbox{[}$\,$\mbox{]}$>$ Species\+Populator.\+spots\+Taken = new List$<$int\mbox{[}$\,$\mbox{]}$>$()}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_species_populator_8cs}{Species\+Populator.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,100 @@
+\hypertarget{class_land}{}\section{Land Class Reference}
+\label{class_land}\index{Land@{Land}}
+
+
+Class for storing data about a location on the map. Also facilitates creature\textquotesingle{}s interaction with the environment.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_land_ad66a06c6c305a42c12c5b63410242251}{creature\+Is\+On}} ()
+\begin{DoxyCompactList}\small\item\em returns true if creature\+On is not null \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_land_ad2eefda30f5859bb62fc33804f445e20}{attempt\+Resource\+Consumption}} (string resource\+Key, float time\+Dedicated, float creature\+Ability, float c\+Storage\+Space)
+\begin{DoxyCompactList}\small\item\em Try to consume resource of given name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_land}{Land}} \mbox{\hyperlink{class_land_a39ae866c981982746dd04515bbab8238}{shallow\+Copy}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+System.\+Collections.\+Generic.\+Dictionary$<$ string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}} $>$ \mbox{\hyperlink{class_land_adcbc195ca2ec38fb30d0ef5e2fde4397}{property\+Dict}} = new Dictionary$<$string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}}$>$()
+\begin{DoxyCompactList}\small\item\em Stores resource values and other attributes of the land \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_land_a3cab3cf218bd21e41181b908bd76a053}{creature\+On}}
+\begin{DoxyCompactList}\small\item\em Stores whatever creature is currently on this land. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_land_a309b7300b5d1bcdfec0fd7db41a94cc3}{is\+Dummy}} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for storing data about a location on the map. Also facilitates creature\textquotesingle{}s interaction with the environment. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_land_ad2eefda30f5859bb62fc33804f445e20}\label{class_land_ad2eefda30f5859bb62fc33804f445e20}} 
+\index{Land@{Land}!attempt\+Resource\+Consumption@{attempt\+Resource\+Consumption}}
+\index{attempt\+Resource\+Consumption@{attempt\+Resource\+Consumption}!Land@{Land}}
+\subsubsection{\texorpdfstring{attempt\+Resource\+Consumption()}{attemptResourceConsumption()}}
+{\footnotesize\ttfamily float Land.\+attempt\+Resource\+Consumption (\begin{DoxyParamCaption}\item[{string}]{resource\+Key,  }\item[{float}]{time\+Dedicated,  }\item[{float}]{creature\+Ability,  }\item[{float}]{c\+Storage\+Space }\end{DoxyParamCaption})}
+
+
+
+Try to consume resource of given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em resource\+Key} & Resource name.\\
+\hline
+{\em time\+Dedicated} & Comes from action time\+Cost variable.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_land_ad66a06c6c305a42c12c5b63410242251}\label{class_land_ad66a06c6c305a42c12c5b63410242251}} 
+\index{Land@{Land}!creature\+Is\+On@{creature\+Is\+On}}
+\index{creature\+Is\+On@{creature\+Is\+On}!Land@{Land}}
+\subsubsection{\texorpdfstring{creature\+Is\+On()}{creatureIsOn()}}
+{\footnotesize\ttfamily bool Land.\+creature\+Is\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+returns true if creature\+On is not null 
+
+\mbox{\Hypertarget{class_land_a39ae866c981982746dd04515bbab8238}\label{class_land_a39ae866c981982746dd04515bbab8238}} 
+\index{Land@{Land}!shallow\+Copy@{shallow\+Copy}}
+\index{shallow\+Copy@{shallow\+Copy}!Land@{Land}}
+\subsubsection{\texorpdfstring{shallow\+Copy()}{shallowCopy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_land}{Land}} Land.\+shallow\+Copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_land_a3cab3cf218bd21e41181b908bd76a053}\label{class_land_a3cab3cf218bd21e41181b908bd76a053}} 
+\index{Land@{Land}!creature\+On@{creature\+On}}
+\index{creature\+On@{creature\+On}!Land@{Land}}
+\subsubsection{\texorpdfstring{creature\+On}{creatureOn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_creature}{Creature}} Land.\+creature\+On}
+
+
+
+Stores whatever creature is currently on this land. 
+
+\mbox{\Hypertarget{class_land_a309b7300b5d1bcdfec0fd7db41a94cc3}\label{class_land_a309b7300b5d1bcdfec0fd7db41a94cc3}} 
+\index{Land@{Land}!is\+Dummy@{is\+Dummy}}
+\index{is\+Dummy@{is\+Dummy}!Land@{Land}}
+\subsubsection{\texorpdfstring{is\+Dummy}{isDummy}}
+{\footnotesize\ttfamily bool Land.\+is\+Dummy = false}
+
+\mbox{\Hypertarget{class_land_adcbc195ca2ec38fb30d0ef5e2fde4397}\label{class_land_adcbc195ca2ec38fb30d0ef5e2fde4397}} 
+\index{Land@{Land}!property\+Dict@{property\+Dict}}
+\index{property\+Dict@{property\+Dict}!Land@{Land}}
+\subsubsection{\texorpdfstring{property\+Dict}{propertyDict}}
+{\footnotesize\ttfamily System.\+Collections.\+Generic.\+Dictionary$<$string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}}$>$ Land.\+property\+Dict = new Dictionary$<$string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}}$>$()}
+
+
+
+Stores resource values and other attributes of the land 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_land_8cs}{Land.\+cs}}\end{DoxyCompactItemize}

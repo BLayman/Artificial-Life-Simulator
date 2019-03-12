@@ -1,0 +1,107 @@
+\hypertarget{class_output_node}{}\section{Output\+Node Class Reference}
+\label{class_output_node}\index{Output\+Node@{Output\+Node}}
+
+
+Maps a the value of the node (as calculated by \mbox{\hyperlink{class_non_input_node}{Non\+Input\+Node}} methods) to an action.  
+
+
+Inheritance diagram for Output\+Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_output_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_output_node_abf3c6c3ab42fb35f64e894a15f0d057e}{Output\+Node}} ()
+\item 
+\mbox{\hyperlink{class_output_node_ab065c6d98c883b8416acbc5add709013}{Output\+Node}} (\mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_output_node_a4be36782d750ac8d91c0f51628d353fb}{parent\+Creature}}, \mbox{\hyperlink{class_network}{Network}} \mbox{\hyperlink{class_non_input_node_ac79615aee9a2b85aa9c31f98451da37a}{parent\+Net}}, int \mbox{\hyperlink{class_non_input_node_a5614e202d11fbe3ca55ec88e6e803cb8}{layer}})
+\item 
+void \mbox{\hyperlink{class_output_node_a6d6a43ded165156d825fd039487f2a10}{add\+Action\+If\+Active}} ()
+\begin{DoxyCompactList}\small\item\em Adds its action to the action queue based on probability returned from the activation function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_output_node_aeb94c02a334d514de5a0bcb474778f41}{set\+Action}} (string \mbox{\hyperlink{class_output_node_a48299e62ef82f692d8656d0efec1b236}{action\+Key}})
+\item 
+\mbox{\hyperlink{class_output_node}{Output\+Node}} \mbox{\hyperlink{class_output_node_af4524058cc5cbb2fbd29aac4b970395f}{clone}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_action}{Action}} \mbox{\hyperlink{class_output_node_a330eb0533baf20b237f93627106d6b56}{action}}
+\item 
+\mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_output_node_a4be36782d750ac8d91c0f51628d353fb}{parent\+Creature}}
+\item 
+string \mbox{\hyperlink{class_output_node_a48299e62ef82f692d8656d0efec1b236}{action\+Key}}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Maps a the value of the node (as calculated by \mbox{\hyperlink{class_non_input_node}{Non\+Input\+Node}} methods) to an action. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_output_node_abf3c6c3ab42fb35f64e894a15f0d057e}\label{class_output_node_abf3c6c3ab42fb35f64e894a15f0d057e}} 
+\index{Output\+Node@{Output\+Node}!Output\+Node@{Output\+Node}}
+\index{Output\+Node@{Output\+Node}!Output\+Node@{Output\+Node}}
+\subsubsection{\texorpdfstring{Output\+Node()}{OutputNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Output\+Node.\+Output\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_output_node_ab065c6d98c883b8416acbc5add709013}\label{class_output_node_ab065c6d98c883b8416acbc5add709013}} 
+\index{Output\+Node@{Output\+Node}!Output\+Node@{Output\+Node}}
+\index{Output\+Node@{Output\+Node}!Output\+Node@{Output\+Node}}
+\subsubsection{\texorpdfstring{Output\+Node()}{OutputNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Output\+Node.\+Output\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{parent\+Creature,  }\item[{\mbox{\hyperlink{class_network}{Network}}}]{parent\+Net,  }\item[{int}]{layer }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_output_node_a6d6a43ded165156d825fd039487f2a10}\label{class_output_node_a6d6a43ded165156d825fd039487f2a10}} 
+\index{Output\+Node@{Output\+Node}!add\+Action\+If\+Active@{add\+Action\+If\+Active}}
+\index{add\+Action\+If\+Active@{add\+Action\+If\+Active}!Output\+Node@{Output\+Node}}
+\subsubsection{\texorpdfstring{add\+Action\+If\+Active()}{addActionIfActive()}}
+{\footnotesize\ttfamily void Output\+Node.\+add\+Action\+If\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Adds its action to the action queue based on probability returned from the activation function. 
+
+\mbox{\Hypertarget{class_output_node_af4524058cc5cbb2fbd29aac4b970395f}\label{class_output_node_af4524058cc5cbb2fbd29aac4b970395f}} 
+\index{Output\+Node@{Output\+Node}!clone@{clone}}
+\index{clone@{clone}!Output\+Node@{Output\+Node}}
+\subsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_output_node}{Output\+Node}} Output\+Node.\+clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_output_node_aeb94c02a334d514de5a0bcb474778f41}\label{class_output_node_aeb94c02a334d514de5a0bcb474778f41}} 
+\index{Output\+Node@{Output\+Node}!set\+Action@{set\+Action}}
+\index{set\+Action@{set\+Action}!Output\+Node@{Output\+Node}}
+\subsubsection{\texorpdfstring{set\+Action()}{setAction()}}
+{\footnotesize\ttfamily void Output\+Node.\+set\+Action (\begin{DoxyParamCaption}\item[{string}]{action\+Key }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_output_node_a330eb0533baf20b237f93627106d6b56}\label{class_output_node_a330eb0533baf20b237f93627106d6b56}} 
+\index{Output\+Node@{Output\+Node}!action@{action}}
+\index{action@{action}!Output\+Node@{Output\+Node}}
+\subsubsection{\texorpdfstring{action}{action}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_action}{Action}} Output\+Node.\+action}
+
+\mbox{\Hypertarget{class_output_node_a48299e62ef82f692d8656d0efec1b236}\label{class_output_node_a48299e62ef82f692d8656d0efec1b236}} 
+\index{Output\+Node@{Output\+Node}!action\+Key@{action\+Key}}
+\index{action\+Key@{action\+Key}!Output\+Node@{Output\+Node}}
+\subsubsection{\texorpdfstring{action\+Key}{actionKey}}
+{\footnotesize\ttfamily string Output\+Node.\+action\+Key}
+
+\mbox{\Hypertarget{class_output_node_a4be36782d750ac8d91c0f51628d353fb}\label{class_output_node_a4be36782d750ac8d91c0f51628d353fb}} 
+\index{Output\+Node@{Output\+Node}!parent\+Creature@{parent\+Creature}}
+\index{parent\+Creature@{parent\+Creature}!Output\+Node@{Output\+Node}}
+\subsubsection{\texorpdfstring{parent\+Creature}{parentCreature}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_creature}{Creature}} Output\+Node.\+parent\+Creature}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_output_node_8cs}{Output\+Node.\+cs}}\end{DoxyCompactItemize}

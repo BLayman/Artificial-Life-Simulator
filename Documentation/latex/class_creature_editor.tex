@@ -1,0 +1,314 @@
+\hypertarget{class_creature_editor}{}\section{Creature\+Editor Class Reference}
+\label{class_creature_editor}\index{Creature\+Editor@{Creature\+Editor}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_creature_editor_ad25258b45808b5e140dd76aa7eec7b29}{Creature\+Editor}} (\mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_creature_editor_a2589284f2064a318bd8578acb95f3309}{creature}}, \mbox{\hyperlink{class_ecosystem_editor}{Ecosystem\+Editor}} eco\+Creator)
+\begin{DoxyCompactList}\small\item\em Constructor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_a25dc6294586118bf7e4ecefeccea2815}{set\+Species}} (string species)
+\begin{DoxyCompactList}\small\item\em Sets name of species to which the creature belongs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_af2c3731115defa893138dcb7de00092c}{set\+Position}} (int x\+Coor, int y\+Coor)
+\begin{DoxyCompactList}\small\item\em Sets creature\textquotesingle{}s position on the map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_a2a1426689b7276996e550e5c508e9a48}{set\+Max\+Health}} (float max\+Health)
+\item 
+void \mbox{\hyperlink{class_creature_editor_a2a230941e6db58928582e20704a8d239}{set\+Initial\+Health}} (float initial\+Health)
+\item 
+void \mbox{\hyperlink{class_creature_editor_a0ef7391c366e987d267d7ba937447146}{set\+Color}} (\mbox{\hyperlink{_creature_editor_8cs_a2d31a955c823bd51aec8f913e263723c}{Color\+Choice}} c)
+\item 
+void \mbox{\hyperlink{class_creature_editor_a63a9951aa74689237e12cd131cef6e0e}{set\+Phenotype}} (int phenotype)
+\begin{DoxyCompactList}\small\item\em Sets phenotype of creature. Takes in int\+: \mbox{[}1,x\mbox{]}, where there are x distinct phenotypes allowed in the ecosystem, and assigns corrresponding bool array to creatures phenotype. The bool array contains all falses, except for a true at the x-\/1 index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_a1dec102cd9c1c32e2f0639a627203c7f}{set\+Action\+Clear\+Interval}} (int steps)
+\begin{DoxyCompactList}\small\item\em Sets the number of steps between deleting all actions in action queue. This is used to keep the action queue current. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_a463412404c7ed5f27208b742318f193d}{set\+Action\+Clear\+Size}} (int size)
+\begin{DoxyCompactList}\small\item\em Sets the size of the action queue required for the queue to be cleared \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_aeebb715ee7340999be80095aeb6c5c41}{set\+Mutation\+Standard\+Deviation}} (float deviation)
+\begin{DoxyCompactList}\small\item\em Sets the amount of deviation added to the weights during reproduction \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_a89072895132cbeae88d530bada8c0761}{set\+Turn\+Time}} (float time)
+\begin{DoxyCompactList}\small\item\em Sets the amount of time alloted per turn. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_resource_editor}{Resource\+Editor}} \mbox{\hyperlink{class_creature_editor_a6cd78de22a211b236369afe62ea60c99}{add\+Resource}} ()
+\begin{DoxyCompactList}\small\item\em Resets creatures resource creator, allowing the user to create a resource for the creature to use for survival or attribute benefits. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_af35082ae3f97f9385b6d27efb1528e7c}{save\+Resource}} ()
+\begin{DoxyCompactList}\small\item\em Saves resource created by resource creator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_abilities_editor}{Abilities\+Editor}} \mbox{\hyperlink{class_creature_editor_a60b1083bafbb24636e356f2ca79e91b7}{edit\+Abilities}} ()
+\begin{DoxyCompactList}\small\item\em edit tentative\+Abilities, returns Abilites\+Editor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_afc80714657aedc32aaaa54760bc6b78f}{cancel\+Editing\+Abilities}} ()
+\begin{DoxyCompactList}\small\item\em reset tentative\+Abilities if user cancels editing them \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_a73b06f4546ad17a435f487a3a515e661}{add\+Default\+Resource\+Abilities}} ()
+\item 
+\mbox{\hyperlink{class_network_editor}{Network\+Editor}} \mbox{\hyperlink{class_creature_editor_a2c3d33249073a6af3cd536cc02832635}{add\+Network}} ()
+\begin{DoxyCompactList}\small\item\em Resets net\+Creator, allowing for the creation of a new network. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_action_editor}{Action\+Editor}} \mbox{\hyperlink{class_creature_editor_a558b61296fbae7699cfafdcc02bd8858}{add\+Action}} ()
+\item 
+void \mbox{\hyperlink{class_creature_editor_a4f9898932327b32b8eaedd8667acff18}{save\+Action}} ()
+\item 
+void \mbox{\hyperlink{class_creature_editor_a30e7e56df84510ae8487df6b62dc7f2a}{save\+Network}} ()
+\begin{DoxyCompactList}\small\item\em Used to save network that is created by Net\+Creator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_a986bfbfe3b55a2b6492e1b4b371cf592}{save\+Abilities}} ()
+\begin{DoxyCompactList}\small\item\em Saves abilities set by abilities creator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_editor_a1d2e73a7a581c8e1e6c25c46ad8c8ace}{generate\+Default\+Action\+Pool}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_creature_editor_a2589284f2064a318bd8578acb95f3309}{creature}}
+\item 
+\mbox{\hyperlink{class_network_editor}{Network\+Editor}} \mbox{\hyperlink{class_creature_editor_ae6f73bff56b148123b3ca5251bb00aee}{net\+Creator}}
+\item 
+\mbox{\hyperlink{class_resource_editor}{Resource\+Editor}} \mbox{\hyperlink{class_creature_editor_a61c343493865d7ead92c5ea83fdfe6f5}{resource\+Creator}}
+\item 
+\mbox{\hyperlink{class_abilities_editor}{Abilities\+Editor}} \mbox{\hyperlink{class_creature_editor_a801504d4a32e2ad56c4c1ffda29d75f6}{abilities\+Creator}}
+\item 
+\mbox{\hyperlink{class_action_editor}{Action\+Editor}} \mbox{\hyperlink{class_creature_editor_a2bd48e758a2f1db48ad15d765debf5f2}{action\+Creator}}
+\item 
+int \mbox{\hyperlink{class_creature_editor_af48eb3267dc56b717ed3ba596794a362}{distinct\+Phenotypes}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+PI for creature class. Stored by Ecosystem\+Creator.
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_creature_editor_ad25258b45808b5e140dd76aa7eec7b29}\label{class_creature_editor_ad25258b45808b5e140dd76aa7eec7b29}} 
+\index{Creature\+Editor@{Creature\+Editor}!Creature\+Editor@{Creature\+Editor}}
+\index{Creature\+Editor@{Creature\+Editor}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{Creature\+Editor()}{CreatureEditor()}}
+{\footnotesize\ttfamily Creature\+Editor.\+Creature\+Editor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{creature,  }\item[{\mbox{\hyperlink{class_ecosystem_editor}{Ecosystem\+Editor}}}]{eco\+Creator }\end{DoxyParamCaption})}
+
+
+
+Constructor 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_creature_editor_a558b61296fbae7699cfafdcc02bd8858}\label{class_creature_editor_a558b61296fbae7699cfafdcc02bd8858}} 
+\index{Creature\+Editor@{Creature\+Editor}!add\+Action@{add\+Action}}
+\index{add\+Action@{add\+Action}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{add\+Action()}{addAction()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_action_editor}{Action\+Editor}} Creature\+Editor.\+add\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_editor_a73b06f4546ad17a435f487a3a515e661}\label{class_creature_editor_a73b06f4546ad17a435f487a3a515e661}} 
+\index{Creature\+Editor@{Creature\+Editor}!add\+Default\+Resource\+Abilities@{add\+Default\+Resource\+Abilities}}
+\index{add\+Default\+Resource\+Abilities@{add\+Default\+Resource\+Abilities}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{add\+Default\+Resource\+Abilities()}{addDefaultResourceAbilities()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+add\+Default\+Resource\+Abilities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_editor_a2c3d33249073a6af3cd536cc02832635}\label{class_creature_editor_a2c3d33249073a6af3cd536cc02832635}} 
+\index{Creature\+Editor@{Creature\+Editor}!add\+Network@{add\+Network}}
+\index{add\+Network@{add\+Network}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{add\+Network()}{addNetwork()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_network_editor}{Network\+Editor}} Creature\+Editor.\+add\+Network (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resets net\+Creator, allowing for the creation of a new network. 
+
+\mbox{\Hypertarget{class_creature_editor_a6cd78de22a211b236369afe62ea60c99}\label{class_creature_editor_a6cd78de22a211b236369afe62ea60c99}} 
+\index{Creature\+Editor@{Creature\+Editor}!add\+Resource@{add\+Resource}}
+\index{add\+Resource@{add\+Resource}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{add\+Resource()}{addResource()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_resource_editor}{Resource\+Editor}} Creature\+Editor.\+add\+Resource (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resets creatures resource creator, allowing the user to create a resource for the creature to use for survival or attribute benefits. 
+
+\mbox{\Hypertarget{class_creature_editor_afc80714657aedc32aaaa54760bc6b78f}\label{class_creature_editor_afc80714657aedc32aaaa54760bc6b78f}} 
+\index{Creature\+Editor@{Creature\+Editor}!cancel\+Editing\+Abilities@{cancel\+Editing\+Abilities}}
+\index{cancel\+Editing\+Abilities@{cancel\+Editing\+Abilities}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{cancel\+Editing\+Abilities()}{cancelEditingAbilities()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+cancel\+Editing\+Abilities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+reset tentative\+Abilities if user cancels editing them 
+
+\mbox{\Hypertarget{class_creature_editor_a60b1083bafbb24636e356f2ca79e91b7}\label{class_creature_editor_a60b1083bafbb24636e356f2ca79e91b7}} 
+\index{Creature\+Editor@{Creature\+Editor}!edit\+Abilities@{edit\+Abilities}}
+\index{edit\+Abilities@{edit\+Abilities}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{edit\+Abilities()}{editAbilities()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_abilities_editor}{Abilities\+Editor}} Creature\+Editor.\+edit\+Abilities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+edit tentative\+Abilities, returns Abilites\+Editor 
+
+\mbox{\Hypertarget{class_creature_editor_a1d2e73a7a581c8e1e6c25c46ad8c8ace}\label{class_creature_editor_a1d2e73a7a581c8e1e6c25c46ad8c8ace}} 
+\index{Creature\+Editor@{Creature\+Editor}!generate\+Default\+Action\+Pool@{generate\+Default\+Action\+Pool}}
+\index{generate\+Default\+Action\+Pool@{generate\+Default\+Action\+Pool}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{generate\+Default\+Action\+Pool()}{generateDefaultActionPool()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+generate\+Default\+Action\+Pool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_editor_a986bfbfe3b55a2b6492e1b4b371cf592}\label{class_creature_editor_a986bfbfe3b55a2b6492e1b4b371cf592}} 
+\index{Creature\+Editor@{Creature\+Editor}!save\+Abilities@{save\+Abilities}}
+\index{save\+Abilities@{save\+Abilities}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{save\+Abilities()}{saveAbilities()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+save\+Abilities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Saves abilities set by abilities creator. 
+
+\mbox{\Hypertarget{class_creature_editor_a4f9898932327b32b8eaedd8667acff18}\label{class_creature_editor_a4f9898932327b32b8eaedd8667acff18}} 
+\index{Creature\+Editor@{Creature\+Editor}!save\+Action@{save\+Action}}
+\index{save\+Action@{save\+Action}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{save\+Action()}{saveAction()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+save\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_editor_a30e7e56df84510ae8487df6b62dc7f2a}\label{class_creature_editor_a30e7e56df84510ae8487df6b62dc7f2a}} 
+\index{Creature\+Editor@{Creature\+Editor}!save\+Network@{save\+Network}}
+\index{save\+Network@{save\+Network}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{save\+Network()}{saveNetwork()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+save\+Network (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Used to save network that is created by Net\+Creator. 
+
+\mbox{\Hypertarget{class_creature_editor_af35082ae3f97f9385b6d27efb1528e7c}\label{class_creature_editor_af35082ae3f97f9385b6d27efb1528e7c}} 
+\index{Creature\+Editor@{Creature\+Editor}!save\+Resource@{save\+Resource}}
+\index{save\+Resource@{save\+Resource}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{save\+Resource()}{saveResource()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+save\+Resource (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Saves resource created by resource creator. 
+
+\mbox{\Hypertarget{class_creature_editor_a1dec102cd9c1c32e2f0639a627203c7f}\label{class_creature_editor_a1dec102cd9c1c32e2f0639a627203c7f}} 
+\index{Creature\+Editor@{Creature\+Editor}!set\+Action\+Clear\+Interval@{set\+Action\+Clear\+Interval}}
+\index{set\+Action\+Clear\+Interval@{set\+Action\+Clear\+Interval}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{set\+Action\+Clear\+Interval()}{setActionClearInterval()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+set\+Action\+Clear\+Interval (\begin{DoxyParamCaption}\item[{int}]{steps }\end{DoxyParamCaption})}
+
+
+
+Sets the number of steps between deleting all actions in action queue. This is used to keep the action queue current. 
+
+\mbox{\Hypertarget{class_creature_editor_a463412404c7ed5f27208b742318f193d}\label{class_creature_editor_a463412404c7ed5f27208b742318f193d}} 
+\index{Creature\+Editor@{Creature\+Editor}!set\+Action\+Clear\+Size@{set\+Action\+Clear\+Size}}
+\index{set\+Action\+Clear\+Size@{set\+Action\+Clear\+Size}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{set\+Action\+Clear\+Size()}{setActionClearSize()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+set\+Action\+Clear\+Size (\begin{DoxyParamCaption}\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Sets the size of the action queue required for the queue to be cleared 
+
+\mbox{\Hypertarget{class_creature_editor_a0ef7391c366e987d267d7ba937447146}\label{class_creature_editor_a0ef7391c366e987d267d7ba937447146}} 
+\index{Creature\+Editor@{Creature\+Editor}!set\+Color@{set\+Color}}
+\index{set\+Color@{set\+Color}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{set\+Color()}{setColor()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+set\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_creature_editor_8cs_a2d31a955c823bd51aec8f913e263723c}{Color\+Choice}}}]{c }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_editor_a2a230941e6db58928582e20704a8d239}\label{class_creature_editor_a2a230941e6db58928582e20704a8d239}} 
+\index{Creature\+Editor@{Creature\+Editor}!set\+Initial\+Health@{set\+Initial\+Health}}
+\index{set\+Initial\+Health@{set\+Initial\+Health}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{set\+Initial\+Health()}{setInitialHealth()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+set\+Initial\+Health (\begin{DoxyParamCaption}\item[{float}]{initial\+Health }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_editor_a2a1426689b7276996e550e5c508e9a48}\label{class_creature_editor_a2a1426689b7276996e550e5c508e9a48}} 
+\index{Creature\+Editor@{Creature\+Editor}!set\+Max\+Health@{set\+Max\+Health}}
+\index{set\+Max\+Health@{set\+Max\+Health}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{set\+Max\+Health()}{setMaxHealth()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+set\+Max\+Health (\begin{DoxyParamCaption}\item[{float}]{max\+Health }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_editor_aeebb715ee7340999be80095aeb6c5c41}\label{class_creature_editor_aeebb715ee7340999be80095aeb6c5c41}} 
+\index{Creature\+Editor@{Creature\+Editor}!set\+Mutation\+Standard\+Deviation@{set\+Mutation\+Standard\+Deviation}}
+\index{set\+Mutation\+Standard\+Deviation@{set\+Mutation\+Standard\+Deviation}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{set\+Mutation\+Standard\+Deviation()}{setMutationStandardDeviation()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+set\+Mutation\+Standard\+Deviation (\begin{DoxyParamCaption}\item[{float}]{deviation }\end{DoxyParamCaption})}
+
+
+
+Sets the amount of deviation added to the weights during reproduction 
+
+\mbox{\Hypertarget{class_creature_editor_a63a9951aa74689237e12cd131cef6e0e}\label{class_creature_editor_a63a9951aa74689237e12cd131cef6e0e}} 
+\index{Creature\+Editor@{Creature\+Editor}!set\+Phenotype@{set\+Phenotype}}
+\index{set\+Phenotype@{set\+Phenotype}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{set\+Phenotype()}{setPhenotype()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+set\+Phenotype (\begin{DoxyParamCaption}\item[{int}]{phenotype }\end{DoxyParamCaption})}
+
+
+
+Sets phenotype of creature. Takes in int\+: \mbox{[}1,x\mbox{]}, where there are x distinct phenotypes allowed in the ecosystem, and assigns corrresponding bool array to creatures phenotype. The bool array contains all falses, except for a true at the x-\/1 index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em phenotype} & Must be 1 -\/ x\+: Where there are x distinct phenotypes allowed in the ecosystem (set in \mbox{\hyperlink{class_ecosystem}{Ecosystem}} class).\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_creature_editor_af2c3731115defa893138dcb7de00092c}\label{class_creature_editor_af2c3731115defa893138dcb7de00092c}} 
+\index{Creature\+Editor@{Creature\+Editor}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+set\+Position (\begin{DoxyParamCaption}\item[{int}]{x\+Coor,  }\item[{int}]{y\+Coor }\end{DoxyParamCaption})}
+
+
+
+Sets creature\textquotesingle{}s position on the map. 
+
+\mbox{\Hypertarget{class_creature_editor_a25dc6294586118bf7e4ecefeccea2815}\label{class_creature_editor_a25dc6294586118bf7e4ecefeccea2815}} 
+\index{Creature\+Editor@{Creature\+Editor}!set\+Species@{set\+Species}}
+\index{set\+Species@{set\+Species}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{set\+Species()}{setSpecies()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+set\+Species (\begin{DoxyParamCaption}\item[{string}]{species }\end{DoxyParamCaption})}
+
+
+
+Sets name of species to which the creature belongs. 
+
+\mbox{\Hypertarget{class_creature_editor_a89072895132cbeae88d530bada8c0761}\label{class_creature_editor_a89072895132cbeae88d530bada8c0761}} 
+\index{Creature\+Editor@{Creature\+Editor}!set\+Turn\+Time@{set\+Turn\+Time}}
+\index{set\+Turn\+Time@{set\+Turn\+Time}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{set\+Turn\+Time()}{setTurnTime()}}
+{\footnotesize\ttfamily void Creature\+Editor.\+set\+Turn\+Time (\begin{DoxyParamCaption}\item[{float}]{time }\end{DoxyParamCaption})}
+
+
+
+Sets the amount of time alloted per turn. 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_creature_editor_a801504d4a32e2ad56c4c1ffda29d75f6}\label{class_creature_editor_a801504d4a32e2ad56c4c1ffda29d75f6}} 
+\index{Creature\+Editor@{Creature\+Editor}!abilities\+Creator@{abilities\+Creator}}
+\index{abilities\+Creator@{abilities\+Creator}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{abilities\+Creator}{abilitiesCreator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_abilities_editor}{Abilities\+Editor}} Creature\+Editor.\+abilities\+Creator}
+
+\mbox{\Hypertarget{class_creature_editor_a2bd48e758a2f1db48ad15d765debf5f2}\label{class_creature_editor_a2bd48e758a2f1db48ad15d765debf5f2}} 
+\index{Creature\+Editor@{Creature\+Editor}!action\+Creator@{action\+Creator}}
+\index{action\+Creator@{action\+Creator}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{action\+Creator}{actionCreator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_action_editor}{Action\+Editor}} Creature\+Editor.\+action\+Creator}
+
+\mbox{\Hypertarget{class_creature_editor_a2589284f2064a318bd8578acb95f3309}\label{class_creature_editor_a2589284f2064a318bd8578acb95f3309}} 
+\index{Creature\+Editor@{Creature\+Editor}!creature@{creature}}
+\index{creature@{creature}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{creature}{creature}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_creature}{Creature}} Creature\+Editor.\+creature}
+
+\mbox{\Hypertarget{class_creature_editor_af48eb3267dc56b717ed3ba596794a362}\label{class_creature_editor_af48eb3267dc56b717ed3ba596794a362}} 
+\index{Creature\+Editor@{Creature\+Editor}!distinct\+Phenotypes@{distinct\+Phenotypes}}
+\index{distinct\+Phenotypes@{distinct\+Phenotypes}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{distinct\+Phenotypes}{distinctPhenotypes}}
+{\footnotesize\ttfamily int Creature\+Editor.\+distinct\+Phenotypes}
+
+\mbox{\Hypertarget{class_creature_editor_ae6f73bff56b148123b3ca5251bb00aee}\label{class_creature_editor_ae6f73bff56b148123b3ca5251bb00aee}} 
+\index{Creature\+Editor@{Creature\+Editor}!net\+Creator@{net\+Creator}}
+\index{net\+Creator@{net\+Creator}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{net\+Creator}{netCreator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_network_editor}{Network\+Editor}} Creature\+Editor.\+net\+Creator}
+
+\mbox{\Hypertarget{class_creature_editor_a61c343493865d7ead92c5ea83fdfe6f5}\label{class_creature_editor_a61c343493865d7ead92c5ea83fdfe6f5}} 
+\index{Creature\+Editor@{Creature\+Editor}!resource\+Creator@{resource\+Creator}}
+\index{resource\+Creator@{resource\+Creator}!Creature\+Editor@{Creature\+Editor}}
+\subsubsection{\texorpdfstring{resource\+Creator}{resourceCreator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_resource_editor}{Resource\+Editor}} Creature\+Editor.\+resource\+Creator}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_creature_editor_8cs}{Creature\+Editor.\+cs}}\end{DoxyCompactItemize}

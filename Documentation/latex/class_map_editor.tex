@@ -1,0 +1,85 @@
+\hypertarget{class_map_editor}{}\section{Map\+Editor Class Reference}
+\label{class_map_editor}\index{Map\+Editor@{Map\+Editor}}
+
+
+A\+PI for editing the map\+: a 2D array of \mbox{\hyperlink{class_land}{Land}} spaces. Used to generate the map, and add resources.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_map_editor_acc8af16a98b138b39e1c0e8f3d3ad83b}{Map\+Editor}} (List$<$ List$<$ \mbox{\hyperlink{class_land}{Land}} $>$$>$ \+\_\+map, Dictionary$<$ string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}} $>$ \+\_\+res\+Options)
+\item 
+void \mbox{\hyperlink{class_map_editor_af0faf8e47a1ed57ada0e1d1f56b64be4}{add\+Uniform\+Resource}} (string resource, float level)
+\begin{DoxyCompactList}\small\item\em Adds resource uniformly to all lands on map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_map_editor_a3f0e4bacb89992b0aa0aaa4f17aafd28}{add\+L\+E\+R\+P\+X\+Resource}} (string resource, float max\+Amt)
+\item 
+void \mbox{\hyperlink{class_map_editor_a3da89d803fa558eb9cc071a604f4351c}{generate\+Map}} (int length, int width)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ List$<$ \mbox{\hyperlink{class_land}{Land}} $>$ $>$ \mbox{\hyperlink{class_map_editor_a3899ec34c7e9acb6cd8b98434504e726}{map}}
+\begin{DoxyCompactList}\small\item\em Map to be edited \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+PI for editing the map\+: a 2D array of \mbox{\hyperlink{class_land}{Land}} spaces. Used to generate the map, and add resources. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_map_editor_acc8af16a98b138b39e1c0e8f3d3ad83b}\label{class_map_editor_acc8af16a98b138b39e1c0e8f3d3ad83b}} 
+\index{Map\+Editor@{Map\+Editor}!Map\+Editor@{Map\+Editor}}
+\index{Map\+Editor@{Map\+Editor}!Map\+Editor@{Map\+Editor}}
+\subsubsection{\texorpdfstring{Map\+Editor()}{MapEditor()}}
+{\footnotesize\ttfamily Map\+Editor.\+Map\+Editor (\begin{DoxyParamCaption}\item[{List$<$ List$<$ \mbox{\hyperlink{class_land}{Land}} $>$$>$}]{\+\_\+map,  }\item[{Dictionary$<$ string, \mbox{\hyperlink{class_resource_store}{Resource\+Store}} $>$}]{\+\_\+res\+Options }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_map_editor_a3f0e4bacb89992b0aa0aaa4f17aafd28}\label{class_map_editor_a3f0e4bacb89992b0aa0aaa4f17aafd28}} 
+\index{Map\+Editor@{Map\+Editor}!add\+L\+E\+R\+P\+X\+Resource@{add\+L\+E\+R\+P\+X\+Resource}}
+\index{add\+L\+E\+R\+P\+X\+Resource@{add\+L\+E\+R\+P\+X\+Resource}!Map\+Editor@{Map\+Editor}}
+\subsubsection{\texorpdfstring{add\+L\+E\+R\+P\+X\+Resource()}{addLERPXResource()}}
+{\footnotesize\ttfamily void Map\+Editor.\+add\+L\+E\+R\+P\+X\+Resource (\begin{DoxyParamCaption}\item[{string}]{resource,  }\item[{float}]{max\+Amt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_map_editor_af0faf8e47a1ed57ada0e1d1f56b64be4}\label{class_map_editor_af0faf8e47a1ed57ada0e1d1f56b64be4}} 
+\index{Map\+Editor@{Map\+Editor}!add\+Uniform\+Resource@{add\+Uniform\+Resource}}
+\index{add\+Uniform\+Resource@{add\+Uniform\+Resource}!Map\+Editor@{Map\+Editor}}
+\subsubsection{\texorpdfstring{add\+Uniform\+Resource()}{addUniformResource()}}
+{\footnotesize\ttfamily void Map\+Editor.\+add\+Uniform\+Resource (\begin{DoxyParamCaption}\item[{string}]{resource,  }\item[{float}]{level }\end{DoxyParamCaption})}
+
+
+
+Adds resource uniformly to all lands on map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & Fraction of max possible amount of resource. Must be between 0 and 1.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_map_editor_a3da89d803fa558eb9cc071a604f4351c}\label{class_map_editor_a3da89d803fa558eb9cc071a604f4351c}} 
+\index{Map\+Editor@{Map\+Editor}!generate\+Map@{generate\+Map}}
+\index{generate\+Map@{generate\+Map}!Map\+Editor@{Map\+Editor}}
+\subsubsection{\texorpdfstring{generate\+Map()}{generateMap()}}
+{\footnotesize\ttfamily void Map\+Editor.\+generate\+Map (\begin{DoxyParamCaption}\item[{int}]{length,  }\item[{int}]{width }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_map_editor_a3899ec34c7e9acb6cd8b98434504e726}\label{class_map_editor_a3899ec34c7e9acb6cd8b98434504e726}} 
+\index{Map\+Editor@{Map\+Editor}!map@{map}}
+\index{map@{map}!Map\+Editor@{Map\+Editor}}
+\subsubsection{\texorpdfstring{map}{map}}
+{\footnotesize\ttfamily List$<$List$<$\mbox{\hyperlink{class_land}{Land}}$>$ $>$ Map\+Editor.\+map}
+
+
+
+Map to be edited 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_map_editor_8cs}{Map\+Editor.\+cs}}\end{DoxyCompactItemize}

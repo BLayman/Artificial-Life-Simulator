@@ -1,0 +1,562 @@
+\hypertarget{class_creature}{}\section{Creature Class Reference}
+\label{class_creature}\index{Creature@{Creature}}
+
+
+Class for storing all data about a creature/agent, including its neural networks, queued actions, stored resources, location and other parameters.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_creature_a33b98848ab1feddad8bf7badb46f8e57}{Creature}} (int max\+Ability\+Points)
+\item 
+\mbox{\hyperlink{class_creature_acd97b133e2a8f2fb38a7686ffd7a3fdc}{Creature}} ()
+\item 
+void \mbox{\hyperlink{class_creature_a84d61b231641c1af50195151ab904ada}{start\+Turn}} (\mbox{\hyperlink{class_ecosystem}{Ecosystem}} eco)
+\begin{DoxyCompactList}\small\item\em Starts creatures turn \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_a5c8e2c97a66f511939fc89bd349017d3}{add\+Actions\+To\+Queue}} ()
+\item 
+void \mbox{\hyperlink{class_creature_a46fa0cc06932a4cdba0e7b1f8f2dad9c}{print\+Networks}} ()
+\item 
+void \mbox{\hyperlink{class_creature_ad9f8df80e830988e67bf3eeeb016689c}{update\+Nets}} ()
+\item 
+void \mbox{\hyperlink{class_creature_aeaf23c7008fa80ca8897d13b5435e1fc}{update\+Neighbors}} ()
+\begin{DoxyCompactList}\small\item\em Called at beginning of each turn. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_a372a0b61e98758214fddc2564dc649f2}{store\+Current\+Net\+State}} ()
+\begin{DoxyCompactList}\small\item\em Stores the state of networks in prev\+Net\+States \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_a4bdf06ee073ffb00f7410f791caaccdc}{perform\+Actions}} (\mbox{\hyperlink{class_ecosystem}{Ecosystem}} eco)
+\begin{DoxyCompactList}\small\item\em Performs whatever actions in the queue it can. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_afa20bf76dd7678a5e60b75e2dadaa6ac}{resource\+Health\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Updates health based on resource levels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_creature_a1938298b04f9a74b1692771a9f050478}{is\+Dead}} ()
+\begin{DoxyCompactList}\small\item\em Returns true if health is 0 or below, also deletes creature from map if dead \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_a617588216838f0fe3f8861f38c2746f2}{add\+Comm\+Networks}} ()
+\begin{DoxyCompactList}\small\item\em Creates and adds comm networks to the first layer of \char`\"{}networks\char`\"{} using comm\+Signals, and comm\+Net\+Template \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_creature_aafecd84cf3b44bcb8dd67cd9518e3326}{add\+Network}} (int layer\+Of\+Nets)
+\begin{DoxyCompactList}\small\item\em Adds network in given layer, and returns index of added layer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_ab103ada400a5773ae0d34c11b3abf2d4}{send\+Comm\+Output\+Signals}} ()
+\begin{DoxyCompactList}\small\item\em Iterates over neightbors and passes comm signals to them. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_a13b61e24bb6dfa9cd53e7919378c4b0c}{process\+Repro\+Requests}} ()
+\begin{DoxyCompactList}\small\item\em process requests for reproduction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_abd5e8fd01b4197fdb549fd38da914f2a}{reproduce}} (\mbox{\hyperlink{class_creature}{Creature}} mate)
+\begin{DoxyCompactList}\small\item\em Reproduce with neighboring creature. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_creature_a31a49fbd361a70ff3f1f41886519d0c5}{add\+Variation\+To\+Weights}} (float standard\+Dev)
+\item 
+\mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_creature_a1095c7239ce30cb170ec739c343719fb}{get\+Shallow\+Copy}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_creature}{Creature}} \mbox{\hyperlink{class_creature_ab689ebff012f90395825a404bd6990c6}{founder}}
+\item 
+\mbox{\hyperlink{class_land}{Land}} \mbox{\hyperlink{class_creature_a08982d1959e230238389a1a5e9853115}{dummy\+Land}} = new \mbox{\hyperlink{class_land}{Land}}()
+\item 
+int \mbox{\hyperlink{class_creature_a358feda4f0a406a8f28bed6acb170c37}{index}}
+\item 
+System.\+Random \mbox{\hyperlink{class_creature_ab3b01072caf7d87c396a2d80a3d73412}{rand}}
+\item 
+System.\+Random \mbox{\hyperlink{class_creature_a08184ad607f5105788e09e8501386da0}{rand2}}
+\item 
+Color \mbox{\hyperlink{class_creature_a4f2289e79c2db01559984c8797a322c8}{color}}
+\item 
+List$<$ Dictionary$<$ string, \mbox{\hyperlink{class_network}{Network}} $>$ $>$ \mbox{\hyperlink{class_creature_a1caf157811e3a3b37f9b292560aa0552}{networks}} = new List$<$Dictionary$<$string, \mbox{\hyperlink{class_network}{Network}}$>$$>$()
+\begin{DoxyCompactList}\small\item\em Stores all networks into layers of lists of Networks. 10 Maximum \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_creature_a721fb38fcd0d2e7bfc307a6921e3fa2e}{species}} = \char`\"{}default\char`\"{}
+\item 
+List$<$ List$<$ \mbox{\hyperlink{class_land}{Land}} $>$ $>$ \mbox{\hyperlink{class_creature_ac96bc7e8b95322eeaadf280d715f738a}{map}}
+\item 
+int \mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_creature_ab6036649791244250e257da28733b2e7}{position}} = new int\mbox{[}2\mbox{]}
+\item 
+\mbox{\hyperlink{class_land}{Land}} \mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_creature_a6b427ac086b4cca5ed85553942e01d71}{neighbor\+Lands}} = new \mbox{\hyperlink{class_land}{Land}}\mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Neighbors are up, down, left, and right. Index 0 for land creature is on. \end{DoxyCompactList}\item 
+Simple\+Priority\+Queue$<$ \mbox{\hyperlink{class_action}{Action}} $>$ \mbox{\hyperlink{class_creature_abb099197e9fa2dac396151e4e949214d}{action\+Queue}} = new Simple\+Priority\+Queue$<$\mbox{\hyperlink{class_action}{Action}}$>$()
+\begin{DoxyCompactList}\small\item\em Actions to be taken by creature \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_creature_a8542dd67a39f6badb8e83e45e0fa4ff3}{remaining\+Turn\+Time}}
+\begin{DoxyCompactList}\small\item\em Time remaining in turn\+: limits number of actions that can be taken in one turn. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_creature_a7da8e444fb731af8e632b730d72e4215}{mutation\+Standard\+Deviation}}
+\item 
+float \mbox{\hyperlink{class_creature_a64066d7d20c1b74af7e2e8a5bd8e2410}{full\+Turn\+Time}}
+\item 
+int \mbox{\hyperlink{class_creature_a58383de337fb218495e70aa126981d6c}{num\+Layers\+Of\+Nets}}
+\begin{DoxyCompactList}\small\item\em The number of layers of Networks \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_comm_signal}{Comm\+Signal}} $>$ \mbox{\hyperlink{class_creature_a1a6c6390564dda480623b55d89c6d5b3}{output\+Comm\+Signals}} = new List$<$\mbox{\hyperlink{class_comm_signal}{Comm\+Signal}}$>$()
+\begin{DoxyCompactList}\small\item\em stores an array of booleans for each neighbor for communication. e.\+g. 8 neighbors by 3 bools each. \end{DoxyCompactList}\item 
+List$<$ List$<$ Dictionary$<$ string, \mbox{\hyperlink{class_network}{Network}} $>$ $>$ $>$ \mbox{\hyperlink{class_creature_a36cd0e998e4f26599c6b31a54b5d30ac}{prev\+Net\+States}} = new List$<$List$<$Dictionary$<$string, \mbox{\hyperlink{class_network}{Network}}$>$$>$$>$()
+\begin{DoxyCompactList}\small\item\em Not implememted yet. Stores the state of the networks for previous time steps. The front of the queue is the most recent network state (t-\/1). \end{DoxyCompactList}\item 
+Dictionary$<$ string, \mbox{\hyperlink{class_ability}{Ability}} $>$ \mbox{\hyperlink{class_creature_a83af2d9bc8c0a8b819957c4029515b3f}{abilities}} = new Dictionary$<$string, \mbox{\hyperlink{class_ability}{Ability}}$>$()
+\begin{DoxyCompactList}\small\item\em Designates which resources or species the creature has an advantage in consuming, attacking, or defending against. Certain combinations of excess resources can boost abilities. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_creature_a3c0b32a41569e073d4dd717f25262d56}{health}}
+\begin{DoxyCompactList}\small\item\em When health reaches zero, creature dies. \end{DoxyCompactList}\item 
+Dictionary$<$ string, \mbox{\hyperlink{class_creature_resource}{Creature\+Resource}} $>$ \mbox{\hyperlink{class_creature_a1c4a7443dd2c8748ce3322b68914788a}{stored\+Resources}} = new Dictionary$<$string, \mbox{\hyperlink{class_creature_resource}{Creature\+Resource}}$>$()
+\item 
+bool \mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_creature_ae0d804e7589fe2c612dafe930d74fe46}{phenotype}}
+\begin{DoxyCompactList}\small\item\em Outward appearance of creature\+: for communication purposes. Typically 4 bits. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_comm_signal}{Comm\+Signal}} $>$ \mbox{\hyperlink{class_creature_a4051d02a4fb5ccb411e07cea92273a5a}{input\+Comm\+List}} = new List$<$\mbox{\hyperlink{class_comm_signal}{Comm\+Signal}}$>$()
+\begin{DoxyCompactList}\small\item\em A list of incoming comm signals. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_comm_network}{Comm\+Network}} \mbox{\hyperlink{class_creature_a02c2c300201b3515e01e84766e4e02b9}{comm\+In\+Net\+Template}} = new \mbox{\hyperlink{class_comm_network}{Comm\+Network}}()
+\begin{DoxyCompactList}\small\item\em A comm network will be created for each \mbox{\hyperlink{class_comm_signal}{Comm\+Signal}} in comm\+List, and added to the first layer of networks in \char`\"{}networks\char`\"{} (the input layer). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_comm_network}{Comm\+Network}} \mbox{\hyperlink{class_creature_ac17368a07178415519592669a89283bd}{comm\+Out\+Net\+Template}} = new \mbox{\hyperlink{class_comm_network}{Comm\+Network}}()
+\begin{DoxyCompactList}\small\item\em A template for the network that generates actions towards a specific neighbor in response to comm input from that neighbor. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_creature_ad894d0485d7bbd02a52893fe5d24a462}{max\+Health}}
+\begin{DoxyCompactList}\small\item\em Maximum health that creature can attain. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_creature_a52e3662ae3e269ee2cdc73b716fa3455}{remaining\+Ability\+Points}}
+\item 
+List$<$ \mbox{\hyperlink{class_repro_action}{Repro\+Action}} $>$ \mbox{\hyperlink{class_creature_a8df2df30dc7d2da9705159e6425208d9}{reproduction\+Requests}} = new List$<$\mbox{\hyperlink{class_repro_action}{Repro\+Action}}$>$()
+\begin{DoxyCompactList}\small\item\em List of requests for reproduction from neighbors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_repro_network}{Repro\+Network}} \mbox{\hyperlink{class_creature_a84614f4c93827ec6ba2754cd7cfa91e4}{reproduction\+Decider\+Network}} = new \mbox{\hyperlink{class_repro_network}{Repro\+Network}}()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_network}{Network}} to decide whether a creature should reproduce with a neightbor. \end{DoxyCompactList}\item 
+Dictionary$<$ string, \mbox{\hyperlink{class_action}{Action}} $>$ \mbox{\hyperlink{class_creature_ab75f97aaea730b1da2bd00cc28555ac6}{action\+Pool}} = new Dictionary$<$string, \mbox{\hyperlink{class_action}{Action}}$>$()
+\begin{DoxyCompactList}\small\item\em Dictionary of potential actions that the creature can take if assigned to an output node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_creature_a22b0a217ba84279341ad580b13080258}{action\+Clear\+Interval}} = 5
+\item 
+int \mbox{\hyperlink{class_creature_abb93da679575f5a4fb5c8072c831b7f0}{action\+Clear\+Count}} = 0
+\item 
+int \mbox{\hyperlink{class_creature_af4cfa9181ab0df58a2c64b6c3b9725f8}{action\+Clear\+Size}} = 10
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for storing all data about a creature/agent, including its neural networks, queued actions, stored resources, location and other parameters. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_creature_a33b98848ab1feddad8bf7badb46f8e57}\label{class_creature_a33b98848ab1feddad8bf7badb46f8e57}} 
+\index{Creature@{Creature}!Creature@{Creature}}
+\index{Creature@{Creature}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{Creature()}{Creature()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Creature.\+Creature (\begin{DoxyParamCaption}\item[{int}]{max\+Ability\+Points }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_acd97b133e2a8f2fb38a7686ffd7a3fdc}\label{class_creature_acd97b133e2a8f2fb38a7686ffd7a3fdc}} 
+\index{Creature@{Creature}!Creature@{Creature}}
+\index{Creature@{Creature}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{Creature()}{Creature()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Creature.\+Creature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_creature_a5c8e2c97a66f511939fc89bd349017d3}\label{class_creature_a5c8e2c97a66f511939fc89bd349017d3}} 
+\index{Creature@{Creature}!add\+Actions\+To\+Queue@{add\+Actions\+To\+Queue}}
+\index{add\+Actions\+To\+Queue@{add\+Actions\+To\+Queue}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{add\+Actions\+To\+Queue()}{addActionsToQueue()}}
+{\footnotesize\ttfamily void Creature.\+add\+Actions\+To\+Queue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_a617588216838f0fe3f8861f38c2746f2}\label{class_creature_a617588216838f0fe3f8861f38c2746f2}} 
+\index{Creature@{Creature}!add\+Comm\+Networks@{add\+Comm\+Networks}}
+\index{add\+Comm\+Networks@{add\+Comm\+Networks}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{add\+Comm\+Networks()}{addCommNetworks()}}
+{\footnotesize\ttfamily void Creature.\+add\+Comm\+Networks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates and adds comm networks to the first layer of \char`\"{}networks\char`\"{} using comm\+Signals, and comm\+Net\+Template 
+
+\mbox{\Hypertarget{class_creature_aafecd84cf3b44bcb8dd67cd9518e3326}\label{class_creature_aafecd84cf3b44bcb8dd67cd9518e3326}} 
+\index{Creature@{Creature}!add\+Network@{add\+Network}}
+\index{add\+Network@{add\+Network}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{add\+Network()}{addNetwork()}}
+{\footnotesize\ttfamily int Creature.\+add\+Network (\begin{DoxyParamCaption}\item[{int}]{layer\+Of\+Nets }\end{DoxyParamCaption})}
+
+
+
+Adds network in given layer, and returns index of added layer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer\+Of\+Nets} & 0 to add to input nets, 1 to add to output nets.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_creature_a31a49fbd361a70ff3f1f41886519d0c5}\label{class_creature_a31a49fbd361a70ff3f1f41886519d0c5}} 
+\index{Creature@{Creature}!add\+Variation\+To\+Weights@{add\+Variation\+To\+Weights}}
+\index{add\+Variation\+To\+Weights@{add\+Variation\+To\+Weights}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{add\+Variation\+To\+Weights()}{addVariationToWeights()}}
+{\footnotesize\ttfamily void Creature.\+add\+Variation\+To\+Weights (\begin{DoxyParamCaption}\item[{float}]{standard\+Dev }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_a1095c7239ce30cb170ec739c343719fb}\label{class_creature_a1095c7239ce30cb170ec739c343719fb}} 
+\index{Creature@{Creature}!get\+Shallow\+Copy@{get\+Shallow\+Copy}}
+\index{get\+Shallow\+Copy@{get\+Shallow\+Copy}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{get\+Shallow\+Copy()}{getShallowCopy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_creature}{Creature}} Creature.\+get\+Shallow\+Copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_a1938298b04f9a74b1692771a9f050478}\label{class_creature_a1938298b04f9a74b1692771a9f050478}} 
+\index{Creature@{Creature}!is\+Dead@{is\+Dead}}
+\index{is\+Dead@{is\+Dead}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{is\+Dead()}{isDead()}}
+{\footnotesize\ttfamily bool Creature.\+is\+Dead (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns true if health is 0 or below, also deletes creature from map if dead 
+
+\mbox{\Hypertarget{class_creature_a4bdf06ee073ffb00f7410f791caaccdc}\label{class_creature_a4bdf06ee073ffb00f7410f791caaccdc}} 
+\index{Creature@{Creature}!perform\+Actions@{perform\+Actions}}
+\index{perform\+Actions@{perform\+Actions}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{perform\+Actions()}{performActions()}}
+{\footnotesize\ttfamily void Creature.\+perform\+Actions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ecosystem}{Ecosystem}}}]{eco }\end{DoxyParamCaption})}
+
+
+
+Performs whatever actions in the queue it can. 
+
+T\+O\+DO\+: allow for a certain number of actions to carry over, otherwise, only the first action put on the queue will be run each turn, which is biased\+: based on the order of the output nodes in the final layer one solution\+: sort the order in which output nodes are added to queue\mbox{\Hypertarget{class_creature_a46fa0cc06932a4cdba0e7b1f8f2dad9c}\label{class_creature_a46fa0cc06932a4cdba0e7b1f8f2dad9c}} 
+\index{Creature@{Creature}!print\+Networks@{print\+Networks}}
+\index{print\+Networks@{print\+Networks}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{print\+Networks()}{printNetworks()}}
+{\footnotesize\ttfamily void Creature.\+print\+Networks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_creature_a13b61e24bb6dfa9cd53e7919378c4b0c}\label{class_creature_a13b61e24bb6dfa9cd53e7919378c4b0c}} 
+\index{Creature@{Creature}!process\+Repro\+Requests@{process\+Repro\+Requests}}
+\index{process\+Repro\+Requests@{process\+Repro\+Requests}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{process\+Repro\+Requests()}{processReproRequests()}}
+{\footnotesize\ttfamily void Creature.\+process\+Repro\+Requests (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+process requests for reproduction. 
+
+\mbox{\Hypertarget{class_creature_abd5e8fd01b4197fdb549fd38da914f2a}\label{class_creature_abd5e8fd01b4197fdb549fd38da914f2a}} 
+\index{Creature@{Creature}!reproduce@{reproduce}}
+\index{reproduce@{reproduce}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{reproduce()}{reproduce()}}
+{\footnotesize\ttfamily void Creature.\+reproduce (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{mate }\end{DoxyParamCaption})}
+
+
+
+Reproduce with neighboring creature. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mate} & \mbox{\hyperlink{class_creature}{Creature}} to reproduce with.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_creature_afa20bf76dd7678a5e60b75e2dadaa6ac}\label{class_creature_afa20bf76dd7678a5e60b75e2dadaa6ac}} 
+\index{Creature@{Creature}!resource\+Health\+Update@{resource\+Health\+Update}}
+\index{resource\+Health\+Update@{resource\+Health\+Update}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{resource\+Health\+Update()}{resourceHealthUpdate()}}
+{\footnotesize\ttfamily void Creature.\+resource\+Health\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates health based on resource levels. 
+
+\mbox{\Hypertarget{class_creature_ab103ada400a5773ae0d34c11b3abf2d4}\label{class_creature_ab103ada400a5773ae0d34c11b3abf2d4}} 
+\index{Creature@{Creature}!send\+Comm\+Output\+Signals@{send\+Comm\+Output\+Signals}}
+\index{send\+Comm\+Output\+Signals@{send\+Comm\+Output\+Signals}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{send\+Comm\+Output\+Signals()}{sendCommOutputSignals()}}
+{\footnotesize\ttfamily void Creature.\+send\+Comm\+Output\+Signals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Iterates over neightbors and passes comm signals to them. 
+
+\mbox{\Hypertarget{class_creature_a84d61b231641c1af50195151ab904ada}\label{class_creature_a84d61b231641c1af50195151ab904ada}} 
+\index{Creature@{Creature}!start\+Turn@{start\+Turn}}
+\index{start\+Turn@{start\+Turn}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{start\+Turn()}{startTurn()}}
+{\footnotesize\ttfamily void Creature.\+start\+Turn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ecosystem}{Ecosystem}}}]{eco }\end{DoxyParamCaption})}
+
+
+
+Starts creatures turn 
+
+\mbox{\Hypertarget{class_creature_a372a0b61e98758214fddc2564dc649f2}\label{class_creature_a372a0b61e98758214fddc2564dc649f2}} 
+\index{Creature@{Creature}!store\+Current\+Net\+State@{store\+Current\+Net\+State}}
+\index{store\+Current\+Net\+State@{store\+Current\+Net\+State}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{store\+Current\+Net\+State()}{storeCurrentNetState()}}
+{\footnotesize\ttfamily void Creature.\+store\+Current\+Net\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stores the state of networks in prev\+Net\+States 
+
+\mbox{\Hypertarget{class_creature_aeaf23c7008fa80ca8897d13b5435e1fc}\label{class_creature_aeaf23c7008fa80ca8897d13b5435e1fc}} 
+\index{Creature@{Creature}!update\+Neighbors@{update\+Neighbors}}
+\index{update\+Neighbors@{update\+Neighbors}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{update\+Neighbors()}{updateNeighbors()}}
+{\footnotesize\ttfamily void Creature.\+update\+Neighbors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Called at beginning of each turn. 
+
+\mbox{\Hypertarget{class_creature_ad9f8df80e830988e67bf3eeeb016689c}\label{class_creature_ad9f8df80e830988e67bf3eeeb016689c}} 
+\index{Creature@{Creature}!update\+Nets@{update\+Nets}}
+\index{update\+Nets@{update\+Nets}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{update\+Nets()}{updateNets()}}
+{\footnotesize\ttfamily void Creature.\+update\+Nets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_creature_a83af2d9bc8c0a8b819957c4029515b3f}\label{class_creature_a83af2d9bc8c0a8b819957c4029515b3f}} 
+\index{Creature@{Creature}!abilities@{abilities}}
+\index{abilities@{abilities}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{abilities}{abilities}}
+{\footnotesize\ttfamily Dictionary$<$string, \mbox{\hyperlink{class_ability}{Ability}}$>$ Creature.\+abilities = new Dictionary$<$string, \mbox{\hyperlink{class_ability}{Ability}}$>$()}
+
+
+
+Designates which resources or species the creature has an advantage in consuming, attacking, or defending against. Certain combinations of excess resources can boost abilities. 
+
+\mbox{\Hypertarget{class_creature_abb93da679575f5a4fb5c8072c831b7f0}\label{class_creature_abb93da679575f5a4fb5c8072c831b7f0}} 
+\index{Creature@{Creature}!action\+Clear\+Count@{action\+Clear\+Count}}
+\index{action\+Clear\+Count@{action\+Clear\+Count}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{action\+Clear\+Count}{actionClearCount}}
+{\footnotesize\ttfamily int Creature.\+action\+Clear\+Count = 0}
+
+\mbox{\Hypertarget{class_creature_a22b0a217ba84279341ad580b13080258}\label{class_creature_a22b0a217ba84279341ad580b13080258}} 
+\index{Creature@{Creature}!action\+Clear\+Interval@{action\+Clear\+Interval}}
+\index{action\+Clear\+Interval@{action\+Clear\+Interval}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{action\+Clear\+Interval}{actionClearInterval}}
+{\footnotesize\ttfamily int Creature.\+action\+Clear\+Interval = 5}
+
+\mbox{\Hypertarget{class_creature_af4cfa9181ab0df58a2c64b6c3b9725f8}\label{class_creature_af4cfa9181ab0df58a2c64b6c3b9725f8}} 
+\index{Creature@{Creature}!action\+Clear\+Size@{action\+Clear\+Size}}
+\index{action\+Clear\+Size@{action\+Clear\+Size}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{action\+Clear\+Size}{actionClearSize}}
+{\footnotesize\ttfamily int Creature.\+action\+Clear\+Size = 10}
+
+\mbox{\Hypertarget{class_creature_ab75f97aaea730b1da2bd00cc28555ac6}\label{class_creature_ab75f97aaea730b1da2bd00cc28555ac6}} 
+\index{Creature@{Creature}!action\+Pool@{action\+Pool}}
+\index{action\+Pool@{action\+Pool}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{action\+Pool}{actionPool}}
+{\footnotesize\ttfamily Dictionary$<$string, \mbox{\hyperlink{class_action}{Action}}$>$ Creature.\+action\+Pool = new Dictionary$<$string, \mbox{\hyperlink{class_action}{Action}}$>$()}
+
+
+
+Dictionary of potential actions that the creature can take if assigned to an output node. 
+
+\mbox{\Hypertarget{class_creature_abb099197e9fa2dac396151e4e949214d}\label{class_creature_abb099197e9fa2dac396151e4e949214d}} 
+\index{Creature@{Creature}!action\+Queue@{action\+Queue}}
+\index{action\+Queue@{action\+Queue}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{action\+Queue}{actionQueue}}
+{\footnotesize\ttfamily Simple\+Priority\+Queue$<$\mbox{\hyperlink{class_action}{Action}}$>$ Creature.\+action\+Queue = new Simple\+Priority\+Queue$<$\mbox{\hyperlink{class_action}{Action}}$>$()}
+
+
+
+Actions to be taken by creature 
+
+\mbox{\Hypertarget{class_creature_a4f2289e79c2db01559984c8797a322c8}\label{class_creature_a4f2289e79c2db01559984c8797a322c8}} 
+\index{Creature@{Creature}!color@{color}}
+\index{color@{color}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{color}{color}}
+{\footnotesize\ttfamily Color Creature.\+color}
+
+\mbox{\Hypertarget{class_creature_a02c2c300201b3515e01e84766e4e02b9}\label{class_creature_a02c2c300201b3515e01e84766e4e02b9}} 
+\index{Creature@{Creature}!comm\+In\+Net\+Template@{comm\+In\+Net\+Template}}
+\index{comm\+In\+Net\+Template@{comm\+In\+Net\+Template}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{comm\+In\+Net\+Template}{commInNetTemplate}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_comm_network}{Comm\+Network}} Creature.\+comm\+In\+Net\+Template = new \mbox{\hyperlink{class_comm_network}{Comm\+Network}}()}
+
+
+
+A comm network will be created for each \mbox{\hyperlink{class_comm_signal}{Comm\+Signal}} in comm\+List, and added to the first layer of networks in \char`\"{}networks\char`\"{} (the input layer). 
+
+\mbox{\Hypertarget{class_creature_ac17368a07178415519592669a89283bd}\label{class_creature_ac17368a07178415519592669a89283bd}} 
+\index{Creature@{Creature}!comm\+Out\+Net\+Template@{comm\+Out\+Net\+Template}}
+\index{comm\+Out\+Net\+Template@{comm\+Out\+Net\+Template}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{comm\+Out\+Net\+Template}{commOutNetTemplate}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_comm_network}{Comm\+Network}} Creature.\+comm\+Out\+Net\+Template = new \mbox{\hyperlink{class_comm_network}{Comm\+Network}}()}
+
+
+
+A template for the network that generates actions towards a specific neighbor in response to comm input from that neighbor. 
+
+\mbox{\Hypertarget{class_creature_a08982d1959e230238389a1a5e9853115}\label{class_creature_a08982d1959e230238389a1a5e9853115}} 
+\index{Creature@{Creature}!dummy\+Land@{dummy\+Land}}
+\index{dummy\+Land@{dummy\+Land}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{dummy\+Land}{dummyLand}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_land}{Land}} Creature.\+dummy\+Land = new \mbox{\hyperlink{class_land}{Land}}()}
+
+\mbox{\Hypertarget{class_creature_ab689ebff012f90395825a404bd6990c6}\label{class_creature_ab689ebff012f90395825a404bd6990c6}} 
+\index{Creature@{Creature}!founder@{founder}}
+\index{founder@{founder}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{founder}{founder}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_creature}{Creature}} Creature.\+founder}
+
+\mbox{\Hypertarget{class_creature_a64066d7d20c1b74af7e2e8a5bd8e2410}\label{class_creature_a64066d7d20c1b74af7e2e8a5bd8e2410}} 
+\index{Creature@{Creature}!full\+Turn\+Time@{full\+Turn\+Time}}
+\index{full\+Turn\+Time@{full\+Turn\+Time}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{full\+Turn\+Time}{fullTurnTime}}
+{\footnotesize\ttfamily float Creature.\+full\+Turn\+Time}
+
+\mbox{\Hypertarget{class_creature_a3c0b32a41569e073d4dd717f25262d56}\label{class_creature_a3c0b32a41569e073d4dd717f25262d56}} 
+\index{Creature@{Creature}!health@{health}}
+\index{health@{health}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{health}{health}}
+{\footnotesize\ttfamily float Creature.\+health}
+
+
+
+When health reaches zero, creature dies. 
+
+\mbox{\Hypertarget{class_creature_a358feda4f0a406a8f28bed6acb170c37}\label{class_creature_a358feda4f0a406a8f28bed6acb170c37}} 
+\index{Creature@{Creature}!index@{index}}
+\index{index@{index}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{index}{index}}
+{\footnotesize\ttfamily int Creature.\+index}
+
+\mbox{\Hypertarget{class_creature_a4051d02a4fb5ccb411e07cea92273a5a}\label{class_creature_a4051d02a4fb5ccb411e07cea92273a5a}} 
+\index{Creature@{Creature}!input\+Comm\+List@{input\+Comm\+List}}
+\index{input\+Comm\+List@{input\+Comm\+List}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{input\+Comm\+List}{inputCommList}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_comm_signal}{Comm\+Signal}}$>$ Creature.\+input\+Comm\+List = new List$<$\mbox{\hyperlink{class_comm_signal}{Comm\+Signal}}$>$()}
+
+
+
+A list of incoming comm signals. 
+
+\mbox{\Hypertarget{class_creature_ac96bc7e8b95322eeaadf280d715f738a}\label{class_creature_ac96bc7e8b95322eeaadf280d715f738a}} 
+\index{Creature@{Creature}!map@{map}}
+\index{map@{map}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{map}{map}}
+{\footnotesize\ttfamily List$<$List$<$\mbox{\hyperlink{class_land}{Land}}$>$ $>$ Creature.\+map}
+
+\mbox{\Hypertarget{class_creature_ad894d0485d7bbd02a52893fe5d24a462}\label{class_creature_ad894d0485d7bbd02a52893fe5d24a462}} 
+\index{Creature@{Creature}!max\+Health@{max\+Health}}
+\index{max\+Health@{max\+Health}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{max\+Health}{maxHealth}}
+{\footnotesize\ttfamily float Creature.\+max\+Health}
+
+
+
+Maximum health that creature can attain. 
+
+\mbox{\Hypertarget{class_creature_a7da8e444fb731af8e632b730d72e4215}\label{class_creature_a7da8e444fb731af8e632b730d72e4215}} 
+\index{Creature@{Creature}!mutation\+Standard\+Deviation@{mutation\+Standard\+Deviation}}
+\index{mutation\+Standard\+Deviation@{mutation\+Standard\+Deviation}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{mutation\+Standard\+Deviation}{mutationStandardDeviation}}
+{\footnotesize\ttfamily float Creature.\+mutation\+Standard\+Deviation}
+
+\mbox{\Hypertarget{class_creature_a6b427ac086b4cca5ed85553942e01d71}\label{class_creature_a6b427ac086b4cca5ed85553942e01d71}} 
+\index{Creature@{Creature}!neighbor\+Lands@{neighbor\+Lands}}
+\index{neighbor\+Lands@{neighbor\+Lands}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{neighbor\+Lands}{neighborLands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_land}{Land}} \mbox{[}$\,$\mbox{]} Creature.\+neighbor\+Lands = new \mbox{\hyperlink{class_land}{Land}}\mbox{[}5\mbox{]}}
+
+
+
+Neighbors are up, down, left, and right. Index 0 for land creature is on. 
+
+\mbox{\Hypertarget{class_creature_a1caf157811e3a3b37f9b292560aa0552}\label{class_creature_a1caf157811e3a3b37f9b292560aa0552}} 
+\index{Creature@{Creature}!networks@{networks}}
+\index{networks@{networks}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{networks}{networks}}
+{\footnotesize\ttfamily List$<$Dictionary$<$string, \mbox{\hyperlink{class_network}{Network}}$>$ $>$ Creature.\+networks = new List$<$Dictionary$<$string, \mbox{\hyperlink{class_network}{Network}}$>$$>$()}
+
+
+
+Stores all networks into layers of lists of Networks. 10 Maximum 
+
+\mbox{\Hypertarget{class_creature_a58383de337fb218495e70aa126981d6c}\label{class_creature_a58383de337fb218495e70aa126981d6c}} 
+\index{Creature@{Creature}!num\+Layers\+Of\+Nets@{num\+Layers\+Of\+Nets}}
+\index{num\+Layers\+Of\+Nets@{num\+Layers\+Of\+Nets}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{num\+Layers\+Of\+Nets}{numLayersOfNets}}
+{\footnotesize\ttfamily int Creature.\+num\+Layers\+Of\+Nets}
+
+
+
+The number of layers of Networks 
+
+\mbox{\Hypertarget{class_creature_a1a6c6390564dda480623b55d89c6d5b3}\label{class_creature_a1a6c6390564dda480623b55d89c6d5b3}} 
+\index{Creature@{Creature}!output\+Comm\+Signals@{output\+Comm\+Signals}}
+\index{output\+Comm\+Signals@{output\+Comm\+Signals}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{output\+Comm\+Signals}{outputCommSignals}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_comm_signal}{Comm\+Signal}}$>$ Creature.\+output\+Comm\+Signals = new List$<$\mbox{\hyperlink{class_comm_signal}{Comm\+Signal}}$>$()}
+
+
+
+stores an array of booleans for each neighbor for communication. e.\+g. 8 neighbors by 3 bools each. 
+
+\mbox{\Hypertarget{class_creature_ae0d804e7589fe2c612dafe930d74fe46}\label{class_creature_ae0d804e7589fe2c612dafe930d74fe46}} 
+\index{Creature@{Creature}!phenotype@{phenotype}}
+\index{phenotype@{phenotype}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{phenotype}{phenotype}}
+{\footnotesize\ttfamily bool \mbox{[}$\,$\mbox{]} Creature.\+phenotype}
+
+
+
+Outward appearance of creature\+: for communication purposes. Typically 4 bits. 
+
+\mbox{\Hypertarget{class_creature_ab6036649791244250e257da28733b2e7}\label{class_creature_ab6036649791244250e257da28733b2e7}} 
+\index{Creature@{Creature}!position@{position}}
+\index{position@{position}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily int \mbox{[}$\,$\mbox{]} Creature.\+position = new int\mbox{[}2\mbox{]}}
+
+\mbox{\Hypertarget{class_creature_a36cd0e998e4f26599c6b31a54b5d30ac}\label{class_creature_a36cd0e998e4f26599c6b31a54b5d30ac}} 
+\index{Creature@{Creature}!prev\+Net\+States@{prev\+Net\+States}}
+\index{prev\+Net\+States@{prev\+Net\+States}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{prev\+Net\+States}{prevNetStates}}
+{\footnotesize\ttfamily List$<$List$<$Dictionary$<$string, \mbox{\hyperlink{class_network}{Network}}$>$ $>$ $>$ Creature.\+prev\+Net\+States = new List$<$List$<$Dictionary$<$string, \mbox{\hyperlink{class_network}{Network}}$>$$>$$>$()}
+
+
+
+Not implememted yet. Stores the state of the networks for previous time steps. The front of the queue is the most recent network state (t-\/1). 
+
+\mbox{\Hypertarget{class_creature_ab3b01072caf7d87c396a2d80a3d73412}\label{class_creature_ab3b01072caf7d87c396a2d80a3d73412}} 
+\index{Creature@{Creature}!rand@{rand}}
+\index{rand@{rand}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{rand}{rand}}
+{\footnotesize\ttfamily System.\+Random Creature.\+rand}
+
+\mbox{\Hypertarget{class_creature_a08184ad607f5105788e09e8501386da0}\label{class_creature_a08184ad607f5105788e09e8501386da0}} 
+\index{Creature@{Creature}!rand2@{rand2}}
+\index{rand2@{rand2}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{rand2}{rand2}}
+{\footnotesize\ttfamily System.\+Random Creature.\+rand2}
+
+\mbox{\Hypertarget{class_creature_a52e3662ae3e269ee2cdc73b716fa3455}\label{class_creature_a52e3662ae3e269ee2cdc73b716fa3455}} 
+\index{Creature@{Creature}!remaining\+Ability\+Points@{remaining\+Ability\+Points}}
+\index{remaining\+Ability\+Points@{remaining\+Ability\+Points}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{remaining\+Ability\+Points}{remainingAbilityPoints}}
+{\footnotesize\ttfamily int Creature.\+remaining\+Ability\+Points}
+
+\mbox{\Hypertarget{class_creature_a8542dd67a39f6badb8e83e45e0fa4ff3}\label{class_creature_a8542dd67a39f6badb8e83e45e0fa4ff3}} 
+\index{Creature@{Creature}!remaining\+Turn\+Time@{remaining\+Turn\+Time}}
+\index{remaining\+Turn\+Time@{remaining\+Turn\+Time}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{remaining\+Turn\+Time}{remainingTurnTime}}
+{\footnotesize\ttfamily float Creature.\+remaining\+Turn\+Time}
+
+
+
+Time remaining in turn\+: limits number of actions that can be taken in one turn. 
+
+\mbox{\Hypertarget{class_creature_a84614f4c93827ec6ba2754cd7cfa91e4}\label{class_creature_a84614f4c93827ec6ba2754cd7cfa91e4}} 
+\index{Creature@{Creature}!reproduction\+Decider\+Network@{reproduction\+Decider\+Network}}
+\index{reproduction\+Decider\+Network@{reproduction\+Decider\+Network}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{reproduction\+Decider\+Network}{reproductionDeciderNetwork}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_repro_network}{Repro\+Network}} Creature.\+reproduction\+Decider\+Network = new \mbox{\hyperlink{class_repro_network}{Repro\+Network}}()}
+
+
+
+\mbox{\hyperlink{class_network}{Network}} to decide whether a creature should reproduce with a neightbor. 
+
+\mbox{\Hypertarget{class_creature_a8df2df30dc7d2da9705159e6425208d9}\label{class_creature_a8df2df30dc7d2da9705159e6425208d9}} 
+\index{Creature@{Creature}!reproduction\+Requests@{reproduction\+Requests}}
+\index{reproduction\+Requests@{reproduction\+Requests}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{reproduction\+Requests}{reproductionRequests}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_repro_action}{Repro\+Action}}$>$ Creature.\+reproduction\+Requests = new List$<$\mbox{\hyperlink{class_repro_action}{Repro\+Action}}$>$()}
+
+
+
+List of requests for reproduction from neighbors. 
+
+\mbox{\Hypertarget{class_creature_a721fb38fcd0d2e7bfc307a6921e3fa2e}\label{class_creature_a721fb38fcd0d2e7bfc307a6921e3fa2e}} 
+\index{Creature@{Creature}!species@{species}}
+\index{species@{species}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{species}{species}}
+{\footnotesize\ttfamily string Creature.\+species = \char`\"{}default\char`\"{}}
+
+\mbox{\Hypertarget{class_creature_a1c4a7443dd2c8748ce3322b68914788a}\label{class_creature_a1c4a7443dd2c8748ce3322b68914788a}} 
+\index{Creature@{Creature}!stored\+Resources@{stored\+Resources}}
+\index{stored\+Resources@{stored\+Resources}!Creature@{Creature}}
+\subsubsection{\texorpdfstring{stored\+Resources}{storedResources}}
+{\footnotesize\ttfamily Dictionary$<$string, \mbox{\hyperlink{class_creature_resource}{Creature\+Resource}}$>$ Creature.\+stored\+Resources = new Dictionary$<$string, \mbox{\hyperlink{class_creature_resource}{Creature\+Resource}}$>$()}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_creature_8cs}{Creature.\+cs}}\end{DoxyCompactItemize}

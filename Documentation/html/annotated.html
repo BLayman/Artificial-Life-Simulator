@@ -5,10 +5,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>EcoNet Documentation: Class List</title>
+<title>Artificial Life Simulator: Class List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,7 +29,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">EcoNet Documentation
+   <div id="projectname">Artificial Life Simulator
    </div>
   </td>
  </tr>
@@ -46,6 +54,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('annotated.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -67,16 +91,85 @@ $(function() {
 <div class="contents">
 <div class="textblock">Here are the classes, structs, unions and interfaces with brief descriptions:</div><div class="directory">
 <table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_network.html" target="_self">Network</a></td><td class="desc"></td></tr>
-<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_node.html" target="_self">Node</a></td><td class="desc"></td></tr>
+<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_abilities_editor.html" target="_self">AbilitiesEditor</a></td><td class="desc">API for Abilities objects. Modifies tentativeAbilities variable from <a class="el" href="class_creature_editor.html">CreatureEditor</a> </td></tr>
+<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_ability.html" target="_self">Ability</a></td><td class="desc">Modifies creature's ability to consume certain resources or attack certain species. Each creature has a specific number of ability points to assign to different abilities. </td></tr>
+<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_action.html" target="_self">Action</a></td><td class="desc"></td></tr>
+<tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_action_editor.html" target="_self">ActionEditor</a></td><td class="desc"></td></tr>
+<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_action_editor_abstract.html" target="_self">ActionEditorAbstract</a></td><td class="desc"></td></tr>
+<tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="interface_activation_behavior.html" target="_self">ActivationBehavior</a></td><td class="desc">Interface for objects that implement an activation function. </td></tr>
+<tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bias_node.html" target="_self">BiasNode</a></td><td class="desc"></td></tr>
+<tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_boost_requirement.html" target="_self">BoostRequirement</a></td><td class="desc">Currently not used. Boost requirements allow for modifications to abilities, thus giving creatures with certain resources an advantage over other creatures. If all creatures are capable of this ability, and have the same boost requirements, they all have the opportunity to gain this advantage. However, it should be noted that the relationship between resources and abilities established here does give certain resources more inherent value than others. </td></tr>
+<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_camera_positioner.html" target="_self">CameraPositioner</a></td><td class="desc"></td></tr>
+<tr id="row_9_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_comm_action.html" target="_self">CommAction</a></td><td class="desc"></td></tr>
+<tr id="row_10_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_comm_action_editor.html" target="_self">CommActionEditor</a></td><td class="desc"></td></tr>
+<tr id="row_11_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_comm_input_node.html" target="_self">CommInputNode</a></td><td class="desc"></td></tr>
+<tr id="row_12_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_comm_network.html" target="_self">CommNetwork</a></td><td class="desc">A network that converts incomming comm signals into action recommendations. A seperate comm network is needed for every neightbor that sends a comm signal. </td></tr>
+<tr id="row_13_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_comm_node_editor.html" target="_self">CommNodeEditor</a></td><td class="desc">API for Comm Nodes </td></tr>
+<tr id="row_14_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_comm_signal.html" target="_self">CommSignal</a></td><td class="desc">The comm network must individually process each comm signal stored in the creatures commList, and save the outputs as action recommendations. </td></tr>
+<tr id="row_15_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_consume_from_land.html" target="_self">ConsumeFromLand</a></td><td class="desc"></td></tr>
+<tr id="row_16_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_consume_from_land_editor.html" target="_self">ConsumeFromLandEditor</a></td><td class="desc"></td></tr>
+<tr id="row_17_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_copier.html" target="_self">Copier</a></td><td class="desc"></td></tr>
+<tr id="row_18_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_creat_menu_behav.html" target="_self">CreatMenuBehav</a></td><td class="desc"></td></tr>
+<tr id="row_19_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_creature.html" target="_self">Creature</a></td><td class="desc">Class for storing all data about a creature/agent, including its neural networks, queued actions, stored resources, location and other parameters. </td></tr>
+<tr id="row_20_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_creature_editor.html" target="_self">CreatureEditor</a></td><td class="desc"></td></tr>
+<tr id="row_21_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_creature_resource.html" target="_self">CreatureResource</a></td><td class="desc">Resource stored by a creature, and how that resource effects the creature. </td></tr>
+<tr id="row_22_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_eco_manager.html" target="_self">EcoManager</a></td><td class="desc"></td></tr>
+<tr id="row_23_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_eco_menu_behav.html" target="_self">EcoMenuBehav</a></td><td class="desc"></td></tr>
+<tr id="row_24_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_eco_menu_tester.html" target="_self">EcoMenuTester</a></td><td class="desc"></td></tr>
+<tr id="row_25_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_ecosystem.html" target="_self">Ecosystem</a></td><td class="desc">This class contains all of the data about the state of the ecosystem including the populations, species templates, map, resources, and other general parameters. </td></tr>
+<tr id="row_26_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_ecosystem_editor.html" target="_self">EcosystemEditor</a></td><td class="desc">API for alterning ecosystem. </td></tr>
+<tr id="row_27_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_ecosystem_getter.html" target="_self">EcosystemGetter</a></td><td class="desc"></td></tr>
+<tr id="row_28_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_empty_activ_behavior.html" target="_self">EmptyActivBehavior</a></td><td class="desc">No activation function (node simply uses linear combination). </td></tr>
+<tr id="row_29_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_error_manager.html" target="_self">ErrorManager</a></td><td class="desc"></td></tr>
+<tr id="row_30_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_game_manager.html" target="_self">GameManager</a></td><td class="desc"></td></tr>
+<tr id="row_31_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_helper_validator.html" target="_self">HelperValidator</a></td><td class="desc"></td></tr>
+<tr id="row_32_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="interface_i_ecosystem_editor.html" target="_self">IEcosystemEditor</a></td><td class="desc"></td></tr>
+<tr id="row_33_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_inner_input_node.html" target="_self">InnerInputNode</a></td><td class="desc"></td></tr>
+<tr id="row_34_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_inner_input_node_editor.html" target="_self">InnerInputNodeEditor</a></td><td class="desc">API for InnerInputNodes. </td></tr>
+<tr id="row_35_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_land.html" target="_self">Land</a></td><td class="desc">Class for storing data about a location on the map. Also facilitates creature's interaction with the environment. </td></tr>
+<tr id="row_36_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_land_resource_editor.html" target="_self">LandResourceEditor</a></td><td class="desc">Used as interface for generating <a class="el" href="class_resource_store.html" title="Basic unit of a resource to be stored in a Land object. Creature can attempt to consume this resource...">ResourceStore</a> objects. </td></tr>
+<tr id="row_37_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_logistic_activ_behavior.html" target="_self">LogisticActivBehavior</a></td><td class="desc">Implements logistic activation function. </td></tr>
+<tr id="row_38_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_logistic_with_neg_activ_behav.html" target="_self">LogisticWithNegActivBehav</a></td><td class="desc">Logistic activation function, but mapped to [-1,1] </td></tr>
+<tr id="row_39_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_l_r_menu_behav.html" target="_self">LRMenuBehav</a></td><td class="desc"></td></tr>
+<tr id="row_40_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_main_menu_behav.html" target="_self">MainMenuBehav</a></td><td class="desc"></td></tr>
+<tr id="row_41_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_map_editor.html" target="_self">MapEditor</a></td><td class="desc">API for editing the map: a 2D array of <a class="el" href="class_land.html" title="Class for storing data about a location on the map. Also facilitates creature&#39;s interaction with the ...">Land</a> spaces. Used to generate the map, and add resources. </td></tr>
+<tr id="row_42_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_memory_input_node.html" target="_self">MemoryInputNode</a></td><td class="desc"></td></tr>
+<tr id="row_43_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_move_action.html" target="_self">MoveAction</a></td><td class="desc"></td></tr>
+<tr id="row_44_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_move_action_editor.html" target="_self">MoveActionEditor</a></td><td class="desc"></td></tr>
+<tr id="row_45_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_network.html" target="_self">Network</a></td><td class="desc">A neural network of a creature, which consists of layers of nodes. </td></tr>
+<tr id="row_46_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_network_editor.html" target="_self">NetworkEditor</a></td><td class="desc">API for <a class="el" href="class_network.html" title="A neural network of a creature, which consists of layers of nodes. ">Network</a> objects. Stored by EcosystemCreator. </td></tr>
+<tr id="row_47_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_node.html" target="_self">Node</a></td><td class="desc">Abstract parent class for all <a class="el" href="class_node.html" title="Abstract parent class for all Node types. A Node represents a node in a creatures neural network...">Node</a> types. A <a class="el" href="class_node.html" title="Abstract parent class for all Node types. A Node represents a node in a creatures neural network...">Node</a> represents a node in a creatures neural network. </td></tr>
+<tr id="row_48_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_node_editor.html" target="_self">NodeEditor</a></td><td class="desc">API for storing different kinds of specific node creators. ex. - could wrap a SensoryInputNodeCreator. Stored by NetworkCreator. </td></tr>
+<tr id="row_49_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="interface_node_editor_interface.html" target="_self">NodeEditorInterface</a></td><td class="desc">Interface that allows all specific node creator objects to be stored by NodeCreator class. </td></tr>
+<tr id="row_50_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_non_input_node.html" target="_self">NonInputNode</a></td><td class="desc">Encompasses hidden nodes (which use this class directly) and output nodes (which use the <a class="el" href="class_output_node.html" title="Maps a the value of the node (as calculated by NonInputNode methods) to an action. ">OutputNode</a> class). </td></tr>
+<tr id="row_51_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_output_node.html" target="_self">OutputNode</a></td><td class="desc">Maps a the value of the node (as calculated by <a class="el" href="class_non_input_node.html" title="Encompasses hidden nodes (which use this class directly) and output nodes (which use the OutputNode c...">NonInputNode</a> methods) to an action. </td></tr>
+<tr id="row_52_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_output_node_editor.html" target="_self">OutputNodeEditor</a></td><td class="desc">API for OutputNodes. </td></tr>
+<tr id="row_53_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_population.html" target="_self">Population</a></td><td class="desc">A population stores information about a list of creatures, including it's founder, and initial variation. </td></tr>
+<tr id="row_54_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_repro_action.html" target="_self">ReproAction</a></td><td class="desc"></td></tr>
+<tr id="row_55_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_repro_action_editor.html" target="_self">ReproActionEditor</a></td><td class="desc"></td></tr>
+<tr id="row_56_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_repro_network.html" target="_self">ReproNetwork</a></td><td class="desc">A specific kind of network that decided whether a creature should reproduce. </td></tr>
+<tr id="row_57_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_resource_editor.html" target="_self">ResourceEditor</a></td><td class="desc">API for setting resources that creature can store, and how the resource effects the creature. </td></tr>
+<tr id="row_58_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_resource_store.html" target="_self">ResourceStore</a></td><td class="desc">Basic unit of a resource to be stored in a <a class="el" href="class_land.html" title="Class for storing data about a location on the map. Also facilitates creature&#39;s interaction with the ...">Land</a> object. <a class="el" href="class_creature.html" title="Class for storing all data about a creature/agent, including its neural networks, queued actions...">Creature</a> can attempt to consume this resource from the land. </td></tr>
+<tr id="row_59_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_sensory_input_node.html" target="_self">SensoryInputNode</a></td><td class="desc"></td></tr>
+<tr id="row_60_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_sensory_input_node_editor.html" target="_self">SensoryInputNodeEditor</a></td><td class="desc">API for SensoryInputNodes. </td></tr>
+<tr id="row_61_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_sim_runner_test.html" target="_self">SimRunnerTest</a></td><td class="desc">Class for running simulation. </td></tr>
+<tr id="row_62_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_sim_runner_user.html" target="_self">SimRunnerUser</a></td><td class="desc">Class for running simulation. </td></tr>
+<tr id="row_63_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_species_populator.html" target="_self">SpeciesPopulator</a></td><td class="desc">Class for using a founder species to generate a population on the map. Wraps <a class="el" href="class_population.html" title="A population stores information about a list of creatures, including it&#39;s founder, and initial variation. ">Population</a> class. </td></tr>
+<tr id="row_64_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_static_variables.html" target="_self">StaticVariables</a></td><td class="desc"></td></tr>
+<tr id="row_65_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_tanh_activ_behav.html" target="_self">TanhActivBehav</a></td><td class="desc">Implements Tanh activation function. </td></tr>
+<tr id="row_66_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_texture_maker_example.html" target="_self">TextureMakerExample</a></td><td class="desc"></td></tr>
+<tr id="row_67_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_thread_manager.html" target="_self">ThreadManager</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.14
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
+  </ul>
+</div>
 </body>
 </html>

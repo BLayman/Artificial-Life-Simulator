@@ -1,0 +1,81 @@
+.TH "Land" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Land \- Class for storing data about a location on the map\&. Also facilitates creature's interaction with the environment\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBcreatureIsOn\fP ()"
+.br
+.RI "returns true if creatureOn is not null "
+.ti -1c
+.RI "float \fBattemptResourceConsumption\fP (string resourceKey, float timeDedicated, float creatureAbility, float cStorageSpace)"
+.br
+.RI "Try to consume resource of given name\&. "
+.ti -1c
+.RI "\fBLand\fP \fBshallowCopy\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "System\&.Collections\&.Generic\&.Dictionary< string, \fBResourceStore\fP > \fBpropertyDict\fP = new Dictionary<string, \fBResourceStore\fP>()"
+.br
+.RI "Stores resource values and other attributes of the land "
+.ti -1c
+.RI "\fBCreature\fP \fBcreatureOn\fP"
+.br
+.RI "Stores whatever creature is currently on this land\&. "
+.ti -1c
+.RI "bool \fBisDummy\fP = false"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class for storing data about a location on the map\&. Also facilitates creature's interaction with the environment\&. 
+
+
+.SH "Member Function Documentation"
+.PP 
+.SS "float Land\&.attemptResourceConsumption (string resourceKey, float timeDedicated, float creatureAbility, float cStorageSpace)"
+
+.PP
+Try to consume resource of given name\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIresourceKey\fP Resource name\&.
+.br
+\fItimeDedicated\fP Comes from action timeCost variable\&.
+.RE
+.PP
+
+.SS "bool Land\&.creatureIsOn ()"
+
+.PP
+returns true if creatureOn is not null 
+.SS "\fBLand\fP Land\&.shallowCopy ()"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBCreature\fP Land\&.creatureOn"
+
+.PP
+Stores whatever creature is currently on this land\&. 
+.SS "bool Land\&.isDummy = false"
+
+.SS "System\&.Collections\&.Generic\&.Dictionary<string, \fBResourceStore\fP> Land\&.propertyDict = new Dictionary<string, \fBResourceStore\fP>()"
+
+.PP
+Stores resource values and other attributes of the land 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

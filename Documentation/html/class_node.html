@@ -5,10 +5,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>EcoNet Documentation: Node Class Reference</title>
+<title>Artificial Life Simulator: Node Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,7 +29,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">EcoNet Documentation
+   <div id="projectname">Artificial Life Simulator
    </div>
   </td>
  </tr>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_node.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,82 +84,50 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#properties">Properties</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_node-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Node Class Reference</div>  </div>
+<div class="title">Node Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Abstract parent class for all <a class="el" href="class_node.html" title="Abstract parent class for all Node types. A Node represents a node in a creatures neural network...">Node</a> types. A <a class="el" href="class_node.html" title="Abstract parent class for all Node types. A Node represents a node in a creatures neural network...">Node</a> represents a node in a creatures neural network.  
+ <a href="class_node.html#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Node:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_node.png" usemap="#Node_map" alt=""/>
+  <map id="Node_map" name="Node_map">
+<area href="class_bias_node.html" alt="BiasNode" shape="rect" coords="0,56,116,80"/>
+<area href="class_comm_input_node.html" alt="CommInputNode" shape="rect" coords="126,56,242,80"/>
+<area href="class_inner_input_node.html" alt="InnerInputNode" shape="rect" coords="252,56,368,80"/>
+<area href="class_memory_input_node.html" alt="MemoryInputNode" shape="rect" coords="378,56,494,80"/>
+<area href="class_non_input_node.html" title="Encompasses hidden nodes (which use this class directly) and output nodes (which use the OutputNode c..." alt="NonInputNode" shape="rect" coords="504,56,620,80"/>
+<area href="class_sensory_input_node.html" alt="SensoryInputNode" shape="rect" coords="630,56,746,80"/>
+<area href="class_output_node.html" title="Maps a the value of the node (as calculated by NonInputNode methods) to an action. " alt="OutputNode" shape="rect" coords="504,112,620,136"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6700b2928da6ac5fcac8431d6f16597e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a6700b2928da6ac5fcac8431d6f16597e">appendInputNode</a> (<a class="el" href="class_node.html">Node</a> newNode)</td></tr>
-<tr class="memdesc:a6700b2928da6ac5fcac8431d6f16597e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a node to the array of input nodes.  <a href="#a6700b2928da6ac5fcac8431d6f16597e">More...</a><br /></td></tr>
-<tr class="separator:a6700b2928da6ac5fcac8431d6f16597e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae35ca95be4806e6a3f81617d888f724f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#ae35ca95be4806e6a3f81617d888f724f">removeNode</a> (int removeIndex)</td></tr>
-<tr class="memdesc:ae35ca95be4806e6a3f81617d888f724f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove node from input nodes.  <a href="#ae35ca95be4806e6a3f81617d888f724f">More...</a><br /></td></tr>
-<tr class="separator:ae35ca95be4806e6a3f81617d888f724f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85ebd0e36c25430570b94f923afd2a62"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a85ebd0e36c25430570b94f923afd2a62">updateValue</a> ()</td></tr>
+<tr class="memdesc:a85ebd0e36c25430570b94f923afd2a62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates node value  <a href="#a85ebd0e36c25430570b94f923afd2a62">More...</a><br /></td></tr>
+<tr class="separator:a85ebd0e36c25430570b94f923afd2a62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
-Properties</h2></td></tr>
-<tr class="memitem:a4d82b89fd1d72cc0184763279a3811dc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a4d82b89fd1d72cc0184763279a3811dc">value</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a4d82b89fd1d72cc0184763279a3811dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of the node takes on based on it's inputs and activation function.  <a href="#a4d82b89fd1d72cc0184763279a3811dc">More...</a><br /></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a4d82b89fd1d72cc0184763279a3811dc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a4d82b89fd1d72cc0184763279a3811dc">value</a></td></tr>
 <tr class="separator:a4d82b89fd1d72cc0184763279a3811dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6700b2928da6ac5fcac8431d6f16597e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6700b2928da6ac5fcac8431d6f16597e">&#9670;&nbsp;</a></span>appendInputNode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Node.appendInputNode </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_node.html">Node</a>&#160;</td>
-          <td class="paramname"><em>newNode</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Adds a node to the array of input nodes. </p>
-
-</div>
-</div>
-<a id="ae35ca95be4806e6a3f81617d888f724f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae35ca95be4806e6a3f81617d888f724f">&#9670;&nbsp;</a></span>removeNode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Node.removeNode </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>removeIndex</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Remove node from input nodes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">removeIndex</td><td>Index of node to remove.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Property Documentation</h2>
-<a id="a4d82b89fd1d72cc0184763279a3811dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d82b89fd1d72cc0184763279a3811dc">&#9670;&nbsp;</a></span>value</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract parent class for all <a class="el" href="class_node.html" title="Abstract parent class for all Node types. A Node represents a node in a creatures neural network...">Node</a> types. A <a class="el" href="class_node.html" title="Abstract parent class for all Node types. A Node represents a node in a creatures neural network...">Node</a> represents a node in a creatures neural network. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a85ebd0e36c25430570b94f923afd2a62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85ebd0e36c25430570b94f923afd2a62">&#9670;&nbsp;</a></span>updateValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,29 +136,53 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float Node.value</td>
+          <td class="memname">abstract void Node.updateValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>The value of the node takes on based on it's inputs and activation function. </p>
+<p>Updates node value </p>
+
+<p>Implemented in <a class="el" href="class_sensory_input_node.html#a3db8f13a203e1e604a3b79a20153cfa7">SensoryInputNode</a>, <a class="el" href="class_non_input_node.html#a075d0278c5500f0d2455a3d8eeb04f55">NonInputNode</a>, <a class="el" href="class_comm_input_node.html#a22f5ea13329e77f47db18d28336cc52e">CommInputNode</a>, <a class="el" href="class_bias_node.html#a84e7e92b97256707aba057ec92bd7a79">BiasNode</a>, <a class="el" href="class_inner_input_node.html#ac67f9a1dcd0ae72d2d7fe4cfa7f91152">InnerInputNode</a>, and <a class="el" href="class_memory_input_node.html#aa1efec4e8bc221a879c959ba9941587b">MemoryInputNode</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a4d82b89fd1d72cc0184763279a3811dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d82b89fd1d72cc0184763279a3811dc">&#9670;&nbsp;</a></span>value</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Node.value</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Brett/Documents/GitHub/Unity/EcoNet/Assets/Scripts/Node.cs</li>
+<li><a class="el" href="_node_8cs.html">Node.cs</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.14
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_node.html">Node</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
+  </ul>
+</div>
 </body>
 </html>

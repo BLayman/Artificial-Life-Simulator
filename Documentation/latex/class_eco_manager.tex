@@ -1,0 +1,85 @@
+\hypertarget{class_eco_manager}{}\section{Eco\+Manager Class Reference}
+\label{class_eco_manager}\index{Eco\+Manager@{Eco\+Manager}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eco_manager_ab7ee9ad1b41a4dbb9c8cb5f4c001e469}{make\+Eco}} ()
+\item 
+void \mbox{\hyperlink{class_eco_manager_a14997719023cc4431bf3b8ee2339163d}{user\+Creates\+Ecosystem}} (int map\+Width)
+\item 
+void \mbox{\hyperlink{class_eco_manager_ae6ddbd7e4c1fe49dafdf9cf72e121563}{user\+Adds\+Species}} (string name, \mbox{\hyperlink{_creature_editor_8cs_a2d31a955c823bd51aec8f913e263723c}{Color\+Choice}} color, float mutation\+Deviation)
+\item 
+void \mbox{\hyperlink{class_eco_manager_afff509be31e995fff88fd410bb96899f}{user\+Populates\+Species}} (string name, float population\+Deviation, int pop\+Size, int max\+Pop\+Size)
+\item 
+void \mbox{\hyperlink{class_eco_manager_a83ca906cad37e9a2c6e41bc58e638e2e}{run\+System}} (int steps)
+\item 
+\mbox{\hyperlink{class_ecosystem}{Ecosystem}} \mbox{\hyperlink{class_eco_manager_ac4afac929280d605388d110a4a0a2840}{get\+Ecosystem}} ()
+\item 
+void \mbox{\hyperlink{class_eco_manager_a7f08416b1570f58d235093da6d2c2129}{make\+Sensory\+Input\+Node}} (\mbox{\hyperlink{class_network_editor}{Network\+Editor}} net\+Creator, int land\+Index, string sensed\+Resource)
+\item 
+void \mbox{\hyperlink{class_eco_manager_a4d84a2362550dc39724e36df7d30ad06}{make\+Output\+Node}} (\mbox{\hyperlink{class_network_editor}{Network\+Editor}} net\+Creator, \mbox{\hyperlink{_non_input_node_8cs_a832a6943e91e304dea9608c4ae2818e7}{Activation\+Behavior\+Types}} activation\+Type, string action, int layer)
+\item 
+void \mbox{\hyperlink{class_eco_manager_a01ca1dd0c8bb417a67cbb83fe84b894d}{make\+Inner\+Input\+Node}} (\mbox{\hyperlink{class_network_editor}{Network\+Editor}} net\+Creator, int layer, string linked\+Net\+Name, int linked\+Net\+Index, int linked\+Node\+Index)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eco_manager_ac4afac929280d605388d110a4a0a2840}\label{class_eco_manager_ac4afac929280d605388d110a4a0a2840}} 
+\index{Eco\+Manager@{Eco\+Manager}!get\+Ecosystem@{get\+Ecosystem}}
+\index{get\+Ecosystem@{get\+Ecosystem}!Eco\+Manager@{Eco\+Manager}}
+\subsubsection{\texorpdfstring{get\+Ecosystem()}{getEcosystem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_ecosystem}{Ecosystem}} Eco\+Manager.\+get\+Ecosystem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_eco_manager_ab7ee9ad1b41a4dbb9c8cb5f4c001e469}\label{class_eco_manager_ab7ee9ad1b41a4dbb9c8cb5f4c001e469}} 
+\index{Eco\+Manager@{Eco\+Manager}!make\+Eco@{make\+Eco}}
+\index{make\+Eco@{make\+Eco}!Eco\+Manager@{Eco\+Manager}}
+\subsubsection{\texorpdfstring{make\+Eco()}{makeEco()}}
+{\footnotesize\ttfamily void Eco\+Manager.\+make\+Eco (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_eco_manager_a01ca1dd0c8bb417a67cbb83fe84b894d}\label{class_eco_manager_a01ca1dd0c8bb417a67cbb83fe84b894d}} 
+\index{Eco\+Manager@{Eco\+Manager}!make\+Inner\+Input\+Node@{make\+Inner\+Input\+Node}}
+\index{make\+Inner\+Input\+Node@{make\+Inner\+Input\+Node}!Eco\+Manager@{Eco\+Manager}}
+\subsubsection{\texorpdfstring{make\+Inner\+Input\+Node()}{makeInnerInputNode()}}
+{\footnotesize\ttfamily void Eco\+Manager.\+make\+Inner\+Input\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_network_editor}{Network\+Editor}}}]{net\+Creator,  }\item[{int}]{layer,  }\item[{string}]{linked\+Net\+Name,  }\item[{int}]{linked\+Net\+Index,  }\item[{int}]{linked\+Node\+Index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_eco_manager_a4d84a2362550dc39724e36df7d30ad06}\label{class_eco_manager_a4d84a2362550dc39724e36df7d30ad06}} 
+\index{Eco\+Manager@{Eco\+Manager}!make\+Output\+Node@{make\+Output\+Node}}
+\index{make\+Output\+Node@{make\+Output\+Node}!Eco\+Manager@{Eco\+Manager}}
+\subsubsection{\texorpdfstring{make\+Output\+Node()}{makeOutputNode()}}
+{\footnotesize\ttfamily void Eco\+Manager.\+make\+Output\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_network_editor}{Network\+Editor}}}]{net\+Creator,  }\item[{\mbox{\hyperlink{_non_input_node_8cs_a832a6943e91e304dea9608c4ae2818e7}{Activation\+Behavior\+Types}}}]{activation\+Type,  }\item[{string}]{action,  }\item[{int}]{layer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_eco_manager_a7f08416b1570f58d235093da6d2c2129}\label{class_eco_manager_a7f08416b1570f58d235093da6d2c2129}} 
+\index{Eco\+Manager@{Eco\+Manager}!make\+Sensory\+Input\+Node@{make\+Sensory\+Input\+Node}}
+\index{make\+Sensory\+Input\+Node@{make\+Sensory\+Input\+Node}!Eco\+Manager@{Eco\+Manager}}
+\subsubsection{\texorpdfstring{make\+Sensory\+Input\+Node()}{makeSensoryInputNode()}}
+{\footnotesize\ttfamily void Eco\+Manager.\+make\+Sensory\+Input\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_network_editor}{Network\+Editor}}}]{net\+Creator,  }\item[{int}]{land\+Index,  }\item[{string}]{sensed\+Resource }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_eco_manager_a83ca906cad37e9a2c6e41bc58e638e2e}\label{class_eco_manager_a83ca906cad37e9a2c6e41bc58e638e2e}} 
+\index{Eco\+Manager@{Eco\+Manager}!run\+System@{run\+System}}
+\index{run\+System@{run\+System}!Eco\+Manager@{Eco\+Manager}}
+\subsubsection{\texorpdfstring{run\+System()}{runSystem()}}
+{\footnotesize\ttfamily void Eco\+Manager.\+run\+System (\begin{DoxyParamCaption}\item[{int}]{steps }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_eco_manager_ae6ddbd7e4c1fe49dafdf9cf72e121563}\label{class_eco_manager_ae6ddbd7e4c1fe49dafdf9cf72e121563}} 
+\index{Eco\+Manager@{Eco\+Manager}!user\+Adds\+Species@{user\+Adds\+Species}}
+\index{user\+Adds\+Species@{user\+Adds\+Species}!Eco\+Manager@{Eco\+Manager}}
+\subsubsection{\texorpdfstring{user\+Adds\+Species()}{userAddsSpecies()}}
+{\footnotesize\ttfamily void Eco\+Manager.\+user\+Adds\+Species (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{\mbox{\hyperlink{_creature_editor_8cs_a2d31a955c823bd51aec8f913e263723c}{Color\+Choice}}}]{color,  }\item[{float}]{mutation\+Deviation }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_eco_manager_a14997719023cc4431bf3b8ee2339163d}\label{class_eco_manager_a14997719023cc4431bf3b8ee2339163d}} 
+\index{Eco\+Manager@{Eco\+Manager}!user\+Creates\+Ecosystem@{user\+Creates\+Ecosystem}}
+\index{user\+Creates\+Ecosystem@{user\+Creates\+Ecosystem}!Eco\+Manager@{Eco\+Manager}}
+\subsubsection{\texorpdfstring{user\+Creates\+Ecosystem()}{userCreatesEcosystem()}}
+{\footnotesize\ttfamily void Eco\+Manager.\+user\+Creates\+Ecosystem (\begin{DoxyParamCaption}\item[{int}]{map\+Width }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_eco_manager_afff509be31e995fff88fd410bb96899f}\label{class_eco_manager_afff509be31e995fff88fd410bb96899f}} 
+\index{Eco\+Manager@{Eco\+Manager}!user\+Populates\+Species@{user\+Populates\+Species}}
+\index{user\+Populates\+Species@{user\+Populates\+Species}!Eco\+Manager@{Eco\+Manager}}
+\subsubsection{\texorpdfstring{user\+Populates\+Species()}{userPopulatesSpecies()}}
+{\footnotesize\ttfamily void Eco\+Manager.\+user\+Populates\+Species (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{float}]{population\+Deviation,  }\item[{int}]{pop\+Size,  }\item[{int}]{max\+Pop\+Size }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_eco_manager_8cs}{Eco\+Manager.\+cs}}\end{DoxyCompactItemize}

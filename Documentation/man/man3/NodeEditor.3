@@ -1,0 +1,57 @@
+.TH "NodeEditor" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+NodeEditor \- API for storing different kinds of specific node creators\&. ex\&. - could wrap a SensoryInputNodeCreator\&. Stored by NetworkCreator\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBNodeEditor\fP (int _layer, \fBNetworkEditor\fP parentNetCreator)"
+.br
+.ti -1c
+.RI "void \fBsetCreator\fP (\fBNodeCreatorType\fP type)"
+.br
+.ti -1c
+.RI "\fBNodeEditorInterface\fP \fBgetNodeCreator\fP ()"
+.br
+.ti -1c
+.RI "\fBNode\fP \fBgetCreatedNode\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBnodeLayer\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+API for storing different kinds of specific node creators\&. ex\&. - could wrap a SensoryInputNodeCreator\&. Stored by NetworkCreator\&. 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "NodeEditor\&.NodeEditor (int _layer, \fBNetworkEditor\fP parentNetCreator)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBNode\fP NodeEditor\&.getCreatedNode ()"
+
+.SS "\fBNodeEditorInterface\fP NodeEditor\&.getNodeCreator ()"
+
+.SS "void NodeEditor\&.setCreator (\fBNodeCreatorType\fP type)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "int NodeEditor\&.nodeLayer"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

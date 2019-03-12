@@ -1,0 +1,152 @@
+\hypertarget{class_resource_store}{}\section{Resource\+Store Class Reference}
+\label{class_resource_store}\index{Resource\+Store@{Resource\+Store}}
+
+
+Basic unit of a resource to be stored in a \mbox{\hyperlink{class_land}{Land}} object. \mbox{\hyperlink{class_creature}{Creature}} can attempt to consume this resource from the land.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_resource_store_aa9d9ff044e6156590656f1471b6d3e7d}{Resource\+Store}} (string \+\_\+name)
+\item 
+\mbox{\hyperlink{class_resource_store}{Resource\+Store}} \mbox{\hyperlink{class_resource_store_a7a609776888726de6169f1e9b90dd36f}{shallow\+Copy}} ()
+\begin{DoxyCompactList}\small\item\em this returns a new instance of a resource store with shallow copies of all of the instance variables \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_resource_store_a0a779526593c2dab8e6b9d9e4d5013e6}{attempt\+Consumption}} (float time\+Dedicated, float creature\+Ability, float c\+Storage\+Space)
+\begin{DoxyCompactList}\small\item\em Resolves amount of resource consumed in given amount of time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_resource_store_a9c37fdfe13469bed6232c3ed1418d313}{renew\+Resource}} ()
+\begin{DoxyCompactList}\small\item\em Renews resource according to renewal\+Amt (called each time step). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_resource_store_aa3b1414c69c413330e41fc53b32563ca}{get\+Proportion\+Stored}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_resource_store_a8fbddc12eb1ca75affdc31a4a5244917}{amount\+Stored}}
+\begin{DoxyCompactList}\small\item\em Amount of resource stored. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_resource_store_a17216b811a57c86dc3dfd0310f647bdb}{proportion\+Extracted}}
+\begin{DoxyCompactList}\small\item\em Possible values\+: \mbox{[}0,1\mbox{]}. Proportion of the attempted amount that will be successfully extracted on one attempt. Modified by creature\textquotesingle{}s extraction ability. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_resource_store_aadc1eae620b2c81bd4d16de13ca7f435}{amount\+Consumed\+Per\+Time\+Unit}}
+\begin{DoxyCompactList}\small\item\em Amount of resource that can be taken by one action. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_resource_store_a0f9723ce7385fb03909eeea64c38fdbb}{renewal\+Amt}}
+\begin{DoxyCompactList}\small\item\em Amount renewed on a renewal step. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_resource_store_a688e70d481b87077fd1af3c11743f9f8}{name}}
+\item 
+float \mbox{\hyperlink{class_resource_store_ae86f3cd5ac8a8bc58ee1db0917ef3021}{max\+Amount}}
+\begin{DoxyCompactList}\small\item\em Maximum amount of resource that can be stored in this land location. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Basic unit of a resource to be stored in a \mbox{\hyperlink{class_land}{Land}} object. \mbox{\hyperlink{class_creature}{Creature}} can attempt to consume this resource from the land. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_resource_store_aa9d9ff044e6156590656f1471b6d3e7d}\label{class_resource_store_aa9d9ff044e6156590656f1471b6d3e7d}} 
+\index{Resource\+Store@{Resource\+Store}!Resource\+Store@{Resource\+Store}}
+\index{Resource\+Store@{Resource\+Store}!Resource\+Store@{Resource\+Store}}
+\subsubsection{\texorpdfstring{Resource\+Store()}{ResourceStore()}}
+{\footnotesize\ttfamily Resource\+Store.\+Resource\+Store (\begin{DoxyParamCaption}\item[{string}]{\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_resource_store_a0a779526593c2dab8e6b9d9e4d5013e6}\label{class_resource_store_a0a779526593c2dab8e6b9d9e4d5013e6}} 
+\index{Resource\+Store@{Resource\+Store}!attempt\+Consumption@{attempt\+Consumption}}
+\index{attempt\+Consumption@{attempt\+Consumption}!Resource\+Store@{Resource\+Store}}
+\subsubsection{\texorpdfstring{attempt\+Consumption()}{attemptConsumption()}}
+{\footnotesize\ttfamily float Resource\+Store.\+attempt\+Consumption (\begin{DoxyParamCaption}\item[{float}]{time\+Dedicated,  }\item[{float}]{creature\+Ability,  }\item[{float}]{c\+Storage\+Space }\end{DoxyParamCaption})}
+
+
+
+Resolves amount of resource consumed in given amount of time. 
+
+\mbox{\Hypertarget{class_resource_store_aa3b1414c69c413330e41fc53b32563ca}\label{class_resource_store_aa3b1414c69c413330e41fc53b32563ca}} 
+\index{Resource\+Store@{Resource\+Store}!get\+Proportion\+Stored@{get\+Proportion\+Stored}}
+\index{get\+Proportion\+Stored@{get\+Proportion\+Stored}!Resource\+Store@{Resource\+Store}}
+\subsubsection{\texorpdfstring{get\+Proportion\+Stored()}{getProportionStored()}}
+{\footnotesize\ttfamily float Resource\+Store.\+get\+Proportion\+Stored (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_resource_store_a9c37fdfe13469bed6232c3ed1418d313}\label{class_resource_store_a9c37fdfe13469bed6232c3ed1418d313}} 
+\index{Resource\+Store@{Resource\+Store}!renew\+Resource@{renew\+Resource}}
+\index{renew\+Resource@{renew\+Resource}!Resource\+Store@{Resource\+Store}}
+\subsubsection{\texorpdfstring{renew\+Resource()}{renewResource()}}
+{\footnotesize\ttfamily void Resource\+Store.\+renew\+Resource (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Renews resource according to renewal\+Amt (called each time step). 
+
+\mbox{\Hypertarget{class_resource_store_a7a609776888726de6169f1e9b90dd36f}\label{class_resource_store_a7a609776888726de6169f1e9b90dd36f}} 
+\index{Resource\+Store@{Resource\+Store}!shallow\+Copy@{shallow\+Copy}}
+\index{shallow\+Copy@{shallow\+Copy}!Resource\+Store@{Resource\+Store}}
+\subsubsection{\texorpdfstring{shallow\+Copy()}{shallowCopy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_resource_store}{Resource\+Store}} Resource\+Store.\+shallow\+Copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+this returns a new instance of a resource store with shallow copies of all of the instance variables 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_resource_store_aadc1eae620b2c81bd4d16de13ca7f435}\label{class_resource_store_aadc1eae620b2c81bd4d16de13ca7f435}} 
+\index{Resource\+Store@{Resource\+Store}!amount\+Consumed\+Per\+Time\+Unit@{amount\+Consumed\+Per\+Time\+Unit}}
+\index{amount\+Consumed\+Per\+Time\+Unit@{amount\+Consumed\+Per\+Time\+Unit}!Resource\+Store@{Resource\+Store}}
+\subsubsection{\texorpdfstring{amount\+Consumed\+Per\+Time\+Unit}{amountConsumedPerTimeUnit}}
+{\footnotesize\ttfamily float Resource\+Store.\+amount\+Consumed\+Per\+Time\+Unit}
+
+
+
+Amount of resource that can be taken by one action. 
+
+\mbox{\Hypertarget{class_resource_store_a8fbddc12eb1ca75affdc31a4a5244917}\label{class_resource_store_a8fbddc12eb1ca75affdc31a4a5244917}} 
+\index{Resource\+Store@{Resource\+Store}!amount\+Stored@{amount\+Stored}}
+\index{amount\+Stored@{amount\+Stored}!Resource\+Store@{Resource\+Store}}
+\subsubsection{\texorpdfstring{amount\+Stored}{amountStored}}
+{\footnotesize\ttfamily float Resource\+Store.\+amount\+Stored}
+
+
+
+Amount of resource stored. 
+
+\mbox{\Hypertarget{class_resource_store_ae86f3cd5ac8a8bc58ee1db0917ef3021}\label{class_resource_store_ae86f3cd5ac8a8bc58ee1db0917ef3021}} 
+\index{Resource\+Store@{Resource\+Store}!max\+Amount@{max\+Amount}}
+\index{max\+Amount@{max\+Amount}!Resource\+Store@{Resource\+Store}}
+\subsubsection{\texorpdfstring{max\+Amount}{maxAmount}}
+{\footnotesize\ttfamily float Resource\+Store.\+max\+Amount}
+
+
+
+Maximum amount of resource that can be stored in this land location. 
+
+\mbox{\Hypertarget{class_resource_store_a688e70d481b87077fd1af3c11743f9f8}\label{class_resource_store_a688e70d481b87077fd1af3c11743f9f8}} 
+\index{Resource\+Store@{Resource\+Store}!name@{name}}
+\index{name@{name}!Resource\+Store@{Resource\+Store}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Resource\+Store.\+name}
+
+\mbox{\Hypertarget{class_resource_store_a17216b811a57c86dc3dfd0310f647bdb}\label{class_resource_store_a17216b811a57c86dc3dfd0310f647bdb}} 
+\index{Resource\+Store@{Resource\+Store}!proportion\+Extracted@{proportion\+Extracted}}
+\index{proportion\+Extracted@{proportion\+Extracted}!Resource\+Store@{Resource\+Store}}
+\subsubsection{\texorpdfstring{proportion\+Extracted}{proportionExtracted}}
+{\footnotesize\ttfamily float Resource\+Store.\+proportion\+Extracted}
+
+
+
+Possible values\+: \mbox{[}0,1\mbox{]}. Proportion of the attempted amount that will be successfully extracted on one attempt. Modified by creature\textquotesingle{}s extraction ability. 
+
+\mbox{\Hypertarget{class_resource_store_a0f9723ce7385fb03909eeea64c38fdbb}\label{class_resource_store_a0f9723ce7385fb03909eeea64c38fdbb}} 
+\index{Resource\+Store@{Resource\+Store}!renewal\+Amt@{renewal\+Amt}}
+\index{renewal\+Amt@{renewal\+Amt}!Resource\+Store@{Resource\+Store}}
+\subsubsection{\texorpdfstring{renewal\+Amt}{renewalAmt}}
+{\footnotesize\ttfamily float Resource\+Store.\+renewal\+Amt}
+
+
+
+Amount renewed on a renewal step. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_resource_store_8cs}{Resource\+Store.\+cs}}\end{DoxyCompactItemize}

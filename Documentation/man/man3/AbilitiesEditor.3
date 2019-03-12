@@ -1,0 +1,82 @@
+.TH "AbilitiesEditor" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AbilitiesEditor \- API for Abilities objects\&. Modifies tentativeAbilities variable from \fBCreatureEditor\fP  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAbilitiesEditor\fP (Dictionary< string, \fBAbility\fP > _abilities, int _abilityPoints)"
+.br
+.ti -1c
+.RI "void \fBaddAbility\fP (string target, \fBabilityType\fP type)"
+.br
+.RI "Adds ability of specific type and target with level 0 and no boost options\&. "
+.ti -1c
+.RI "void \fBincrementAbility\fP (string target)"
+.br
+.RI "Adds one to ability level\&. "
+.ti -1c
+.RI "int \fBgetAbilityPoints\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "Dictionary< string, \fBAbility\fP > \fBabilities\fP"
+.br
+.ti -1c
+.RI "int \fBremainingAbilityPoints\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+API for Abilities objects\&. Modifies tentativeAbilities variable from \fBCreatureEditor\fP 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "AbilitiesEditor\&.AbilitiesEditor (Dictionary< string, \fBAbility\fP > _abilities, int _abilityPoints)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void AbilitiesEditor\&.addAbility (string target, \fBabilityType\fP type)"
+
+.PP
+Adds ability of specific type and target with level 0 and no boost options\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItarget\fP The resource/species the ability is applied to\&.
+.RE
+.PP
+
+.SS "int AbilitiesEditor\&.getAbilityPoints ()"
+
+.SS "void AbilitiesEditor\&.incrementAbility (string target)"
+
+.PP
+Adds one to ability level\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIability\fP \fBAbility\fP to be incremented\&.
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "Dictionary<string, \fBAbility\fP> AbilitiesEditor\&.abilities"
+
+.SS "int AbilitiesEditor\&.remainingAbilityPoints"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

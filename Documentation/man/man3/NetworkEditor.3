@@ -1,0 +1,77 @@
+.TH "NetworkEditor" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+NetworkEditor \- API for \fBNetwork\fP objects\&. Stored by EcosystemCreator\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBNetworkEditor\fP (\fBNetwork\fP net, \fBCreatureEditor\fP \fBparentCreatureCreator\fP)"
+.br
+.ti -1c
+.RI "void \fBinitializeNetwork\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetName\fP (string name)"
+.br
+.ti -1c
+.RI "void \fBsetInLayer\fP (int layer)"
+.br
+.ti -1c
+.RI "void \fBsaveNode\fP ()"
+.br
+.ti -1c
+.RI "\fBNodeEditor\fP \fBaddNode\fP (int layer)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBNetwork\fP \fBnetwork\fP"
+.br
+.ti -1c
+.RI "\fBNodeEditor\fP \fBnodeCreator\fP"
+.br
+.ti -1c
+.RI "\fBCreatureEditor\fP \fBparentCreatureCreator\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+API for \fBNetwork\fP objects\&. Stored by EcosystemCreator\&. 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "NetworkEditor\&.NetworkEditor (\fBNetwork\fP net, \fBCreatureEditor\fP parentCreatureCreator)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBNodeEditor\fP NetworkEditor\&.addNode (int layer)"
+
+.SS "void NetworkEditor\&.initializeNetwork ()"
+
+.SS "void NetworkEditor\&.saveNode ()"
+
+.SS "void NetworkEditor\&.setInLayer (int layer)"
+
+.SS "void NetworkEditor\&.setName (string name)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBNetwork\fP NetworkEditor\&.network"
+
+.SS "\fBNodeEditor\fP NetworkEditor\&.nodeCreator"
+
+.SS "\fBCreatureEditor\fP NetworkEditor\&.parentCreatureCreator"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

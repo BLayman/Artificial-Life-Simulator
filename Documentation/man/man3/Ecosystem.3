@@ -1,0 +1,155 @@
+.TH "Ecosystem" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Ecosystem \- This class contains all of the data about the state of the ecosystem including the populations, species templates, map, resources, and other general parameters\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBrunSystem\fP (int timeSteps)"
+.br
+.RI "run ecosystem for a certain number of time steps "
+.ti -1c
+.RI "void \fBaddSpecies\fP (\fBCreature\fP creature)"
+.br
+.RI "creates new species in dictionary based on given creature "
+.ti -1c
+.RI "void \fBcreatePopulation\fP (int size, \fBCreature\fP \fBspecies\fP)"
+.br
+.ti -1c
+.RI "\fBEcosystem\fP \fBshallowCopy\fP ()"
+.br
+.ti -1c
+.RI "void \fBupdateTexture\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "string \fBname\fP = 'default'"
+.br
+.ti -1c
+.RI "Dictionary< string, \fBPopulation\fP > \fBpopulations\fP = new Dictionary<string, \fBPopulation\fP>()"
+.br
+.RI "Lists of creatures, organized by species name in dictionary\&. "
+.ti -1c
+.RI "List< List< \fBLand\fP > > \fBmap\fP = new List<List<\fBLand\fP>>()"
+.br
+.RI "map of land spaces "
+.ti -1c
+.RI "int \fBlength\fP"
+.br
+.RI "Length of map "
+.ti -1c
+.RI "int \fBwidth\fP"
+.br
+.RI "Width of map "
+.ti -1c
+.RI "int \fBcommBits\fP"
+.br
+.ti -1c
+.RI "Dictionary< string, \fBCreature\fP > \fBspecies\fP = new Dictionary<string, \fBCreature\fP>()"
+.br
+.RI "Pool of species (proto-creatures) that can be used to generate new populations\&. "
+.ti -1c
+.RI "int \fBdistictPhenotypes\fP"
+.br
+.RI "Number of possible phenotypes a creature can take on\&. "
+.ti -1c
+.RI "int \fBabilityPointsPerCreature\fP"
+.br
+.RI "Max number of ability points that each creature has to assign\&. "
+.ti -1c
+.RI "Dictionary< string, \fBResourceStore\fP > \fBresourceOptions\fP = new Dictionary<string, \fBResourceStore\fP>()"
+.br
+.RI "List of resources that can be stored on Lands\&. "
+.ti -1c
+.RI "float \fBtimeUnitsPerTurn\fP"
+.br
+.ti -1c
+.RI "int \fBage\fP = 0"
+.br
+.ti -1c
+.RI "int \fBrenewIntervalSteps\fP = 10"
+.br
+.ti -1c
+.RI "Color [] \fBcolors\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class contains all of the data about the state of the ecosystem including the populations, species templates, map, resources, and other general parameters\&. 
+
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void Ecosystem\&.addSpecies (\fBCreature\fP creature)"
+
+.PP
+creates new species in dictionary based on given creature 
+.SS "void Ecosystem\&.createPopulation (int size, \fBCreature\fP species)"
+
+.SS "void Ecosystem\&.runSystem (int timeSteps)"
+
+.PP
+run ecosystem for a certain number of time steps 
+.SS "\fBEcosystem\fP Ecosystem\&.shallowCopy ()"
+
+.SS "void Ecosystem\&.updateTexture ()"
+Texture stuff below 
+.SH "Member Data Documentation"
+.PP 
+.SS "int Ecosystem\&.abilityPointsPerCreature"
+
+.PP
+Max number of ability points that each creature has to assign\&. 
+.SS "int Ecosystem\&.age = 0"
+
+.SS "Color [] Ecosystem\&.colors"
+
+.SS "int Ecosystem\&.commBits"
+
+.SS "int Ecosystem\&.distictPhenotypes"
+
+.PP
+Number of possible phenotypes a creature can take on\&. 
+.SS "int Ecosystem\&.length"
+
+.PP
+Length of map 
+.SS "List<List<\fBLand\fP> > Ecosystem\&.map = new List<List<\fBLand\fP>>()"
+
+.PP
+map of land spaces 
+.SS "string Ecosystem\&.name = 'default'"
+
+.SS "Dictionary<string, \fBPopulation\fP> Ecosystem\&.populations = new Dictionary<string, \fBPopulation\fP>()"
+
+.PP
+Lists of creatures, organized by species name in dictionary\&. 
+.SS "int Ecosystem\&.renewIntervalSteps = 10"
+
+.SS "Dictionary<string, \fBResourceStore\fP> Ecosystem\&.resourceOptions = new Dictionary<string, \fBResourceStore\fP>()"
+
+.PP
+List of resources that can be stored on Lands\&. 
+.SS "Dictionary<string, \fBCreature\fP> Ecosystem\&.species = new Dictionary<string, \fBCreature\fP>()"
+
+.PP
+Pool of species (proto-creatures) that can be used to generate new populations\&. 
+.SS "float Ecosystem\&.timeUnitsPerTurn"
+
+.SS "int Ecosystem\&.width"
+
+.PP
+Width of map 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

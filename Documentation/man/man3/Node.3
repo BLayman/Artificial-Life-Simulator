@@ -1,0 +1,47 @@
+.TH "Node" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Node \- Abstract parent class for all \fBNode\fP types\&. A \fBNode\fP represents a node in a creatures neural network\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherited by \fBBiasNode\fP, \fBCommInputNode\fP, \fBInnerInputNode\fP, \fBMemoryInputNode\fP, \fBNonInputNode\fP, and \fBSensoryInputNode\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "abstract void \fBupdateValue\fP ()"
+.br
+.RI "Updates node value "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "float \fBvalue\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Abstract parent class for all \fBNode\fP types\&. A \fBNode\fP represents a node in a creatures neural network\&. 
+
+
+.SH "Member Function Documentation"
+.PP 
+.SS "abstract void Node\&.updateValue ()\fC [pure virtual]\fP"
+
+.PP
+Updates node value 
+.PP
+Implemented in \fBSensoryInputNode\fP, \fBNonInputNode\fP, \fBCommInputNode\fP, \fBBiasNode\fP, \fBInnerInputNode\fP, and \fBMemoryInputNode\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "float Node\&.value"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

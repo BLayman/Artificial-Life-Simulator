@@ -1,0 +1,70 @@
+.TH "MapEditor" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MapEditor \- API for editing the map: a 2D array of \fBLand\fP spaces\&. Used to generate the map, and add resources\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMapEditor\fP (List< List< \fBLand\fP >> _map, Dictionary< string, \fBResourceStore\fP > _resOptions)"
+.br
+.ti -1c
+.RI "void \fBaddUniformResource\fP (string resource, float level)"
+.br
+.RI "Adds resource uniformly to all lands on map\&. "
+.ti -1c
+.RI "void \fBaddLERPXResource\fP (string resource, float maxAmt)"
+.br
+.ti -1c
+.RI "void \fBgenerateMap\fP (int length, int width)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "List< List< \fBLand\fP > > \fBmap\fP"
+.br
+.RI "Map to be edited "
+.in -1c
+.SH "Detailed Description"
+.PP 
+API for editing the map: a 2D array of \fBLand\fP spaces\&. Used to generate the map, and add resources\&. 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "MapEditor\&.MapEditor (List< List< \fBLand\fP >> _map, Dictionary< string, \fBResourceStore\fP > _resOptions)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void MapEditor\&.addLERPXResource (string resource, float maxAmt)"
+
+.SS "void MapEditor\&.addUniformResource (string resource, float level)"
+
+.PP
+Adds resource uniformly to all lands on map\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlevel\fP Fraction of max possible amount of resource\&. Must be between 0 and 1\&.
+.RE
+.PP
+
+.SS "void MapEditor\&.generateMap (int length, int width)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "List<List<\fBLand\fP> > MapEditor\&.map"
+
+.PP
+Map to be edited 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

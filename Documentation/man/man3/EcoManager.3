@@ -1,0 +1,63 @@
+.TH "EcoManager" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EcoManager
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBmakeEco\fP ()"
+.br
+.ti -1c
+.RI "void \fBuserCreatesEcosystem\fP (int mapWidth)"
+.br
+.ti -1c
+.RI "void \fBuserAddsSpecies\fP (string name, \fBColorChoice\fP color, float mutationDeviation)"
+.br
+.ti -1c
+.RI "void \fBuserPopulatesSpecies\fP (string name, float populationDeviation, int popSize, int maxPopSize)"
+.br
+.ti -1c
+.RI "void \fBrunSystem\fP (int steps)"
+.br
+.ti -1c
+.RI "\fBEcosystem\fP \fBgetEcosystem\fP ()"
+.br
+.ti -1c
+.RI "void \fBmakeSensoryInputNode\fP (\fBNetworkEditor\fP netCreator, int landIndex, string sensedResource)"
+.br
+.ti -1c
+.RI "void \fBmakeOutputNode\fP (\fBNetworkEditor\fP netCreator, \fBActivationBehaviorTypes\fP activationType, string action, int layer)"
+.br
+.ti -1c
+.RI "void \fBmakeInnerInputNode\fP (\fBNetworkEditor\fP netCreator, int layer, string linkedNetName, int linkedNetIndex, int linkedNodeIndex)"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBEcosystem\fP EcoManager\&.getEcosystem ()"
+
+.SS "void EcoManager\&.makeEco ()"
+
+.SS "void EcoManager\&.makeInnerInputNode (\fBNetworkEditor\fP netCreator, int layer, string linkedNetName, int linkedNetIndex, int linkedNodeIndex)"
+
+.SS "void EcoManager\&.makeOutputNode (\fBNetworkEditor\fP netCreator, \fBActivationBehaviorTypes\fP activationType, string action, int layer)"
+
+.SS "void EcoManager\&.makeSensoryInputNode (\fBNetworkEditor\fP netCreator, int landIndex, string sensedResource)"
+
+.SS "void EcoManager\&.runSystem (int steps)"
+
+.SS "void EcoManager\&.userAddsSpecies (string name, \fBColorChoice\fP color, float mutationDeviation)"
+
+.SS "void EcoManager\&.userCreatesEcosystem (int mapWidth)"
+
+.SS "void EcoManager\&.userPopulatesSpecies (string name, float populationDeviation, int popSize, int maxPopSize)"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

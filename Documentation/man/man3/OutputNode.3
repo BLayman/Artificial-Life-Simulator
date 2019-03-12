@@ -1,0 +1,78 @@
+.TH "OutputNode" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+OutputNode \- Maps a the value of the node (as calculated by \fBNonInputNode\fP methods) to an action\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBNonInputNode\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBOutputNode\fP ()"
+.br
+.ti -1c
+.RI "\fBOutputNode\fP (\fBCreature\fP \fBparentCreature\fP, \fBNetwork\fP \fBparentNet\fP, int \fBlayer\fP)"
+.br
+.ti -1c
+.RI "void \fBaddActionIfActive\fP ()"
+.br
+.RI "Adds its action to the action queue based on probability returned from the activation function\&. "
+.ti -1c
+.RI "void \fBsetAction\fP (string \fBactionKey\fP)"
+.br
+.ti -1c
+.RI "\fBOutputNode\fP \fBclone\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBAction\fP \fBaction\fP"
+.br
+.ti -1c
+.RI "\fBCreature\fP \fBparentCreature\fP"
+.br
+.ti -1c
+.RI "string \fBactionKey\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+Maps a the value of the node (as calculated by \fBNonInputNode\fP methods) to an action\&. 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "OutputNode\&.OutputNode ()"
+
+.SS "OutputNode\&.OutputNode (\fBCreature\fP parentCreature, \fBNetwork\fP parentNet, int layer)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void OutputNode\&.addActionIfActive ()"
+
+.PP
+Adds its action to the action queue based on probability returned from the activation function\&. 
+.SS "\fBOutputNode\fP OutputNode\&.clone ()"
+
+.SS "void OutputNode\&.setAction (string actionKey)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBAction\fP OutputNode\&.action"
+
+.SS "string OutputNode\&.actionKey"
+
+.SS "\fBCreature\fP OutputNode\&.parentCreature"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

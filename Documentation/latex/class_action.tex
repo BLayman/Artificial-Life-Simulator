@@ -1,0 +1,128 @@
+\hypertarget{class_action}{}\section{Action Class Reference}
+\label{class_action}\index{Action@{Action}}
+Inheritance diagram for Action\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_action}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+abstract void \mbox{\hyperlink{class_action_a2aedfc3be16448fbf224cb13607de3c0}{perform}} (\mbox{\hyperlink{class_creature}{Creature}} creature, \mbox{\hyperlink{class_ecosystem}{Ecosystem}} eco)
+\item 
+void \mbox{\hyperlink{class_action_a1f677dca95b97037f8e0e4bb6b225cb8}{perform\+Wrapper}} (\mbox{\hyperlink{class_creature}{Creature}} c, \mbox{\hyperlink{class_ecosystem}{Ecosystem}} e)
+\begin{DoxyCompactList}\small\item\em Performs the action, and spends creatures time and resources \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_action_aed886910937b93b956b61cff7be572bc}{Action}} ()
+\item 
+bool \mbox{\hyperlink{class_action_a6217cfff19f5f6f7e0638f4dd777864b}{enough\+Resources}} (\mbox{\hyperlink{class_creature}{Creature}} creature)
+\item 
+void \mbox{\hyperlink{class_action_a4a96d3be0975ce16929ff25f04668189}{spend\+Time\+And\+Resources}} (\mbox{\hyperlink{class_creature}{Creature}} creature)
+\item 
+\mbox{\hyperlink{class_action}{Action}} \mbox{\hyperlink{class_action_a0c5e2efad9169883c02a215679d0b8be}{get\+Shallow\+Copy}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_action_a3f620f4d21284b95ed2eac1319467747}{name}}
+\item 
+int \mbox{\hyperlink{class_action_a77b619eb64443ae5f2b729a85a7d7207}{priority}}
+\item 
+Dictionary$<$ string, int $>$ \mbox{\hyperlink{class_action_afb7d5f622f869e401fcb9edd5961b2fe}{resource\+Costs}} = new Dictionary$<$string, int$>$()
+\begin{DoxyCompactList}\small\item\em Stores which resources are spent, and the amount spent \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_action_a56a4045ce411430256a399031b32ead6}{time\+Cost}}
+\item 
+int \mbox{\hyperlink{class_action_a04d8b5a2d29dd0b215af21be1a644ac0}{age}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_action_aed886910937b93b956b61cff7be572bc}\label{class_action_aed886910937b93b956b61cff7be572bc}} 
+\index{Action@{Action}!Action@{Action}}
+\index{Action@{Action}!Action@{Action}}
+\subsubsection{\texorpdfstring{Action()}{Action()}}
+{\footnotesize\ttfamily Action.\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_action_a6217cfff19f5f6f7e0638f4dd777864b}\label{class_action_a6217cfff19f5f6f7e0638f4dd777864b}} 
+\index{Action@{Action}!enough\+Resources@{enough\+Resources}}
+\index{enough\+Resources@{enough\+Resources}!Action@{Action}}
+\subsubsection{\texorpdfstring{enough\+Resources()}{enoughResources()}}
+{\footnotesize\ttfamily bool Action.\+enough\+Resources (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{creature }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_action_a0c5e2efad9169883c02a215679d0b8be}\label{class_action_a0c5e2efad9169883c02a215679d0b8be}} 
+\index{Action@{Action}!get\+Shallow\+Copy@{get\+Shallow\+Copy}}
+\index{get\+Shallow\+Copy@{get\+Shallow\+Copy}!Action@{Action}}
+\subsubsection{\texorpdfstring{get\+Shallow\+Copy()}{getShallowCopy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_action}{Action}} Action.\+get\+Shallow\+Copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_action_a2aedfc3be16448fbf224cb13607de3c0}\label{class_action_a2aedfc3be16448fbf224cb13607de3c0}} 
+\index{Action@{Action}!perform@{perform}}
+\index{perform@{perform}!Action@{Action}}
+\subsubsection{\texorpdfstring{perform()}{perform()}}
+{\footnotesize\ttfamily abstract void Action.\+perform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{creature,  }\item[{\mbox{\hyperlink{class_ecosystem}{Ecosystem}}}]{eco }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_consume_from_land_a05e266fe8dd4d68b7bec63f53a7f513b}{Consume\+From\+Land}}, \mbox{\hyperlink{class_comm_action_a4ea8e9bcc0a5060221efdc6afefa4355}{Comm\+Action}}, \mbox{\hyperlink{class_move_action_a259b4b4542e7f72df322e060d7737f71}{Move\+Action}}, and \mbox{\hyperlink{class_repro_action_ab018325092d2a13cf333a8576c7f9dd0}{Repro\+Action}}.
+
+\mbox{\Hypertarget{class_action_a1f677dca95b97037f8e0e4bb6b225cb8}\label{class_action_a1f677dca95b97037f8e0e4bb6b225cb8}} 
+\index{Action@{Action}!perform\+Wrapper@{perform\+Wrapper}}
+\index{perform\+Wrapper@{perform\+Wrapper}!Action@{Action}}
+\subsubsection{\texorpdfstring{perform\+Wrapper()}{performWrapper()}}
+{\footnotesize\ttfamily void Action.\+perform\+Wrapper (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{c,  }\item[{\mbox{\hyperlink{class_ecosystem}{Ecosystem}}}]{e }\end{DoxyParamCaption})}
+
+
+
+Performs the action, and spends creatures time and resources 
+
+\mbox{\Hypertarget{class_action_a4a96d3be0975ce16929ff25f04668189}\label{class_action_a4a96d3be0975ce16929ff25f04668189}} 
+\index{Action@{Action}!spend\+Time\+And\+Resources@{spend\+Time\+And\+Resources}}
+\index{spend\+Time\+And\+Resources@{spend\+Time\+And\+Resources}!Action@{Action}}
+\subsubsection{\texorpdfstring{spend\+Time\+And\+Resources()}{spendTimeAndResources()}}
+{\footnotesize\ttfamily void Action.\+spend\+Time\+And\+Resources (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_creature}{Creature}}}]{creature }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_action_a04d8b5a2d29dd0b215af21be1a644ac0}\label{class_action_a04d8b5a2d29dd0b215af21be1a644ac0}} 
+\index{Action@{Action}!age@{age}}
+\index{age@{age}!Action@{Action}}
+\subsubsection{\texorpdfstring{age}{age}}
+{\footnotesize\ttfamily int Action.\+age}
+
+\mbox{\Hypertarget{class_action_a3f620f4d21284b95ed2eac1319467747}\label{class_action_a3f620f4d21284b95ed2eac1319467747}} 
+\index{Action@{Action}!name@{name}}
+\index{name@{name}!Action@{Action}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Action.\+name}
+
+\mbox{\Hypertarget{class_action_a77b619eb64443ae5f2b729a85a7d7207}\label{class_action_a77b619eb64443ae5f2b729a85a7d7207}} 
+\index{Action@{Action}!priority@{priority}}
+\index{priority@{priority}!Action@{Action}}
+\subsubsection{\texorpdfstring{priority}{priority}}
+{\footnotesize\ttfamily int Action.\+priority}
+
+\mbox{\Hypertarget{class_action_afb7d5f622f869e401fcb9edd5961b2fe}\label{class_action_afb7d5f622f869e401fcb9edd5961b2fe}} 
+\index{Action@{Action}!resource\+Costs@{resource\+Costs}}
+\index{resource\+Costs@{resource\+Costs}!Action@{Action}}
+\subsubsection{\texorpdfstring{resource\+Costs}{resourceCosts}}
+{\footnotesize\ttfamily Dictionary$<$string, int$>$ Action.\+resource\+Costs = new Dictionary$<$string, int$>$()}
+
+
+
+Stores which resources are spent, and the amount spent 
+
+\mbox{\Hypertarget{class_action_a56a4045ce411430256a399031b32ead6}\label{class_action_a56a4045ce411430256a399031b32ead6}} 
+\index{Action@{Action}!time\+Cost@{time\+Cost}}
+\index{time\+Cost@{time\+Cost}!Action@{Action}}
+\subsubsection{\texorpdfstring{time\+Cost}{timeCost}}
+{\footnotesize\ttfamily float Action.\+time\+Cost}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_action_8cs}{Action.\+cs}}\end{DoxyCompactItemize}

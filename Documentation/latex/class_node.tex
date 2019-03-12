@@ -1,60 +1,59 @@
 \hypertarget{class_node}{}\section{Node Class Reference}
 \label{class_node}\index{Node@{Node}}
+
+
+Abstract parent class for all \mbox{\hyperlink{class_node}{Node}} types. A \mbox{\hyperlink{class_node}{Node}} represents a node in a creatures neural network.  
+
+
+Inheritance diagram for Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.258065cm]{class_node}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{class_node_a6700b2928da6ac5fcac8431d6f16597e}{append\+Input\+Node}} (\mbox{\hyperlink{class_node}{Node}} new\+Node)
-\begin{DoxyCompactList}\small\item\em Adds a node to the array of input nodes. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_node_ae35ca95be4806e6a3f81617d888f724f}{remove\+Node}} (int remove\+Index)
-\begin{DoxyCompactList}\small\item\em Remove node from input nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
+abstract void \mbox{\hyperlink{class_node_a85ebd0e36c25430570b94f923afd2a62}{update\+Value}} ()
+\begin{DoxyCompactList}\small\item\em Updates node value \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-float \mbox{\hyperlink{class_node_a4d82b89fd1d72cc0184763279a3811dc}{value}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em The value of the node takes on based on it\textquotesingle{}s inputs and activation function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+float \mbox{\hyperlink{class_node_a4d82b89fd1d72cc0184763279a3811dc}{value}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Abstract parent class for all \mbox{\hyperlink{class_node}{Node}} types. A \mbox{\hyperlink{class_node}{Node}} represents a node in a creatures neural network. 
+
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_node_a6700b2928da6ac5fcac8431d6f16597e}\label{class_node_a6700b2928da6ac5fcac8431d6f16597e}} 
-\index{Node@{Node}!append\+Input\+Node@{append\+Input\+Node}}
-\index{append\+Input\+Node@{append\+Input\+Node}!Node@{Node}}
-\subsubsection{\texorpdfstring{append\+Input\+Node()}{appendInputNode()}}
-{\footnotesize\ttfamily void Node.\+append\+Input\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}}}]{new\+Node }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_node_a85ebd0e36c25430570b94f923afd2a62}\label{class_node_a85ebd0e36c25430570b94f923afd2a62}} 
+\index{Node@{Node}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!Node@{Node}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily abstract void Node.\+update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
-Adds a node to the array of input nodes. 
-
-\mbox{\Hypertarget{class_node_ae35ca95be4806e6a3f81617d888f724f}\label{class_node_ae35ca95be4806e6a3f81617d888f724f}} 
-\index{Node@{Node}!remove\+Node@{remove\+Node}}
-\index{remove\+Node@{remove\+Node}!Node@{Node}}
-\subsubsection{\texorpdfstring{remove\+Node()}{removeNode()}}
-{\footnotesize\ttfamily bool Node.\+remove\+Node (\begin{DoxyParamCaption}\item[{int}]{remove\+Index }\end{DoxyParamCaption})}
+Updates node value 
 
 
 
-Remove node from input nodes. 
+Implemented in \mbox{\hyperlink{class_sensory_input_node_a3db8f13a203e1e604a3b79a20153cfa7}{Sensory\+Input\+Node}}, \mbox{\hyperlink{class_non_input_node_a075d0278c5500f0d2455a3d8eeb04f55}{Non\+Input\+Node}}, \mbox{\hyperlink{class_comm_input_node_a22f5ea13329e77f47db18d28336cc52e}{Comm\+Input\+Node}}, \mbox{\hyperlink{class_bias_node_a84e7e92b97256707aba057ec92bd7a79}{Bias\+Node}}, \mbox{\hyperlink{class_inner_input_node_ac67f9a1dcd0ae72d2d7fe4cfa7f91152}{Inner\+Input\+Node}}, and \mbox{\hyperlink{class_memory_input_node_aa1efec4e8bc221a879c959ba9941587b}{Memory\+Input\+Node}}.
 
 
-\begin{DoxyParams}{Parameters}
-{\em remove\+Index} & Index of node to remove.\\
-\hline
-\end{DoxyParams}
 
-
-\subsection{Property Documentation}
+\subsection{Member Data Documentation}
 \mbox{\Hypertarget{class_node_a4d82b89fd1d72cc0184763279a3811dc}\label{class_node_a4d82b89fd1d72cc0184763279a3811dc}} 
 \index{Node@{Node}!value@{value}}
 \index{value@{value}!Node@{Node}}
 \subsubsection{\texorpdfstring{value}{value}}
-{\footnotesize\ttfamily float Node.\+value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
-
-
-
-The value of the node takes on based on it\textquotesingle{}s inputs and activation function. 
+{\footnotesize\ttfamily float Node.\+value}
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Brett/\+Documents/\+Git\+Hub/\+Unity/\+Eco\+Net/\+Assets/\+Scripts/Node.\+cs\end{DoxyCompactItemize}
+\mbox{\hyperlink{_node_8cs}{Node.\+cs}}\end{DoxyCompactItemize}

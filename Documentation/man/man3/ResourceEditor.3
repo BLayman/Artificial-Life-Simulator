@@ -1,0 +1,125 @@
+.TH "ResourceEditor" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ResourceEditor \- API for setting resources that creature can store, and how the resource effects the creature\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBResourceEditor\fP (\fBCreatureResource\fP _resource)"
+.br
+.ti -1c
+.RI "void \fBsetLevel\fP (float resourceLevel)"
+.br
+.ti -1c
+.RI "void \fBsetDeficiencyHealthDrain\fP (float drainAmt)"
+.br
+.RI "Set amount of health drained per healthUpdate when below deficiency threshold\&. "
+.ti -1c
+.RI "void \fBsetDeficiencyThreshold\fP (float deficiencyThreshold)"
+.br
+.RI "Set threshold at which deficiency occurs (health drain takes effect)\&. "
+.ti -1c
+.RI "void \fBsetHealthGain\fP (float healthGain)"
+.br
+.RI "Set health gained when health gain threshold is met\&. "
+.ti -1c
+.RI "void \fBsetHealthGainThreshold\fP (float gainThreshold)"
+.br
+.RI "Set threshold at which health is gained when it's surpassed\&. "
+.ti -1c
+.RI "void \fBsetMaxLevel\fP (float maxLevel)"
+.br
+.ti -1c
+.RI "void \fBsetBaseUsage\fP (float baseUsage)"
+.br
+.ti -1c
+.RI "void \fBsetName\fP (string name)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBCreatureResource\fP \fBresource\fP"
+.br
+.RI "Resource being created\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+API for setting resources that creature can store, and how the resource effects the creature\&. 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ResourceEditor\&.ResourceEditor (\fBCreatureResource\fP _resource)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void ResourceEditor\&.setBaseUsage (float baseUsage)"
+
+.SS "void ResourceEditor\&.setDeficiencyHealthDrain (float drainAmt)"
+
+.PP
+Set amount of health drained per healthUpdate when below deficiency threshold\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdrainAmt\fP Amount of health drained per healthUpdate when below deficiency threshold\&.
+.RE
+.PP
+
+.SS "void ResourceEditor\&.setDeficiencyThreshold (float deficiencyThreshold)"
+
+.PP
+Set threshold at which deficiency occurs (health drain takes effect)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdeficiencyThreshold\fP Threshold at which deficiency occurs (health drain takes effect)\&.
+.RE
+.PP
+
+.SS "void ResourceEditor\&.setHealthGain (float healthGain)"
+
+.PP
+Set health gained when health gain threshold is met\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhealthGain\fP Health gained when health gain threshold is met\&.
+.RE
+.PP
+
+.SS "void ResourceEditor\&.setHealthGainThreshold (float gainThreshold)"
+
+.PP
+Set threshold at which health is gained when it's surpassed\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIgainThreshold\fP Threshold at which health is gained when it's surpassed\&.
+.RE
+.PP
+
+.SS "void ResourceEditor\&.setLevel (float resourceLevel)"
+
+.SS "void ResourceEditor\&.setMaxLevel (float maxLevel)"
+
+.SS "void ResourceEditor\&.setName (string name)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBCreatureResource\fP ResourceEditor\&.resource"
+
+.PP
+Resource being created\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.

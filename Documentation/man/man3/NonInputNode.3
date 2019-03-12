@@ -1,0 +1,169 @@
+.TH "NonInputNode" 3 "Tue Mar 12 2019" "Artificial Life Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+NonInputNode \- Encompasses hidden nodes (which use this class directly) and output nodes (which use the \fBOutputNode\fP class)\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBNode\fP\&.
+.PP
+Inherited by \fBOutputNode\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBNonInputNode\fP ()"
+.br
+.ti -1c
+.RI "\fBNonInputNode\fP (\fBNetwork\fP \fBparentNet\fP, int \fBlayer\fP)"
+.br
+.ti -1c
+.RI "override void \fBupdateValue\fP ()"
+.br
+.RI "Updates node value "
+.ti -1c
+.RI "void \fBappendPrevNode\fP (\fBNode\fP newNode)"
+.br
+.ti -1c
+.RI "void \fBremovePrevNode\fP (int index)"
+.br
+.ti -1c
+.RI "void \fBsetPrevNodeWeight\fP (int index, float weight)"
+.br
+.ti -1c
+.RI "float \fBperformActivBehavior\fP (float input)"
+.br
+.RI "Calls activation function of activBehavior\&. "
+.ti -1c
+.RI "void \fBsetActivBehavior\fP (\fBActivationBehavior\fP behavior)"
+.br
+.RI "Sets a new activation behavior, thus altering the activation function\&. "
+.ti -1c
+.RI "void \fBresetAllPreviousNodes\fP ()"
+.br
+.RI "Sets prevNodes to include all nodes in previous layer\&. Resets nodes and weights "
+.ti -1c
+.RI "void \fBassignPrevNodes\fP ()"
+.br
+.ti -1c
+.RI "float \fBgenerateNewRandomWeight\fP ()"
+.br
+.ti -1c
+.RI "void \fBresetRand\fP ()"
+.br
+.ti -1c
+.RI "object \fBclone\fP ()"
+.br
+.ti -1c
+.RI "void \fBprintInputsAndWeights\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "List< int > \fBtabooPrevNodeIndicies\fP = new List<int>()"
+.br
+.ti -1c
+.RI "List< \fBNode\fP > \fBprevNodes\fP = new List<\fBNode\fP>()"
+.br
+.ti -1c
+.RI "List< float > \fBweights\fP = new List<float>()"
+.br
+.RI "List of weights to be multiplied by previous node values\&. "
+.ti -1c
+.RI "\fBNetwork\fP \fBparentNet\fP"
+.br
+.ti -1c
+.RI "int \fBlayer\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBActivationBehavior\fP \fBactivBehavior\fP"
+.br
+.RI "Holds an object that carries out an activation function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Encompasses hidden nodes (which use this class directly) and output nodes (which use the \fBOutputNode\fP class)\&. 
+
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "NonInputNode\&.NonInputNode ()"
+
+.SS "NonInputNode\&.NonInputNode (\fBNetwork\fP parentNet, int layer)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void NonInputNode\&.appendPrevNode (\fBNode\fP newNode)"
+
+.SS "void NonInputNode\&.assignPrevNodes ()"
+
+.SS "object NonInputNode\&.clone ()"
+
+.SS "float NonInputNode\&.generateNewRandomWeight ()"
+
+.SS "float NonInputNode\&.performActivBehavior (float input)"
+
+.PP
+Calls activation function of activBehavior\&. 
+.SS "void NonInputNode\&.printInputsAndWeights ()"
+
+.SS "void NonInputNode\&.removePrevNode (int index)"
+
+.SS "void NonInputNode\&.resetAllPreviousNodes ()"
+
+.PP
+Sets prevNodes to include all nodes in previous layer\&. Resets nodes and weights 
+.SS "void NonInputNode\&.resetRand ()"
+
+.SS "void NonInputNode\&.setActivBehavior (\fBActivationBehavior\fP behavior)"
+
+.PP
+Sets a new activation behavior, thus altering the activation function\&. 
+.SS "void NonInputNode\&.setPrevNodeWeight (int index, float weight)"
+
+.PP
+\fBParameters:\fP
+.RS 4
+\fIindex\fP Index of previous node\&.
+.br
+\fIvalue\fP Weight coming from previous node\&.
+.RE
+.PP
+
+.SS "override void NonInputNode\&.updateValue ()\fC [virtual]\fP"
+
+.PP
+Updates node value 
+.PP
+Implements \fBNode\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBActivationBehavior\fP NonInputNode\&.activBehavior\fC [protected]\fP"
+
+.PP
+Holds an object that carries out an activation function\&. 
+.SS "int NonInputNode\&.layer"
+
+.SS "\fBNetwork\fP NonInputNode\&.parentNet"
+
+.SS "List<\fBNode\fP> NonInputNode\&.prevNodes = new List<\fBNode\fP>()"
+
+.SS "List<int> NonInputNode\&.tabooPrevNodeIndicies = new List<int>()"
+
+.SS "List<float> NonInputNode\&.weights = new List<float>()"
+
+.PP
+List of weights to be multiplied by previous node values\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Artificial Life Simulator from the source code\&.
