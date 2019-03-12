@@ -1,4 +1,8 @@
-﻿public interface IEcosystemEditor
+﻿// Artificial Life Simulator
+// Copyright (c) 2019 Brett Layman
+// This file is subject to the terms and conditions defined in 'LICENSE.txt', which is part of this source code repository.
+
+public interface IEcosystemEditor
 {
     CreatureEditor addCreature();
     void addCurrentPopulationToEcosystem();
