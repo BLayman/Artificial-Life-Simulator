@@ -1,0 +1,34 @@
+Copyright (c) 2019 Brett Layman
+All rights reserved.
+
+This software is dual-licensed. You can choose one of the following two options:
+
+OPTION 1. GPL 3.0 (as defined in LICENSE.GPL.txt).
+
+OPTION 2. Apache License Version 2.0 (as defined in LICENSE.APACHE.txt) with the following
+additional condition placed under section 4:
+
+e. You must either give recipients of the Work or Derivative Works access to the source
+code (Source) of what you are distributing, according to the following provision from the OSD: 
+
+"The program must include source code, and must allow distribution in source code as well
+as compiled form. Where some form of a product is not distributed with source code, 
+there must be a well-publicized means of obtaining the source code for no more than 
+a reasonable reproduction cost, preferably downloading via the Internet without charge. 
+The source code must be the preferred form in which a programmer would modify the 
+program. Deliberately obfuscated source code is not allowed. Intermediate forms such 
+as the output of a preprocessor or translator are not allowed."
+
+or you must include a reference link to the source code of the Work in any software application
+that derives from the Work. This link must be clearly visible to the user, and it must be visible
+for at least 2 seconds unless the user clicks or presses a button to skip it. The reference must
+include the following words: "This project derives from one or more projects with source code 
+found at: ", followed by the reference link. The reference link must direct the user to a website
+or document in which the source code is reasonably legible and easy to navagate through. A link 
+to a Github repository is a good example of a reference link. If your Derived Work derives from 
+multiple works that all fall under this Licence, you may combine those works into a single source 
+code repository, and provide a reference link to that repository, given that the repository is 
+organized by the different works.
+
+
+
