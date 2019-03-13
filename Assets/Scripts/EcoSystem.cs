@@ -172,8 +172,12 @@ public class Ecosystem
         }
 
         Debug.Log("age: " + age);
-        Debug.Log("cat pop size: " + populations["cat"].size);
-        Debug.Log("dog pop size: " + populations["dog"].size);
+
+        foreach (Population pop in populations.Values)
+        {
+            Debug.Log(pop.founder.species + " pop size: " + pop.size);
+
+        }
         // assuming user has set timeSteps to be 1 million or less
         if (age > int.MaxValue - 1000001)
         {
