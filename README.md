@@ -18,6 +18,10 @@ adding the resulting actions to a queue, and then performing as many actions as 
 
 The above description is an oversimplification of the process, but should get the general idea across.
 
+## Installation
+
+This project is being developed in the Unity game engine. You will need to clone the repository, and then open the project in Unity to edit it. Look in the "Builds" folder for a simple demo executable.
+
 ## Current Settings and Basic Use
 
 The program is currently set to create two species: one colored blue and the other colored green.The weights of each specie's neural
@@ -33,7 +37,6 @@ The populations are currently capped at 500 to keep the program running relative
 
 You will notice a line moving across the map. This is resources being renewed, not a bug. Feel free to change the number of steps processed between each rendering of hte system by entering a number in the upper left and pressing the "Apply" button. The slider changes the rendering speed on smaller maps where the simulation can run faster. 
 
-
 ## Goals
 
 One of the goals of this program was to make every aspect of the process, including neural network architecture, easily customizable through function calls, and eventually a graphical user interface. Please see the EcoManager class as an example of how parameters can be set.
@@ -42,6 +45,10 @@ Over time, this system is capable of evolving more adaptive neural networks. A p
 agents that survive to produce the most offspring will pass on the weights of their neural networks to a larger portion of the next generation.
 Currently, asexual reproduction with mutation is the only form of reproduction, but there are plans to implement sexual reproduction with
 crossover. 
+
+## Additional Information
+
+The Additional_Resources folder contains a powerpoint describing Artificial Life Simulator, and an in depth project proposal. Note that the project was originally called "Artificial Life Agents". The Documentation folder contains various forms of documentaion for the code. Keep in mind that the documentation isn't complete, but may have useful information for developers.
 
 ## License
 License information for this software can be found in LICENSE.txt.
