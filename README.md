@@ -20,7 +20,7 @@ The above description is an oversimplification of the process, but should get th
 
 ## Installation
 
-This project is being developed in the Unity game engine. You will need to clone the repository, and then open the project in Unity to edit it. Look in the "Builds" folder for a simple demo executable.
+This project is being developed in the Unity game engine. You will need to clone the repository, and then open the project in Unity to edit it. Look in the "Builds" folder for a simple demo executable. Press ESC to exit the program.
 
 ## Current Settings and Basic Use
 
