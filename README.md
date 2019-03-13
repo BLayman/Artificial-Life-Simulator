@@ -24,7 +24,7 @@ This project is being developed in the Unity game engine. You will need to clone
 
 ## Current Settings and Basic Use
 
-The program is currently set to create two species: one colored blue and the other colored green.The weights of each specie's neural
+The program is currently set to create two species: one colored blue and the other colored green. The weights of each specie's neural
 networks is randomly generated, so you will see different behavior each time you run the simulation. One key difference between the two
 species is the amount of random variation added to the initial weights when creating a population. The blue population is created with a
 small amount of variability in each individual's weights, whereas green is created with a large amount of variability between individuals.
