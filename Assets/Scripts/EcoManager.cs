@@ -22,13 +22,13 @@ public class EcoManager
         if (!called)
         {
             Debug.Log("**************************           Make eco called once?             **********************");
-            userCreatesEcosystem(1000);
+            userCreatesEcosystem(300);
             userAddsSpecies("cat", ColorChoice.blue, .01f);
-            userPopulatesSpecies("cat", .1f, 300, 500);
+            userPopulatesSpecies("cat", .1f, 200, 500);
             userAddsSpecies("dog", ColorChoice.green, .01f);
-            userPopulatesSpecies("dog", .1f, 300, 500);
-            userAddsSpecies("cow", ColorChoice.red, .01f);
-            userPopulatesSpecies("cow", .1f, 300, 500);
+            userPopulatesSpecies("dog", 2f, 100, 500);
+           // userAddsSpecies("cow", ColorChoice.red, .01f);
+            //userPopulatesSpecies("cow", .1f, 300, 500);
         }
         else
         {
