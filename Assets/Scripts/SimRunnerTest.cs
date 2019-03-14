@@ -74,6 +74,7 @@ public class SimRunnerTest : MonoBehaviour
     {
         // TODO: don't hard code slider
         intervalTime = .5f - value;
+        Debug.Log("interval time: " + value);
     }
 
     // Update is called once per frame
@@ -82,7 +83,7 @@ public class SimRunnerTest : MonoBehaviour
         //Debug.Log(StaticVariables.threadManagerAwake);
         if (!paused)
         {
-            elapsedTime += Time.realtimeSinceStartup;
+            elapsedTime += Time.deltaTime;
             // only update every intervalTime seconds
             if (elapsedTime > intervalTime)
             {

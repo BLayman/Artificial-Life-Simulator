@@ -22,18 +22,18 @@ public class EcoManager
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(300);
+            userCreatesEcosystem(200);
             // add cat species
-            userAddsSpecies("cat", ColorChoice.blue, .01f);
+            userAddsSpecies("cat", ColorChoice.blue, .1f);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", .1f, 100, 500);
+            userPopulatesSpecies("cat", 2f, 100, 500);
             // add dog species
-            userAddsSpecies("dog", ColorChoice.green, .01f);
+            //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
-            userPopulatesSpecies("dog", 2f, 100, 500);
+           // userPopulatesSpecies("dog", 2f, 100, 300);
 
             //userAddsSpecies("cow", ColorChoice.red, .01f);
-            //userPopulatesSpecies("cow", .1f, 300, 500);
+            //userPopulatesSpecies("cow", 2f, 100, 300);
         }
         else
         {
