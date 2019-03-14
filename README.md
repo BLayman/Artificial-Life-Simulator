@@ -2,6 +2,8 @@
 
 ## Overview
 
+For a video overview and demo check out: https://www.youtube.com/watch?v=JCABsCcMQ6A&feature=youtu.be
+
 Artificial Life Simulator is a program for running a multi-agent system that is analogous to an ecosystem. The system is designed to be
 open-ended, with various parameters that the user can set. The system plays out on a 2D grid of land spaces and is centered around two main
 features: neural networks, and resources.
