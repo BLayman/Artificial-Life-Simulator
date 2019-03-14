@@ -26,7 +26,7 @@ public class EcoManager
             // add cat species
             userAddsSpecies("cat", ColorChoice.blue, .01f);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", .1f, 100, 500);
+            userPopulatesSpecies("cat", .1f, 100, 300);
             // add dog species
             userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
