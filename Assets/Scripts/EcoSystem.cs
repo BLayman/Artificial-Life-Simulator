@@ -120,7 +120,7 @@ public class Ecosystem
                 int intervalRows = (int) Math.Round(map.Count / (double)renewIntervalSteps);
                 if(intervalRows == 0) { renewAllAtOnce = true; }
 
-
+                
                 // if renew happens less often than the number of columns in the map, then renew everything at that interval
                 if (renewAllAtOnce)
                 {
@@ -214,10 +214,11 @@ public class Ecosystem
 
     public void updateTexture()
     {
-        colors = new Color[map.Count * map[0].Count]; // reference update for each ecosystem
 
+        colors = new Color[map.Count * map[0].Count]; // reference update for each ecosystem
+        Color resourceShade = new Color(1,1,1);
         Color creatureColor = Color.blue;
-        //float st = Time.realtimeSinceStartup;
+        //float st = System.DateTime.Now.Millisecond;
         for (int x = 0; x < map.Count; x++)
         {
             for (int y = 0; y < map[x].Count; y++)
@@ -229,13 +230,18 @@ public class Ecosystem
                 else
                 {
                     float proportionStored = map[x][y].propertyDict["grass"].getProportionStored();
-                    Color resourceShade = new Color(proportionStored, proportionStored, proportionStored);
+                    resourceShade.r = proportionStored;
+                    resourceShade.g = proportionStored;
+                    resourceShade.b = proportionStored;
+
+
                     colors[y * map.Count + x] = resourceShade;
                 }
             }
         }
 
-        //float et = Time.realtimeSinceStartup;
+
+        //float et = System.DateTime.Now.Millisecond;
         //Debug.Log("Time to update texture:" + (et - st));
     }
     
