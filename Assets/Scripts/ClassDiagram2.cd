@@ -97,7 +97,7 @@
   <Class Name="ConsumeFromLand">
     <Position X="11" Y="28.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAAAAAAAAAABAAAAAAAAAAAAAAAgEAAAAAA=</HashCode>
+      <HashCode>AAAAAAACAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ConsumeFromLand.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -446,8 +446,7 @@
     <Position X="25.75" Y="27" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAACACAAAAAAAAAEAAAAAAAAAAAAAAAhAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Convert.cs</FileName>
-      <NewMemberFileName>Assets\Scripts\convert.cs</NewMemberFileName>
+      <FileName>Assets\Scripts\convert.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ConvertEditor">
@@ -470,7 +469,7 @@
   <Class Name="DepositEditor">
     <Position X="32.5" Y="31" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAIAABEAAAAAA=</HashCode>
       <FileName>Assets\Scripts\DepositEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
