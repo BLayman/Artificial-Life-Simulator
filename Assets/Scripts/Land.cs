@@ -52,6 +52,20 @@ public class Land
         
     }
 
+    public void depositResource(string res, float amt)
+    {
+        // don't excede max amount
+        if(propertyDict[res].amountStored + amt > propertyDict[res].maxAmount)
+        {
+            propertyDict[res].amountStored = propertyDict[res].maxAmount;
+        }
+        else
+        {
+            propertyDict[res].amountStored += amt;
+        }
+
+    }
+
     public Land shallowCopy()
     {
         return (Land)this.MemberwiseClone();

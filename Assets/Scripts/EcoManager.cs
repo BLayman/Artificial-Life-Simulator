@@ -71,15 +71,15 @@ public class EcoManager
         lre.setRenewalAmt(2f);
 
         ecoCreator.saveResource();
-        /*
+        
         ecoCreator.addResource("flowers");
         ecoCreator.lre.setAmountOfResource(500);
         ecoCreator.lre.setMaxAmt(500);
-        ecoCreator.lre.setAmtConsumedPerTime(100);
-        ecoCreator.lre.setProportionExtracted(.1f);
+        ecoCreator.lre.setAmtConsumedPerTime(10);
+        ecoCreator.lre.setProportionExtracted(.2f);
         ecoCreator.lre.setRenewalAmt(1);
         ecoCreator.saveResource();// saves to tentative resources
-        */
+        
 
         ecoCreator.saveResourceOptions(); // adds all resources to ecosystem resources
 
@@ -89,7 +89,7 @@ public class EcoManager
         // TODO: account for asymetric maps
         ecoCreator.mapEditor.generateMap(mapWidth, mapWidth);
         ecoCreator.mapEditor.addLERPXResource("grass", 1f);
-        //ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
+        ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
         
@@ -141,7 +141,7 @@ public class EcoManager
 
         resourceCreator = cc.addResource();
 
-        /*
+        
         resourceCreator.setName(ecosystemResources[1]);
         resourceCreator.setMaxLevel(100);
         resourceCreator.setLevel(90);
@@ -152,7 +152,7 @@ public class EcoManager
         resourceCreator.setBaseUsage(1);
 
         cc.saveResource();
-        */
+        
 
         List<string> creatureResources = new List<string>(cc.creature.storedResources.Keys);
 
@@ -162,8 +162,13 @@ public class EcoManager
         cc.generateDefaultActionPool();
 
         /* MUST GENERATE ACTIONS AND ADD THEM TO CREATURE'S ACTION POOL BEFORE CREATING OUTPUT NODES FOR THOSE ACTIONS */
-      
-        // create action for consuming grass from neighbor to right
+
+
+        // add default abilities for consuming resources
+        cc.addDefaultResourceAbilities();
+        cc.saveAbilities();
+
+        // create action for consuming grass
         ActionEditor ae = cc.addAction();
         ae.setCreator(ActionCreatorType.consumeCreator);
         ConsumeFromLandEditor cle = (ConsumeFromLandEditor)ae.getActionCreator();
@@ -175,11 +180,7 @@ public class EcoManager
         cle.addResourceCost("grass", 1);
         cc.saveAction();
 
-        // add default abilities for consuming resources
-        cc.addDefaultResourceAbilities();
-        cc.saveAbilities();
-
-        // create action for consuming grass from neighbor to right
+        // create action for reproduction
         ActionEditor ae2 = cc.addAction();
         ae2.setCreator(ActionCreatorType.reproduceCreator);
         ReproActionEditor rae = (ReproActionEditor)ae2.getActionCreator();
@@ -189,11 +190,33 @@ public class EcoManager
         rae.addResourceCost("grass", 20);
         cc.saveAction();
 
-        // add default abilities for consuming resources
-        cc.addDefaultResourceAbilities();
-        cc.saveAbilities();
+        // action for converting grass resource into flowers 
+        ActionEditor ae3 = cc.addAction();
+        ae3.setCreator(ActionCreatorType.convertEditor);
+        ConvertEditor convEdit = (ConvertEditor)ae3.getActionCreator();
+        convEdit.setName("convertGrassToFlowers");
+        convEdit.setPriority(1);
+        convEdit.setTimeCost(10);
+        convEdit.setAmtToConvert(5);
+        convEdit.setMultiplier(1);
+        convEdit.setStartResource("grass");
+        convEdit.setEndResource("flowers");
+        cc.saveAction();
+        // TODO: add to neural network
 
-        // TODO: create action for consuming flowers from neighbor to left
+        // action for 
+        ActionEditor ae4 = cc.addAction();
+        ae4.setCreator(ActionCreatorType.depositEditor);
+        DepositEditor depEdit = (DepositEditor)ae4.getActionCreator();
+        depEdit.setName("depositFlowers");
+        depEdit.setNeighborIndex(0);
+        depEdit.setDepositResource("flowers");
+        depEdit.setAmtToDeposit(10);
+        depEdit.setPriority(1);
+        depEdit.setTimeCost(10);
+        cc.saveAction();
+        // TODO: add to neural network
+
 
         /*
         ActionEditor ae2 = cc.addAction();
