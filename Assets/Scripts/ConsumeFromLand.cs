@@ -50,8 +50,4 @@ public class ConsumeFromLand : Action
         }
     }
 
-    public System.Object clone()
-    {
-        return this.MemberwiseClone();
-    }
 }

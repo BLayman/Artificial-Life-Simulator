@@ -17,7 +17,7 @@
   <Class Name="Land">
     <Position X="27" Y="15" Width="5" />
     <TypeIdentifier>
-      <HashCode>ECAAAAEAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <HashCode>ECAAAAEAAAAAAAAIEAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Assets\Scripts\Land.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -36,7 +36,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ACAAAIQAgAAAAgIAACAAAAoAAAAgaAAAEIAAFAAIAIA=</HashCode>
+      <HashCode>ACAAAIQAgAAAAgIAACAAAAoAAAAgaAAAEIAAFAAIIIA=</HashCode>
       <FileName>Assets\Scripts\NonInputNode.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -162,7 +162,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BDgICAAgACIAACEgAAAIAQACABQQYBKgAAAEACAAACA=</HashCode>
+      <HashCode>BDgICAAgACIAACEgAAAIAQACABQQYBKwAAAEACAIACA=</HashCode>
       <FileName>Assets\Scripts\CreatureEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -279,7 +279,7 @@
   <Class Name="ReproAction">
     <Position X="25" Y="23" Width="3" />
     <TypeIdentifier>
-      <HashCode>EAAAAAADAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ReproAction.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -301,7 +301,7 @@
   <Class Name="Population">
     <Position X="41" Y="2.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>MAAAAAAAAAAAAIIAIIAAAAAAAAACIAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>MAAAAAAAAAAAAIIAIIAAAAAAAAACIAAAAAQAgAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Population.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -381,7 +381,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAqIEaEZAaZAAyEIBAgCIQQgIZQAAIAQAAABIABhBAk=</HashCode>
+      <HashCode>IAqIEaEZAaZAAyEIBAgCIQQgIZQAAICQEAABIABhBAk=</HashCode>
       <FileName>Assets\Scripts\Creature.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -431,15 +431,47 @@
   <Class Name="Ecosystem">
     <Position X="28.75" Y="6.75" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>EACAHAAEAAAAAAAARkAABQAAAIIEKMCAAAAAIAAQBAA=</HashCode>
-      <FileName>Assets\Scripts\Ecosystem.cs</FileName>
+      <HashCode>EACAHAAEAAAAQAAAQkAABQAAAIIEKMCAAAAAIAAQBAA=</HashCode>
+      <FileName>Assets\Scripts\EcoSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ReproActionEditor">
     <Position X="15" Y="28.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ReproActionEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Convert">
+    <Position X="25.75" Y="27" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAACACAAAAAAAAAEAAAAAAAAAAAAAAAhAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Convert.cs</FileName>
+      <NewMemberFileName>Assets\Scripts\convert.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConvertEditor">
+    <Position X="29.25" Y="27" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAACABAAAAAAAAAAAAAAIAAABAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ConvertEditor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="actionRef" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Deposit">
+    <Position X="28.5" Y="30.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAgAQAAACA=</HashCode>
+      <FileName>Assets\Scripts\Deposit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DepositEditor">
+    <Position X="32.5" Y="31" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\DepositEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="NodeEditorInterface">
