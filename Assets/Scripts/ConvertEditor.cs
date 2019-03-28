@@ -13,23 +13,19 @@ public class ConvertEditor : ActionEditorAbstract
         actionRef = inAction;
     }
 
-    public void setStartResource(string res)
+    public void addStartResource(string res, int coefficient)
     {
-        actionRef.startResource = res;
+        actionRef.startResources[res] = coefficient;
     }
 
-    public void setEndResource(string res)
+    public void addEndResource(string res, int coefficient)
     {
-        actionRef.endResource = res;
+        actionRef.endResources[res] = coefficient;
     }
 
-    public void setAmtToConvert(float amt)
+    public void setAmtToProduce(float amt)
     {
-        actionRef.amtToConvert = amt;
+        actionRef.amtToProduce = amt;
     }
 
-    public void setMultiplier(float multi)
-    {
-        actionRef.multiplier = multi;
-    }
 }

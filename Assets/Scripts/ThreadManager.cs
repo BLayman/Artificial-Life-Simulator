@@ -11,16 +11,19 @@ using UnityEngine;
 
 class ThreadManager : MonoBehaviour
 {
-    EcoManager ecoMan;
+    EcoDemo2 ecoMan;
     Ecosystem unityEco;
     System.Object ecoQueueLock = new System.Object();
     System.Object threadFinishedLock = new System.Object();
     System.Object endThreadLock = new System.Object();
+    System.Object visibleResourceLock = new System.Object();
     private int bufferLength = 5;
     private bool threadFinished = false;
     private int childThreadSleepTime = 0;
     bool finishChildThread = false;
     LinkedList<Ecosystem> ecoQueue;
+    public string visibleResource = "grass";
+    
 
     // Thread safe?
     [HideInInspector]
@@ -39,11 +42,19 @@ class ThreadManager : MonoBehaviour
 
         ecoQueue = new LinkedList<Ecosystem>(); // queue for callback functions
                                                 // create ecosystem using EcoManager
-        ecoMan = new EcoManager();
+        ecoMan = new EcoDemo2();
         ecoMan.makeEco();
         // get newly created ecosystem and set unityEco to reference it
         unityEco = ecoMan.getEcosystem();
 
+    }
+
+    public void setVisibleResource(string resource)
+    {
+        lock (visibleResourceLock)
+        {
+            visibleResource = resource;
+        }
     }
 
     public void setSteps(int _steps)
@@ -174,7 +185,7 @@ class ThreadManager : MonoBehaviour
     // don't use any variables besides what's sent into the function, or created in the function (to avoid threading issues)
     void runSystem(Ecosystem eco, int Localsteps, Thread mainThread)
     {
-
+        string localVisRes;
         lock (threadFinishedLock)
         {
             threadFinished = false;
@@ -206,7 +217,14 @@ class ThreadManager : MonoBehaviour
                 eco.runSystem(Localsteps); // run ecosystem
                 //float st = System.DateTime.Now.Second;
                 //Debug.Log("starting threads");
-                eco.updateTexture();
+
+                // update visible resource in case it was changed by the user
+                lock (visibleResourceLock)
+                {
+                    localVisRes = visibleResource;
+                }
+
+                eco.updateTexture(localVisRes);
                 /*
                 eco.startTextureThreads();
                 

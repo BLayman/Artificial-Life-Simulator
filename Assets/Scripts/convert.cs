@@ -4,45 +4,72 @@ using System.Linq;
 using System.Text;
 
 /// <summary>
-/// Allows creature to convert one resource into another.
+/// Allows creature to convert one set of resource into another.
 /// </summary>
 public class Convert : Action
 {
-    public string startResource;
-
-    public string endResource;
-
     /// <summary>
-    /// The amount of startResource to be converted.
+    /// reactants with their coefficients
     /// </summary>
-    public float amtToConvert;
-
-    /// <summary>
-    /// The amount of endResource is this multiple of the amount of start resource.
-    /// </summary>
-    public float multiplier;
+    public Dictionary<string, float> startResources = new Dictionary<string, float>();
 
 
     /// <summary>
-    /// convert a particular amount of startResource into endResource
+    /// products with their coefficients
     /// </summary>
+    public Dictionary<string, float> endResources = new Dictionary<string, float>();
+
+    /// <summary>
+    /// The amount of products to be made (before being multiplied by product coefficients).
+    /// </summary>
+    public float amtToProduce;
+
+
+    /// <summary>
+    /// convert a particular amount of startResources into endResources
+    /// </summary>
+    // TODO: write test for this
     public override void perform(Creature creature, Ecosystem eco)
     {
-        float initialAmt = creature.storedResources[startResource].currentLevel;
-        float amountConverted;
-        // handle when there is not enough resource stored
-        if(initialAmt < amtToConvert)
+        /* determine how much of the products can actually be produced */
+        // amount produced is the full amount intended, unless overriden below by a limiting reactant
+        float actualAmtProduced = amtToProduce; 
+
+        foreach(string resource in startResources.Keys)
         {
-            amountConverted = initialAmt;
-        }
-        else
-        {
-            amountConverted = amtToConvert;
+            float multipleNeeded = startResources[resource];
+            float amtOfResRequired = amtToProduce * multipleNeeded;
+            // if the creature doesn't have enough of a particular resource
+            float actualStored = creature.storedResources[resource].currentLevel;
+            // if there is not enough of the resource to produce the full amount
+            if (actualStored < amtOfResRequired)
+            {
+                // calculate how much the resource can produce
+                float amtProducedByRes = actualStored / multipleNeeded;
+                // if that amount is less than the current amount actually produced, update the current amount
+                if (amtProducedByRes < actualAmtProduced)
+                {
+                    actualAmtProduced = amtProducedByRes;
+                }
+            }
         }
 
-        creature.storedResources[startResource].currentLevel -= amountConverted;
+        /* use the amount that can actaully be produced to update resource values */
 
-        creature.storedResources[endResource].currentLevel += amountConverted * multiplier;
+        // update reactant levels
+        foreach (string resource in startResources.Keys)
+        {
+            float amtUsed = startResources[resource] * actualAmtProduced;
+            creature.storedResources[resource].currentLevel -= amtUsed;
+        }
+
+        // update product levels
+        foreach (string resource in endResources.Keys)
+        {
+            float amtCreated = endResources[resource] * actualAmtProduced;
+            creature.storedResources[resource].currentLevel += amtCreated;
+        }
+
     }
 
 }

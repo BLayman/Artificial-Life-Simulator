@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class EcoManager
+public class EcoDemo2
 {
     /// <summary>
     /// Stores state of ecosystem.
@@ -197,10 +197,9 @@ public class EcoManager
         convEdit.setName("convertGrassToFlowers");
         convEdit.setPriority(1);
         convEdit.setTimeCost(10);
-        convEdit.setAmtToConvert(5);
-        convEdit.setMultiplier(1);
-        convEdit.setStartResource("grass");
-        convEdit.setEndResource("flowers");
+        convEdit.setAmtToProduce(5);
+        convEdit.addStartResource("grass", 1);
+        convEdit.addEndResource("flowers", 2);
         cc.saveAction();
         // TODO: add to neural network
 
@@ -260,6 +259,11 @@ public class EcoManager
         /* Node net1 0,4 */
         // sense resource 0 at current location
         makeSensoryInputNode(netCreator, 0, creatureResources[0]);
+
+        /* Node net1 0,4 */
+        // sense internal level of resource 0
+        makeInternalResourceInputNode(netCreator, creatureResources[0]);
+
 
         /* Node net1 1,0 */
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
@@ -481,6 +485,17 @@ public class EcoManager
         sinc2.setLandIndex(landIndex);
         sinc2.setSensedResource(sensedResource);
 
+        // user clicks save on node editor
+        netCreator.saveNode();
+    }
+
+    public void makeInternalResourceInputNode(NetworkEditor netCreator, string sensedResource)
+    {
+        NodeEditor nodeCreator = netCreator.addNode(0); // add to first layer
+        // user sets node type to sensory input node
+        nodeCreator.setCreator(NodeCreatorType.internalResNodeEditor);
+        InternalResInputNodeEditor irnc = (InternalResInputNodeEditor)nodeCreator.getNodeCreator();
+        irnc.setSensedResource(sensedResource);
         // user clicks save on node editor
         netCreator.saveNode();
     }

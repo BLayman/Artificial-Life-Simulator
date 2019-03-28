@@ -31,10 +31,6 @@ public class SensoryInputNode : Node
         this.creature = creature;
     }
 
-    public void setCreature(Creature parentCreature)
-    {
-        creature = parentCreature;
-    }
 
 
     /// <summary>
@@ -83,8 +79,5 @@ public class SensoryInputNode : Node
         value = amount;
     }
 
-    public SensoryInputNode clone()
-    {
-        return (SensoryInputNode) this.MemberwiseClone();
-    }
+    
 }

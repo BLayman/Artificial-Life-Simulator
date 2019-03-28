@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public enum NodeCreatorType { siNodeCreator, commNodeCreator, outputNodeCreator, innerInputNodeCreator }
+public enum NodeCreatorType { siNodeCreator, commNodeCreator, outputNodeCreator, innerInputNodeCreator, internalResNodeEditor }
 
 
 /// <summary>
@@ -49,6 +49,9 @@ public class NodeEditor
             case NodeCreatorType.innerInputNodeCreator:
                 nodeCreator = new InnerInputNodeEditor(new InnerInputNode(), parentNetCreator.parentCreatureCreator.creature);
                 break;
+            case NodeCreatorType.internalResNodeEditor:
+                nodeCreator = new InternalResInputNodeEditor(new InternalResourceInputNode(parentNetCreator.parentCreatureCreator.creature));
+                break;
             default:
                 Debug.LogError("unable to set node creator to that type.");
                 break;
@@ -69,6 +72,8 @@ public class NodeEditor
                 return (InnerInputNodeEditor)nodeCreator;
             case NodeCreatorType.outputNodeCreator:
                 return (OutputNodeEditor)nodeCreator;
+            case NodeCreatorType.internalResNodeEditor:
+                return (InternalResInputNodeEditor)nodeCreator;
             default:
                 Debug.LogError("not able to get that node creator");
                 return null;

@@ -19,4 +19,10 @@ public abstract class Node
     /// </summary>
     public abstract void updateValue();
 
+
+    public Node clone()
+    {
+        return (Node)this.MemberwiseClone();
+    }
+
 }

@@ -171,11 +171,11 @@ public class Ecosystem
             }
         }
 
-        Debug.Log("age: " + age);
+        //Debug.Log("age: " + age);
 
         foreach (Population pop in populations.Values)
         {
-            Debug.Log(pop.founder.species + " pop size: " + pop.size);
+            //Debug.Log(pop.founder.species + " pop size: " + pop.size);
 
         }
         // assuming user has set timeSteps to be 1 million or less
@@ -211,35 +211,11 @@ public class Ecosystem
 
     /** Texture stuff below **/
 
-
-    public void updateTexture()
+  
+    public void updateTexture(string visibleResource)
     {
-
         colors = new Color[map.Count * map[0].Count]; // reference update for each ecosystem
-        Color resourceShade = new Color(1,1,1);
-        Color creatureColor = Color.blue;
-        //float st = System.DateTime.Now.Millisecond;
-        for (int x = 0; x < map.Count; x++)
-        {
-            for (int y = 0; y < map[x].Count; y++)
-            {
-                if (map[x][y].creatureIsOn())
-                {
-                    colors[y * map.Count + x] = map[x][y].creatureOn.color;
-                }
-                else
-                {
-                    float proportionStored = map[x][y].propertyDict["grass"].getProportionStored();
-                    resourceShade.r = proportionStored;
-                    resourceShade.g = proportionStored;
-                    resourceShade.b = proportionStored;
-
-
-                    colors[y * map.Count + x] = resourceShade;
-                }
-            }
-        }
-
+        TextureUpdater.updateTexture(map, colors, visibleResource);
 
         //float et = System.DateTime.Now.Millisecond;
         //Debug.Log("Time to update texture:" + (et - st));

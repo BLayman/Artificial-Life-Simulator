@@ -41,10 +41,5 @@ public class OutputNode : NonInputNode
     }
 
 
-    public OutputNode clone()
-    {
-        return (OutputNode)this.MemberwiseClone();
-    }
-
 
 }

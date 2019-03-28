@@ -448,20 +448,26 @@ public class Copier
     {
         if (oldNode.GetType().Name == "SensoryInputNode")
         {
-            SensoryInputNode oldNode2 = (SensoryInputNode)oldNode;
-            SensoryInputNode newNode = oldNode2.clone();
+            SensoryInputNode newNode = (SensoryInputNode)oldNode.clone();
             newNode.creature = creatureCopy;
             return newNode;
             
         }
+        else if (oldNode.GetType().Name == "InternalResourceInputNode")
+        {
+            InternalResourceInputNode newNode = (InternalResourceInputNode) oldNode.clone();
+            newNode.creature = creatureCopy;
+            return newNode;
+
+        }
         else if (oldNode.GetType().Name == "OutputNode")
         {
             OutputNode oldNode2 = (OutputNode)oldNode;
-            OutputNode newNode = oldNode2.clone();
+            OutputNode newNode = (OutputNode) oldNode.clone();
             newNode.resetRand();
             newNode.parentNet = parentNet;
             newNode.parentCreature = creatureCopy;
-            newNode.action = getNewAction(oldNode2.action);
+            newNode.action = getNewAction(newNode.action);
             //newNode.setActivBehavior(new LogisticActivBehavior());
             newNode.prevNodes = new List<Node>();
             newNode.assignPrevNodes();
