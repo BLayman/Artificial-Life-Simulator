@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 public class PhenotypeNetwork : Network
 {
@@ -11,6 +12,7 @@ public class PhenotypeNetwork : Network
 
     public void setInputNodes(bool[] phenotype)
     {
+        //Debug.Log("copied first layer length: " + net[0].Count);
         // starts at 1 because of bias node
         for (int i = 1; i < net[0].Count; i++)
         {
@@ -21,7 +23,7 @@ public class PhenotypeNetwork : Network
 
     public PhenotypeNetwork getShallowCopy()
     {
-        return (PhenotypeNetwork)this.MemberwiseClone();
+        return (PhenotypeNetwork) this.MemberwiseClone();
     }
 
 }

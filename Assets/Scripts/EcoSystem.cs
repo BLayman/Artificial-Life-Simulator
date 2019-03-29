@@ -171,7 +171,7 @@ public class Ecosystem
             }
         }
 
-        //Debug.Log("age: " + age);
+        Debug.Log("age: " + age);
 
         foreach (Population pop in populations.Values)
         {

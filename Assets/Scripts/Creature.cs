@@ -133,7 +133,7 @@ public class Creature
         rand2 = new System.Random();
 
         count = 0;
-        Debug.Log("creature constructor called");
+        Debug.Log("*********************        creature constructor called             ********************");
 
     }
 
@@ -256,6 +256,22 @@ public class Creature
                 Debug.Log("*************   this final output node value: " + node.value);
             }
         }
+
+        Debug.Log("********     phenotype net template      ***********");
+        Network net = phenotypeNetTemplate;
+        Debug.Log("net name: " + net.name);
+        Debug.Log("layer 1:");
+        foreach (Node node in net.net[0])
+        {
+            Debug.Log("input value: " + node.value);
+        }
+        Debug.Log("layer 2:");
+
+        foreach (NonInputNode node in net.net[1])
+        {
+            node.printInputsAndWeights();
+            Debug.Log("*************   this final output node value: " + node.value);
+        }
     }
 
     public void updateNets()
@@ -289,7 +305,9 @@ public class Creature
             if (neighborLands[i].creatureIsOn())
             {
                 // get a copy of the template
+                // Debug.Log("template first layer length: " + phenotypeNetTemplate.net[0].Count);
                 PhenotypeNetwork phenotypeNet = (PhenotypeNetwork) Copier.copyNetwork(phenotypeNetTemplate, this);
+               
                 // set the phenotype used in the template
                 phenotypeNet.setInputNodes(neighborLands[i].creatureOn.phenotype);
                 // add the network to the creatures networks

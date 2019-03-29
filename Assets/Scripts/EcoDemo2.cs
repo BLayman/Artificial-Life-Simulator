@@ -28,7 +28,7 @@ public class EcoDemo2
             // populate with low standard deviation from founder creature
             userPopulatesSpecies("cat", .1f, 100, 300);
             // add dog species
-            userAddsSpecies2("dog", ColorChoice.green, .01f);
+            userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
             userPopulatesSpecies("dog", 2f, 100, 300);
 
@@ -58,7 +58,7 @@ public class EcoDemo2
         // set basic ecosystem parameters
         ecoCreator.setAbilityPointsPerCreature(10);
         ecoCreator.setCommBits(4);
-        ecoCreator.setDistinctPhenotypeNum(32);
+        ecoCreator.setDistinctPhenotypeNum(3);
         ecoCreator.setTimeUnitsPerTurn(10);
         ecoCreator.setRenewInterval(50);
 
@@ -235,18 +235,23 @@ public class EcoDemo2
 
         /**** phenotype network template ****/
 
+        
         // user adds a network
         PhenotypeNetworkEditor phenoNetCreator = (PhenotypeNetworkEditor) cc.addNetwork(NetworkType.phenotype);
         phenoNetCreator.setInLayer(0); // called by default with index of layer user clicked
         phenoNetCreator.setName("phenotypeNet");
         phenoNetCreator.createInputNodes();
-
+   
         /* Node phenotypeNet 1,0 */
         makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
 
         // Note: don't call saveNetwork, call savePhenotypeNetwork
         cc.savePhenotypeNetwork();
 
+        Debug.Log("finished creating phenotype net");
+
+        //cc.creature.printNetworks();
+        
         /**** net1 ****/
 
         // user adds a network

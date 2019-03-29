@@ -146,8 +146,10 @@ public class Copier
         List<Dictionary<string, Network>> origNetworks = c.networks;
         copyCreatureNetworks(origNetworks, networks, creatureCopy);
 
+        //Debug.Log("before child copy: " + c.phenotypeNetTemplate.net[0].Count);
         creatureCopy.phenotypeNetTemplate = (PhenotypeNetwork) copyNetwork(c.phenotypeNetTemplate, creatureCopy);
         creatureCopy.phenotypeNetTemplate.parentCreature = creatureCopy;
+        //Debug.Log("after child copy: " + creatureCopy.phenotypeNetTemplate.net[0].Count);
 
         // position will be set by reproduction action
         creatureCopy.position = new int[2];
@@ -268,9 +270,10 @@ public class Copier
         copyCreatureNetworks(origNetworks, networks, creatureCopy);
 
         // copy phenotype network template
+        //Debug.Log("before copy: " + c.phenotypeNetTemplate.net[0].Count);
         creatureCopy.phenotypeNetTemplate = (PhenotypeNetwork)copyNetwork(c.phenotypeNetTemplate, creatureCopy);
         creatureCopy.phenotypeNetTemplate.parentCreature = creatureCopy;
-
+        //Debug.Log("after copy: " + creatureCopy.phenotypeNetTemplate.net[0].Count);
 
         // copy position (overridden when populating)
         creatureCopy.position = new int[2];

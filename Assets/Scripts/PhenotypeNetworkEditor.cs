@@ -16,7 +16,7 @@ public class PhenotypeNetworkEditor : NetworkEditor
         // adds an input node for each phenotype bit
         for (int i = 0; i < parentCreatureCreator.creature.phenotype.Length; i++)
         {
-            Debug.Log("created phenotype node " + i);
+            //Debug.Log("created phenotype node " + i);
             network.net[0].Add(new PhenotypeInputNode(i, parentCreatureCreator.creature));
         }
     }
