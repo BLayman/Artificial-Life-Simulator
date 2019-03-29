@@ -9,6 +9,7 @@ using System.Text;
 using UnityEngine;
 
 public enum ColorChoice {red,green,blue};
+public enum NetworkType {regular, phenotype, comm}
 
 /// <remarks>API for creature class. Stored by EcosystemCreator.</remarks>
 public class CreatureEditor
@@ -208,10 +209,25 @@ public class CreatureEditor
     /// <summary>
     /// Resets netCreator, allowing for the creation of a new network.
     /// </summary>
-    public NetworkEditor addNetwork()
+    public NetworkEditor addNetwork(NetworkType type)
     {
-        netCreator = new NetworkEditor(new Network(), this);
+        switch (type)
+        {
+            case NetworkType.regular:
+                netCreator = new NetworkEditor(new Network(), this);
+                break;
+            case NetworkType.phenotype:
+                netCreator = new PhenotypeNetworkEditor(new PhenotypeNetwork(), this);
+                break;
+            case NetworkType.comm:
+                // TODO
+                break;
+            default:
+                Debug.LogError("Invalid network type");
+                break;
+        }
         return netCreator;
+        
     }
 
     public ActionEditor addAction()
@@ -232,6 +248,15 @@ public class CreatureEditor
     {
         // TODO: account for comm network templates
         creature.networks[netCreator.network.inLayer][netCreator.network.name] = netCreator.network;
+    }
+
+
+    /// <summary>
+    /// Used to save phenotype network from netCreator to template
+    /// </summary>
+    public void savePhenotypeNetwork()
+    {
+        creature.phenotypeNetTemplate = (PhenotypeNetwork) netCreator.network;
     }
 
     /// <summary>

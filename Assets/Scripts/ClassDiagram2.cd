@@ -24,7 +24,7 @@
   <Class Name="SensoryInputNode">
     <Position X="13.25" Y="10.5" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAACAAAAAAAAAAIAAAAKAAAAAAAAAABCAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAABCAA=</HashCode>
       <FileName>Assets\Scripts\SensoryInputNode.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -95,7 +95,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ConsumeFromLand">
-    <Position X="11" Y="28.75" Width="2.5" />
+    <Position X="9.5" Y="28.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ConsumeFromLand.cs</FileName>
@@ -162,7 +162,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BDgICAAgACIAACEgAAAIAQACABQQYBKwAAAEACAIACA=</HashCode>
+      <HashCode>BDhICAAgACIAACEgAAAIAQACABQQYBKwAAAEACAIACA=</HashCode>
       <FileName>Assets\Scripts\CreatureEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -173,7 +173,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="NetworkEditor">
-    <Position X="26.75" Y="2.5" Width="2.5" />
+    <Position X="26.5" Y="2.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AhAAAAAAAAQAAAAAAAAAAAAAAAAAAABABAgAAAAAIAA=</HashCode>
       <FileName>Assets\Scripts\NetworkEditor.cs</FileName>
@@ -182,7 +182,7 @@
   <Class Name="SensoryInputNodeEditor">
     <Position X="9.75" Y="7.25" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAgAAAAAAAAAAEAAAAAAgBAAAgAACAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAgBAAAgAACAAAAAA=</HashCode>
       <FileName>Assets\Scripts\SensoryInputNodeEditor.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -255,7 +255,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MapEditor">
-    <Position X="36.5" Y="2" Width="3.75" />
+    <Position X="38.75" Y="2" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAGIABAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\MapEditor.cs</FileName>
@@ -277,7 +277,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ReproAction">
-    <Position X="25" Y="23" Width="3" />
+    <Position X="27" Y="23.25" Width="3" />
     <TypeIdentifier>
       <HashCode>EAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ReproAction.cs</FileName>
@@ -291,7 +291,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SimRunnerUser">
-    <Position X="29.75" Y="0.5" Width="2.5" />
+    <Position X="32.25" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>ABQAAgQAAQAAAAAAAAggAgAAAwAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Assets\Scripts\SimRunnerUser.cs</FileName>
@@ -346,9 +346,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="EcoDemo2">
-    <Position X="33.25" Y="1.25" Width="2.75" />
+    <Position X="35.25" Y="0.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>ACACAAAggAAAGAEAAAAAAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
+      <HashCode>QCACAAAggAAAGAEAAAAAAgYAAAgAAAAAAAAAAIAQAAA=</HashCode>
       <FileName>Assets\Scripts\EcoDemo2.cs</FileName>
       <NewMemberFileName>Assets\Scripts\EcoDemo1.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -374,7 +374,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAqIEaEZAaZAAyEIBAgCIQQgIZQAAICQEAABIABhBAk=</HashCode>
+      <HashCode>IAqIEaEZAaZAAyEYBAgCISwgIZQAAICQEAABIABhBAk=</HashCode>
       <FileName>Assets\Scripts\Creature.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -429,7 +429,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ReproActionEditor">
-    <Position X="15" Y="28.5" Width="1.5" />
+    <Position X="15.25" Y="29.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ReproActionEditor.cs</FileName>
@@ -475,10 +475,31 @@
     </TypeIdentifier>
   </Class>
   <Class Name="InternalResourceInputNode">
-    <Position X="4.25" Y="10.75" Width="1.5" />
+    <Position X="4.25" Y="11" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAACAAAAAAAAAAIAAAAKAAAAAAACAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAACAAAAAA=</HashCode>
       <FileName>Assets\Scripts\InternalResourceInputNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhenotypeNetwork">
+    <Position X="3.25" Y="19" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAACAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\PhenotypeNetwork.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhenotypeInputNode">
+    <Position X="2" Y="14.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAABAACAAQAAAAAAABAAA=</HashCode>
+      <FileName>Assets\Scripts\PhenotypeInputNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhenotypeNetworkEditor">
+    <Position X="29.75" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PhenotypeNetworkEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="NodeEditorInterface">
@@ -505,7 +526,7 @@
   <Enum Name="NodeCreatorType">
     <Position X="5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AYAAAAAAACAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AYAAAAAAACAAAAAAgAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\NodeEditor.cs</FileName>
     </TypeIdentifier>
   </Enum>

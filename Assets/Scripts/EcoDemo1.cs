@@ -110,7 +110,7 @@ public class EcoDemo1
 
         // user edits:
         cc.setSpecies(name);
-        cc.setPhenotype(3);
+        cc.setPhenotype(3); // normally this should differ for each species
         cc.setTurnTime(10);
         cc.setMaxHealth(1000);
         cc.setInitialHealth(700);
@@ -236,7 +236,7 @@ public class EcoDemo1
         /**** net1 ****/
 
         // user adds a network
-        NetworkEditor netCreator = cc.addNetwork();
+        NetworkEditor netCreator = cc.addNetwork(NetworkType.regular);
         netCreator.setInLayer(0); // called by default with index of layer user clicked
         netCreator.setName("net1");
 
@@ -306,7 +306,7 @@ public class EcoDemo1
         /**** outNetUp ****/
 
         // user adds a second network
-        NetworkEditor netCreator2 = cc.addNetwork();
+        NetworkEditor netCreator2 = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreator2.setInLayer(1); // called by default with index of layer user clicked
         netCreator2.setName("outNetUp");
@@ -327,7 +327,7 @@ public class EcoDemo1
         /**** outNetDown ****/
 
         // user adds a second network
-        NetworkEditor netCreator4 = cc.addNetwork();
+        NetworkEditor netCreator4 = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreator4.setInLayer(1); // called by default with index of layer user clicked
         netCreator4.setName("outNetDown");
@@ -348,7 +348,7 @@ public class EcoDemo1
         /**** outNetLeft ****/
 
         // user adds a second network
-        NetworkEditor netCreator6 = cc.addNetwork();
+        NetworkEditor netCreator6 = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreator6.setInLayer(1); // called by default with index of layer user clicked
         netCreator6.setName("outNetLeft");
@@ -366,7 +366,7 @@ public class EcoDemo1
         /**** outNetRight ****/
 
         // user adds a second network
-        NetworkEditor netCreator7 = cc.addNetwork();
+        NetworkEditor netCreator7 = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreator7.setInLayer(1); // called by default with index of layer user clicked
         netCreator7.setName("outNetRight");
@@ -384,7 +384,7 @@ public class EcoDemo1
         /**** outNetConsume ****/
 
         // user adds a second network
-        NetworkEditor netCreator5 = cc.addNetwork();
+        NetworkEditor netCreator5 = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreator5.setInLayer(1); // called by default with index of layer user clicked
         netCreator5.setName("outNetEat");
@@ -398,13 +398,14 @@ public class EcoDemo1
         /* Node outNet 1,0 */
         makeOutputNode(netCreator5, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
         // user clicks save on creature creator
+ 
         cc.saveNetwork();
 
 
         /**** outNetReproduce ****/
 
         // user adds a second network
-        NetworkEditor netCreatorOutRepro = cc.addNetwork();
+        NetworkEditor netCreatorOutRepro = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreatorOutRepro.setInLayer(1); // called by default with index of layer user clicked
         netCreatorOutRepro.setName("outNetRepro");

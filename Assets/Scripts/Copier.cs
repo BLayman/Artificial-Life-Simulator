@@ -9,6 +9,8 @@ using System.Reflection;
 using UnityEngine;
 using Priority_Queue;
 
+
+
 public class Copier
 {
 
@@ -144,6 +146,9 @@ public class Copier
         List<Dictionary<string, Network>> origNetworks = c.networks;
         copyCreatureNetworks(origNetworks, networks, creatureCopy);
 
+        creatureCopy.phenotypeNetTemplate = (PhenotypeNetwork) copyNetwork(c.phenotypeNetTemplate, creatureCopy);
+        creatureCopy.phenotypeNetTemplate.parentCreature = creatureCopy;
+
         // position will be set by reproduction action
         creatureCopy.position = new int[2];
 
@@ -261,6 +266,11 @@ public class Copier
         creatureCopy.networks = networks;
         List<Dictionary<string, Network>> origNetworks = c.networks;
         copyCreatureNetworks(origNetworks, networks, creatureCopy);
+
+        // copy phenotype network template
+        creatureCopy.phenotypeNetTemplate = (PhenotypeNetwork)copyNetwork(c.phenotypeNetTemplate, creatureCopy);
+        creatureCopy.phenotypeNetTemplate.parentCreature = creatureCopy;
+
 
         // copy position (overridden when populating)
         creatureCopy.position = new int[2];
@@ -394,22 +404,29 @@ public class Copier
             copyNetworks.Add(dict);
             foreach (string key in origNetworks[i].Keys)
             {
-                dict[key] = origNetworks[i][key].getShallowCopy();
-                List<List<Node>> origNet = origNetworks[i][key].net;
-                List<List<Node>> newNet = new List<List<Node>>();
-                dict[key].net = newNet;
-                for (int j = 0; j < origNet.Count; j++)
-                {
-                    newNet.Add(new List<Node>());
-                    for (int k = 0; k < origNet[j].Count; k++)
-                    {
-                        newNet[j].Add(getNewNode(origNet[j][k], creatureCopy, dict[key]));
-                    }
-                }
+                dict[key] = copyNetwork(origNetworks[i][key], creatureCopy);
+
             }
         }
     }
 
+
+    public static Network copyNetwork(Network oldNetwork, Creature creatureCopy)
+    {
+        Network newNetwork = oldNetwork.getShallowCopy();
+        List<List<Node>> origNet = oldNetwork.net;
+        List<List<Node>> newNet = new List<List<Node>>();
+        newNetwork.net = newNet;
+        for (int j = 0; j < origNet.Count; j++)
+        {
+            newNet.Add(new List<Node>());
+            for (int k = 0; k < origNet[j].Count; k++)
+            {
+                newNet[j].Add(getNewNode(origNet[j][k] , creatureCopy, newNetwork));
+            }
+        }
+        return newNetwork;
+    }
 
 
     public static Ability getNewAbility(Ability oldAbility)
@@ -499,6 +516,22 @@ public class Copier
             newNode.linkedNode = linkedNetwork.net[linkedNetwork.net.Count - 1][newNode.linkedNodeIndex];
             return newNode;
         }
+        // called when template is being copied
+        else if (oldNode.GetType().Name == "PhenotypeInputNode")
+        {
+            PhenotypeInputNode oldNode2 = (PhenotypeInputNode)oldNode;
+            PhenotypeInputNode newNode = (PhenotypeInputNode)oldNode.clone();
+            // copy phenotype
+            newNode.parentCreat = creatureCopy;
+            int length = oldNode2.phenotype.Length;
+            newNode.phenotype = new bool[length];
+            for (int i = 0; i < newNode.phenotype.Length; i++)
+            {
+                newNode.phenotype[i] = oldNode2.phenotype[i];
+            }
+            return newNode;
+        }
+
         else if (oldNode.GetType().Name == "CommInputNode")
         {
             //TODO 
