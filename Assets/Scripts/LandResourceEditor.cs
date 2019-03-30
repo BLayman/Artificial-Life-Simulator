@@ -28,7 +28,7 @@ public class LandResourceEditor
     public void setAmtConsumedPerTime(float amountConsumed)
     {
         resourceStore.amountConsumedPerTimeUnit = amountConsumed;
-        Debug.Log("amount consumed per time set to " + amountConsumed);
+        //Debug.Log("amount consumed per time set to " + amountConsumed);
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ public class LandResourceEditor
     public void setRenewalAmt(float amountRenewed)
     {
         resourceStore.renewalAmt = amountRenewed;
-        Debug.Log("renewal amount per turn set to " + amountRenewed);
+        //Debug.Log("renewal amount per turn set to " + amountRenewed);
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ public class LandResourceEditor
     public void setAmountOfResource(float amount)
     {
         resourceStore.amountStored = amount;
-        Debug.Log("amount of resource set to " + amount);
+        //Debug.Log("amount of resource set to " + amount);
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ public class LandResourceEditor
     public void setProportionExtracted(float proportion)
     {
         resourceStore.proportionExtracted = proportion;
-        Debug.Log("proportion extracted set to " + proportion);
+        //Debug.Log("proportion extracted set to " + proportion);
     }
 
     /// <summary>
@@ -65,6 +65,6 @@ public class LandResourceEditor
     public void setMaxAmt(float maxAmount)
     {
         resourceStore.maxAmount = maxAmount;
-        Debug.Log("maximum amount set to " + maxAmount);
+        //Debug.Log("maximum amount set to " + maxAmount);
     }
 }

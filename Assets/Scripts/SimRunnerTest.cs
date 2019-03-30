@@ -74,7 +74,7 @@ public class SimRunnerTest : MonoBehaviour
     {
         // TODO: don't hard code slider
         intervalTime = .5f - value;
-        Debug.Log("interval time: " + value);
+        //Debug.Log("interval time: " + value);
     }
 
     // Update is called once per frame

@@ -64,6 +64,8 @@ public class Ecosystem
 
     bool[] threadsFinished;
 
+    public bool allDead = false;
+
     System.Object threadsFinishedLock = new System.Object();
 
     /// <summary>
@@ -77,6 +79,7 @@ public class Ecosystem
 
             age++; // for keeping track of ecosystem age
 
+            bool notAllDead = false;
             // for each population
             foreach (string species in populations.Keys)
             {
@@ -84,6 +87,7 @@ public class Ecosystem
                 // if population has any members
                 if (population.creatures.Count > 0)
                 {
+                    notAllDead = true;
                     List<Creature> toRemove = new List<Creature>();
                     // for each creature in population
                     for (int l = 0; l < population.creatures.Count; l++)
@@ -169,9 +173,14 @@ public class Ecosystem
                 }
 
             }
+
+            if (!notAllDead)
+            {
+                allDead = true;
+            }
         }
 
-        Debug.Log("age: " + age);
+        //Debug.Log("age: " + age);
 
         foreach (Population pop in populations.Values)
         {

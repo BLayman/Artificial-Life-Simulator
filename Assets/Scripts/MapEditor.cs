@@ -83,6 +83,6 @@ public class MapEditor
             }
 
         }
-        Debug.Log("finished generating map");
+        //Debug.Log("finished generating map");
     }
 }

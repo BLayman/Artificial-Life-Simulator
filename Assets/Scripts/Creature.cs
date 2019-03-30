@@ -133,7 +133,7 @@ public class Creature
         rand2 = new System.Random();
 
         count = 0;
-        Debug.Log("*********************        creature constructor called             ********************");
+        // Debug.Log("*********************        creature constructor called             ********************");
 
     }
 
@@ -190,7 +190,7 @@ public class Creature
                 // TODO: make work indefinitely
                 if(count > 1000000000)
                 {
-                    Debug.Log("creating new random number generator");
+                    //Debug.Log("creating new random number generator");
                     // will also need to reset seed generator
                     rand = new System.Random();
                     count = 0;
@@ -217,7 +217,7 @@ public class Creature
         }
     }
 
-
+    // TODO : also print hidden layers
     public void printNetworks()
     {
         // print creature's networks:

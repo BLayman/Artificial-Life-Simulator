@@ -15,7 +15,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Land">
-    <Position X="27" Y="15" Width="5" />
+    <Position X="28.5" Y="15" Width="5" />
     <TypeIdentifier>
       <HashCode>ECAAAAEAAAAAAAAIEAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Assets\Scripts\Land.cs</FileName>
@@ -46,12 +46,12 @@
   <Class Name="InnerInputNode">
     <Position X="10" Y="11" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgBAIAAAgAAgAAAAAAACAAACAAAAAEAEAAAAAA=</HashCode>
+      <HashCode>AAAAAAgBAIAAAgAAgAAAAAAACAAACACAAAEAEAAAAAA=</HashCode>
       <FileName>Assets\Scripts\InnerInputNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OutputNode">
-    <Position X="19.25" Y="22.5" Width="3" />
+    <Position X="20" Y="22.5" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAQAAAAABAAACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\OutputNode.cs</FileName>
@@ -157,7 +157,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BDhICAAgACIAACEgAAAIAQACABQQYBKwAAAEACAIACA=</HashCode>
+      <HashCode>BDhICAAgACIAACEgAIAIAQACABQQYBKwAAAEACAIACA=</HashCode>
       <FileName>Assets\Scripts\CreatureEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -169,7 +169,7 @@
   <Class Name="NetworkEditor">
     <Position X="26.5" Y="3" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AhAAAAAAAAQAAAAAAAAAAAAAAAAAAABABAgAAAAAIAA=</HashCode>
+      <HashCode>AhAAAAAAAAQAAAAAAAAAAAAAAAAAAABCBAgAAAAAIAA=</HashCode>
       <FileName>Assets\Scripts\NetworkEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -249,14 +249,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MapEditor">
-    <Position X="38.75" Y="2" Width="3.75" />
+    <Position X="39.5" Y="10" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAGIABAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\MapEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SpeciesPopulator">
-    <Position X="39.5" Y="5.75" Width="4.5" />
+    <Position X="42.25" Y="5.75" Width="4.5" />
     <AssociationLine Name="population" Type="Population">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.715" Y="0.09" />
@@ -271,7 +271,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ReproAction">
-    <Position X="27" Y="23.25" Width="3" />
+    <Position X="29" Y="22.75" Width="3" />
     <TypeIdentifier>
       <HashCode>EAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ReproAction.cs</FileName>
@@ -293,7 +293,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Population">
-    <Position X="41.75" Y="1.25" Width="2.25" />
+    <Position X="45.75" Y="1.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>MAAAAAAAAAAAAIIAIIAAAAAAAAACIAAAAAQAgAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Population.cs</FileName>
@@ -398,7 +398,7 @@
   <Class Name="Ecosystem">
     <Position X="28.75" Y="6.75" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>EACAHAAEAAAAQAAAQkAABQAAAIIEKMCAAAAAIAAQBAA=</HashCode>
+      <HashCode>EACAHAAEAAAAQAAAQ0AABQAAAIIEKMCAAAAAIAAQBAA=</HashCode>
       <FileName>Assets\Scripts\EcoSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -442,7 +442,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="TextureUpdater">
-    <Position X="39.5" Y="10.75" Width="2" />
+    <Position X="41.5" Y="15.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\TextureUpdater.cs</FileName>
@@ -491,12 +491,12 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Creature">
-    <Position X="22" Y="11.5" Width="3.75" />
+    <Position X="23.25" Y="12.25" Width="3.75" />
     <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
       <Path>
-        <Point X="25.75" Y="13.572" />
-        <Point X="29.5" Y="13.572" />
-        <Point X="29.5" Y="15" />
+        <Point X="27" Y="14.322" />
+        <Point X="31" Y="14.322" />
+        <Point X="31" Y="15" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-0.24" Y="0.414" />
@@ -509,6 +509,14 @@
     <ShowAsCollectionAssociation>
       <Field Name="neighborLands" />
     </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="HiddenNodeEditor">
+    <Position X="0.5" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAEAAAAAAAAAAAAAAEAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\HiddenNodeEditor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="NodeEditorInterface">
     <Position X="10.5" Y="4.75" Width="2" />
@@ -525,7 +533,7 @@
     </TypeIdentifier>
   </Interface>
   <Enum Name="abilityType">
-    <Position X="5" Y="2.25" Width="1.5" />
+    <Position X="5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAI=</HashCode>
       <FileName>Assets\Scripts\AbilitiesEditor.cs</FileName>
@@ -534,7 +542,7 @@
   <Enum Name="NodeCreatorType">
     <Position X="5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AYAAAAAAACAAAAAAgAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AYAAAAEAACAAAAAAgAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\NodeEditor.cs</FileName>
     </TypeIdentifier>
   </Enum>

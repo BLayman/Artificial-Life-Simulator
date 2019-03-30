@@ -498,6 +498,22 @@ public class Copier
             }
             return newNode;
         }
+        else if (oldNode.GetType().Name == "NonInputNode")
+        {
+            NonInputNode oldNode2 = (NonInputNode)oldNode;
+            NonInputNode newNode = (NonInputNode)oldNode.clone();
+            newNode.resetRand();
+            newNode.parentNet = parentNet;
+            //newNode.setActivBehavior(new LogisticActivBehavior());
+            newNode.prevNodes = new List<Node>();
+            newNode.assignPrevNodes();
+            newNode.weights = new List<float>();
+            for (int i = 0; i < oldNode2.weights.Count; i++)
+            {
+                newNode.weights.Add(oldNode2.weights[i]);
+            }
+            return newNode;
+        }
         else if (oldNode.GetType().Name == "BiasNode")
         {
             BiasNode oldNode2 = (BiasNode)oldNode;

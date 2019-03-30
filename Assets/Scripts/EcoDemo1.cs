@@ -22,15 +22,15 @@ public class EcoDemo1
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(200);
+            userCreatesEcosystem(300);
             // add cat species
-            userAddsSpecies("cat", ColorChoice.blue, .01f);
+            userAddsSpecies("cat", ColorChoice.blue, .1f, false);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", .1f, 100, 300);
+            userPopulatesSpecies("cat", 1f, 100, 300);
             // add dog species
-            userAddsSpecies("dog", ColorChoice.green, .01f);
+            //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
-            userPopulatesSpecies("dog", 2f, 100, 300);
+            //userPopulatesSpecies("dog", 2f, 100, 300);
 
             //userAddsSpecies("cow", ColorChoice.red, .01f);
             //userPopulatesSpecies("cow", 2f, 100, 300);
@@ -38,8 +38,44 @@ public class EcoDemo1
         else
         {
             // for debugging
-            Debug.Log(" Make eco called twice! ");
+            // Debug.Log(" Make eco called twice! ");
         }
+    }
+
+    public void compareLinearToNonLinear(int instances, int maxLength)
+    {
+        Debug.Log("Linear system results: ");
+        experimentRunSystem(instances, maxLength, false);
+
+        Debug.Log("Non-Linear system results: ");
+        experimentRunSystem(instances, maxLength, true);
+
+        Debug.Log("Experiment done");
+    }
+
+    public void experimentRunSystem(int instances, int maxLength, bool nonLinear)
+    {
+        // create x instances of each ecosystem
+        float sum = 0;
+        for (int i = 0; i < instances; i++)
+        {
+            // Create a 100 X 200 map
+            userCreatesEcosystem(50);
+            // add cat species
+            userAddsSpecies("cat", ColorChoice.blue, .1f, nonLinear);
+            // populate with low standard deviation from founder creature
+            userPopulatesSpecies("cat", 2f, 100, 1000);
+
+            while (!ecosystem.allDead && ecosystem.age < maxLength)
+            {
+                ecosystem.runSystem(1);
+                //Debug.Log("age: " + ecosystem.age);
+            }
+            sum += ecosystem.age;
+            Debug.Log("final age: " + ecosystem.age);
+        }
+        Debug.Log("");
+        Debug.Log("average: " + sum / instances);
     }
 
 
@@ -66,7 +102,7 @@ public class EcoDemo1
         LandResourceEditor lre = ecoCreator.addResource("grass");
         lre.setAmountOfResource(100);
         lre.setMaxAmt(150);
-        lre.setAmtConsumedPerTime(10);
+        lre.setAmtConsumedPerTime(5);
         lre.setProportionExtracted(.2f);
         lre.setRenewalAmt(2f);
 
@@ -103,7 +139,7 @@ public class EcoDemo1
      * add resource to node, 
      * save creature to founder creatures dict and species dict
      */
-    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation)
+    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation, bool useHiddenNodes)
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
@@ -240,6 +276,8 @@ public class EcoDemo1
         netCreator.setInLayer(0); // called by default with index of layer user clicked
         netCreator.setName("net1");
 
+        // layer 0
+
         /* Node net1 0,0 */
         // sense resource 0 up
         makeSensoryInputNode(netCreator, 1, creatureResources[0]);
@@ -260,18 +298,62 @@ public class EcoDemo1
         // sense resource 0 at current location
         makeSensoryInputNode(netCreator, 0, creatureResources[0]);
 
-        /* Node net1 1,0 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
-        /* Node net1 1,1 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
-        /* Node net1 1,2 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
-        /* Node net1 1,3 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
-        /* Node net1 1,4 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
-        /* Node net1 1,5 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
+        
+
+        // add hidden nodes
+
+        if (useHiddenNodes)
+        {
+            // layer 1
+
+            netCreator.insertNewLayer(1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            // layer 2
+
+            /* Node net1 1,0 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 2);
+            /* Node net1 1,1 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 2);
+            /* Node net1 1,2 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 2);
+            /* Node net1 1,3 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 2);
+            /* Node net1 1,4 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatGrass", 2);
+            /* Node net1 1,5 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 2);
+        }
+        else
+        {
+            // layer 1
+
+            /* Node net1 1,0 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
+            /* Node net1 1,1 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
+            /* Node net1 1,2 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
+            /* Node net1 1,3 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
+            /* Node net1 1,4 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
+            /* Node net1 1,5 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
+        }
+
+        
 
         // user clicks save on network creator
         cc.saveNetwork();
@@ -498,7 +580,18 @@ public class EcoDemo1
         // user clicks save on network creator
     }
 
-    
+    public void makeHiddenNode(NetworkEditor netCreator, ActivationBehaviorTypes activationType, int layer)
+    {
+        // user adds node to second layer
+        NodeEditor nodeCreator = netCreator.addNode(layer);
+        nodeCreator.setCreator(NodeCreatorType.hiddenNode);
+        HiddenNodeEditor hne = (HiddenNodeEditor)nodeCreator.getNodeCreator();
+        hne.setActivationFunction(activationType);
+        netCreator.saveNode();
+        // user clicks save on network creator
+    }
+
+
     public void makeInnerInputNode(NetworkEditor netCreator, int layer, string linkedNetName, int linkedNetIndex, int linkedNodeIndex)
     {
         // user adds nodes to input layer (0)

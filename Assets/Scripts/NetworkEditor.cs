@@ -37,6 +37,11 @@ public class NetworkEditor
 
     }
 
+    public void insertNewLayer(int layerIndex)
+    {
+        network.net.Insert(layerIndex, new List<Node>());
+    }
+
     public void setName(string name)
     {
         network.name = name;

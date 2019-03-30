@@ -24,13 +24,10 @@ public class EcoDemo2
             // Create a 300 X 300 map
             userCreatesEcosystem(200);
             // add cat species
-            userAddsSpecies("cat", ColorChoice.blue, .01f);
+            userAddsSpecies("Creature1", ColorChoice.blue, .01f);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", .1f, 100, 300);
-            // add dog species
-            userAddsSpecies("dog", ColorChoice.green, .01f);
-            //populate dog with high amount of variation in weights
-            userPopulatesSpecies("dog", 2f, 100, 300);
+            userPopulatesSpecies("Creature1", .1f, 100, 300);
+
 
             //userAddsSpecies("cow", ColorChoice.red, .01f);
             //userPopulatesSpecies("cow", 2f, 100, 300);
@@ -38,7 +35,7 @@ public class EcoDemo2
         else
         {
             // for debugging
-            Debug.Log(" Make eco called twice! ");
+            //Debug.Log(" Make eco called twice! ");
         }
     }
 
@@ -58,7 +55,7 @@ public class EcoDemo2
         // set basic ecosystem parameters
         ecoCreator.setAbilityPointsPerCreature(10);
         ecoCreator.setCommBits(4);
-        ecoCreator.setDistinctPhenotypeNum(3);
+        ecoCreator.setDistinctPhenotypeNum(4);
         ecoCreator.setTimeUnitsPerTurn(10);
         ecoCreator.setRenewInterval(50);
 
@@ -249,7 +246,7 @@ public class EcoDemo2
         // Note: don't call saveNetwork, call savePhenotypeNetwork
         cc.savePhenotypeNetwork();
 
-        Debug.Log("finished creating phenotype net");
+        //Debug.Log("finished creating phenotype net");
 
         //cc.creature.printNetworks();
         
