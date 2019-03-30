@@ -20,7 +20,7 @@ public abstract class ActionEditorAbstract
         action.timeCost = cost;
     }
 
-    public void addResourceCost(string key, int value)
+    public void addResourceCost(string key, float value)
     {
         action.resourceCosts[key] = value;
     }

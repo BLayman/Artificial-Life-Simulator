@@ -195,7 +195,7 @@ public class EcoDemo1
 
         // TODO create default actions for creature action pool, and example user made action 
         // (should use add an action creator to creature creator)
-        cc.generateDefaultActionPool();
+        cc.generateDefaultActionPool("grass", 5);
 
         /* MUST GENERATE ACTIONS AND ADD THEM TO CREATURE'S ACTION POOL BEFORE CREATING OUTPUT NODES FOR THOSE ACTIONS */
 

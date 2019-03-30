@@ -453,7 +453,7 @@ public class Copier
     public static Action getNewAction(Action oldAction)
     {
         Action newAction = oldAction.getShallowCopy(); // MemberwiseClone also includes subclass fields?
-        Dictionary<string, int> dict = new Dictionary<string, int>();
+        Dictionary<string, float> dict = new Dictionary<string, float>();
         newAction.resourceCosts = dict;
         foreach (string key in oldAction.resourceCosts.Keys)
         {

@@ -279,7 +279,7 @@ public class CreatureEditor
 
 
 
-    public void generateDefaultActionPool()
+    public void generateDefaultActionPool(string resourceSpent, float amount)
     {
         // create move up action
         ActionEditor ac = addAction();
@@ -289,7 +289,7 @@ public class CreatureEditor
         mac.setDirection(moveDir.up);
         mac.setPriority(1);
         mac.setTimeCost(10);
-        mac.addResourceCost("grass", 5);
+        mac.addResourceCost(resourceSpent, amount);
         saveAction();
 
         // create move up action
@@ -300,7 +300,7 @@ public class CreatureEditor
         macd.setDirection(moveDir.down);
         macd.setPriority(1);
         macd.setTimeCost(10);
-        macd.addResourceCost("grass", 5);
+        macd.addResourceCost(resourceSpent, amount);
         saveAction();
 
         // create move up action
@@ -311,7 +311,7 @@ public class CreatureEditor
         macl.setDirection(moveDir.left);
         macl.setPriority(1);
         macl.setTimeCost(10);
-        macl.addResourceCost("grass", 5);
+        macl.addResourceCost(resourceSpent, amount);
         saveAction();
 
         // create move up action
@@ -322,7 +322,7 @@ public class CreatureEditor
         macr.setDirection(moveDir.right);
         macr.setPriority(1);
         macr.setTimeCost(10);
-        macr.addResourceCost("grass", 5);
+        macr.addResourceCost(resourceSpent, amount);
         saveAction();
 
     }
