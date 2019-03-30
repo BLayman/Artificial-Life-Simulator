@@ -15,7 +15,6 @@ public class OutputNode : NonInputNode
 {
     public Action action;
     public Creature parentCreature;
-    public string actionKey;
 
     public OutputNode() { }
 
@@ -35,9 +34,9 @@ public class OutputNode : NonInputNode
     }
 
     // action is assigned using action pool of creature
-    public void setAction(string actionKey)
+    public void setAction(Action a)
     {
-        action = parentCreature.actionPool[actionKey];
+        action = a;
     }
 
 

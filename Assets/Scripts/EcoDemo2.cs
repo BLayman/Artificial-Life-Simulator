@@ -118,6 +118,7 @@ public class EcoDemo2
         cc.setActionClearSize(10);
         cc.setMutationStandardDeviation(mutationDeviation);
         cc.setColor(color);
+        cc.setUsePhenotypeNet(true);
 
         // add resource for the creature to store
         ResourceEditor resourceCreator = cc.addResource();
@@ -252,55 +253,57 @@ public class EcoDemo2
 
         //cc.creature.printNetworks();
         
+        
         /**** net1 ****/
-
+        
         // user adds a network
         NetworkEditor netCreator = cc.addNetwork(NetworkType.regular);
         netCreator.setInLayer(0); // called by default with index of layer user clicked
         netCreator.setName("net1");
 
-        /* Node net1 0,0 */
+        // Node net1 0,0 
         // sense resource 0 up
         makeSensoryInputNode(netCreator, 1, creatureResources[0]);
 
-        /* Node net1 0,1 */
+        // Node net1 0,1 
         // sense resource 0 down
         makeSensoryInputNode(netCreator, 2, creatureResources[0]);
 
-        /* Node net1 0,2 */
+        // Node net1 0,2 
         // sense resource 0 left
         makeSensoryInputNode(netCreator, 3, creatureResources[0]);
 
-        /* Node net1 0,3 */
+        // Node net1 0,3 
         // sense resource 0 right
         makeSensoryInputNode(netCreator, 4, creatureResources[0]);
 
-        /* Node net1 0,4 */
+        // Node net1 0,4 
         // sense resource 0 at current location
         makeSensoryInputNode(netCreator, 0, creatureResources[0]);
 
-        /* Node net1 0,4 */
+        // Node net1 0,4 
         // sense internal level of resource 0
         makeInternalResourceInputNode(netCreator, creatureResources[0]);
+        
 
-
-        /* Node net1 1,0 */
+        // Node net1 1,0 
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
-        /* Node net1 1,1 */
+        // Node net1 1,1 
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
-        /* Node net1 1,2 */
+        // Node net1 1,2 
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
-        /* Node net1 1,3 */
+        // Node net1 1,3 
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
-        /* Node net1 1,4 */
+        // Node net1 1,4 
         makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
-        /* Node net1 1,5 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
+        // Node net1 1,5 
+        //makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
 
         // user clicks save on network creator
         cc.saveNetwork();
 
-
+        
+        
         
         /**** net2 ****/
         /*
@@ -330,11 +333,12 @@ public class EcoDemo2
         /**** outNetUp ****/
 
         // user adds a second network
-        NetworkEditor netCreator2 = cc.addNetwork(NetworkType.regular);
+        OutputNetworkEditor netCreator2 = (OutputNetworkEditor) cc.addNetwork(NetworkType.output);
+        string outputAction = "moveUp";
         // network added to second layer of networks
         netCreator2.setInLayer(1); // called by default with index of layer user clicked
         netCreator2.setName("outNetUp");
-
+        netCreator2.setOutputAction(cc.creature.actionPool[outputAction]);
         /* Node outNet 0,0 */
         // insert a node into 0th layer new network. Connect it to the 0th node in the last layer of net1 (net1 is in layer 0)
         makeInnerInputNode(netCreator2, 0, "net1", 0, 0);
@@ -343,7 +347,7 @@ public class EcoDemo2
         //makeInnerInputNode(netCreator2, 0, "net2", 0, 0);
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreator2, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
+        makeOutputNode(netCreator2, ActivationBehaviorTypes.LogisticAB, outputAction, 1);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -351,11 +355,12 @@ public class EcoDemo2
         /**** outNetDown ****/
 
         // user adds a second network
-        NetworkEditor netCreator4 = cc.addNetwork(NetworkType.regular);
+        OutputNetworkEditor netCreator4 = (OutputNetworkEditor) cc.addNetwork(NetworkType.output);
+        string outputAction2 = "moveDown";
         // network added to second layer of networks
         netCreator4.setInLayer(1); // called by default with index of layer user clicked
         netCreator4.setName("outNetDown");
-
+        netCreator4.setOutputAction(cc.creature.actionPool[outputAction2]);
         /* Node outNet 0,0 */
         // insert a node into 0th layer new network. Connect it to the index 1 node in the last layer of net1 (net1 is in layer 0)
         makeInnerInputNode(netCreator4, 0, "net1", 0, 1);
@@ -364,7 +369,7 @@ public class EcoDemo2
         //makeInnerInputNode(netCreator4, 0, "net2", 0, 1);
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreator4, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
+        makeOutputNode(netCreator4, ActivationBehaviorTypes.LogisticAB, outputAction2, 1);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -372,17 +377,19 @@ public class EcoDemo2
         /**** outNetLeft ****/
 
         // user adds a second network
-        NetworkEditor netCreator6 = cc.addNetwork(NetworkType.regular);
+        OutputNetworkEditor netCreator6 = (OutputNetworkEditor) cc.addNetwork(NetworkType.output);
+        string outputAction3 = "moveLeft";
         // network added to second layer of networks
         netCreator6.setInLayer(1); // called by default with index of layer user clicked
         netCreator6.setName("outNetLeft");
+        netCreator6.setOutputAction(cc.creature.actionPool[outputAction3]);
 
         /* Node outNet 0,0 */
         // insert a node into 0th layer new network. Connect it to the index 1 node in the last layer of net1 (net1 is in layer 0)
         makeInnerInputNode(netCreator6, 0, "net1", 0, 2);
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreator6, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
+        makeOutputNode(netCreator6, ActivationBehaviorTypes.LogisticAB, outputAction3, 1);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -390,10 +397,13 @@ public class EcoDemo2
         /**** outNetRight ****/
 
         // user adds a second network
-        NetworkEditor netCreator7 = cc.addNetwork(NetworkType.regular);
+        OutputNetworkEditor netCreator7 = (OutputNetworkEditor) cc.addNetwork(NetworkType.output);
+        string outputAction4 = "moveRight";
+
         // network added to second layer of networks
         netCreator7.setInLayer(1); // called by default with index of layer user clicked
         netCreator7.setName("outNetRight");
+        netCreator7.setOutputAction(cc.creature.actionPool[outputAction4]);
 
         /* Node outNet 0,0 */
         // insert a node into 0th layer new network. Connect it to the index 1 node in the last layer of net1 (net1 is in layer 0)
@@ -401,17 +411,20 @@ public class EcoDemo2
 
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreator7, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
+        makeOutputNode(netCreator7, ActivationBehaviorTypes.LogisticAB, outputAction4, 1);
         // user clicks save on creature creator
         cc.saveNetwork();
 
         /**** outNetConsume ****/
 
         // user adds a second network
-        NetworkEditor netCreator5 = cc.addNetwork(NetworkType.regular);
+        OutputNetworkEditor netCreator5 = (OutputNetworkEditor) cc.addNetwork(NetworkType.output);
+        string outputAction5 = "eatGrass";
+
         // network added to second layer of networks
         netCreator5.setInLayer(1); // called by default with index of layer user clicked
         netCreator5.setName("outNetEat");
+        netCreator5.setOutputAction(cc.creature.actionPool[outputAction5]);
 
         /* Node outNet 0,0 */
         makeInnerInputNode(netCreator5, 0, "net1", 0, 4);
@@ -420,7 +433,7 @@ public class EcoDemo2
         //makeInnerInputNode(netCreator5, 0, "net2", 0, 2);
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreator5, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
+        makeOutputNode(netCreator5, ActivationBehaviorTypes.LogisticAB, outputAction5, 1);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -428,19 +441,22 @@ public class EcoDemo2
         /**** outNetReproduce ****/
 
         // user adds a second network
-        NetworkEditor netCreatorOutRepro = cc.addNetwork(NetworkType.regular);
+        OutputNetworkEditor netCreatorOutRepro = (OutputNetworkEditor) cc.addNetwork(NetworkType.output);
+        string outputAction6 = "reproduce";
+
         // network added to second layer of networks
         netCreatorOutRepro.setInLayer(1); // called by default with index of layer user clicked
         netCreatorOutRepro.setName("outNetRepro");
+        netCreatorOutRepro.setOutputAction(cc.creature.actionPool[outputAction6]);
 
         /* Node outNet 0,0 */
-        makeInnerInputNode(netCreatorOutRepro, 0, "net1", 0, 5);
+        //makeInnerInputNode(netCreatorOutRepro, 0, "net1", 0, 5);
 
         /* Node outNet 0,1 */
         //makeInnerInputNode(netCreator5, 0, "net2", 0, 2);
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreatorOutRepro, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
+        makeOutputNode(netCreatorOutRepro, ActivationBehaviorTypes.LogisticAB, outputAction6, 1);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -455,338 +471,12 @@ public class EcoDemo2
 
     }
 
+    /*
     public void userAddsSpecies2(string name, ColorChoice color, float mutationDeviation)
     {
-        // when user clicks to start species creation process:
-        CreatureEditor cc = ecoCreator.addCreature();
-
-        // user edits:
-        cc.setSpecies(name);
-        cc.setPhenotype(3);
-        cc.setTurnTime(10);
-        cc.setMaxHealth(1000);
-        cc.setInitialHealth(700);
-        cc.setActionClearInterval(3);
-        cc.setActionClearSize(10);
-        cc.setMutationStandardDeviation(mutationDeviation);
-        cc.setColor(color);
-
-        // add resource for the creature to store
-        ResourceEditor resourceCreator = cc.addResource();
-
-        List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
-
-        //Debug.Log("resource added to creature: " + ecosystemResources[0]);
-
-        resourceCreator.setName(ecosystemResources[0]);
-        resourceCreator.setMaxLevel(100);
-        resourceCreator.setLevel(50);
-        resourceCreator.setHealthGain(1);
-        resourceCreator.setHealthGainThreshold(90);
-        resourceCreator.setDeficiencyHealthDrain(10);
-        resourceCreator.setDeficiencyThreshold(20);
-        resourceCreator.setBaseUsage(1);
-
-        cc.saveResource();
-
-        //Debug.Log("resource added to creature: " + ecosystemResources[1]);
-
-        resourceCreator = cc.addResource();
-
-
-        resourceCreator.setName(ecosystemResources[1]);
-        resourceCreator.setMaxLevel(100);
-        resourceCreator.setLevel(90);
-        resourceCreator.setHealthGain(1);
-        resourceCreator.setHealthGainThreshold(90);
-        resourceCreator.setDeficiencyHealthDrain(5);
-        resourceCreator.setDeficiencyThreshold(20);
-        resourceCreator.setBaseUsage(1);
-
-        cc.saveResource();
-
-
-        List<string> creatureResources = new List<string>(cc.creature.storedResources.Keys);
-
-
-        // TODO create default actions for creature action pool, and example user made action 
-        // (should use add an action creator to creature creator)
-        cc.generateDefaultActionPool();
-
-        /* MUST GENERATE ACTIONS AND ADD THEM TO CREATURE'S ACTION POOL BEFORE CREATING OUTPUT NODES FOR THOSE ACTIONS */
-
-
-        // add default abilities for consuming resources
-        cc.addDefaultResourceAbilities();
-        cc.saveAbilities();
-
-        // create action for consuming grass
-        ActionEditor ae = cc.addAction();
-        ae.setCreator(ActionCreatorType.consumeCreator);
-        ConsumeFromLandEditor cle = (ConsumeFromLandEditor)ae.getActionCreator();
-        cle.setName("eatGrass");
-        cle.setNeighborIndex(0);
-        cle.setResourceToConsume("grass");
-        cle.setPriority(1);
-        cle.setTimeCost(10);
-        cle.addResourceCost("grass", 1);
-        cc.saveAction();
-
-        // create action for reproduction
-        ActionEditor ae2 = cc.addAction();
-        ae2.setCreator(ActionCreatorType.reproduceCreator);
-        ReproActionEditor rae = (ReproActionEditor)ae2.getActionCreator();
-        rae.setName("reproduce");
-        rae.setPriority(1);
-        rae.setTimeCost(10);
-        rae.addResourceCost("grass", 20);
-        cc.saveAction();
-
-        // action for converting grass resource into flowers 
-        ActionEditor ae3 = cc.addAction();
-        ae3.setCreator(ActionCreatorType.convertEditor);
-        ConvertEditor convEdit = (ConvertEditor)ae3.getActionCreator();
-        convEdit.setName("convertGrassToFlowers");
-        convEdit.setPriority(1);
-        convEdit.setTimeCost(10);
-        convEdit.setAmtToProduce(5);
-        convEdit.addStartResource("grass", 1);
-        convEdit.addEndResource("flowers", 2);
-        cc.saveAction();
-        // TODO: add to neural network
-
-        // action for 
-        ActionEditor ae4 = cc.addAction();
-        ae4.setCreator(ActionCreatorType.depositEditor);
-        DepositEditor depEdit = (DepositEditor)ae4.getActionCreator();
-        depEdit.setName("depositFlowers");
-        depEdit.setNeighborIndex(0);
-        depEdit.setDepositResource("flowers");
-        depEdit.setAmtToDeposit(10);
-        depEdit.setPriority(1);
-        depEdit.setTimeCost(10);
-        cc.saveAction();
-        // TODO: add to neural network
-
-
-        /*
-        ActionEditor ae2 = cc.addAction();
-        ae2.setCreator(ActionCreatorType.consumeCreator);
-        ConsumeFromLandEditor cle2 = (ConsumeFromLandEditor)ae2.getActionCreator();
-        cle2.setName("eat");
-        cle2.setNeighborIndex(3);
-        cle2.setResourceToConsume("flowers");
-        cle2.setPriority(1);
-        cle2.setTimeCost(5);
-        cle2.addResourceCost("flowers", 1);
-        cc.saveAction();
-        */
-
-        // user opens networks creator for that creature
-
-
-        /**** net1 ****/
-
-        // user adds a network
-        NetworkEditor netCreator = cc.addNetwork(NetworkType.regular);
-        netCreator.setInLayer(0); // called by default with index of layer user clicked
-        netCreator.setName("net1");
-
-        /* Node net1 0,0 */
-        // sense resource 0 up
-        makeSensoryInputNode(netCreator, 1, creatureResources[0]);
-
-        /* Node net1 0,1 */
-        // sense resource 0 down
-        makeSensoryInputNode(netCreator, 2, creatureResources[0]);
-
-        /* Node net1 0,2 */
-        // sense resource 0 left
-        makeSensoryInputNode(netCreator, 3, creatureResources[0]);
-
-        /* Node net1 0,3 */
-        // sense resource 0 right
-        makeSensoryInputNode(netCreator, 4, creatureResources[0]);
-
-        /* Node net1 0,4 */
-        // sense resource 0 at current location
-        makeSensoryInputNode(netCreator, 0, creatureResources[0]);
-
-        /* Node net1 0,4 */
-        // sense internal level of resource 0
-        makeInternalResourceInputNode(netCreator, creatureResources[0]);
-
-
-        /* Node net1 1,0 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
-        /* Node net1 1,1 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
-        /* Node net1 1,2 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
-        /* Node net1 1,3 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
-        /* Node net1 1,4 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
-        /* Node net1 1,5 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
-
-        // user clicks save on network creator
-        cc.saveNetwork();
-
-
-
-        /**** net2 ****/
-        /*
-        // user adds a network
-        NetworkEditor netCreator3 = cc.addNetwork();
-        netCreator3.setInLayer(0); // called by default with index of layer user clicked
-        netCreator3.setName("net2");
-
-        // Node net2 0,0 
-        // sense resource up
-        makeSensoryInputNode(netCreator3, 1, creatureResources[1]);
-
-        // Node net2 0,1 
-        // sense resource down
-        makeSensoryInputNode(netCreator3, 2, creatureResources[1]);
-
-        // Node net2 1,0 
-        makeOutputNode(netCreator3, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
-        // Node net2 1,1 
-        makeOutputNode(netCreator3, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
-
-        // user clicks save on network creator
-        cc.saveNetwork();
-        */
-
-
-        /**** outNetUp ****/
-
-        // user adds a second network
-        NetworkEditor netCreator2 = cc.addNetwork(NetworkType.regular);
-        // network added to second layer of networks
-        netCreator2.setInLayer(1); // called by default with index of layer user clicked
-        netCreator2.setName("outNetUp");
-
-        /* Node outNet 0,0 */
-        // insert a node into 0th layer new network. Connect it to the 0th node in the last layer of net1 (net1 is in layer 0)
-        makeInnerInputNode(netCreator2, 0, "net1", 0, 0);
-
-        /* Node outNet 0,1 */
-        //makeInnerInputNode(netCreator2, 0, "net2", 0, 0);
-
-        /* Node outNet 1,0 */
-        makeOutputNode(netCreator2, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetDown ****/
-
-        // user adds a second network
-        NetworkEditor netCreator4 = cc.addNetwork(NetworkType.regular);
-        // network added to second layer of networks
-        netCreator4.setInLayer(1); // called by default with index of layer user clicked
-        netCreator4.setName("outNetDown");
-
-        /* Node outNet 0,0 */
-        // insert a node into 0th layer new network. Connect it to the index 1 node in the last layer of net1 (net1 is in layer 0)
-        makeInnerInputNode(netCreator4, 0, "net1", 0, 1);
-
-        /* Node outNet 0,1 */
-        //makeInnerInputNode(netCreator4, 0, "net2", 0, 1);
-
-        /* Node outNet 1,0 */
-        makeOutputNode(netCreator4, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetLeft ****/
-
-        // user adds a second network
-        NetworkEditor netCreator6 = cc.addNetwork(NetworkType.regular);
-        // network added to second layer of networks
-        netCreator6.setInLayer(1); // called by default with index of layer user clicked
-        netCreator6.setName("outNetLeft");
-
-        /* Node outNet 0,0 */
-        // insert a node into 0th layer new network. Connect it to the index 1 node in the last layer of net1 (net1 is in layer 0)
-        makeInnerInputNode(netCreator6, 0, "net1", 0, 2);
-
-        /* Node outNet 1,0 */
-        makeOutputNode(netCreator6, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetRight ****/
-
-        // user adds a second network
-        NetworkEditor netCreator7 = cc.addNetwork(NetworkType.regular);
-        // network added to second layer of networks
-        netCreator7.setInLayer(1); // called by default with index of layer user clicked
-        netCreator7.setName("outNetRight");
-
-        /* Node outNet 0,0 */
-        // insert a node into 0th layer new network. Connect it to the index 1 node in the last layer of net1 (net1 is in layer 0)
-        makeInnerInputNode(netCreator7, 0, "net1", 0, 3);
-
-
-        /* Node outNet 1,0 */
-        makeOutputNode(netCreator7, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-        /**** outNetConsume ****/
-
-        // user adds a second network
-        NetworkEditor netCreator5 = cc.addNetwork(NetworkType.regular);
-        // network added to second layer of networks
-        netCreator5.setInLayer(1); // called by default with index of layer user clicked
-        netCreator5.setName("outNetEat");
-
-        /* Node outNet 0,0 */
-        makeInnerInputNode(netCreator5, 0, "net1", 0, 4);
-
-        /* Node outNet 0,1 */
-        //makeInnerInputNode(netCreator5, 0, "net2", 0, 2);
-
-        /* Node outNet 1,0 */
-        makeOutputNode(netCreator5, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetReproduce ****/
-
-        // user adds a second network
-        NetworkEditor netCreatorOutRepro = cc.addNetwork(NetworkType.regular);
-        // network added to second layer of networks
-        netCreatorOutRepro.setInLayer(1); // called by default with index of layer user clicked
-        netCreatorOutRepro.setName("outNetRepro");
-
-        /* Node outNet 0,0 */
-        makeInnerInputNode(netCreatorOutRepro, 0, "net1", 0, 5);
-
-        /* Node outNet 0,1 */
-        //makeInnerInputNode(netCreator5, 0, "net2", 0, 2);
-
-        /* Node outNet 1,0 */
-        makeOutputNode(netCreatorOutRepro, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        //cc.creature.printNetworks();
-
-        // adds creature to list of founders
-        ecoCreator.addToFounders();
-        // saves founders to ecosystem species list
-        ecoCreator.saveFoundersToSpecies();
-
-
+       
     }
+    */
 
 
 
@@ -859,13 +549,24 @@ public class EcoDemo2
         NodeEditor nodeCreator = netCreator.addNode(layer);
         nodeCreator.setCreator(NodeCreatorType.outputNodeCreator);
         OutputNodeEditor onc = (OutputNodeEditor)nodeCreator.getNodeCreator();
-        onc.setAction(action);
-        onc.setActivationFunction(activationType);
-        netCreator.saveNode();
+        if (!netCreator.parentCreatureCreator.creature.actionPool.ContainsKey(action))
+        {
+            Debug.LogError("invalid action key for output node");
+        }
+        else
+        {
+            Action a = netCreator.parentCreatureCreator.creature.actionPool[action];
+            onc.setAction(a);
+            onc.setActivationFunction(activationType);
+            netCreator.saveNode();
+        }
+        
         // user clicks save on network creator
     }
 
-    
+
+
+
     public void makeInnerInputNode(NetworkEditor netCreator, int layer, string linkedNetName, int linkedNetIndex, int linkedNodeIndex)
     {
         // user adds nodes to input layer (0)

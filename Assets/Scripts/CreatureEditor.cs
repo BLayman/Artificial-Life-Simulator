@@ -9,7 +9,7 @@ using System.Text;
 using UnityEngine;
 
 public enum ColorChoice {red,green,blue};
-public enum NetworkType {regular, phenotype, comm}
+public enum NetworkType {regular, phenotype, comm, output}
 
 /// <remarks>API for creature class. Stored by EcosystemCreator.</remarks>
 public class CreatureEditor
@@ -132,6 +132,8 @@ public class CreatureEditor
         creature.actionClearInterval = steps;
     }
 
+
+
     /// <summary>
     /// Sets the size of the action queue required for the queue to be cleared
     /// </summary>
@@ -146,6 +148,11 @@ public class CreatureEditor
     public void setMutationStandardDeviation(float deviation)
     {
         creature.mutationStandardDeviation = deviation;
+    }
+
+    public void setUsePhenotypeNet(bool usePhenotypeNet)
+    {
+        creature.senseNeighborPhenotypes = usePhenotypeNet;
     }
 
     /// <summary>
@@ -218,6 +225,9 @@ public class CreatureEditor
                 break;
             case NetworkType.phenotype:
                 netCreator = new PhenotypeNetworkEditor(new PhenotypeNetwork(), this);
+                break;
+            case NetworkType.output:
+                netCreator = new OutputNetworkEditor(new OutputNetwork(), this);
                 break;
             case NetworkType.comm:
                 // TODO

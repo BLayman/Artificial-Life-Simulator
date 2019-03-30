@@ -26,9 +26,9 @@ public class OutputNodeEditor : NodeEditorInterface
     }
 
     // action key parameter comes from creature's actionPool keys
-    public void setAction(string actionKey)
+    public void setAction(Action a)
     {
-        foNode.setAction(actionKey);
+        foNode.setAction(a);
     }
 
 

@@ -26,7 +26,7 @@ public class Creature
     public System.Random rand2; // used for selecting actions from network
     int count;
     public Color color; // color displayed on map
-    public bool senseNeighborPhenotypes = true;
+    public bool senseNeighborPhenotypes = false;
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
@@ -298,8 +298,10 @@ public class Creature
         }
     }
 
+    // TODO : test
     public void addPhenotypeNetworks()
     {
+        // add network for every neighbor with a creature
         for (int i = 0; i < neighborLands.Length; i++)
         {
             if (neighborLands[i].creatureIsOn())
@@ -311,10 +313,42 @@ public class Creature
                 // set the phenotype used in the template
                 phenotypeNet.setInputNodes(neighborLands[i].creatureOn.phenotype);
                 // add the network to the creatures networks
-                networks[0].Add("phenotypeNet" + i, phenotypeNet);
+                string phenoNetName = "phenotypeNet" + i;
+                networks[0].Add(phenoNetName, phenotypeNet);
+
+                // for every output node in the phenotype network
+                int length = phenotypeNet.net.Count;
+                for (int j = 0; j < phenotypeNet.net[length - 1].Count; j++)
+                {
+                    OutputNode outNode = (OutputNode) phenotypeNet.net[length - 1][j];
+
+                    // for every output network, add an inner-input node for the phenotype node, if applicable
+                    foreach (OutputNetwork net in networks[networks.Count - 1].Values)
+                    {
+                        // output network must match action of phenotype output node
+                        if (net.outputAction.name.Equals(outNode.action.name))
+                        {
+                            // create a new inner-input node
+                            InnerInputNode node = new InnerInputNode();
+
+                            // set linked node
+                            node.parentCreature = this;
+                            node.setLinkedNode(this, 0 , phenoNetName, phenotypeNet.net.Count - 1, j);
+                            node.temp = true;
+
+                            // add inner-input node to first layer of output network
+                            net.net[0].Add(node);
+                        }
+                        
+                    }
+                }
+
+                
             }
         }
     }
+
+
 
     // reset phenotype networks after each turn
     public void removePhenotypeNetworks()
@@ -332,14 +366,34 @@ public class Creature
         {
             networks[0].Remove(toRemove[i]);
         }
+
+        // remove extra nodes as well
+
+        // for every output network
+        foreach (OutputNetwork net in networks[networks.Count - 1].Values)
+        {
+            List<Node> removeNodes = new List<Node>();
+            // for every inner input node in first layer, delete if temp
+            foreach (Node node in net.net[0])
+            {
+                if(node.GetType().Name == "InnerInputNode")
+                {
+                    InnerInputNode iiNode = (InnerInputNode) node;
+                    if (iiNode.temp)
+                    {
+                        removeNodes.Add(node);
+                    }
+                }
+                
+            }
+            foreach (Node node in removeNodes)
+            {
+                net.net[0].Remove(node);
+            }
+        }
+        
     }
 
-    /*
-    public Creature getCopy()
-    {
-        return CSDeepCloneObject.DeepCloneHelper.DeepClone(this);
-    }
-    */
 
 
     /// <summary>

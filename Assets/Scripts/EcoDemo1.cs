@@ -492,7 +492,7 @@ public class EcoDemo1
         NodeEditor nodeCreator = netCreator.addNode(layer);
         nodeCreator.setCreator(NodeCreatorType.outputNodeCreator);
         OutputNodeEditor onc = (OutputNodeEditor)nodeCreator.getNodeCreator();
-        onc.setAction(action);
+        onc.setAction(netCreator.parentCreatureCreator.creature.actionPool[action]);
         onc.setActivationFunction(activationType);
         netCreator.saveNode();
         // user clicks save on network creator

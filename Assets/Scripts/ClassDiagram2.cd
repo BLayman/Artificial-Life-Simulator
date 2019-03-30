@@ -46,14 +46,14 @@
   <Class Name="InnerInputNode">
     <Position X="10" Y="11" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAIAAAAAAgAAAAAAACAAACAAAAAEAEAAAAAA=</HashCode>
+      <HashCode>AAAAAAgBAIAAAgAAgAAAAAAACAAACAAAAAEAEAAAAAA=</HashCode>
       <FileName>Assets\Scripts\InnerInputNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OutputNode">
     <Position X="19.25" Y="22.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAAQAAAAABAAACAAAAAAAAAAAQAAAAAA=</HashCode>
+      <HashCode>AAAABAAAAAAAAAQAAAAABAAACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\OutputNode.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -146,11 +146,6 @@
   </Class>
   <Class Name="CreatureEditor">
     <Position X="22" Y="4.75" Width="3" />
-    <AssociationLine Name="creature" Type="Creature">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.081" Y="0.407" />
-      </MemberNameLabel>
-    </AssociationLine>
     <AssociationLine Name="netCreator" Type="NetworkEditor">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.307" Y="0.249" />
@@ -166,14 +161,13 @@
       <FileName>Assets\Scripts\CreatureEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="creature" />
       <Field Name="netCreator" />
       <Field Name="resourceCreator" />
       <Field Name="abilitiesCreator" />
     </ShowAsAssociation>
   </Class>
   <Class Name="NetworkEditor">
-    <Position X="26.5" Y="2.5" Width="2.5" />
+    <Position X="26.5" Y="3" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AhAAAAAAAAQAAAAAAAAAAAAAAAAAAABABAgAAAAAIAA=</HashCode>
       <FileName>Assets\Scripts\NetworkEditor.cs</FileName>
@@ -340,7 +334,7 @@
   <Class Name="InnerInputNodeEditor">
     <Position X="3.5" Y="7.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAAAgAAAAAAAAAACAAAABAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAACAAAABAAAAAAAAAIAAA=</HashCode>
       <FileName>Assets\Scripts\InnerInputNodeEditor.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -348,7 +342,7 @@
   <Class Name="EcoDemo2">
     <Position X="35.25" Y="0.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>QCACAAAggAAAGAEAAAAAAgYAAAgAAAAAAAAAAIAQAAA=</HashCode>
+      <HashCode>QCACAAAggAAAGAEAAAAAAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
       <FileName>Assets\Scripts\EcoDemo2.cs</FileName>
       <NewMemberFileName>Assets\Scripts\EcoDemo1.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -360,26 +354,6 @@
       <FileName>Assets\Scripts\LogisticWithNegActivBehav.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Creature">
-    <Position X="22" Y="11.5" Width="3.75" />
-    <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
-      <Path>
-        <Point X="25.75" Y="13.572" />
-        <Point X="29.5" Y="13.572" />
-        <Point X="29.5" Y="15" />
-      </Path>
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-0.24" Y="0.414" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <TypeIdentifier>
-      <HashCode>IAqIEaEZAaZAAyEYBAgCISwgIZQAAICQEAABIABhBAk=</HashCode>
-      <FileName>Assets\Scripts\Creature.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Field Name="neighborLands" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="TanhActivBehav">
     <Position X="6.75" Y="21.25" Width="2" />
@@ -501,6 +475,40 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\PhenotypeNetworkEditor.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="OutputNetworkEditor">
+    <Position X="26.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\OutputNetworkEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OutputNetwork">
+    <Position X="0.5" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\OutputNetwork.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Creature">
+    <Position X="22" Y="11.5" Width="3.75" />
+    <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
+      <Path>
+        <Point X="25.75" Y="13.572" />
+        <Point X="29.5" Y="13.572" />
+        <Point X="29.5" Y="15" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.24" Y="0.414" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAqIEaEZAaZAAyEYBAgCISwgIZQAAICQEAABIABhBAk=</HashCode>
+      <FileName>Assets\Scripts\Creature.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="neighborLands" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Interface Name="NodeEditorInterface">
     <Position X="10.5" Y="4.75" Width="2" />
