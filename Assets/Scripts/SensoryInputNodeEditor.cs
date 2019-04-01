@@ -14,7 +14,6 @@ public class SensoryInputNodeEditor : NodeEditorInterface
 {
     public SensoryInputNode siNode;
     public int nodeLayer;
-    private NetworkEditor parentNetCreator;
 
     public SensoryInputNodeEditor(SensoryInputNode _siNode, int _nodeLayer)
     {

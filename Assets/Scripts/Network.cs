@@ -19,6 +19,28 @@ public class Network
     public string name;
     public int inLayer;
 
+    /// <summary>
+    /// Calls update value on each node in each layer
+    /// </summary>
+    public void feedForward()
+    {
+        // for every layer
+        for (int i = 0; i < net.Count; i++)
+        {
+            // for every node
+            for (int j = 0; j < net[i].Count; j++)
+            {
+                // update the value of that node
+                net[i][j].updateValue();
+            }
+        }
+    }
+
+    public Network getShallowCopy()
+    {
+        return (Network)this.MemberwiseClone();
+    }
+
     /*
     public Network(string _name)
     {
@@ -67,25 +89,5 @@ public class Network
     }
     */
 
-    /// <summary>
-    /// Calls update value on each node in each layer
-    /// </summary>
-    public void feedForward()
-    {
-        // for every layer
-        for (int i = 0; i < net.Count; i++)
-        {
-            // for every node
-            for (int j = 0; j < net[i].Count; j++)
-            {
-                // update the value of that node
-                net[i][j].updateValue();
-            }
-        }
-    }
 
-    public Network getShallowCopy()
-    {
-        return (Network)this.MemberwiseClone();
-    }
 }

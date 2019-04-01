@@ -32,8 +32,14 @@ public class NetworkEditor
         // bias node added to input nodes
         BiasNode bn = new BiasNode();
         bn.setBias(1);
+        // TODO: remember to add a bias node whenever a hidden layer is created
         network.net[0].Add(bn);
 
+    }
+
+    public void insertNewLayer(int layerIndex)
+    {
+        network.net.Insert(layerIndex, new List<Node>());
     }
 
     public void setName(string name)
@@ -48,11 +54,6 @@ public class NetworkEditor
 
     public void saveNode()
     {
-        //Debug.Log(network);
-        //Debug.Log(network.net);
-        //Debug.Log(nodeCreator);
-        //Debug.Log(network.net[nodeCreator.nodeLayer]);
-        //Debug.Log(nodeCreator.getCreatedNode());
         network.net[nodeCreator.nodeLayer].Add(nodeCreator.getCreatedNode());
     }
 

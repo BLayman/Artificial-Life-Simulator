@@ -64,6 +64,8 @@ public class Ecosystem
 
     bool[] threadsFinished;
 
+    public bool allDead = false;
+
     System.Object threadsFinishedLock = new System.Object();
 
     /// <summary>
@@ -77,6 +79,7 @@ public class Ecosystem
 
             age++; // for keeping track of ecosystem age
 
+            bool notAllDead = false;
             // for each population
             foreach (string species in populations.Keys)
             {
@@ -84,6 +87,7 @@ public class Ecosystem
                 // if population has any members
                 if (population.creatures.Count > 0)
                 {
+                    notAllDead = true;
                     List<Creature> toRemove = new List<Creature>();
                     // for each creature in population
                     for (int l = 0; l < population.creatures.Count; l++)
@@ -132,7 +136,10 @@ public class Ecosystem
                             {
                                 foreach (ResourceStore res in map[j][k].propertyDict.Values)
                                 {
-                                    res.renewResource();
+                                    if (res.renewalAmt > 0)
+                                    {
+                                        res.renewResource();
+                                    }
                                 }
                             }
                         }
@@ -162,20 +169,28 @@ public class Ecosystem
                         {
                             foreach (ResourceStore res in map[renewRow][k].propertyDict.Values)
                             {
-                                res.renewResource();
+                                if (res.renewalAmt > 0)
+                                {
+                                    res.renewResource();
+                                }
                             }
                         }
                     }
                 }
 
             }
+
+            if (!notAllDead)
+            {
+                allDead = true;
+            }
         }
 
-        Debug.Log("age: " + age);
+        //Debug.Log("age: " + age);
 
         foreach (Population pop in populations.Values)
         {
-            Debug.Log(pop.founder.species + " pop size: " + pop.size);
+            //Debug.Log(pop.founder.species + " pop size: " + pop.size);
 
         }
         // assuming user has set timeSteps to be 1 million or less
@@ -211,35 +226,11 @@ public class Ecosystem
 
     /** Texture stuff below **/
 
-
-    public void updateTexture()
+  
+    public void updateTexture(string visibleResource)
     {
-
         colors = new Color[map.Count * map[0].Count]; // reference update for each ecosystem
-        Color resourceShade = new Color(1,1,1);
-        Color creatureColor = Color.blue;
-        //float st = System.DateTime.Now.Millisecond;
-        for (int x = 0; x < map.Count; x++)
-        {
-            for (int y = 0; y < map[x].Count; y++)
-            {
-                if (map[x][y].creatureIsOn())
-                {
-                    colors[y * map.Count + x] = map[x][y].creatureOn.color;
-                }
-                else
-                {
-                    float proportionStored = map[x][y].propertyDict["grass"].getProportionStored();
-                    resourceShade.r = proportionStored;
-                    resourceShade.g = proportionStored;
-                    resourceShade.b = proportionStored;
-
-
-                    colors[y * map.Count + x] = resourceShade;
-                }
-            }
-        }
-
+        TextureUpdater.updateTexture(map, colors, visibleResource);
 
         //float et = System.DateTime.Now.Millisecond;
         //Debug.Log("Time to update texture:" + (et - st));

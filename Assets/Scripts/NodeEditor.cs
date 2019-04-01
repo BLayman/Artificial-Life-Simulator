@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public enum NodeCreatorType { siNodeCreator, commNodeCreator, outputNodeCreator, innerInputNodeCreator }
+public enum NodeCreatorType { siNodeCreator, commNodeCreator, outputNodeCreator, innerInputNodeCreator, internalResNodeEditor, hiddenNode }
 
 
 /// <summary>
@@ -34,6 +34,7 @@ public class NodeEditor
     {
         creatorType = type;
 
+        // Reminder: don't use default constructor for creating nodes
         switch (type)
         {
             case NodeCreatorType.siNodeCreator:
@@ -48,6 +49,12 @@ public class NodeEditor
                 break;
             case NodeCreatorType.innerInputNodeCreator:
                 nodeCreator = new InnerInputNodeEditor(new InnerInputNode(), parentNetCreator.parentCreatureCreator.creature);
+                break;
+            case NodeCreatorType.internalResNodeEditor:
+                nodeCreator = new InternalResInputNodeEditor(new InternalResourceInputNode(parentNetCreator.parentCreatureCreator.creature));
+                break;
+            case NodeCreatorType.hiddenNode:
+                nodeCreator = new HiddenNodeEditor(new NonInputNode(parentNetCreator.network, nodeLayer), nodeLayer);
                 break;
             default:
                 Debug.LogError("unable to set node creator to that type.");
@@ -69,6 +76,10 @@ public class NodeEditor
                 return (InnerInputNodeEditor)nodeCreator;
             case NodeCreatorType.outputNodeCreator:
                 return (OutputNodeEditor)nodeCreator;
+            case NodeCreatorType.internalResNodeEditor:
+                return (InternalResInputNodeEditor)nodeCreator;
+            case NodeCreatorType.hiddenNode:
+                return (HiddenNodeEditor)nodeCreator;
             default:
                 Debug.LogError("not able to get that node creator");
                 return null;

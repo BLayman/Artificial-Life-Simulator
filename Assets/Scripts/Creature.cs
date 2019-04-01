@@ -26,6 +26,7 @@ public class Creature
     public System.Random rand2; // used for selecting actions from network
     int count;
     public Color color; // color displayed on map
+    public bool senseNeighborPhenotypes = false;
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
@@ -80,7 +81,7 @@ public class Creature
     /// </summary>
     public List<CommSignal> inputCommList = new List<CommSignal>();
     /// <summary>
-    /// A comm network will be created for each CommSignal in commList, and added to the first layer of networks in "networks" (the input layer).
+    /// A comm network will be created for each CommSignal in commList, and added to the first layer of networks in "networks" .
     /// </summary>
     public CommNetwork commInNetTemplate = new CommNetwork();
     /// <summary>
@@ -90,6 +91,17 @@ public class Creature
     /// <summary>
     /// Maximum health that creature can attain.
     /// </summary>
+
+    /// <summary>
+    /// A list of neighbor phenotypes
+    /// </summary>
+    // public List<bool[]> inputPhenotypeList = new List<bool[]>();
+
+
+    /// <summary>
+    /// A network will be created for each neighbor to process its phenotype, and added to the first layer of networks in "networks" 
+    public PhenotypeNetwork phenotypeNetTemplate = new PhenotypeNetwork();
+
     public float maxHealth;
 
     public int remainingAbilityPoints;
@@ -121,7 +133,7 @@ public class Creature
         rand2 = new System.Random();
 
         count = 0;
-        Debug.Log("creature constructor called");
+        // Debug.Log("*********************        creature constructor called             ********************");
 
     }
 
@@ -178,7 +190,7 @@ public class Creature
                 // TODO: make work indefinitely
                 if(count > 1000000000)
                 {
-                    Debug.Log("creating new random number generator");
+                    //Debug.Log("creating new random number generator");
                     // will also need to reset seed generator
                     rand = new System.Random();
                     count = 0;
@@ -205,7 +217,7 @@ public class Creature
         }
     }
 
-
+    // TODO : also print hidden layers
     public void printNetworks()
     {
         // print creature's networks:
@@ -244,10 +256,31 @@ public class Creature
                 Debug.Log("*************   this final output node value: " + node.value);
             }
         }
+
+        Debug.Log("********     phenotype net template      ***********");
+        Network net = phenotypeNetTemplate;
+        Debug.Log("net name: " + net.name);
+        Debug.Log("layer 1:");
+        foreach (Node node in net.net[0])
+        {
+            Debug.Log("input value: " + node.value);
+        }
+        Debug.Log("layer 2:");
+
+        foreach (NonInputNode node in net.net[1])
+        {
+            node.printInputsAndWeights();
+            Debug.Log("*************   this final output node value: " + node.value);
+        }
     }
 
     public void updateNets()
     {
+        if (senseNeighborPhenotypes)
+        {
+            addPhenotypeNetworks();
+        }
+
         // for every layer of networks
         for (int i = 0; i < networks.Count; i++)
         {
@@ -258,14 +291,109 @@ public class Creature
                 net.feedForward();
             }
         }
+
+        if (senseNeighborPhenotypes)
+        {
+            removePhenotypeNetworks();
+        }
     }
 
-    /*
-    public Creature getCopy()
+    // TODO : test
+    public void addPhenotypeNetworks()
     {
-        return CSDeepCloneObject.DeepCloneHelper.DeepClone(this);
+        // add network for every neighbor with a creature
+        for (int i = 0; i < neighborLands.Length; i++)
+        {
+            if (neighborLands[i].creatureIsOn())
+            {
+                // get a copy of the template
+                // Debug.Log("template first layer length: " + phenotypeNetTemplate.net[0].Count);
+                PhenotypeNetwork phenotypeNet = (PhenotypeNetwork) Copier.copyNetwork(phenotypeNetTemplate, this);
+               
+                // set the phenotype used in the template
+                phenotypeNet.setInputNodes(neighborLands[i].creatureOn.phenotype);
+                // add the network to the creatures networks
+                string phenoNetName = "phenotypeNet" + i;
+                networks[0].Add(phenoNetName, phenotypeNet);
+
+                // for every output node in the phenotype network
+                int length = phenotypeNet.net.Count;
+                for (int j = 0; j < phenotypeNet.net[length - 1].Count; j++)
+                {
+                    OutputNode outNode = (OutputNode) phenotypeNet.net[length - 1][j];
+
+                    // for every output network, add an inner-input node for the phenotype node, if applicable
+                    foreach (OutputNetwork net in networks[networks.Count - 1].Values)
+                    {
+                        // output network must match action of phenotype output node
+                        if (net.outputAction.name.Equals(outNode.action.name))
+                        {
+                            // create a new inner-input node
+                            InnerInputNode node = new InnerInputNode();
+
+                            // set linked node
+                            node.parentCreature = this;
+                            node.setLinkedNode(this, 0 , phenoNetName, phenotypeNet.net.Count - 1, j);
+                            node.temp = true;
+
+                            // add inner-input node to first layer of output network
+                            net.net[0].Add(node);
+                        }
+                        
+                    }
+                }
+
+                
+            }
+        }
     }
-    */
+
+
+
+    // reset phenotype networks after each turn
+    public void removePhenotypeNetworks()
+    {
+        List<string> toRemove = new List<string>();
+
+        foreach (string netKey in networks[0].Keys)
+        {
+            if (netKey.StartsWith("phenotypeNet"))
+            {
+                toRemove.Add(netKey);
+            }
+        }
+        for (int i = 0; i < toRemove.Count; i++)
+        {
+            networks[0].Remove(toRemove[i]);
+        }
+
+        // remove extra nodes as well
+
+        // for every output network
+        foreach (OutputNetwork net in networks[networks.Count - 1].Values)
+        {
+            List<Node> removeNodes = new List<Node>();
+            // for every inner input node in first layer, delete if temp
+            foreach (Node node in net.net[0])
+            {
+                if(node.GetType().Name == "InnerInputNode")
+                {
+                    InnerInputNode iiNode = (InnerInputNode) node;
+                    if (iiNode.temp)
+                    {
+                        removeNodes.Add(node);
+                    }
+                }
+                
+            }
+            foreach (Node node in removeNodes)
+            {
+                net.net[0].Remove(node);
+            }
+        }
+        
+    }
+
 
 
     /// <summary>
@@ -449,8 +577,7 @@ public class Creature
 
 
 
-    public void addVariationToWeights
-        (float standardDev)
+    public void addVariationToWeights (float standardDev)
     {
         foreach (Dictionary<string, Network> dict in networks)
         {
@@ -467,6 +594,19 @@ public class Creature
                             //Debug.Log("new weight: " + node.weights[i]);
                         }
                     }
+                }
+            }
+        }
+        // update weights of phenotype network
+        foreach (List<Node> layer in phenotypeNetTemplate.net)
+        {
+            foreach (NonInputNode node in layer.OfType<NonInputNode>())
+            {
+                for (int i = 0; i < node.weights.Count; i++)
+                {
+                    //Debug.Log("old weight: " + node.weights[i]);
+                    node.weights[i] += Copier.normRand(standardDev);
+                    //Debug.Log("new weight: " + node.weights[i]);
                 }
             }
         }

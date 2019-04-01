@@ -126,7 +126,8 @@ public class NonInputNode : Node
     public void assignPrevNodes()
     {
         prevNodes.Clear();
-
+        //Debug.Log("layer: " + layer);
+        //Debug.Log("count: " + parentNet.net.Count);
         for (int i = 0; i < parentNet.net[layer - 1].Count; i++)
         {
             if (!tabooPrevNodeIndicies.Contains(i))

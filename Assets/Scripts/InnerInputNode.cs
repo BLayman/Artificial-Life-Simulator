@@ -15,6 +15,20 @@ public class InnerInputNode : Node
     public Creature parentCreature;
     public int linkedNodeIndex;
     public int linkedNodeNetworkLayer;
+    public int outLayerIndex;
+    public bool temp = false;
+
+
+    public void setLinkedNode(Creature parent, int netLayer, string netName, int outLayer, int outLayerNodeIndex)
+    {
+        parentCreature = parent;
+        linkedNodeNetworkLayer = netLayer;
+        linkedNetName = netName;
+
+        outLayerIndex = outLayer;
+        linkedNodeIndex = outLayerNodeIndex;
+        linkedNode = parentCreature.networks[linkedNodeNetworkLayer][linkedNetName].net[outLayerIndex][linkedNodeIndex];
+    }
 
     /// <summary>
     /// This method simply gets the value from inNode.

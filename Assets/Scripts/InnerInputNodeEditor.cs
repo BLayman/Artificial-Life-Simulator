@@ -11,30 +11,32 @@ using UnityEngine;
 /// </summary>
 public class InnerInputNodeEditor : NodeEditorInterface
 {
-    InnerInputNode node;
+    InnerInputNode iiNode;
     Creature parentCreature;
 
     public InnerInputNodeEditor(InnerInputNode node, Creature parentCreature)
     {
         this.parentCreature = parentCreature;
-        this.node = node;
+        this.iiNode = node;
     }
 
     public Node getNode()
     {
-        return node;
+        return iiNode;
     }
+
 
     // netName: name of connected network, outLayerNodeIndex : index of connected node in it's layer, netLayer: layer in which connected network exists
     public void setLinkedNode(string netName, int outLayerNodeIndex, int netLayer)
     {
+        if (!parentCreature.networks[netLayer].ContainsKey(netName))
+        {
+            Debug.LogError("invalid network name: " + netName);
+        }
         // get last layer of connected network
         int outLayerIndex = parentCreature.networks[netLayer][netName].net.Count - 1;
         // use last layer index and index of connected node in the layer to get linked node
-        node.linkedNode = parentCreature.networks[netLayer][netName].net[outLayerIndex][outLayerNodeIndex];
-        node.linkedNetName = netName;
-        node.linkedNodeIndex = outLayerNodeIndex;
-        node.linkedNodeNetworkLayer = netLayer;
-        node.parentCreature = parentCreature;
+        iiNode.setLinkedNode(parentCreature, netLayer, netName, outLayerIndex, outLayerNodeIndex);
+        
     }
 }

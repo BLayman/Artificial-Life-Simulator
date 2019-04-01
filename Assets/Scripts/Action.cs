@@ -15,7 +15,7 @@ public abstract class Action
     /// <summary>
     /// Stores which resources are spent, and the amount spent
     /// </summary>
-    public Dictionary<string, int> resourceCosts = new Dictionary<string, int>();
+    public Dictionary<string, float> resourceCosts = new Dictionary<string, float>();
     public float timeCost;
 
     public int age; // not currently in use

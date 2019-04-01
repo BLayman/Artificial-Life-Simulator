@@ -69,6 +69,23 @@ public class MapEditor
         //Debug.Log("grass stored at 10,10: " + map[10][10].propertyDict["grass"].amountStored);
     }
 
+    public void activateResourceOnMap(string resource)
+    {
+        // for every row and column
+        for (int i = 0; i < map.Count; i++)
+        {
+            for (int j = 0; j < map[i].Count; j++)
+            {
+                // get copy of resource to be added
+                ResourceStore resStore = resourceOptions[resource].shallowCopy();
+                // store nothing, but add to property dictionary
+                resStore.amountStored = 0;
+                map[i][j].propertyDict.Add(resource, resStore);
+            }
+        }
+        //Debug.Log("grass stored at 10,10: " + map[10][10].propertyDict["grass"].amountStored);
+    }
+
     public void generateMap(int length, int width)
     {
         for (int i = 0; i < length; i++)
@@ -83,6 +100,6 @@ public class MapEditor
             }
 
         }
-        Debug.Log("finished generating map");
+        //Debug.Log("finished generating map");
     }
 }

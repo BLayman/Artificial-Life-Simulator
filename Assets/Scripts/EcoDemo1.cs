@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class EcoManager
+public class EcoDemo1
 {
     /// <summary>
     /// Stores state of ecosystem.
@@ -22,15 +22,15 @@ public class EcoManager
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(200);
+            userCreatesEcosystem(300);
             // add cat species
-            userAddsSpecies("cat", ColorChoice.blue, .01f);
+            userAddsSpecies("cat", ColorChoice.blue, .1f, false);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", .1f, 100, 300);
+            userPopulatesSpecies("cat", 1f, 100, 300);
             // add dog species
-            userAddsSpecies("dog", ColorChoice.green, .01f);
+            //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
-            userPopulatesSpecies("dog", 2f, 100, 300);
+            //userPopulatesSpecies("dog", 2f, 100, 300);
 
             //userAddsSpecies("cow", ColorChoice.red, .01f);
             //userPopulatesSpecies("cow", 2f, 100, 300);
@@ -38,8 +38,44 @@ public class EcoManager
         else
         {
             // for debugging
-            Debug.Log(" Make eco called twice! ");
+            // Debug.Log(" Make eco called twice! ");
         }
+    }
+
+    public void runExperiment(int instances, int maxLength)
+    {
+        Debug.Log("Low variation system results: ");
+        experimentRunSystem(instances, maxLength, false, .1f, .01f);
+
+        Debug.Log("high variation system results: ");
+        experimentRunSystem(instances, maxLength, false, 2f, 1f);
+
+        Debug.Log("Experiment done");
+    }
+
+    public void experimentRunSystem(int instances, int maxLength, bool nonLinear, float popVar, float indVar)
+    {
+        // create x instances of each ecosystem
+        float sum = 0;
+        for (int i = 0; i < instances; i++)
+        {
+            // Create a 100 X 100 map
+            userCreatesEcosystem(100);
+            // add cat species
+            userAddsSpecies("cat", ColorChoice.blue, indVar, nonLinear);
+            // populate with low standard deviation from founder creature
+            userPopulatesSpecies("cat", popVar, 100, 300);
+
+            while (!ecosystem.allDead && ecosystem.age < maxLength)
+            {
+                ecosystem.runSystem(1);
+                //Debug.Log("age: " + ecosystem.age);
+            }
+            sum += ecosystem.age;
+            Debug.Log("final age: " + ecosystem.age);
+        }
+        Debug.Log("");
+        Debug.Log("average: " + sum / instances);
     }
 
 
@@ -66,7 +102,7 @@ public class EcoManager
         LandResourceEditor lre = ecoCreator.addResource("grass");
         lre.setAmountOfResource(100);
         lre.setMaxAmt(150);
-        lre.setAmtConsumedPerTime(10);
+        lre.setAmtConsumedPerTime(5);
         lre.setProportionExtracted(.2f);
         lre.setRenewalAmt(2f);
 
@@ -103,14 +139,14 @@ public class EcoManager
      * add resource to node, 
      * save creature to founder creatures dict and species dict
      */
-    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation)
+    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation, bool useHiddenNodes)
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
 
         // user edits:
         cc.setSpecies(name);
-        cc.setPhenotype(3);
+        cc.setPhenotype(3); // normally this should differ for each species
         cc.setTurnTime(10);
         cc.setMaxHealth(1000);
         cc.setInitialHealth(700);
@@ -159,7 +195,7 @@ public class EcoManager
 
         // TODO create default actions for creature action pool, and example user made action 
         // (should use add an action creator to creature creator)
-        cc.generateDefaultActionPool();
+        cc.generateDefaultActionPool("grass", 5);
 
         /* MUST GENERATE ACTIONS AND ADD THEM TO CREATURE'S ACTION POOL BEFORE CREATING OUTPUT NODES FOR THOSE ACTIONS */
 
@@ -197,10 +233,9 @@ public class EcoManager
         convEdit.setName("convertGrassToFlowers");
         convEdit.setPriority(1);
         convEdit.setTimeCost(10);
-        convEdit.setAmtToConvert(5);
-        convEdit.setMultiplier(1);
-        convEdit.setStartResource("grass");
-        convEdit.setEndResource("flowers");
+        convEdit.setAmtToProduce(5);
+        convEdit.addStartResource("grass", 1);
+        convEdit.addEndResource("flowers", 2);
         cc.saveAction();
         // TODO: add to neural network
 
@@ -237,9 +272,11 @@ public class EcoManager
         /**** net1 ****/
 
         // user adds a network
-        NetworkEditor netCreator = cc.addNetwork();
+        NetworkEditor netCreator = cc.addNetwork(NetworkType.regular);
         netCreator.setInLayer(0); // called by default with index of layer user clicked
         netCreator.setName("net1");
+
+        // layer 0
 
         /* Node net1 0,0 */
         // sense resource 0 up
@@ -261,18 +298,62 @@ public class EcoManager
         // sense resource 0 at current location
         makeSensoryInputNode(netCreator, 0, creatureResources[0]);
 
-        /* Node net1 1,0 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
-        /* Node net1 1,1 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
-        /* Node net1 1,2 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
-        /* Node net1 1,3 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
-        /* Node net1 1,4 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
-        /* Node net1 1,5 */
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
+        
+
+        // add hidden nodes
+
+        if (useHiddenNodes)
+        {
+            // layer 1
+
+            netCreator.insertNewLayer(1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            // layer 2
+
+            /* Node net1 1,0 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 2);
+            /* Node net1 1,1 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 2);
+            /* Node net1 1,2 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 2);
+            /* Node net1 1,3 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 2);
+            /* Node net1 1,4 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatGrass", 2);
+            /* Node net1 1,5 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 2);
+        }
+        else
+        {
+            // layer 1
+
+            /* Node net1 1,0 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
+            /* Node net1 1,1 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
+            /* Node net1 1,2 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
+            /* Node net1 1,3 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
+            /* Node net1 1,4 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
+            /* Node net1 1,5 */
+            makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
+        }
+
+        
 
         // user clicks save on network creator
         cc.saveNetwork();
@@ -307,7 +388,7 @@ public class EcoManager
         /**** outNetUp ****/
 
         // user adds a second network
-        NetworkEditor netCreator2 = cc.addNetwork();
+        NetworkEditor netCreator2 = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreator2.setInLayer(1); // called by default with index of layer user clicked
         netCreator2.setName("outNetUp");
@@ -328,7 +409,7 @@ public class EcoManager
         /**** outNetDown ****/
 
         // user adds a second network
-        NetworkEditor netCreator4 = cc.addNetwork();
+        NetworkEditor netCreator4 = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreator4.setInLayer(1); // called by default with index of layer user clicked
         netCreator4.setName("outNetDown");
@@ -349,7 +430,7 @@ public class EcoManager
         /**** outNetLeft ****/
 
         // user adds a second network
-        NetworkEditor netCreator6 = cc.addNetwork();
+        NetworkEditor netCreator6 = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreator6.setInLayer(1); // called by default with index of layer user clicked
         netCreator6.setName("outNetLeft");
@@ -367,7 +448,7 @@ public class EcoManager
         /**** outNetRight ****/
 
         // user adds a second network
-        NetworkEditor netCreator7 = cc.addNetwork();
+        NetworkEditor netCreator7 = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreator7.setInLayer(1); // called by default with index of layer user clicked
         netCreator7.setName("outNetRight");
@@ -385,7 +466,7 @@ public class EcoManager
         /**** outNetConsume ****/
 
         // user adds a second network
-        NetworkEditor netCreator5 = cc.addNetwork();
+        NetworkEditor netCreator5 = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreator5.setInLayer(1); // called by default with index of layer user clicked
         netCreator5.setName("outNetEat");
@@ -399,13 +480,14 @@ public class EcoManager
         /* Node outNet 1,0 */
         makeOutputNode(netCreator5, ActivationBehaviorTypes.LogisticAB, "eatGrass", 1);
         // user clicks save on creature creator
+ 
         cc.saveNetwork();
 
 
         /**** outNetReproduce ****/
 
         // user adds a second network
-        NetworkEditor netCreatorOutRepro = cc.addNetwork();
+        NetworkEditor netCreatorOutRepro = cc.addNetwork(NetworkType.regular);
         // network added to second layer of networks
         netCreatorOutRepro.setInLayer(1); // called by default with index of layer user clicked
         netCreatorOutRepro.setName("outNetRepro");
@@ -492,13 +574,24 @@ public class EcoManager
         NodeEditor nodeCreator = netCreator.addNode(layer);
         nodeCreator.setCreator(NodeCreatorType.outputNodeCreator);
         OutputNodeEditor onc = (OutputNodeEditor)nodeCreator.getNodeCreator();
-        onc.setAction(action);
+        onc.setAction(netCreator.parentCreatureCreator.creature.actionPool[action]);
         onc.setActivationFunction(activationType);
         netCreator.saveNode();
         // user clicks save on network creator
     }
 
-    
+    public void makeHiddenNode(NetworkEditor netCreator, ActivationBehaviorTypes activationType, int layer)
+    {
+        // user adds node to second layer
+        NodeEditor nodeCreator = netCreator.addNode(layer);
+        nodeCreator.setCreator(NodeCreatorType.hiddenNode);
+        HiddenNodeEditor hne = (HiddenNodeEditor)nodeCreator.getNodeCreator();
+        hne.setActivationFunction(activationType);
+        netCreator.saveNode();
+        // user clicks save on network creator
+    }
+
+
     public void makeInnerInputNode(NetworkEditor netCreator, int layer, string linkedNetName, int linkedNetIndex, int linkedNodeIndex)
     {
         // user adds nodes to input layer (0)

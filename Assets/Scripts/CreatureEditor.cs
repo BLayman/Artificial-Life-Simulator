@@ -9,6 +9,7 @@ using System.Text;
 using UnityEngine;
 
 public enum ColorChoice {red,green,blue};
+public enum NetworkType {regular, phenotype, comm, output}
 
 /// <remarks>API for creature class. Stored by EcosystemCreator.</remarks>
 public class CreatureEditor
@@ -131,6 +132,8 @@ public class CreatureEditor
         creature.actionClearInterval = steps;
     }
 
+
+
     /// <summary>
     /// Sets the size of the action queue required for the queue to be cleared
     /// </summary>
@@ -145,6 +148,11 @@ public class CreatureEditor
     public void setMutationStandardDeviation(float deviation)
     {
         creature.mutationStandardDeviation = deviation;
+    }
+
+    public void setUsePhenotypeNet(bool usePhenotypeNet)
+    {
+        creature.senseNeighborPhenotypes = usePhenotypeNet;
     }
 
     /// <summary>
@@ -208,10 +216,28 @@ public class CreatureEditor
     /// <summary>
     /// Resets netCreator, allowing for the creation of a new network.
     /// </summary>
-    public NetworkEditor addNetwork()
+    public NetworkEditor addNetwork(NetworkType type)
     {
-        netCreator = new NetworkEditor(new Network(), this);
+        switch (type)
+        {
+            case NetworkType.regular:
+                netCreator = new NetworkEditor(new Network(), this);
+                break;
+            case NetworkType.phenotype:
+                netCreator = new PhenotypeNetworkEditor(new PhenotypeNetwork(), this);
+                break;
+            case NetworkType.output:
+                netCreator = new OutputNetworkEditor(new OutputNetwork(), this);
+                break;
+            case NetworkType.comm:
+                // TODO
+                break;
+            default:
+                Debug.LogError("Invalid network type");
+                break;
+        }
         return netCreator;
+        
     }
 
     public ActionEditor addAction()
@@ -234,6 +260,15 @@ public class CreatureEditor
         creature.networks[netCreator.network.inLayer][netCreator.network.name] = netCreator.network;
     }
 
+
+    /// <summary>
+    /// Used to save phenotype network from netCreator to template
+    /// </summary>
+    public void savePhenotypeNetwork()
+    {
+        creature.phenotypeNetTemplate = (PhenotypeNetwork) netCreator.network;
+    }
+
     /// <summary>
     /// Saves abilities set by abilities creator.
     /// </summary>
@@ -244,7 +279,7 @@ public class CreatureEditor
 
 
 
-    public void generateDefaultActionPool()
+    public void generateDefaultActionPool(string resourceSpent, float amount)
     {
         // create move up action
         ActionEditor ac = addAction();
@@ -254,7 +289,7 @@ public class CreatureEditor
         mac.setDirection(moveDir.up);
         mac.setPriority(1);
         mac.setTimeCost(10);
-        mac.addResourceCost("grass", 5);
+        mac.addResourceCost(resourceSpent, amount);
         saveAction();
 
         // create move up action
@@ -265,7 +300,7 @@ public class CreatureEditor
         macd.setDirection(moveDir.down);
         macd.setPriority(1);
         macd.setTimeCost(10);
-        macd.addResourceCost("grass", 5);
+        macd.addResourceCost(resourceSpent, amount);
         saveAction();
 
         // create move up action
@@ -276,7 +311,7 @@ public class CreatureEditor
         macl.setDirection(moveDir.left);
         macl.setPriority(1);
         macl.setTimeCost(10);
-        macl.addResourceCost("grass", 5);
+        macl.addResourceCost(resourceSpent, amount);
         saveAction();
 
         // create move up action
@@ -287,7 +322,7 @@ public class CreatureEditor
         macr.setDirection(moveDir.right);
         macr.setPriority(1);
         macr.setTimeCost(10);
-        macr.addResourceCost("grass", 5);
+        macr.addResourceCost(resourceSpent, amount);
         saveAction();
 
     }

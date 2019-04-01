@@ -9,6 +9,8 @@ using System.Reflection;
 using UnityEngine;
 using Priority_Queue;
 
+
+
 public class Copier
 {
 
@@ -144,6 +146,11 @@ public class Copier
         List<Dictionary<string, Network>> origNetworks = c.networks;
         copyCreatureNetworks(origNetworks, networks, creatureCopy);
 
+        //Debug.Log("before child copy: " + c.phenotypeNetTemplate.net[0].Count);
+        creatureCopy.phenotypeNetTemplate = (PhenotypeNetwork) copyNetwork(c.phenotypeNetTemplate, creatureCopy);
+        creatureCopy.phenotypeNetTemplate.parentCreature = creatureCopy;
+        //Debug.Log("after child copy: " + creatureCopy.phenotypeNetTemplate.net[0].Count);
+
         // position will be set by reproduction action
         creatureCopy.position = new int[2];
 
@@ -261,6 +268,12 @@ public class Copier
         creatureCopy.networks = networks;
         List<Dictionary<string, Network>> origNetworks = c.networks;
         copyCreatureNetworks(origNetworks, networks, creatureCopy);
+
+        // copy phenotype network template
+        //Debug.Log("before copy: " + c.phenotypeNetTemplate.net[0].Count);
+        creatureCopy.phenotypeNetTemplate = (PhenotypeNetwork)copyNetwork(c.phenotypeNetTemplate, creatureCopy);
+        creatureCopy.phenotypeNetTemplate.parentCreature = creatureCopy;
+        //Debug.Log("after copy: " + creatureCopy.phenotypeNetTemplate.net[0].Count);
 
         // copy position (overridden when populating)
         creatureCopy.position = new int[2];
@@ -394,22 +407,29 @@ public class Copier
             copyNetworks.Add(dict);
             foreach (string key in origNetworks[i].Keys)
             {
-                dict[key] = origNetworks[i][key].getShallowCopy();
-                List<List<Node>> origNet = origNetworks[i][key].net;
-                List<List<Node>> newNet = new List<List<Node>>();
-                dict[key].net = newNet;
-                for (int j = 0; j < origNet.Count; j++)
-                {
-                    newNet.Add(new List<Node>());
-                    for (int k = 0; k < origNet[j].Count; k++)
-                    {
-                        newNet[j].Add(getNewNode(origNet[j][k], creatureCopy, dict[key]));
-                    }
-                }
+                dict[key] = copyNetwork(origNetworks[i][key], creatureCopy);
+
             }
         }
     }
 
+
+    public static Network copyNetwork(Network oldNetwork, Creature creatureCopy)
+    {
+        Network newNetwork = oldNetwork.getShallowCopy();
+        List<List<Node>> origNet = oldNetwork.net;
+        List<List<Node>> newNet = new List<List<Node>>();
+        newNetwork.net = newNet;
+        for (int j = 0; j < origNet.Count; j++)
+        {
+            newNet.Add(new List<Node>());
+            for (int k = 0; k < origNet[j].Count; k++)
+            {
+                newNet[j].Add(getNewNode(origNet[j][k] , creatureCopy, newNetwork));
+            }
+        }
+        return newNetwork;
+    }
 
 
     public static Ability getNewAbility(Ability oldAbility)
@@ -433,7 +453,7 @@ public class Copier
     public static Action getNewAction(Action oldAction)
     {
         Action newAction = oldAction.getShallowCopy(); // MemberwiseClone also includes subclass fields?
-        Dictionary<string, int> dict = new Dictionary<string, int>();
+        Dictionary<string, float> dict = new Dictionary<string, float>();
         newAction.resourceCosts = dict;
         foreach (string key in oldAction.resourceCosts.Keys)
         {
@@ -448,20 +468,42 @@ public class Copier
     {
         if (oldNode.GetType().Name == "SensoryInputNode")
         {
-            SensoryInputNode oldNode2 = (SensoryInputNode)oldNode;
-            SensoryInputNode newNode = oldNode2.clone();
+            SensoryInputNode newNode = (SensoryInputNode)oldNode.clone();
             newNode.creature = creatureCopy;
             return newNode;
             
         }
+        else if (oldNode.GetType().Name == "InternalResourceInputNode")
+        {
+            InternalResourceInputNode newNode = (InternalResourceInputNode) oldNode.clone();
+            newNode.creature = creatureCopy;
+            return newNode;
+
+        }
         else if (oldNode.GetType().Name == "OutputNode")
         {
             OutputNode oldNode2 = (OutputNode)oldNode;
-            OutputNode newNode = oldNode2.clone();
+            OutputNode newNode = (OutputNode) oldNode.clone();
             newNode.resetRand();
             newNode.parentNet = parentNet;
             newNode.parentCreature = creatureCopy;
-            newNode.action = getNewAction(oldNode2.action);
+            newNode.action = getNewAction(newNode.action);
+            //newNode.setActivBehavior(new LogisticActivBehavior());
+            newNode.prevNodes = new List<Node>();
+            newNode.assignPrevNodes();
+            newNode.weights = new List<float>();
+            for (int i = 0; i < oldNode2.weights.Count; i++)
+            {
+                newNode.weights.Add(oldNode2.weights[i]);
+            }
+            return newNode;
+        }
+        else if (oldNode.GetType().Name == "NonInputNode")
+        {
+            NonInputNode oldNode2 = (NonInputNode)oldNode;
+            NonInputNode newNode = (NonInputNode)oldNode.clone();
+            newNode.resetRand();
+            newNode.parentNet = parentNet;
             //newNode.setActivBehavior(new LogisticActivBehavior());
             newNode.prevNodes = new List<Node>();
             newNode.assignPrevNodes();
@@ -493,6 +535,22 @@ public class Copier
             newNode.linkedNode = linkedNetwork.net[linkedNetwork.net.Count - 1][newNode.linkedNodeIndex];
             return newNode;
         }
+        // called when template is being copied
+        else if (oldNode.GetType().Name == "PhenotypeInputNode")
+        {
+            PhenotypeInputNode oldNode2 = (PhenotypeInputNode)oldNode;
+            PhenotypeInputNode newNode = (PhenotypeInputNode)oldNode.clone();
+            // copy phenotype
+            newNode.parentCreat = creatureCopy;
+            int length = oldNode2.phenotype.Length;
+            newNode.phenotype = new bool[length];
+            for (int i = 0; i < newNode.phenotype.Length; i++)
+            {
+                newNode.phenotype[i] = oldNode2.phenotype[i];
+            }
+            return newNode;
+        }
+
         else if (oldNode.GetType().Name == "CommInputNode")
         {
             //TODO 

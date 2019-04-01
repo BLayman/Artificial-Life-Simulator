@@ -93,7 +93,7 @@ public class SpeciesPopulator
             //addedCreature.updateNeighbors();
         }
 
-        Debug.Log("finished populating");
+        //Debug.Log("finished populating");
 
         population.size = size;
     }

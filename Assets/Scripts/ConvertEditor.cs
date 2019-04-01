@@ -13,6 +13,7 @@ public class ConvertEditor : ActionEditorAbstract
         actionRef = inAction;
     }
 
+<<<<<<< .merge_file_a12308
     public void setStartResource(string res)
     {
         actionRef.startResource = res;
@@ -32,4 +33,21 @@ public class ConvertEditor : ActionEditorAbstract
     {
         actionRef.multiplier = multi;
     }
+=======
+    public void addStartResource(string res, int coefficient)
+    {
+        actionRef.startResources[res] = coefficient;
+    }
+
+    public void addEndResource(string res, int coefficient)
+    {
+        actionRef.endResources[res] = coefficient;
+    }
+
+    public void setAmtToProduce(float amt)
+    {
+        actionRef.amtToProduce = amt;
+    }
+
+>>>>>>> .merge_file_a16464
 }

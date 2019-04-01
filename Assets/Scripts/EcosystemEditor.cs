@@ -68,25 +68,25 @@ public class EcosystemEditor
     public void setAbilityPointsPerCreature(int abilityPoints)
     {
         ecosystem.abilityPointsPerCreature = abilityPoints;
-        Debug.Log("ability points set to: " + abilityPoints);
+        //Debug.Log("ability points set to: " + abilityPoints);
     }
 
     public void setCommBits(int numBits)
     {
         ecosystem.commBits = numBits;
-        Debug.Log("comm bits set to " + numBits);
+        //Debug.Log("comm bits set to " + numBits);
     }
 
     public void setDistinctPhenotypeNum(int numPhenotypes)
     {
         ecosystem.distictPhenotypes = numPhenotypes;
-        Debug.Log("distinct phenotypes set to " + numPhenotypes);
+        //Debug.Log("distinct phenotypes set to " + numPhenotypes);
     }
 
     public void setTimeUnitsPerTurn(int timeUnits)
     {
         ecosystem.timeUnitsPerTurn = timeUnits;
-        Debug.Log("time units per turn set to " + timeUnits);
+        //Debug.Log("time units per turn set to " + timeUnits);
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ public class EcosystemEditor
     public void setName(string name)
     {
         ecosystem.name = name;
-        Debug.Log("Ecosystem name set to " + name);
+        //Debug.Log("Ecosystem name set to " + name);
     }
 
     /// <summary>
@@ -145,7 +145,7 @@ public class EcosystemEditor
     /// </summary>
     public void saveResource()
     {
-        Debug.Log("adding resource: " + lre.resourceStore.name + " to tentative resources");
+        //Debug.Log("adding resource: " + lre.resourceStore.name + " to tentative resources");
         tentativeResourceOptions[lre.resourceStore.name] = lre.resourceStore;
     }
 
@@ -190,7 +190,7 @@ public class EcosystemEditor
     public void saveMap()
     {
         ecosystem.map = tentativeMap;
-        Debug.Log("map size: " + tentativeMap.Count);
+        //Debug.Log("map size: " + tentativeMap.Count);
     }
 
     /// <summary>
@@ -216,7 +216,7 @@ public class EcosystemEditor
         {
             currentPopulation.creatures[i].updateNeighbors();
         }
-        Debug.Log("finished adding population to map");
+        //Debug.Log("finished adding population to map");
     }
 
     

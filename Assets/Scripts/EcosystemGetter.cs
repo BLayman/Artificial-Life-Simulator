@@ -26,4 +26,9 @@ public class EcosystemGetter : MonoBehaviour
         return threader.getEcosystem().map[0].Count;
     }
 
+    public Ecosystem GetEcosystem()
+    {
+        return threader.getEcosystem();
+    }
+
 }
