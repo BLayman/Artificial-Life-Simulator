@@ -63,6 +63,22 @@ public class CreatureEditor
         creature.species = species;
     }
 
+    /// <summary>
+    /// Sets the fraction by which the mutation deviation anneals after each reproduction event
+    /// </summary>
+    public void setAnnealMutationFraction(float fraction)
+    {
+        creature.annealMutationFraction = fraction;
+    }
+
+    /// <summary>
+    /// Sets the lowest possible mutation deviation that can be achieve via annealing.
+    /// </summary>
+    public void setBaseMutationDeviation(float deviation)
+    {
+        creature.baseMutationDeviation = deviation;
+    }
+
 
 
     /// <summary>

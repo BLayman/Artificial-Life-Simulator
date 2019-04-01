@@ -2,11 +2,12 @@
 // Copyright (c) 2019 Brett Layman
 // This file is subject to the terms and conditions defined in 'LICENSE.txt', which is part of this source code repository.
 
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using UnityEngine;
 
 public class ReproAction : Action
 {
@@ -36,6 +37,18 @@ public class ReproAction : Action
             Creature childCreature = Copier.getCreatureChild(creature);
             setPosition(creature.position, childLoc, childCreature.position);
             childCreature.updateNeighbors();
+            float newDeviation = creature.mutationStandardDeviation * creature.annealMutationFraction;
+            // if new deviation goes below baseline, set deviation to baseline
+            if(newDeviation < creature.baseMutationDeviation)
+            {
+                creature.mutationStandardDeviation = creature.baseMutationDeviation;
+            }
+            // otherwise set mutation deviation to new deviation
+            else
+            {
+                creature.mutationStandardDeviation = newDeviation;
+            }
+            Debug.Log(creature.mutationStandardDeviation);
             childCreature.addVariationToWeights(creature.mutationStandardDeviation);
             creature.neighborLands[childLoc].creatureOn = childCreature;
             parentPop.offspring.Add(childCreature);

@@ -27,6 +27,8 @@ public class Creature
     int count;
     public Color color; // color displayed on map
     public bool senseNeighborPhenotypes = false;
+    public float annealMutationFraction = 1;
+    public float baseMutationDeviation = 0;
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum

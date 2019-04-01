@@ -22,11 +22,11 @@ public class EcoDemo1
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(300);
+            userCreatesEcosystem(100);
             // add cat species
-            userAddsSpecies("cat", ColorChoice.blue, .1f, false);
+            userAddsSpecies("cat", ColorChoice.blue, 2f, true, .9f, .01f);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", 1f, 100, 300);
+            userPopulatesSpecies("cat", 2f, 200, 300);
             // add dog species
             //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
@@ -62,7 +62,7 @@ public class EcoDemo1
             // Create a 100 X 100 map
             userCreatesEcosystem(100);
             // add cat species
-            userAddsSpecies("cat", ColorChoice.blue, indVar, nonLinear);
+            userAddsSpecies("cat", ColorChoice.blue, indVar, nonLinear, 1, indVar);
             // populate with low standard deviation from founder creature
             userPopulatesSpecies("cat", popVar, 100, 300);
 
@@ -139,7 +139,7 @@ public class EcoDemo1
      * add resource to node, 
      * save creature to founder creatures dict and species dict
      */
-    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation, bool useHiddenNodes)
+    public void userAddsSpecies(string name, ColorChoice color, float initialMutationDeviation, bool useHiddenNodes, float mutationDeviationFraction, float lowestMutationDeviation)
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
@@ -152,8 +152,10 @@ public class EcoDemo1
         cc.setInitialHealth(700);
         cc.setActionClearInterval(3);
         cc.setActionClearSize(10);
-        cc.setMutationStandardDeviation(mutationDeviation);
+        cc.setMutationStandardDeviation(initialMutationDeviation);
         cc.setColor(color);
+        cc.setAnnealMutationFraction(mutationDeviationFraction);
+        cc.setBaseMutationDeviation(lowestMutationDeviation);
 
         // add resource for the creature to store
         ResourceEditor resourceCreator = cc.addResource();

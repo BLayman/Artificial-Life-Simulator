@@ -24,11 +24,11 @@ public class EcoDemo2
             // Create a 300 X 300 map
             userCreatesEcosystem(200);
             // add cat species
-            userAddsSpecies("Creature1", ColorChoice.blue, .1f, "C", "B");
+            userAddsSpecies("Creature1", ColorChoice.blue, 1f, "C", "B");
             // populate with low standard deviation from founder creature
             userPopulatesSpecies("Creature1", 2f, 200, 300);
 
-            userAddsSpecies("Creature2", ColorChoice.green, .1f, "B", "C");
+            userAddsSpecies("Creature2", ColorChoice.green, 1f, "B", "C");
             // populate with low standard deviation from founder creature
             userPopulatesSpecies("Creature2", 2f, 200, 300);
         }
