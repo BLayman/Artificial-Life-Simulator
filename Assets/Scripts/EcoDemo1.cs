@@ -42,29 +42,29 @@ public class EcoDemo1
         }
     }
 
-    public void compareLinearToNonLinear(int instances, int maxLength)
+    public void runExperiment(int instances, int maxLength)
     {
-        Debug.Log("Linear system results: ");
-        experimentRunSystem(instances, maxLength, false);
+        Debug.Log("Low variation system results: ");
+        experimentRunSystem(instances, maxLength, false, .1f, .01f);
 
-        Debug.Log("Non-Linear system results: ");
-        experimentRunSystem(instances, maxLength, true);
+        Debug.Log("high variation system results: ");
+        experimentRunSystem(instances, maxLength, false, 2f, 1f);
 
         Debug.Log("Experiment done");
     }
 
-    public void experimentRunSystem(int instances, int maxLength, bool nonLinear)
+    public void experimentRunSystem(int instances, int maxLength, bool nonLinear, float popVar, float indVar)
     {
         // create x instances of each ecosystem
         float sum = 0;
         for (int i = 0; i < instances; i++)
         {
-            // Create a 100 X 200 map
-            userCreatesEcosystem(50);
+            // Create a 100 X 100 map
+            userCreatesEcosystem(100);
             // add cat species
-            userAddsSpecies("cat", ColorChoice.blue, .1f, nonLinear);
+            userAddsSpecies("cat", ColorChoice.blue, indVar, nonLinear);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", 2f, 100, 1000);
+            userPopulatesSpecies("cat", popVar, 100, 300);
 
             while (!ecosystem.allDead && ecosystem.age < maxLength)
             {

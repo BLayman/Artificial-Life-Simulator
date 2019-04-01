@@ -29,6 +29,10 @@ public class InnerInputNodeEditor : NodeEditorInterface
     // netName: name of connected network, outLayerNodeIndex : index of connected node in it's layer, netLayer: layer in which connected network exists
     public void setLinkedNode(string netName, int outLayerNodeIndex, int netLayer)
     {
+        if (!parentCreature.networks[netLayer].ContainsKey(netName))
+        {
+            Debug.LogError("invalid network name: " + netName);
+        }
         // get last layer of connected network
         int outLayerIndex = parentCreature.networks[netLayer][netName].net.Count - 1;
         // use last layer index and index of connected node in the layer to get linked node

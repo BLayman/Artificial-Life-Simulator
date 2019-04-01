@@ -136,7 +136,10 @@ public class Ecosystem
                             {
                                 foreach (ResourceStore res in map[j][k].propertyDict.Values)
                                 {
-                                    res.renewResource();
+                                    if (res.renewalAmt > 0)
+                                    {
+                                        res.renewResource();
+                                    }
                                 }
                             }
                         }
@@ -166,7 +169,10 @@ public class Ecosystem
                         {
                             foreach (ResourceStore res in map[renewRow][k].propertyDict.Values)
                             {
-                                res.renewResource();
+                                if (res.renewalAmt > 0)
+                                {
+                                    res.renewResource();
+                                }
                             }
                         }
                     }

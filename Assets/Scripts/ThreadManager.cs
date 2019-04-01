@@ -22,7 +22,7 @@ class ThreadManager : MonoBehaviour
     private int childThreadSleepTime = 0;
     bool finishChildThread = false;
     LinkedList<Ecosystem> ecoQueue;
-    public string visibleResource = "grass";
+    public string visibleResource;
     
 
     // Thread safe?
@@ -46,6 +46,7 @@ class ThreadManager : MonoBehaviour
         ecoMan.makeEco();
         // get newly created ecosystem and set unityEco to reference it
         unityEco = ecoMan.getEcosystem();
+        visibleResource = unityEco.resourceOptions.Keys.First();
 
     }
 

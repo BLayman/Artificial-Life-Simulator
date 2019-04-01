@@ -21,7 +21,7 @@ public class ExperimentRunner : MonoBehaviour
     public void runExperiment()
     {
         EcoDemo1 demo = new EcoDemo1();
-        demo.compareLinearToNonLinear(2, 500);
+        demo.runExperiment(5, 500);
     }
 
 }
