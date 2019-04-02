@@ -118,6 +118,7 @@ public class Copier
     {
         Creature creatureCopy = c.getShallowCopy();
         int actualSeed;
+        creatureCopy.childIndex = 0;
         int timeInMillis = System.DateTime.Now.Millisecond;
         lock (seedGenLock)
         {

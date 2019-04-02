@@ -87,6 +87,7 @@ public class Ecosystem
                 // if population has any members
                 if (population.creatures.Count > 0)
                 {
+                    //Debug.Log(population.creatures[0].mutationStandardDeviation);
                     notAllDead = true;
                     List<Creature> toRemove = new List<Creature>();
                     // for each creature in population
@@ -106,12 +107,13 @@ public class Ecosystem
                     }
 
                     // remove each dead creature from population
+                    // TODO: implement faster remove if possible
                     foreach (Creature deadCreature in toRemove)
                     {
                         population.creatures.Remove(deadCreature);
                         population.size--;
                     }
-
+                    
                     population.creatures.AddRange(population.offspring);
                     population.offspring = new List<Creature>();
 

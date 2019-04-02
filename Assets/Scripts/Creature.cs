@@ -21,7 +21,7 @@ public class Creature
 {
     public Creature founder;
     public Land dummyLand = new Land(); // dummyLand used for edges of map
-    public int index; // unique number assigned upon creation in species populator
+    public string iD; // unique number assigned upon creation in species populator
     public System.Random rand; // used for action probabilites
     public System.Random rand2; // used for selecting actions from network
     int count;
@@ -29,6 +29,7 @@ public class Creature
     public bool senseNeighborPhenotypes = false;
     public float annealMutationFraction = 1;
     public float baseMutationDeviation = 0;
+    public int childIndex = 0; // number children the creature has had
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
@@ -223,7 +224,7 @@ public class Creature
     public void printNetworks()
     {
         // print creature's networks:
-        Debug.Log("**************************   creature: " + index + "  *********************");
+        Debug.Log("**************************   creature: " + iD + "  *********************");
         foreach (Network network in networks[0].Values)
         {
             Debug.Log("net name: " + network.name);

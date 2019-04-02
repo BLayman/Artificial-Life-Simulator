@@ -157,7 +157,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BDhICAAgACIAACEgAIAIAQACABQQYBKwAAAEACAIACA=</HashCode>
+      <HashCode>BjhICAAgICIAACEgAIAIAQACABQQYBKwAAAEACAIACA=</HashCode>
       <FileName>Assets\Scripts\CreatureEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -251,7 +251,7 @@
   <Class Name="MapEditor">
     <Position X="39.5" Y="10" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAGIABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAGIABAAAAAgAAAA=</HashCode>
       <FileName>Assets\Scripts\MapEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -342,7 +342,7 @@
   <Class Name="EcoDemo2">
     <Position X="35.25" Y="0.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>QCACAAAggAAAGAEAAAAAAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
+      <HashCode>QCACAAAggAAAGAEAAEAAAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
       <FileName>Assets\Scripts\EcoDemo2.cs</FileName>
       <NewMemberFileName>Assets\Scripts\EcoDemo1.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -412,14 +412,9 @@
   <Class Name="Convert">
     <Position X="25.75" Y="27" Width="2" />
     <TypeIdentifier>
-<<<<<<< HEAD
-      <HashCode>AAAAACACAAAAAAAAAEAAAAAAAAAAAAAAAhAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\convert.cs</FileName>
-=======
       <HashCode>AAAAAAACAAAQAAQAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Convert.cs</FileName>
       <NewMemberFileName>Assets\Scripts\convert.cs</NewMemberFileName>
->>>>>>> Development
     </TypeIdentifier>
   </Class>
   <Class Name="ConvertEditor">
@@ -499,8 +494,8 @@
     <Position X="23.25" Y="12.25" Width="3.75" />
     <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
       <Path>
-        <Point X="27" Y="14.322" />
-        <Point X="31" Y="14.322" />
+        <Point X="27" Y="14.355" />
+        <Point X="31" Y="14.355" />
         <Point X="31" Y="15" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
@@ -508,7 +503,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAqIEaEZAaZAAyEYBAgCISwgIZQAAICQEAABIABhBAk=</HashCode>
+      <HashCode>IAqIMaEZAaZAAyEYBIoCISwgIZQAAICQEAABIABgBAk=</HashCode>
       <FileName>Assets\Scripts\Creature.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -522,6 +517,13 @@
       <FileName>Assets\Scripts\HiddenNodeEditor.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CreatureGetter">
+    <Position X="34.75" Y="21" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAEAAAAAAAAAAAgAAAAIAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\CreatureGetter.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="NodeEditorInterface">
     <Position X="10.5" Y="4.75" Width="2" />

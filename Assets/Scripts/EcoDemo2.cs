@@ -22,13 +22,13 @@ public class EcoDemo2
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(200);
+            userCreatesEcosystem(100);
             // add cat species
-            userAddsSpecies("Creature1", ColorChoice.blue, 1f, "C", "B");
+            userAddsSpecies("Creature1", ColorChoice.blue, 2f, "C", "B", .9f, .01f, false);
             // populate with low standard deviation from founder creature
             userPopulatesSpecies("Creature1", 2f, 200, 300);
 
-            userAddsSpecies("Creature2", ColorChoice.green, 1f, "B", "C");
+            userAddsSpecies("Creature2", ColorChoice.green, 2f, "B", "C", .9f, .01f, false);
             // populate with low standard deviation from founder creature
             userPopulatesSpecies("Creature2", 2f, 200, 300);
         }
@@ -94,8 +94,8 @@ public class EcoDemo2
         ecoCreator.mapEditor.generateMap(mapWidth, mapWidth);
         ecoCreator.mapEditor.addLERPXResource("A", 1f);
         // small starting amount of B and C
-        ecoCreator.mapEditor.addLERPXResource("B", .1f); 
-        ecoCreator.mapEditor.addLERPXResource("C", .1f);
+        ecoCreator.mapEditor.addUniformResource("B", .01f); 
+        ecoCreator.mapEditor.addUniformResource("C", .01f);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
         
@@ -109,7 +109,7 @@ public class EcoDemo2
      * add resource to node, 
      * save creature to founder creatures dict and species dict
      */
-    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation, string dependentOn, string produces)
+    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation, string dependentOn, string produces, float mutationDeviationFraction, float lowestMutationDeviation, bool nonLinearPhenotypeNet)
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
@@ -125,8 +125,9 @@ public class EcoDemo2
         cc.setMutationStandardDeviation(mutationDeviation);
         cc.setColor(color);
         cc.setUsePhenotypeNet(true);
+        cc.setAnnealMutationFraction(mutationDeviationFraction);
+        cc.setBaseMutationDeviation(lowestMutationDeviation);
 
-        
 
         List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
 
@@ -264,13 +265,38 @@ public class EcoDemo2
         phenoNetCreator.setInLayer(0); // called by default with index of layer user clicked
         phenoNetCreator.setName("phenotypeNet");
         phenoNetCreator.createInputNodes();
-        
-        // phenotype net will help determine if A is converted to B and if B is deposited
-        /* Node phenotypeNet 1,0 */
-        makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "deposit"+ produces, 1);
 
-        /* Node phenotypeNet 1,0 */
-        makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "convertATo" + produces, 1);
+        // add hidden nodes to phenotype network if directed to
+        if (nonLinearPhenotypeNet)
+        {
+            phenoNetCreator.insertNewLayer(1);
+
+            makeHiddenNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            makeHiddenNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
+            // phenotype net will help determine if A is converted to B and if B is deposited
+            /* Node phenotypeNet 1,0 */
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 2);
+
+            /* Node phenotypeNet 1,0 */
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "convertATo" + produces, 2);
+        }
+
+        else
+        {
+            // phenotype net will help determine if A is converted to B and if B is deposited
+            /* Node phenotypeNet 1,0 */
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 1);
+
+            /* Node phenotypeNet 1,0 */
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "convertATo" + produces, 1);
+        }
+        
 
         // Note: don't call saveNetwork(), call savePhenotypeNetwork()
         cc.savePhenotypeNetwork();
@@ -738,6 +764,17 @@ public class EcoDemo2
         iinc.setLinkedNode(linkedNetName, linkedNodeIndex, linkedNetIndex);
         // user clicks save on node editor
         netCreator.saveNode();
+    }
+
+    public void makeHiddenNode(NetworkEditor netCreator, ActivationBehaviorTypes activationType, int layer)
+    {
+        // user adds node to second layer
+        NodeEditor nodeCreator = netCreator.addNode(layer);
+        nodeCreator.setCreator(NodeCreatorType.hiddenNode);
+        HiddenNodeEditor hne = (HiddenNodeEditor)nodeCreator.getNodeCreator();
+        hne.setActivationFunction(activationType);
+        netCreator.saveNode();
+        // user clicks save on network creator
     }
 
 }

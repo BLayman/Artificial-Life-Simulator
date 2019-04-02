@@ -48,7 +48,9 @@ public class ReproAction : Action
             {
                 creature.mutationStandardDeviation = newDeviation;
             }
-            Debug.Log(creature.mutationStandardDeviation);
+            childCreature.iD = creature.iD + "-" + creature.childIndex;
+            creature.childIndex++;
+            //Debug.Log(creature.mutationStandardDeviation);
             childCreature.addVariationToWeights(creature.mutationStandardDeviation);
             creature.neighborLands[childLoc].creatureOn = childCreature;
             parentPop.offspring.Add(childCreature);

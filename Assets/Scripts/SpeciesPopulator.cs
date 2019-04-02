@@ -72,7 +72,7 @@ public class SpeciesPopulator
             Creature addedCreature = population.generateMember();
             population.creatures.Add(addedCreature);
             population.size++;
-            addedCreature.index = creatureNum;
+            addedCreature.iD = creatureNum.ToString();
             creatureNum++;
             addedCreature.addVariationToWeights(population.weightStandardDev);
             //population.creatures[i].printNetworks();

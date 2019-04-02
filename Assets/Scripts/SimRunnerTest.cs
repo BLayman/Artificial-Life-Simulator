@@ -13,13 +13,11 @@ using UnityEngine.UI;
 /// </summary>
 public class SimRunnerTest : MonoBehaviour
 {
-    public GameObject tilePrefab;
     public GameObject stepsText;
     public GameObject mapSpriteObj;
     SpriteRenderer sr;
     Texture2D texture;
 
-    List<List<GameObject>> tiles = new List<List<GameObject>>();
     float elapsedTime = 0.0f;
     float intervalTime = .25f; // updates every fraction of a second if possible
     ThreadManager threader;

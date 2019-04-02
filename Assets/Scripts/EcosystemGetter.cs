@@ -10,6 +10,8 @@ public class EcosystemGetter : MonoBehaviour
 {
     public GameObject simRunnerObj;
     ThreadManager threader;
+
+
     // Start is called before the first frame update
     void Awake()
     {
