@@ -42,4 +42,9 @@ public class CreatureGetter
         return creature.mutationStandardDeviation.ToString();
     }
 
+    public List<Dictionary<string, Network>> getNets()
+    {
+        return creature.networks;
+    }
+
 }

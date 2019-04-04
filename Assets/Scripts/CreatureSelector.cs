@@ -12,11 +12,12 @@ public class CreatureSelector : MonoBehaviour
     public GameObject creatureUIPanel;
     public GameObject uIDataSetter;
     public GameObject resourcePanel;
+    public GameObject netsPanel;
     CreaturePanelPopulator dataSetter;
     ResourcePanelPopulator resPop;
+    NetPanelPopulator netsPop;
     Ecosystem eco;
-    int currentX;
-    int currentY;
+    CreatureGetter cg;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class CreatureSelector : MonoBehaviour
         ecoGetter = dataRetriever.GetComponent<EcosystemGetter>();
         dataSetter = uIDataSetter.GetComponent<CreaturePanelPopulator>();
         resPop = resourcePanel.GetComponent<ResourcePanelPopulator>();
+        netsPop = netsPanel.GetComponent<NetPanelPopulator>();
     }
 
     // Update is called once per frame
@@ -61,15 +63,13 @@ public class CreatureSelector : MonoBehaviour
 
     void retrieveCreatureData(int x, int y)
     {
-        currentX = x;
-        currentY = y;
         eco = ecoGetter.GetEcosystem();
         if (x > 0 && x < eco.map.Count && y > 0 && y < eco.map[0].Count)
         {
             if (eco.map[x][y].creatureIsOn())
             {
                 Debug.Log("found creature");
-                CreatureGetter cg = new CreatureGetter(eco.map[x][y].creatureOn);
+                cg = new CreatureGetter(eco.map[x][y].creatureOn);
                 string species = cg.getSpecies();
                 string iD = cg.getId();
                 string health = cg.getHealth();
@@ -85,7 +85,13 @@ public class CreatureSelector : MonoBehaviour
     public void setCreatureResources()
     {
         resourcePanel.SetActive(true);
-        CreatureGetter cg = new CreatureGetter(eco.map[currentX][currentY].creatureOn);
         resPop.setResources(cg.getResources());
+    }
+
+    public void viewCreatureNeuralNets()
+    {
+        netsPanel.SetActive(true);
+        List<Dictionary<string, Network>> nets = cg.getNets();
+        netsPop.setNets(nets);
     }
 }
