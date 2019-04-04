@@ -89,46 +89,33 @@ public class Ecosystem
                 {
                     //Debug.Log(population.creatures[0].mutationStandardDeviation);
                     notAllDead = true;
-                    List<LinkedListNode<Creature>> toRemove = new List<LinkedListNode<Creature>>();
+                    List<Creature> toRemove = new List<Creature>();
                     // for each creature in population
                     // TODO: convert creatures to linked list
-                    LinkedListNode<Creature> current = population.creatures.First;
-
-                    while (current != null)
+                    for (int l = 0; l < population.creatures.Count; l++)
                     {
-                        Creature creature = current.Value;
-                        // remove creature if dead at the beginning of it's turn
+                        Creature creature = population.creatures[l];
+                        // remove creature if dead
                         if (creature.isDead())
                         {
-                            toRemove.Add(current);
+                            toRemove.Add(creature);
                         }
                         // otherwise start creature's turn
                         else
                         {
                             creature.startTurn(this);
                         }
-
-                        // remove creature if dead at the end of it's turn
-                        if (creature.isDead())
-                        {
-                            toRemove.Add(current);
-                        }
-
-                        current = current.Next;
                     }
 
                     // remove each dead creature from population
                     // TODO: implement faster remove if possible
-                    foreach (LinkedListNode<Creature> deadNode in toRemove)
+                    foreach (Creature deadCreature in toRemove)
                     {
-                        population.creatures.Remove(deadNode);
+                        population.creatures.Remove(deadCreature);
                         population.size--;
                     }
-
-                    foreach (Creature creature in population.offspring)
-                    {
-                        population.creatures.AddLast(creature);
-                    }
+                    
+                    population.creatures.AddRange(population.offspring);
                     population.offspring = new List<Creature>();
 
                 }

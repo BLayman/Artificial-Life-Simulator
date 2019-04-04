@@ -56,7 +56,7 @@ public class SpeciesPopulator
     /// <param name="size">Number of creatures.</param>
     public void populateRandom(int size)
     {
-        population.creatures = new LinkedList<Creature>();
+        population.creatures = new List<Creature>();
         System.Random rand = new System.Random();
 
         //TODO: handle this case better
@@ -70,7 +70,7 @@ public class SpeciesPopulator
         for (int i = 0; i < size; i++)
         {
             Creature addedCreature = population.generateMember();
-            population.creatures.AddLast(addedCreature);
+            population.creatures.Add(addedCreature);
             population.size++;
             addedCreature.iD = creatureNum.ToString();
             creatureNum++;
