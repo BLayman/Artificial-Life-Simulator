@@ -22,15 +22,15 @@ public class EcoDemo2
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(500);
+            userCreatesEcosystem(200);
             // add cat species
             userAddsSpecies("Creature1", ColorChoice.blue, 2f, "C", "B", .9f, .01f, false);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature1", 2f, 9000, 10000);
+            userPopulatesSpecies("Creature1", 2f, 200, 500);
 
             userAddsSpecies("Creature2", ColorChoice.green, 2f, "B", "C", .9f, .01f, false);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature2", 2f, 9000, 10000);
+            userPopulatesSpecies("Creature2", 2f, 200, 500);
         }
         else
         {

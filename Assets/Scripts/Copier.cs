@@ -48,7 +48,7 @@ public class Copier
             copy.populations[popName].founder = getCreatureCopy(eco.populations[popName].founder);
 
             // copy each creature over
-            copy.populations[popName].creatures = new List<Creature>();
+            copy.populations[popName].creatures = new LinkedList<Creature>();
             foreach (Creature creat in eco.populations[popName].creatures)
             {
                 Creature creatCopy = getCreatureCopy(creat);
@@ -59,7 +59,7 @@ public class Copier
                 // set new neighborlands list to reference map lands
                 creatCopy.updateNeighbors();
 
-                copy.populations[popName].creatures.Add(creatCopy);
+                copy.populations[popName].creatures.AddLast(creatCopy);
             }
             // offspring should have been saved to creatures by the end of the turn anyway
             copy.populations[popName].offspring = new List<Creature>();

@@ -15,7 +15,7 @@ using UnityEngine;
 /// </summary>
 public class Population
 {
-    public List<Creature> creatures;
+    public LinkedList<Creature> creatures;
     public List<Creature> offspring = new List<Creature>();
     public Creature founder;
     public float weightStandardDev;

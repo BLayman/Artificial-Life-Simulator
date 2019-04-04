@@ -206,15 +206,15 @@ public class EcosystemEditor
     /// </summary>
     public void addCurrentPopulationToMap()
     {
-        for (int i = 0; i < currentPopulation.creatures.Count; i++)
+        foreach (Creature creature in currentPopulation.creatures)
         {
             // place each creature on its location on the map
-            currentPopulation.creatures[i].map = tentativeMap;
-            tentativeMap[currentPopulation.creatures[i].position[0]][currentPopulation.creatures[i].position[1]].creatureOn = currentPopulation.creatures[i];
+            creature.map = tentativeMap;
+            tentativeMap[creature.position[0]][creature.position[1]].creatureOn = creature;
         }
-        for (int i = 0; i < currentPopulation.creatures.Count; i++)
+        foreach (Creature creature in currentPopulation.creatures)
         {
-            currentPopulation.creatures[i].updateNeighbors();
+            creature.updateNeighbors();
         }
         //Debug.Log("finished adding population to map");
     }
