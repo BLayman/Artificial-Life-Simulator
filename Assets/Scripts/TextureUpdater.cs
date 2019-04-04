@@ -8,7 +8,7 @@ public class TextureUpdater
 {
 
     // TODO run on GPU
-    public static  void updateTexture(List<List<Land>> map, Color[] colors, string visibleResource)
+    public static void updateTexture(List<List<Land>> map, Color[] colors, string visibleResource)
     {
         Color resourceShade = new Color(1, 1, 1);
         Color creatureColor = Color.blue;

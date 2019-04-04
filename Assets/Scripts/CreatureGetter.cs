@@ -27,6 +27,16 @@ public class CreatureGetter
         return creature.health.ToString();
     }
 
+    public string getMaxHealth()
+    {
+        return creature.maxHealth.ToString();
+    }
+
+    public Dictionary<string, CreatureResource> getResources()
+    {
+        return creature.storedResources;
+    }
+
     public string getMutationAmt()
     {
         return creature.mutationStandardDeviation.ToString();

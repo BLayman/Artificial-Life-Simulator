@@ -22,15 +22,15 @@ public class EcoDemo2
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(100);
+            userCreatesEcosystem(500);
             // add cat species
             userAddsSpecies("Creature1", ColorChoice.blue, 2f, "C", "B", .9f, .01f, false);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature1", 2f, 200, 300);
+            userPopulatesSpecies("Creature1", 2f, 9000, 10000);
 
             userAddsSpecies("Creature2", ColorChoice.green, 2f, "B", "C", .9f, .01f, false);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature2", 2f, 200, 300);
+            userPopulatesSpecies("Creature2", 2f, 9000, 10000);
         }
         else
         {
@@ -139,7 +139,7 @@ public class EcoDemo2
 
         resourceCreator.setName(ecosystemResources[0]);
         resourceCreator.setMaxLevel(100);
-        resourceCreator.setLevel(50);
+        resourceCreator.setLevel(90);
         resourceCreator.setHealthGain(1);
         resourceCreator.setHealthGainThreshold(90);
         resourceCreator.setDeficiencyHealthDrain(10);
@@ -148,11 +148,26 @@ public class EcoDemo2
 
         cc.saveResource();
 
-        // add creature resource store for C ( identical settings to A)
+        // add creature resource store for resouce creature produces
+        // Note: Creature 1 doesn't need this resource to survive (no health gain or drain)
+        resourceCreator = cc.addResource();
+
+        resourceCreator.setName(produces);
+        resourceCreator.setMaxLevel(100);
+        resourceCreator.setLevel(90);
+        resourceCreator.setHealthGain(0);
+        resourceCreator.setHealthGainThreshold(90);
+        resourceCreator.setDeficiencyHealthDrain(0);
+        resourceCreator.setDeficiencyThreshold(20);
+        resourceCreator.setBaseUsage(1);
+
+        cc.saveResource();
+
+        // add creature resource store for resouce creature is dependent on
 
         resourceCreator = cc.addResource();
         // high starting level, so that population doesn't die out immediately
-        resourceCreator.setName(ecosystemResources[2]);
+        resourceCreator.setName(dependentOn);
         resourceCreator.setMaxLevel(200);
         resourceCreator.setLevel(190);
         resourceCreator.setHealthGain(1);
@@ -164,20 +179,7 @@ public class EcoDemo2
         cc.saveResource();
 
 
-        // add creature resource store for B
-        // Note: Creature 1 doesn't need B to survive (no health gain or drain)
-        resourceCreator = cc.addResource();
-
-        resourceCreator.setName(ecosystemResources[1]);
-        resourceCreator.setMaxLevel(100);
-        resourceCreator.setLevel(90);
-        resourceCreator.setHealthGain(0);
-        resourceCreator.setHealthGainThreshold(90);
-        resourceCreator.setDeficiencyHealthDrain(0);
-        resourceCreator.setDeficiencyThreshold(20);
-        resourceCreator.setBaseUsage(1);
-
-        cc.saveResource();
+        
 
         // for reference later
         List<string> creatureResources = new List<string>(cc.creature.storedResources.Keys);

@@ -91,6 +91,7 @@ public class Ecosystem
                     notAllDead = true;
                     List<Creature> toRemove = new List<Creature>();
                     // for each creature in population
+                    // TODO: convert creatures to linked list
                     for (int l = 0; l < population.creatures.Count; l++)
                     {
                         Creature creature = population.creatures[l];

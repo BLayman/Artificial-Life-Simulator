@@ -31,11 +31,11 @@ public class CreaturePanelPopulator : MonoBehaviour
         mutationAmtText = mutationAmtObj.GetComponent<Text>();
     }
 
-    public void setData(string species, string iD, string health, string mutationAmt)
+    public void setData(string species, string iD, string health, string mutationAmt, string maxHealth)
     {
         speciesText.text = species;
         iDText.text = iD;
-        healthText.text = health;
+        healthText.text = health + " / " + maxHealth;
         mutationAmtText.text = mutationAmt;
 
     }

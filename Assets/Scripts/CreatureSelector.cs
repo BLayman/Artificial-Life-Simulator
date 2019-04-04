@@ -11,14 +11,19 @@ public class CreatureSelector : MonoBehaviour
     EcosystemGetter ecoGetter;
     public GameObject creatureUIPanel;
     public GameObject uIDataSetter;
+    public GameObject resourcePanel;
     CreaturePanelPopulator dataSetter;
+    ResourcePanelPopulator resPop;
+    Ecosystem eco;
+    int currentX;
+    int currentY;
 
     // Start is called before the first frame update
     void Start()
     {
         ecoGetter = dataRetriever.GetComponent<EcosystemGetter>();
         dataSetter = uIDataSetter.GetComponent<CreaturePanelPopulator>();
-
+        resPop = resourcePanel.GetComponent<ResourcePanelPopulator>();
     }
 
     // Update is called once per frame
@@ -56,7 +61,9 @@ public class CreatureSelector : MonoBehaviour
 
     void retrieveCreatureData(int x, int y)
     {
-        Ecosystem eco = ecoGetter.GetEcosystem();
+        currentX = x;
+        currentY = y;
+        eco = ecoGetter.GetEcosystem();
         if (x > 0 && x < eco.map.Count && y > 0 && y < eco.map[0].Count)
         {
             if (eco.map[x][y].creatureIsOn())
@@ -66,12 +73,19 @@ public class CreatureSelector : MonoBehaviour
                 string species = cg.getSpecies();
                 string iD = cg.getId();
                 string health = cg.getHealth();
+                string maxHealth = cg.getMaxHealth();
                 string mutationAmt = cg.getMutationAmt();
                 creatureUIPanel.SetActive(true);
-                dataSetter.setData(species, iD, health, mutationAmt);
+                dataSetter.setData(species, iD, health, mutationAmt, maxHealth);
 
             }
         }
-        
+    }
+
+    public void setCreatureResources()
+    {
+        resourcePanel.SetActive(true);
+        CreatureGetter cg = new CreatureGetter(eco.map[currentX][currentY].creatureOn);
+        resPop.setResources(cg.getResources());
     }
 }

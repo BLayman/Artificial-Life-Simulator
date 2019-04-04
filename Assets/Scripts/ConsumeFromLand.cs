@@ -37,14 +37,15 @@ public class ConsumeFromLand : Action
         {
             CreatureResource creatRes = creature.storedResources[resourceToConsume];
             float storageSpace = creatRes.maxLevel - creatRes.currentLevel;
-            if (storageSpace == 0)
+            float consumed = land.attemptResourceConsumption(resourceToConsume, timeCost, creature.abilities[resourceToConsume].level, storageSpace);
+
+            if (storageSpace < consumed)
             {
-                // Debug.Log("creature to full to consume resource");
+                creature.storedResources[resourceToConsume].currentLevel = creature.storedResources[resourceToConsume].maxLevel;
             }
             // Only consume resource if creature has space for it
             else
             {
-                float consumed = land.attemptResourceConsumption(resourceToConsume, timeCost, creature.abilities[resourceToConsume].level, storageSpace);
                 creature.storedResources[resourceToConsume].currentLevel += consumed;
             }
         }

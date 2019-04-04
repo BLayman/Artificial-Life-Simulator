@@ -31,7 +31,20 @@ public class Convert : Action
     // TODO: write test for this
     public override void perform(Creature creature, Ecosystem eco)
     {
-        /* determine how much of the products can actually be produced */
+        // don't produce more than the creature can store
+        foreach (string  key in endResources.Keys)
+        {
+            CreatureResource resource = creature.storedResources[key];
+            float storageSpace = resource.maxLevel - resource.currentLevel;
+            float toProduce = amtToProduce * endResources[key];
+            if(storageSpace < toProduce)
+            {
+                amtToProduce = storageSpace / endResources[key];
+            }
+        }
+
+
+        // determine how much of the products can actually be produced 
         // amount produced is the full amount intended, unless overriden below by a limiting reactant
         float actualAmtProduced = amtToProduce; 
 
