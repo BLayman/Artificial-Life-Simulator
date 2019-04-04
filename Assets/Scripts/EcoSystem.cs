@@ -95,7 +95,7 @@ public class Ecosystem
                     for (int l = 0; l < population.creatures.Count; l++)
                     {
                         Creature creature = population.creatures[l];
-                        // remove creature if dead
+                        // remove creature if dead at beginning of turn
                         if (creature.isDead())
                         {
                             toRemove.Add(creature);
@@ -104,6 +104,11 @@ public class Ecosystem
                         else
                         {
                             creature.startTurn(this);
+                        }
+                        // remove creature if dead at end of turn
+                        if (creature.isDead())
+                        {
+                            toRemove.Add(creature);
                         }
                     }
 
