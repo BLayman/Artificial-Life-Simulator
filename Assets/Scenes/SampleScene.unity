@@ -3169,7 +3169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &573233146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3182,7 +3182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4f33bc942d1ac4caecf821c71953d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  nodePrefab: {fileID: 13668352595041841, guid: 450368e29f0c4eb4f8dd7e0219a24c6a,
+    type: 3}
   canvas: {fileID: 1655082469}
   instantiated: []
 --- !u!114 &573233147
@@ -9708,7 +9709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1655082470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11952,7 +11953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2074816851
 RectTransform:
   m_ObjectHideFlags: 0

@@ -32,7 +32,9 @@ public class NetPanelPopulator : MonoBehaviour
                 y -= 30;
                 instantiated.Add(created);
                 Button btn = created.GetComponent<Button>();
-                btn.onClick.AddListener(() => setNetworkPanel(i, key));
+                //Debug.Log("listener for " + key + " set with index " + i);
+                int localI = i;
+                btn.onClick.AddListener(() => setNetworkPanel(localI, key));
             }
             y = -70;
             x += 100;
@@ -43,7 +45,7 @@ public class NetPanelPopulator : MonoBehaviour
 
     public void setNetworkPanel(int index, string key)
     {
-        Debug.Log("setNetworkPanel called with " + key);
+        Debug.Log("setNetworkPanel called with " + key + " and " + index);
         indNetPan.SetActive(true);
         indNetPan.GetComponent<IndivNetPanelPop>().setNetwork(nets[index][key]);
     }

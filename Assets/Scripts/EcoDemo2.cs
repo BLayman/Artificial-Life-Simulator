@@ -22,7 +22,7 @@ public class EcoDemo2
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(200);
+            userCreatesEcosystem(500);
             // add cat species
             userAddsSpecies("Creature1", ColorChoice.blue, 2f, "C", "B", .9f, .01f, false);
             // populate with low standard deviation from founder creature
