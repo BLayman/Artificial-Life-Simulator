@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class IndivNetPanelPop : MonoBehaviour
 {
     public GameObject nodePrefab;
     public GameObject canvas;
+    public GameObject nodePanel;
     public List<GameObject> instantiated = new List<GameObject>();
     Network net;
 
@@ -28,16 +30,46 @@ public class IndivNetPanelPop : MonoBehaviour
 
                 Text title = created.transform.GetChild(1).gameObject.GetComponent<Text>();
                 Text value = created.transform.GetChild(2).gameObject.GetComponent<Text>();
-                
+                Button btn = created.transform.GetChild(3).gameObject.GetComponent<Button>();
+                //btn.name = j.ToString();
+
                 string type = layers[i][j].GetType().Name;
                 //Debug.Log("type " + type);
+                bool castWorked = true;
+                NonInputNode nodeArg = null;
+                try
+                {
+                    nodeArg = (NonInputNode)layers[i][j];
+                }
+                catch (InvalidCastException e)
+                {
+                    castWorked = false;
+                }
+                if (castWorked)
+                {
+                    btn.onClick.AddListener(() => { createNodePanel(nodeArg); });
+
+                }
+
+
                 string titleText = "";
                 switch (type)
                 {
                     case "SensoryInputNode":
                         SensoryInputNode siNode = (SensoryInputNode) layers[i][j];
                         titleText = "sense " + siNode.sensedResource + " " + Helper.neighborIndexToWord(siNode.neighborLandIndex);
-                        //Debug.Log("land index " + siNode.neighborLandIndex);
+                        break;
+                    case "OutputNode":
+                        OutputNode outNode = (OutputNode)layers[i][j];
+                        titleText = outNode.action.name;
+                        break;
+                    case "InternalResourceInputNode":
+                        InternalResourceInputNode internNode = (InternalResourceInputNode)layers[i][j];
+                        titleText = internNode.sensedResource + " stored";
+                        break;
+                    case "InnerInputNode":
+                        InnerInputNode innerNode = (InnerInputNode)layers[i][j];
+                        titleText = innerNode.linkedNetName;
                         break;
                     case "BiasNode":
                         titleText = "Bias Node";
@@ -64,6 +96,13 @@ public class IndivNetPanelPop : MonoBehaviour
             x += 120;
             y = -50;
         }
+    }
+
+    public void createNodePanel(NonInputNode node)
+    {
+        nodePanel.SetActive(true);
+        NodePanelPopulator panelPop = nodePanel.GetComponent<NodePanelPopulator>();
+        panelPop.setNode(node);
     }
 
 
