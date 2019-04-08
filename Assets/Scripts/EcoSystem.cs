@@ -73,6 +73,8 @@ public class Ecosystem
     /// </summary>
     public void runSystem(int timeSteps)
     {
+
+
         for (int i = 0; i < timeSteps; i++)
         {
             // for a given time step:
@@ -175,8 +177,10 @@ public class Ecosystem
                     {
                         for (int k = 0; k < map[renewRow].Count; k++)
                         {
+
                             foreach (ResourceStore res in map[renewRow][k].propertyDict.Values)
                             {
+
                                 if (res.renewalAmt > 0)
                                 {
                                     res.renewResource();

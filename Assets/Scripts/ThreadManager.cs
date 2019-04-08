@@ -11,7 +11,7 @@ using UnityEngine;
 
 class ThreadManager : MonoBehaviour
 {
-    EcoDemo1 ecoMan;
+    EcoDemo2 ecoMan;
     Ecosystem unityEco;
     System.Object ecoQueueLock = new System.Object();
     System.Object threadFinishedLock = new System.Object();
@@ -42,7 +42,7 @@ class ThreadManager : MonoBehaviour
 
         ecoQueue = new LinkedList<Ecosystem>(); // queue for callback functions
                                                 // create ecosystem using EcoManager
-        ecoMan = new EcoDemo1();
+        ecoMan = new EcoDemo2();
         ecoMan.makeEco();
         // get newly created ecosystem and set unityEco to reference it
         unityEco = ecoMan.getEcosystem();
@@ -77,7 +77,10 @@ class ThreadManager : MonoBehaviour
 
     public Ecosystem getEcosystem()
     {
+        
         return unityEco;
+        
+
     }
 
     public void StartEcoSim()
@@ -93,6 +96,8 @@ class ThreadManager : MonoBehaviour
 
     public bool updateEcoIfReady()
     {
+        
+
         bool updateOccured = false; // change to true if update occured
         Ecosystem lastEnqueued;
         bool checkFinished;
@@ -149,12 +154,28 @@ class ThreadManager : MonoBehaviour
                 // remove ecosystem from queue
                 Ecosystem updatedEco = ecoQueue.First.Value;
                 ecoQueue.RemoveFirst();
+                /*
+                Debug.Log("******************                     **********************               ***********");
 
+                for (int n = 0; n < updatedEco.map.Count; n++)
+                {
+                    for (int j = 0; j < updatedEco.map[n].Count; j++)
+                    {
+
+                        if (updatedEco.map[n][j].creatureIsOn())
+                        {
+                            Debug.Log(" queue length: " + updatedEco.map[n][j].creatureOn.actionQueue.Count);
+                        }
+                    }
+                }
+                Debug.Log("******************                     **********************               ***********");
+                */
                 //Debug.Log("Length of Queue: " + ecoQueue.Count);
 
                 //Debug.Log("safely applying data created in thread.");
                 // make unityEco reference modified copy of itself, NOTE: this won't change all references to the ecosystem, such as those used in the UI 
                 unityEco = updatedEco;
+
                 //Debug.Log("ecosystem age:" + unityEco.count);
             }
         }
@@ -173,6 +194,7 @@ class ThreadManager : MonoBehaviour
     // called on child thread to enqueue functions to run
     public void QueueMainThread(Ecosystem ecosys)
     {
+        
         // lock ecoQueue before enqueueing
         lock (ecoQueueLock)
         {
@@ -186,6 +208,8 @@ class ThreadManager : MonoBehaviour
     // don't use any variables besides what's sent into the function, or created in the function (to avoid threading issues)
     void runSystem(Ecosystem eco, int Localsteps, Thread mainThread)
     {
+        
+
         string localVisRes;
         lock (threadFinishedLock)
         {
@@ -215,9 +239,12 @@ class ThreadManager : MonoBehaviour
             // if it shouldn't be ended, run simulation and add state to queue
             if (!tempFinishChildThread)
             {
+                
+
                 eco.runSystem(Localsteps); // run ecosystem
                 //float st = System.DateTime.Now.Second;
                 //Debug.Log("starting threads");
+                
 
                 // update visible resource in case it was changed by the user
                 lock (visibleResourceLock)

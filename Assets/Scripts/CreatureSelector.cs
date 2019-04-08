@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Priority_Queue;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,8 +14,10 @@ public class CreatureSelector : MonoBehaviour
     public GameObject uIDataSetter;
     public GameObject resourcePanel;
     public GameObject netsPanel;
+    public GameObject actionsPanel;
     CreaturePanelPopulator dataSetter;
     ResourcePanelPopulator resPop;
+    ActionPanelPopulator actionPop;
     NetPanelPopulator netsPop;
     Ecosystem eco;
     CreatureGetter cg;
@@ -26,6 +29,7 @@ public class CreatureSelector : MonoBehaviour
         dataSetter = uIDataSetter.GetComponent<CreaturePanelPopulator>();
         resPop = resourcePanel.GetComponent<ResourcePanelPopulator>();
         netsPop = netsPanel.GetComponent<NetPanelPopulator>();
+        actionPop = actionsPanel.GetComponent<ActionPanelPopulator>();
     }
 
     // Update is called once per frame
@@ -64,12 +68,20 @@ public class CreatureSelector : MonoBehaviour
     void retrieveCreatureData(int x, int y)
     {
         eco = ecoGetter.GetEcosystem();
+        
+
+
         if (x > 0 && x < eco.map.Count && y > 0 && y < eco.map[0].Count)
         {
             if (eco.map[x][y].creatureIsOn())
             {
                 Debug.Log("found creature");
+                Debug.Log("count:" + eco.map[x][y].creatureOn.actionQueue.Count);
+                
                 cg = new CreatureGetter(eco.map[x][y].creatureOn);
+                SimplePriorityQueue<Action> actionQueue = cg.getActions();
+                Debug.Log("count2: " + actionQueue.Count);
+
                 string species = cg.getSpecies();
                 string iD = cg.getId();
                 string health = cg.getHealth();
@@ -93,5 +105,12 @@ public class CreatureSelector : MonoBehaviour
         netsPanel.SetActive(true);
         List<Dictionary<string, Network>> nets = cg.getNets();
         netsPop.setNets(nets);
+    }
+
+    public void viewCreatureActionQueue()
+    {
+        actionsPanel.SetActive(true);
+        SimplePriorityQueue<Action> actionQueue = cg.getActions();
+        actionPop.setActions(actionQueue);
     }
 }

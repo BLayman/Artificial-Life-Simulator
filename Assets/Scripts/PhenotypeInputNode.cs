@@ -12,6 +12,7 @@ public class PhenotypeInputNode : Node
     /// </summary>
     public bool[] phenotype;
 
+    public int neighborIndex;
     /// <summary>
     /// Index in network layer
     /// </summary>
@@ -30,6 +31,10 @@ public class PhenotypeInputNode : Node
         phenotype = pheno;
     }
 
+    public void setNeightborIndex(int i)
+    {
+        neighborIndex = i;
+    }
 
     public override void updateValue()
     {

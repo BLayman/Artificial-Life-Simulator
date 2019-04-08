@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Priority_Queue;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 public class CreatureGetter
 {
@@ -45,6 +47,13 @@ public class CreatureGetter
     public List<Dictionary<string, Network>> getNets()
     {
         return creature.networks;
+    }
+
+    public SimplePriorityQueue<Action> getActions()
+    {
+        Debug.Log(creature.iD);
+        Debug.Log(creature.actionQueue.Count);
+        return creature.actionQueue;
     }
 
 }

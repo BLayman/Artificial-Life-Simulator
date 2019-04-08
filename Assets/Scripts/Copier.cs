@@ -51,6 +51,7 @@ public class Copier
             copy.populations[popName].creatures = new List<Creature>();
             foreach (Creature creat in eco.populations[popName].creatures)
             {
+                //Debug.Log("orig count: " + creat.actionQueue.Count);
                 Creature creatCopy = getCreatureCopy(creat);
                 // set map on creatCopy to new map
                 creatCopy.map = copy.map;
@@ -58,7 +59,7 @@ public class Copier
                 copy.map[creatCopy.position[0]][creatCopy.position[1]].creatureOn = creatCopy;
                 // set new neighborlands list to reference map lands
                 creatCopy.updateNeighbors();
-
+                //Debug.Log("copy count: " + creatCopy.actionQueue.Count);
                 copy.populations[popName].creatures.Add(creatCopy);
             }
             // offspring should have been saved to creatures by the end of the turn anyway
@@ -159,7 +160,6 @@ public class Copier
 
         // don't copy parent's actions
         creatureCopy.actionQueue = new SimplePriorityQueue<Action>();
-
 
         // don't copy output comm signals to child
         creatureCopy.outputCommSignals = new List<CommSignal>();
@@ -497,6 +497,11 @@ public class Copier
             {
                 newNode.weights.Add(oldNode2.weights[i]);
             }
+            newNode.extraWeights = new List<float>();
+            for (int i = 0; i < oldNode2.extraWeights.Count; i++)
+            {
+                newNode.extraWeights.Add(oldNode2.extraWeights[i]);
+            }
             return newNode;
         }
         else if (oldNode.GetType().Name == "NonInputNode")
@@ -512,6 +517,11 @@ public class Copier
             for (int i = 0; i < oldNode2.weights.Count; i++)
             {
                 newNode.weights.Add(oldNode2.weights[i]);
+            }
+            newNode.extraWeights = new List<float>();
+            for (int i = 0; i < oldNode2.extraWeights.Count; i++)
+            {
+                newNode.extraWeights.Add(oldNode2.extraWeights[i]);
             }
             return newNode;
         }

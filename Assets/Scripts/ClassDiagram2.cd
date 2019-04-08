@@ -465,7 +465,7 @@
   <Class Name="PhenotypeInputNode">
     <Position X="2" Y="14.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAABAACAAQAAAAAAABAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAABAACAAQAAAgAAABIAA=</HashCode>
       <FileName>Assets\Scripts\PhenotypeInputNode.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -521,7 +521,7 @@
   <Class Name="CreatureGetter">
     <Position X="34.75" Y="21" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAEAAAAAAAAAAAgAAAAIAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAkAAAAAAAAAAAgAAAAIAAAIAAAAQAAAAg=</HashCode>
       <FileName>Assets\Scripts\CreatureGetter.cs</FileName>
     </TypeIdentifier>
   </Class>

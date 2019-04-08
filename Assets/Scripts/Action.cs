@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using UnityEngine;
 
 public abstract class Action
 {
@@ -43,6 +43,10 @@ public abstract class Action
 
         foreach (string resource in resourceCosts.Keys)
         {
+            if (!creature.storedResources.ContainsKey(resource))
+            {
+                Debug.LogError("creature doesn't store resource: " + resource);
+            }
             if (creature.storedResources[resource].currentLevel <= resourceCosts[resource])
             {
                 enoughToSpend = false;

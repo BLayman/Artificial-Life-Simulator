@@ -10,7 +10,7 @@ public class PhenotypeNetwork : Network
     public Creature parentCreature;
 
 
-    public void setInputNodes(bool[] phenotype)
+    public void setInputNodes(bool[] phenotype, int neighborIndex)
     {
         //Debug.Log("copied first layer length: " + net[0].Count);
         // starts at 1 because of bias node
@@ -18,6 +18,7 @@ public class PhenotypeNetwork : Network
         {
             PhenotypeInputNode node = (PhenotypeInputNode) net[0][i];
             node.setPhenotype(phenotype);
+            node.setNeightborIndex(neighborIndex);
         }
     }
 

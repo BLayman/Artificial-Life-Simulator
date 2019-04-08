@@ -102,7 +102,8 @@ public class Creature
 
 
     /// <summary>
-    /// A network will be created for each neighbor to process its phenotype, and added to the first layer of networks in "networks" 
+    /// A network will be created for each neighbor to process its phenotype, and added to the first layer of networks in "networks"
+    /// </summary>
     public PhenotypeNetwork phenotypeNetTemplate = new PhenotypeNetwork();
 
     public float maxHealth;
@@ -159,6 +160,7 @@ public class Creature
     /// </summary>
     public void startTurn(Ecosystem eco)
     {
+        //Debug.Log("before: " + actionQueue.Count);
         // reset turn time
         remainingTurnTime = fullTurnTime;
         // run inputs through neural networks
@@ -169,6 +171,7 @@ public class Creature
         performActions(eco);
         // update health based on resource levels
         resourceHealthUpdate();
+        //Debug.Log("after: " + actionQueue.Count);
 
     }
 
@@ -281,6 +284,7 @@ public class Creature
     {
         if (senseNeighborPhenotypes)
         {
+            removePhenotypeNetworks(); // remove old
             addPhenotypeNetworks();
         }
 
@@ -294,11 +298,6 @@ public class Creature
                 net.feedForward();
             }
         }
-
-        if (senseNeighborPhenotypes)
-        {
-            removePhenotypeNetworks();
-        }
     }
 
     // TODO : test
@@ -307,14 +306,14 @@ public class Creature
         // add network for every neighbor with a creature
         for (int i = 0; i < neighborLands.Length; i++)
         {
-            if (neighborLands[i].creatureIsOn())
+            if (neighborLands[i].creatureIsOn() && i != 0)
             {
                 // get a copy of the template
                 // Debug.Log("template first layer length: " + phenotypeNetTemplate.net[0].Count);
                 PhenotypeNetwork phenotypeNet = (PhenotypeNetwork) Copier.copyNetwork(phenotypeNetTemplate, this);
                
                 // set the phenotype used in the template
-                phenotypeNet.setInputNodes(neighborLands[i].creatureOn.phenotype);
+                phenotypeNet.setInputNodes(neighborLands[i].creatureOn.phenotype, i);
                 // add the network to the creatures networks
                 string phenoNetName = "phenotypeNet" + i;
                 networks[0].Add(phenoNetName, phenotypeNet);
@@ -341,6 +340,12 @@ public class Creature
 
                             // add inner-input node to first layer of output network
                             net.net[0].Add(node);
+                            // add previous node for all nodes in second layer of output network
+                            for (int k = 0; k < net.net[1].Count; k++)
+                            {
+                                NonInputNode niNode = (NonInputNode) net.net[1][k];
+                                niNode.appendPrevNode(net.net[0][net.net[0].Count - 1]);
+                            }
                         }
                         
                     }
@@ -356,6 +361,7 @@ public class Creature
     // reset phenotype networks after each turn
     public void removePhenotypeNetworks()
     {
+        bool removed = false;
         List<string> toRemove = new List<string>();
 
         foreach (string netKey in networks[0].Keys)
@@ -363,6 +369,7 @@ public class Creature
             if (netKey.StartsWith("phenotypeNet"))
             {
                 toRemove.Add(netKey);
+                removed = true;
             }
         }
         for (int i = 0; i < toRemove.Count; i++)
@@ -373,26 +380,41 @@ public class Creature
         // remove extra nodes as well
 
         // for every output network
-        foreach (OutputNetwork net in networks[networks.Count - 1].Values)
+        if (removed)
         {
-            List<Node> removeNodes = new List<Node>();
-            // for every inner input node in first layer, delete if temp
-            foreach (Node node in net.net[0])
+            // remove extra nodes
+            foreach (OutputNetwork net in networks[networks.Count - 1].Values)
             {
-                if(node.GetType().Name == "InnerInputNode")
+                List<Node> removeNodes = new List<Node>();
+                // for every inner input node in first layer, delete if temp
+                foreach (Node node in net.net[0])
                 {
-                    InnerInputNode iiNode = (InnerInputNode) node;
-                    if (iiNode.temp)
+                    if (node.GetType().Name == "InnerInputNode")
                     {
-                        removeNodes.Add(node);
+                        InnerInputNode iiNode = (InnerInputNode)node;
+                        if (iiNode.temp)
+                        {
+                            removeNodes.Add(node);
+                        }
                     }
                 }
-                
+                foreach (Node node in removeNodes)
+                {
+                    net.net[0].Remove(node);
+                }
+
+                // reassign previous nodes after deletion
+                for (int i = 1; i < net.net.Count; i++)
+                {
+                    for (int j = 0; j < net.net[i].Count; j++)
+                    {
+                        NonInputNode niNode = (NonInputNode)net.net[i][j];
+                        niNode.assignPrevNodes();
+                    }
+
+                }
             }
-            foreach (Node node in removeNodes)
-            {
-                net.net[0].Remove(node);
-            }
+        
         }
         
     }
@@ -471,7 +493,7 @@ public class Creature
 
         
 
-        // remove all actions from queue each turn
+        // the queue for the next turn
         SimplePriorityQueue<Action> nextQueue = new SimplePriorityQueue<Action>();
 
         while (actionQueue.Count > 0)
@@ -496,14 +518,15 @@ public class Creature
         }
         // actionQueue is now the queue for next turn
         actionQueue = nextQueue;
-        // Debug.Log("Queue size: " + actionQueue.Count);
+        
         // keep action queue a manageable size by clearing it every few steps, and clearing it if its size gets too big
         if (actionClearCount > actionClearInterval || actionQueue.Count >= actionClearSize)
         {
             actionClearCount = 0;
             actionQueue.Clear();
         }
-        
+        actionClearCount++;
+        //Debug.Log("Queue size: " + actionQueue.Count);
     }
 
     /// <summary>
@@ -596,6 +619,14 @@ public class Creature
                             node.weights[i] += Copier.normRand(standardDev);
                             //Debug.Log("new weight: " + node.weights[i]);
                         }
+                        if (senseNeighborPhenotypes)
+                        {
+                            for (int i = 0; i < node.extraWeights.Count; i++)
+                            {
+                                node.extraWeights[i] += Copier.normRand(standardDev);
+                            }
+                        }
+                        
                     }
                 }
             }

@@ -30,6 +30,22 @@ public class EcosystemGetter : MonoBehaviour
 
     public Ecosystem GetEcosystem()
     {
+        Ecosystem eco = threader.getEcosystem();
+        /*
+        Debug.Log("******************                     **********************               ***********");
+        for (int i = 0; i < eco.map.Count; i++)
+        {
+            for (int j = 0; j < eco.map[i].Count; j++)
+            {
+
+                if (eco.map[i][j].creatureIsOn())
+                {
+                    Debug.Log("*** queue length: " + eco.map[i][j].creatureOn.actionQueue.Count);
+                }
+            }
+        }
+        Debug.Log("******************                     **********************               ***********");
+        */
         return threader.getEcosystem();
     }
 

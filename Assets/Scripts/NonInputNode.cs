@@ -28,6 +28,8 @@ public class NonInputNode : Node
     /// </summary>
     public List<float> weights = new List<float>();
 
+    public List<float> extraWeights = new List<float>(); 
+
     public Network parentNet;
     public int layer;
 
@@ -45,6 +47,7 @@ public class NonInputNode : Node
         activBehavior = new LogisticActivBehavior();
         this.layer = layer;
         resetAllPreviousNodes();
+        generatePhenotypeWeights();
     }
 
     public override void updateValue()
@@ -54,10 +57,24 @@ public class NonInputNode : Node
         value = performActivBehavior(combination);
     }
 
-    public void appendPrevNode(Node newNode)
+    public void appendPrevNodeNewWeight(Node newNode)
     {
         prevNodes.Add(newNode);
         weights.Add(generateNewRandomWeight());
+    }
+
+    public void appendPrevNode(Node newNode)
+    {
+        prevNodes.Add(newNode);
+    }
+
+    // add weights for each of 4 possible neighbors that could contribute values to the previous layer
+    public void generatePhenotypeWeights()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            extraWeights.Add(generateNewRandomWeight());
+        }
     }
 
     public void removePrevNode(int index)
@@ -70,10 +87,21 @@ public class NonInputNode : Node
     private float linearCombinePrevVals()
     {
         float sum = 0;
-        if (prevNodes.Count != weights.Count)
+
+        // add extra weights to be used for neighbor phenotypes
+        if (prevNodes.Count > weights.Count)
         {
-            Debug.LogError("Error: Previous node count not equal to weights count.");
+            weights.AddRange(extraWeights);
         }
+
+        // should never have more nodes than weights
+        /*
+        if (prevNodes.Count < weights.Count)
+        {
+            Debug.LogError("Error: Previous node count greater than weights count. " +
+                "Weight count: " + weights.Count + ", node count: " + prevNodes.Count);
+        }
+        */
         for (int i = 0; i < prevNodes.Count; i++)
         {
             sum += prevNodes[i].value * weights[i];

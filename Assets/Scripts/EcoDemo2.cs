@@ -22,15 +22,15 @@ public class EcoDemo2
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(500);
+            userCreatesEcosystem(150);
             // add cat species
-            userAddsSpecies("Creature1", ColorChoice.blue, 2f, "C", "B", .9f, .01f, false);
+            userAddsSpecies("Creature1", ColorChoice.blue, 2f, "A", "C", "D", .9f, .01f, false, 1);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature1", 2f, 200, 500);
+            userPopulatesSpecies("Creature1", 2f, 200, 300);
 
-            userAddsSpecies("Creature2", ColorChoice.green, 2f, "B", "C", .9f, .01f, false);
+            userAddsSpecies("Creature2", ColorChoice.green, 2f, "B", "D", "C", .9f, .01f, false, 2);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature2", 2f, 200, 500);
+            userPopulatesSpecies("Creature2", 2f, 200, 300);
         }
         else
         {
@@ -64,12 +64,22 @@ public class EcoDemo2
         lre.setAmountOfResource(100);
         lre.setMaxAmt(150);
         lre.setAmtConsumedPerTime(10);
-        lre.setProportionExtracted(.2f);
+        lre.setProportionExtracted(.4f); // higher proportion extracted for primary resources
         lre.setRenewalAmt(2f);
 
         ecoCreator.saveResource();
-        
+
+
         ecoCreator.addResource("B");
+        ecoCreator.lre.setAmountOfResource(100);
+        ecoCreator.lre.setMaxAmt(150);
+        ecoCreator.lre.setAmtConsumedPerTime(10);
+        ecoCreator.lre.setProportionExtracted(.4f); // higher proportion extracted for primary resources
+        ecoCreator.lre.setRenewalAmt(2f);
+        ecoCreator.saveResource();
+
+
+        ecoCreator.addResource("C");
         ecoCreator.lre.setAmountOfResource(100);
         ecoCreator.lre.setMaxAmt(150);
         ecoCreator.lre.setAmtConsumedPerTime(10);
@@ -77,7 +87,7 @@ public class EcoDemo2
         ecoCreator.lre.setRenewalAmt(0); // not renewed
         ecoCreator.saveResource();
 
-        ecoCreator.addResource("C");
+        ecoCreator.addResource("D");
         ecoCreator.lre.setAmountOfResource(100);
         ecoCreator.lre.setMaxAmt(150);
         ecoCreator.lre.setAmtConsumedPerTime(10);
@@ -93,9 +103,10 @@ public class EcoDemo2
         // TODO: account for asymetric maps
         ecoCreator.mapEditor.generateMap(mapWidth, mapWidth);
         ecoCreator.mapEditor.addLERPXResource("A", 1f);
+        ecoCreator.mapEditor.addLERPXResource("B", 1f);
         // small starting amount of B and C
-        ecoCreator.mapEditor.addUniformResource("B", .01f); 
-        ecoCreator.mapEditor.addUniformResource("C", .01f);
+        ecoCreator.mapEditor.addUniformResource("C", .05f); 
+        ecoCreator.mapEditor.addUniformResource("D", .05f);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
         
@@ -109,14 +120,14 @@ public class EcoDemo2
      * add resource to node, 
      * save creature to founder creatures dict and species dict
      */
-    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation, string dependentOn, string produces, float mutationDeviationFraction, float lowestMutationDeviation, bool nonLinearPhenotypeNet)
+    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation, string primaryConsume, string dependentOn, string produces, float mutationDeviationFraction, float lowestMutationDeviation, bool nonLinearPhenotypeNet, int phenotype)
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
 
         // user edits:
         cc.setSpecies(name);
-        cc.setPhenotype(1);
+        cc.setPhenotype(phenotype);
         cc.setTurnTime(10);
         cc.setMaxHealth(1000);
         cc.setInitialHealth(700);
@@ -134,18 +145,16 @@ public class EcoDemo2
         //Debug.Log("resource added to creature: " + ecosystemResources[0]);
 
 
-        // add creature resource store for A
+        // add creature resource store for primary resource that creature needs
         ResourceEditor resourceCreator = cc.addResource();
-
-        resourceCreator.setName(ecosystemResources[0]);
+        resourceCreator.setName(primaryConsume);
         resourceCreator.setMaxLevel(100);
         resourceCreator.setLevel(90);
         resourceCreator.setHealthGain(1);
         resourceCreator.setHealthGainThreshold(90);
-        resourceCreator.setDeficiencyHealthDrain(10);
+        resourceCreator.setDeficiencyHealthDrain(5);
         resourceCreator.setDeficiencyThreshold(20);
         resourceCreator.setBaseUsage(1);
-
         cc.saveResource();
 
         // add creature resource store for resouce creature produces
@@ -157,14 +166,14 @@ public class EcoDemo2
         resourceCreator.setLevel(90);
         resourceCreator.setHealthGain(0);
         resourceCreator.setHealthGainThreshold(90);
-        resourceCreator.setDeficiencyHealthDrain(0);
+        resourceCreator.setDeficiencyHealthDrain(0); // health drain zero
         resourceCreator.setDeficiencyThreshold(20);
         resourceCreator.setBaseUsage(1);
 
         cc.saveResource();
 
-        // add creature resource store for resouce creature is dependent on
 
+        // add creature resource store for resouce creature is dependent on
         resourceCreator = cc.addResource();
         // high starting level, so that population doesn't die out immediately
         resourceCreator.setName(dependentOn);
@@ -173,7 +182,7 @@ public class EcoDemo2
         resourceCreator.setHealthGain(1);
         resourceCreator.setHealthGainThreshold(190);
         resourceCreator.setDeficiencyHealthDrain(5);
-        resourceCreator.setDeficiencyThreshold(20);
+        resourceCreator.setDeficiencyThreshold(10);
         resourceCreator.setBaseUsage(1);
 
         cc.saveResource();
@@ -185,7 +194,7 @@ public class EcoDemo2
         List<string> creatureResources = new List<string>(cc.creature.storedResources.Keys);
 
         // generates movement actions
-        cc.generateDefaultActionPool("A", 5);
+        cc.generateDefaultActionPool(primaryConsume, 5);
 
         /* MUST GENERATE ACTIONS AND ADD THEM TO CREATURE'S ACTION POOL BEFORE CREATING OUTPUT NODES FOR THOSE ACTIONS */
 
@@ -193,17 +202,17 @@ public class EcoDemo2
         cc.addDefaultResourceAbilities();
         cc.saveAbilities();
 
-        // create action for consuming A
+        // create action for consuming primary resource
         ActionEditor ae = cc.addAction();
         ae.setCreator(ActionCreatorType.consumeCreator);
         ConsumeFromLandEditor cle = (ConsumeFromLandEditor)ae.getActionCreator();
-        cle.setName("eatA");
+        cle.setName("eat" + primaryConsume);
         cle.setNeighborIndex(0);
-        cle.setResourceToConsume("A");
+        cle.setResourceToConsume(primaryConsume);
         cle.setPriority(1);
         cle.setTimeCost(10);
         // requires A and C to perform
-        cle.addResourceCost("A", 1);
+        cle.addResourceCost(primaryConsume, 1);
         cle.addResourceCost(dependentOn, 1);
         cc.saveAction();
 
@@ -217,7 +226,7 @@ public class EcoDemo2
         cle2.setPriority(1);
         cle2.setTimeCost(10);
         // requires A and C to perform
-        cle2.addResourceCost("A", 1);
+        cle2.addResourceCost(primaryConsume, 1);
         cle2.addResourceCost(dependentOn, 1);
         cc.saveAction();
 
@@ -228,19 +237,20 @@ public class EcoDemo2
         rae.setName("reproduce");
         rae.setPriority(1);
         rae.setTimeCost(10);
-        rae.addResourceCost("A", 20); 
+        rae.addResourceCost(primaryConsume, 20);
+        rae.addResourceCost(dependentOn, 5);
         rae.addResourceCost(dependentOn, 10);
         cc.saveAction();
 
-        // action for converting A to B  with a 1 to 2 ratio
+        // action for converting with a 1 to 2 ratio
         ActionEditor ae3 = cc.addAction();
         ae3.setCreator(ActionCreatorType.convertEditor);
         ConvertEditor convEdit = (ConvertEditor)ae3.getActionCreator();
-        convEdit.setName("convertATo" + produces);
+        convEdit.setName("convert"+ primaryConsume + "To" + produces);
         convEdit.setPriority(1);
         convEdit.setTimeCost(10);
         convEdit.setAmtToProduce(5);
-        convEdit.addStartResource("A", 1);
+        convEdit.addStartResource(primaryConsume, 1);
         convEdit.addEndResource(produces, 2);
         cc.saveAction();
 
@@ -285,8 +295,13 @@ public class EcoDemo2
             /* Node phenotypeNet 1,0 */
             makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 2);
 
-            /* Node phenotypeNet 1,0 */
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "convertATo" + produces, 2);
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "convert" + primaryConsume + "To" + produces, 2);
+
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 2);
+
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + dependentOn, 2);
+
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + primaryConsume, 2);
         }
 
         else
@@ -296,7 +311,21 @@ public class EcoDemo2
             makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 1);
 
             /* Node phenotypeNet 1,0 */
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "convertATo" + produces, 1);
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "convert" + primaryConsume + "To" + produces, 1);
+
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
+
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + dependentOn, 1);
+
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + primaryConsume, 1);
+
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
+
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
+
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
+
+            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
         }
         
 
@@ -375,25 +404,35 @@ public class EcoDemo2
         // sense resource 2 at current location
         makeSensoryInputNode(netCreator, 0, creatureResources[2]);
 
+        netCreator.insertNewLayer(1);
+
+        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
 
         // Node net1 1,0 
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 2);
         // Node net1 1,1 
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 2);
         // Node net1 1,2 
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 2);
         // Node net1 1,3 
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 2);
         // Node net1 1,4 
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eatA", 1);
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eat" + primaryConsume, 2);
         // Node net1 1,
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eat" + dependentOn, 1);
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eat" + dependentOn, 2);
         // Node net1 1,
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 2);
         // Node net1 1,
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 1);
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 2);
         // Node net1 1,
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "convertATo" + produces, 1);
+        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "convert" + primaryConsume + "To" + produces, 2);
 
 
         // user clicks save on network creator
@@ -419,24 +458,34 @@ public class EcoDemo2
 
         makeInternalResourceInputNode(InternalNetCreator, creatureResources[2]);
 
+        InternalNetCreator.insertNewLayer(1);
+
+        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
+
         // Node net1 1,0 
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
+        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 2);
         // Node net1 1,1 
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
+        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 2);
         // Node net1 1,2 
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
+        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 2);
         // Node net1 1,3 
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
+        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 2);
         // Node net1 1,4 
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "eatA", 1);
+        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + primaryConsume, 2);
         // Node net1 1,
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + dependentOn, 1);
+        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + dependentOn, 2);
         // Node net1 1,
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
+        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 2);
         // Node net1 1,
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 1);
+        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 2);
         // Node net1 1,
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "convertATo" + produces, 1);
+        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "convert" + primaryConsume + "To" + produces, 2);
 
 
         // user clicks save on network creator
@@ -453,17 +502,22 @@ public class EcoDemo2
         netCreator2.setInLayer(1); // called by default with index of layer user clicked
         netCreator2.setName("outNetUp");
         netCreator2.setOutputAction(cc.creature.actionPool[outputAction]);
+
+
         /* Node outNet 0,0 */
         // insert a node into 0th layer new network. Connect it to the 0th node in the last layer of net1 (net1 is in layer 0)
         makeInnerInputNode(netCreator2, 0, "externalNet", 0, 0); // TODO: automate this linking processes
         makeInnerInputNode(netCreator2, 0, "internalNet", 0, 0); // TODO: automate this linking processes
 
+        netCreator2.insertNewLayer(1);
 
-        /* Node outNet 0,1 */
-        //makeInnerInputNode(netCreator2, 0, "net2", 0, 0);
+        makeHiddenNode(netCreator2, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator2, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator2, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator2, ActivationBehaviorTypes.LogisticAB, 1);
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreator2, ActivationBehaviorTypes.LogisticAB, outputAction, 1);
+        makeOutputNode(netCreator2, ActivationBehaviorTypes.LogisticAB, outputAction, 2);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -482,12 +536,17 @@ public class EcoDemo2
         makeInnerInputNode(netCreator4, 0, "externalNet", 0, 1);
         makeInnerInputNode(netCreator4, 0, "internalNet", 0, 1);
 
+        netCreator4.insertNewLayer(1);
 
+        makeHiddenNode(netCreator4, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator4, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator4, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator4, ActivationBehaviorTypes.LogisticAB, 1);
         /* Node outNet 0,1 */
         //makeInnerInputNode(netCreator4, 0, "net2", 0, 1);
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreator4, ActivationBehaviorTypes.LogisticAB, outputAction2, 1);
+        makeOutputNode(netCreator4, ActivationBehaviorTypes.LogisticAB, outputAction2, 2);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -507,8 +566,15 @@ public class EcoDemo2
         makeInnerInputNode(netCreator6, 0, "externalNet", 0, 2);
         makeInnerInputNode(netCreator6, 0, "internalNet", 0, 2);
 
+        netCreator6.insertNewLayer(1);
+
+        makeHiddenNode(netCreator6, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator6, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator6, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator6, ActivationBehaviorTypes.LogisticAB, 1);
+
         /* Node outNet 1,0 */
-        makeOutputNode(netCreator6, ActivationBehaviorTypes.LogisticAB, outputAction3, 1);
+        makeOutputNode(netCreator6, ActivationBehaviorTypes.LogisticAB, outputAction3, 2);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -529,9 +595,15 @@ public class EcoDemo2
         makeInnerInputNode(netCreator7, 0, "externalNet", 0, 3);
         makeInnerInputNode(netCreator7, 0, "internalNet", 0, 3);
 
+        netCreator7.insertNewLayer(1);
+
+        makeHiddenNode(netCreator7, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator7, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator7, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreator7, ActivationBehaviorTypes.LogisticAB, 1);
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreator7, ActivationBehaviorTypes.LogisticAB, outputAction4, 1);
+        makeOutputNode(netCreator7, ActivationBehaviorTypes.LogisticAB, outputAction4, 2);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -540,22 +612,26 @@ public class EcoDemo2
 
         // user adds a second network
         OutputNetworkEditor eatAOutNet = (OutputNetworkEditor) cc.addNetwork(NetworkType.output);
-        string eatAOutAction = "eatA";
+        string eatAOutAction = "eat" + primaryConsume;
 
         // network added to second layer of networks
         eatAOutNet.setInLayer(1); // called by default with index of layer user clicked
-        eatAOutNet.setName("outNetEatA");
+        eatAOutNet.setName("outNetEat" + primaryConsume);
         eatAOutNet.setOutputAction(cc.creature.actionPool[eatAOutAction]);
 
         /* Node outNet 0,0 */
         makeInnerInputNode(eatAOutNet, 0, "externalNet", 0, 4);
         makeInnerInputNode(eatAOutNet, 0, "internalNet", 0, 4);
 
-        /* Node outNet 0,1 */
-        //makeInnerInputNode(netCreator5, 0, "net2", 0, 2);
 
-        /* Node outNet 1,0 */
-        makeOutputNode(eatAOutNet, ActivationBehaviorTypes.LogisticAB, eatAOutAction, 1);
+        eatAOutNet.insertNewLayer(1);
+
+        makeHiddenNode(eatAOutNet, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(eatAOutNet, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(eatAOutNet, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(eatAOutNet, ActivationBehaviorTypes.LogisticAB, 1);
+
+        makeOutputNode(eatAOutNet, ActivationBehaviorTypes.LogisticAB, eatAOutAction, 2);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -574,11 +650,16 @@ public class EcoDemo2
         makeInnerInputNode(eatCOutNet, 0, "externalNet", 0, 5);
         makeInnerInputNode(eatCOutNet, 0, "internalNet", 0, 5);
 
-        /* Node outNet 0,1 */
-        //makeInnerInputNode(eatCOutNet, 0, "net2", 0, 2);
+
+        eatCOutNet.insertNewLayer(1);
+
+        makeHiddenNode(eatCOutNet, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(eatCOutNet, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(eatCOutNet, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(eatCOutNet, ActivationBehaviorTypes.LogisticAB, 1);
 
         /* Node outNet 1,0 */
-        makeOutputNode(eatCOutNet, ActivationBehaviorTypes.LogisticAB, eatCOutAction, 1);
+        makeOutputNode(eatCOutNet, ActivationBehaviorTypes.LogisticAB, eatCOutAction, 2);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -599,10 +680,16 @@ public class EcoDemo2
         /* Node outNet 0,0 */
         makeInnerInputNode(netCreatorOutRepro, 0, "externalNet", 0, 6);
         makeInnerInputNode(netCreatorOutRepro, 0, "internalNet", 0, 6);
+        
+        netCreatorOutRepro.insertNewLayer(1);
 
+        makeHiddenNode(netCreatorOutRepro, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreatorOutRepro, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreatorOutRepro, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreatorOutRepro, ActivationBehaviorTypes.LogisticAB, 1);
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreatorOutRepro, ActivationBehaviorTypes.LogisticAB, outputAction6, 1);
+        makeOutputNode(netCreatorOutRepro, ActivationBehaviorTypes.LogisticAB, outputAction6, 2);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -623,9 +710,15 @@ public class EcoDemo2
         makeInnerInputNode(netCreatorOutDeposit, 0, "externalNet", 0, 7);
         makeInnerInputNode(netCreatorOutDeposit, 0, "internalNet", 0, 7);
 
+        netCreatorOutDeposit.insertNewLayer(1);
+
+        makeHiddenNode(netCreatorOutDeposit, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreatorOutDeposit, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreatorOutDeposit, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreatorOutDeposit, ActivationBehaviorTypes.LogisticAB, 1);
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreatorOutDeposit, ActivationBehaviorTypes.LogisticAB, depositAction, 1);
+        makeOutputNode(netCreatorOutDeposit, ActivationBehaviorTypes.LogisticAB, depositAction, 2);
         // user clicks save on creature creator
         cc.saveNetwork();
 
@@ -635,7 +728,7 @@ public class EcoDemo2
 
         // user adds a second network
         OutputNetworkEditor netCreatorOutConvert = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        string convertAction = "convertATo" + produces;
+        string convertAction = "convert" + primaryConsume + "To" + produces;
 
         // network added to second layer of networks
         netCreatorOutConvert.setInLayer(1); // called by default with index of layer user clicked
@@ -647,9 +740,15 @@ public class EcoDemo2
         makeInnerInputNode(netCreatorOutConvert, 0, "internalNet", 0, 8);
         // Note: linked nodes for phenotype nets are set on the fly in Creature
 
+        netCreatorOutConvert.insertNewLayer(1);
+
+        makeHiddenNode(netCreatorOutConvert, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreatorOutConvert, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreatorOutConvert, ActivationBehaviorTypes.LogisticAB, 1);
+        makeHiddenNode(netCreatorOutConvert, ActivationBehaviorTypes.LogisticAB, 1);
 
         /* Node outNet 1,0 */
-        makeOutputNode(netCreatorOutConvert, ActivationBehaviorTypes.LogisticAB, convertAction, 1);
+        makeOutputNode(netCreatorOutConvert, ActivationBehaviorTypes.LogisticAB, convertAction, 2);
         // user clicks save on creature creator
         cc.saveNetwork();
 

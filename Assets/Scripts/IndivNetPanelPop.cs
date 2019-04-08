@@ -71,6 +71,10 @@ public class IndivNetPanelPop : MonoBehaviour
                         InnerInputNode innerNode = (InnerInputNode)layers[i][j];
                         titleText = innerNode.linkedNetName;
                         break;
+                    case "PhenotypeInputNode":
+                        PhenotypeInputNode phenoNode = (PhenotypeInputNode)layers[i][j];
+                        titleText = "Pheno: " + phenoNode.neighborIndex;
+                        break;
                     case "BiasNode":
                         titleText = "Bias Node";
                         break;
