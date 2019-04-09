@@ -70,6 +70,7 @@ public class SpeciesPopulator
         for (int i = 0; i < size; i++)
         {
             Creature addedCreature = population.generateMember();
+            addedCreature.parentPopulation = population;
             population.creatures.Add(addedCreature);
             population.size++;
             addedCreature.iD = creatureNum.ToString();

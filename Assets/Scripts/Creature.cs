@@ -13,12 +13,17 @@ using Priority_Queue;
 
 using UnityEngine;
 
+public enum MutationDeviationCoefficientType
+{
+    exponentialDecay, sine, invPopsize
+}
 
 /// <summary>
 /// Class for storing all data about a creature/agent, including its neural networks, queued actions, stored resources, location and other parameters.
 /// </summary>
 public class Creature
 {
+    public MutationDeviationCoefficientType mutCoeffType = MutationDeviationCoefficientType.exponentialDecay;
     public Creature founder;
     public Land dummyLand = new Land(); // dummyLand used for edges of map
     public string iD; // unique number assigned upon creation in species populator
@@ -30,6 +35,8 @@ public class Creature
     public float annealMutationFraction = 1;
     public float baseMutationDeviation = 0;
     public int childIndex = 0; // number children the creature has had
+    public double sineFunctStep = 0;
+    public Population parentPopulation;
 
     /// <summary>
     /// Stores all networks into layers of lists of Networks. 10 Maximum
@@ -51,7 +58,9 @@ public class Creature
     /// </summary>
     public float remainingTurnTime;
 
+    public float mutationDeviationCoefficient = 1;
     public float mutationStandardDeviation;
+    public float actualMutationDeviation;
 
     public float fullTurnTime;
     /// <summary>
@@ -160,6 +169,7 @@ public class Creature
     /// </summary>
     public void startTurn(Ecosystem eco)
     {
+        //Debug.Log("pop size: " + parentPopulation.size);
         //Debug.Log("before: " + actionQueue.Count);
         // reset turn time
         remainingTurnTime = fullTurnTime;

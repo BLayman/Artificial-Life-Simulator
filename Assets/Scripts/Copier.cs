@@ -42,8 +42,28 @@ public class Copier
         copy.populations = new Dictionary<string, Population>();
         foreach (string popName in eco.populations.Keys)
         {
+
             // get shallow copy of each populaiton
             copy.populations[popName] = eco.populations[popName].shallowCopy();
+
+            // copy weights by creature
+            copy.populations[popName].weightsByCreature = new List<List<float>>();
+            for (int i = 0; i < eco.populations[popName].weightsByCreature.Count; i++)
+            {
+                copy.populations[popName].weightsByCreature.Add(new List<float>());
+                for (int j = 0; j < eco.populations[popName].weightsByCreature[i].Count; j++)
+                {
+                    copy.populations[popName].weightsByCreature[i].Add(eco.populations[popName].weightsByCreature[i][j]);
+                }
+            }
+
+            // copy averages
+            copy.populations[popName].weightAverages = new List<float>();
+            for (int i = 0; i < eco.populations[popName].weightAverages.Count; i++)
+            {
+                copy.populations[popName].weightAverages.Add(eco.populations[popName].weightAverages[i]);
+            }
+
             // get copy of founder
             copy.populations[popName].founder = getCreatureCopy(eco.populations[popName].founder);
 
@@ -55,6 +75,8 @@ public class Copier
                 Creature creatCopy = getCreatureCopy(creat);
                 // set map on creatCopy to new map
                 creatCopy.map = copy.map;
+
+                creatCopy.parentPopulation = copy.populations[popName];
                 // place creature on new map
                 copy.map[creatCopy.position[0]][creatCopy.position[1]].creatureOn = creatCopy;
                 // set new neighborlands list to reference map lands
@@ -510,6 +532,7 @@ public class Copier
             NonInputNode newNode = (NonInputNode)oldNode.clone();
             newNode.resetRand();
             newNode.parentNet = parentNet;
+            newNode.parentCreature = creatureCopy;
             //newNode.setActivBehavior(new LogisticActivBehavior());
             newNode.prevNodes = new List<Node>();
             newNode.assignPrevNodes();

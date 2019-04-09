@@ -14,15 +14,13 @@ using System.Text;
 public class OutputNode : NonInputNode
 {
     public Action action;
-    public Creature parentCreature;
 
     public OutputNode() { }
 
-    public OutputNode(Creature parentCreature, Network parentNet, int layer) : base(parentNet, layer)
+    public OutputNode(Network parentNet, Creature parentCreature, int layer) : base(parentNet, parentCreature, layer)
     {
 
         activBehavior = new LogisticActivBehavior();
-        this.parentCreature = parentCreature;
     }
 
     /// <summary>

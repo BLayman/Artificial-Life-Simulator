@@ -22,15 +22,15 @@ public class EcoDemo2
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(150);
+            userCreatesEcosystem(300);
             // add cat species
-            userAddsSpecies("Creature1", ColorChoice.blue, 2f, "A", "C", "D", .9f, .01f, false, 1);
+            userAddsSpecies("Creature1", ColorChoice.blue, 2f, "A", "C", "D", .95f, .01f, false, 1);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature1", 2f, 200, 300);
+            userPopulatesSpecies("Creature1", 2f, 300, 500);
 
-            userAddsSpecies("Creature2", ColorChoice.green, 2f, "B", "D", "C", .9f, .01f, false, 2);
+            userAddsSpecies("Creature2", ColorChoice.green, 2f, "B", "D", "C", .95f, .01f, false, 2);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature2", 2f, 200, 300);
+            userPopulatesSpecies("Creature2", 2f, 300, 500);
         }
         else
         {
@@ -105,8 +105,8 @@ public class EcoDemo2
         ecoCreator.mapEditor.addLERPXResource("A", 1f);
         ecoCreator.mapEditor.addLERPXResource("B", 1f);
         // small starting amount of B and C
-        ecoCreator.mapEditor.addUniformResource("C", .05f); 
-        ecoCreator.mapEditor.addUniformResource("D", .05f);
+        ecoCreator.mapEditor.addUniformResource("C", .2f); 
+        ecoCreator.mapEditor.addUniformResource("D", .2f);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
         
@@ -124,7 +124,7 @@ public class EcoDemo2
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
-
+        
         // user edits:
         cc.setSpecies(name);
         cc.setPhenotype(phenotype);
@@ -138,7 +138,7 @@ public class EcoDemo2
         cc.setUsePhenotypeNet(true);
         cc.setAnnealMutationFraction(mutationDeviationFraction);
         cc.setBaseMutationDeviation(lowestMutationDeviation);
-
+        cc.setMutationCoeffType(MutationDeviationCoefficientType.exponentialDecay);
 
         List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
 
@@ -238,8 +238,7 @@ public class EcoDemo2
         rae.setPriority(1);
         rae.setTimeCost(10);
         rae.addResourceCost(primaryConsume, 20);
-        rae.addResourceCost(dependentOn, 5);
-        rae.addResourceCost(dependentOn, 10);
+        rae.addResourceCost(dependentOn, 20);
         cc.saveAction();
 
         // action for converting with a 1 to 2 ratio
@@ -249,6 +248,8 @@ public class EcoDemo2
         convEdit.setName("convert"+ primaryConsume + "To" + produces);
         convEdit.setPriority(1);
         convEdit.setTimeCost(10);
+        convEdit.addResourceCost(primaryConsume, 1);
+        convEdit.addResourceCost(dependentOn, 1);
         convEdit.setAmtToProduce(5);
         convEdit.addStartResource(primaryConsume, 1);
         convEdit.addEndResource(produces, 2);

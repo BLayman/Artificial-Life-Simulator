@@ -55,12 +55,17 @@ public class CreatureEditor
         creature.networks.Add(new Dictionary<string, Network>());
     }
 
-    /// <summary>
+    /// <summary> 
     /// Sets name of species to which the creature belongs.
     /// </summary>
     public void setSpecies(string species)
     {
         creature.species = species;
+    }
+
+    public void setMutationCoeffType(MutationDeviationCoefficientType type)
+    {
+        creature.mutCoeffType = type;
     }
 
     /// <summary>

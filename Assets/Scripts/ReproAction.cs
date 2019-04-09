@@ -37,21 +37,37 @@ public class ReproAction : Action
             Creature childCreature = Copier.getCreatureChild(creature);
             setPosition(creature.position, childLoc, childCreature.position);
             childCreature.updateNeighbors();
-            float newDeviation = creature.mutationStandardDeviation * creature.annealMutationFraction;
+            switch (creature.mutCoeffType)
+            {
+                case MutationDeviationCoefficientType.exponentialDecay:
+                    creature.mutationDeviationCoefficient *= creature.annealMutationFraction;
+                    break;
+                case MutationDeviationCoefficientType.sine:
+                    creature.sineFunctStep += .1f;
+                    creature.mutationDeviationCoefficient = (float)Math.Cos(creature.sineFunctStep);
+                    break;
+                case MutationDeviationCoefficientType.invPopsize:
+                    double fraction = (double)creature.parentPopulation.size / creature.parentPopulation.maxSize;
+                    creature.mutationDeviationCoefficient = (float) System.Math.Min(2.0, .01 * Math.Pow(1.0 / fraction, 8.0));
+                    
+                    break;
+                default:
+                    break;
+            }
+            //Debug.Log("coefficient: " + creature.mutationDeviationCoefficient);
+
+            float deviation = creature.mutationStandardDeviation * creature.mutationDeviationCoefficient;
             // if new deviation goes below baseline, set deviation to baseline
-            if(newDeviation < creature.baseMutationDeviation)
+            if(deviation < creature.baseMutationDeviation)
             {
-                creature.mutationStandardDeviation = creature.baseMutationDeviation;
+                deviation = creature.baseMutationDeviation;
             }
-            // otherwise set mutation deviation to new deviation
-            else
-            {
-                creature.mutationStandardDeviation = newDeviation;
-            }
+            //Debug.Log("Deviation: " + deviation);
+
             childCreature.iD = creature.iD + "-" + creature.childIndex;
             creature.childIndex++;
-            //Debug.Log(creature.mutationStandardDeviation);
-            childCreature.addVariationToWeights(creature.mutationStandardDeviation);
+            creature.actualMutationDeviation = deviation;
+            childCreature.addVariationToWeights(deviation);
             creature.neighborLands[childLoc].creatureOn = childCreature;
             parentPop.offspring.Add(childCreature);
             parentPop.size++;

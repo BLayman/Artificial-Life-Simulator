@@ -26,7 +26,7 @@ public class ActivationTest {
         network.net[0].Add(inNode1);
         network.net[0].Add(inNode2);
 
-        outNode = new OutputNode(creat, network, 1);
+        outNode = new OutputNode(network, creat, 1);
         activInput = 2 * outNode.weights[0] + 3 * outNode.weights[1];
     }
 

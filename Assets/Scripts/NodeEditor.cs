@@ -45,7 +45,7 @@ public class NodeEditor
                 nodeCreator = new CommNodeEditor(new CommInputNode(), nodeLayer);
                 break;
             case NodeCreatorType.outputNodeCreator:
-                nodeCreator = new OutputNodeEditor(new OutputNode(parentNetCreator.parentCreatureCreator.creature, parentNetCreator.network, nodeLayer), nodeLayer);
+                nodeCreator = new OutputNodeEditor(new OutputNode(parentNetCreator.network, parentNetCreator.parentCreatureCreator.creature, nodeLayer), nodeLayer);
                 break;
             case NodeCreatorType.innerInputNodeCreator:
                 nodeCreator = new InnerInputNodeEditor(new InnerInputNode(), parentNetCreator.parentCreatureCreator.creature);
@@ -54,7 +54,7 @@ public class NodeEditor
                 nodeCreator = new InternalResInputNodeEditor(new InternalResourceInputNode(parentNetCreator.parentCreatureCreator.creature));
                 break;
             case NodeCreatorType.hiddenNode:
-                nodeCreator = new HiddenNodeEditor(new NonInputNode(parentNetCreator.network, nodeLayer), nodeLayer);
+                nodeCreator = new HiddenNodeEditor(new NonInputNode(parentNetCreator.network, parentNetCreator.parentCreatureCreator.creature, nodeLayer), nodeLayer);
                 break;
             default:
                 Debug.LogError("unable to set node creator to that type.");

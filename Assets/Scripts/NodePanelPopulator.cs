@@ -20,13 +20,21 @@ public class NodePanelPopulator : MonoBehaviour
 
         node = _node;
         Debug.Log(node.value);
+
+        //List<float> averages = node.getWeightAverages();
+
         for (int i = 0; i < node.weights.Count; i++)
         {
             GameObject created = GameObject.Instantiate(textObj);
             Text txt = created.GetComponent<Text>();
+            
 
             double rounded = System.Math.Round((double)node.weights[i], 2);
+            // double rounded2 = System.Math.Round((double)averages[i], 2);
+
+
             txt.text = rounded.ToString();
+
             created.transform.SetParent(canvas.transform, false);
             RectTransform transform = created.GetComponent<RectTransform>();
             transform.anchoredPosition = new Vector2(x, y);

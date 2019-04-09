@@ -41,7 +41,7 @@ public class CreatureGetter
 
     public string getMutationAmt()
     {
-        return creature.mutationStandardDeviation.ToString();
+        return (creature.actualMutationDeviation).ToString();
     }
 
     public List<Dictionary<string, Network>> getNets()

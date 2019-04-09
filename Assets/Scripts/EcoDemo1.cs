@@ -22,11 +22,11 @@ public class EcoDemo1
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(100);
+            userCreatesEcosystem(300);
             // add cat species
-            userAddsSpecies("cat", ColorChoice.blue, 2f, true, .9f, .01f);
+            userAddsSpecies("cat", ColorChoice.blue, 2f, true, .95f, .01f);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", 2f, 200, 300);
+            userPopulatesSpecies("cat", 2f, 300, 700);
             // add dog species
             //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
@@ -59,12 +59,12 @@ public class EcoDemo1
         float sum = 0;
         for (int i = 0; i < instances; i++)
         {
-            // Create a 100 X 100 map
+            // Create a 100 X 100 mp
             userCreatesEcosystem(100);
             // add cat species
             userAddsSpecies("cat", ColorChoice.blue, indVar, nonLinear, 1, indVar);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", popVar, 100, 300);
+            userPopulatesSpecies("cat", popVar, 300, 500);
 
             while (!ecosystem.allDead && ecosystem.age < maxLength)
             {
@@ -156,6 +156,7 @@ public class EcoDemo1
         cc.setColor(color);
         cc.setAnnealMutationFraction(mutationDeviationFraction);
         cc.setBaseMutationDeviation(lowestMutationDeviation);
+        cc.setMutationCoeffType(MutationDeviationCoefficientType.exponentialDecay);
 
         // add resource for the creature to store
         ResourceEditor resourceCreator = cc.addResource();

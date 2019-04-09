@@ -28,9 +28,13 @@ public class NonInputNode : Node
     /// </summary>
     public List<float> weights = new List<float>();
 
+    public List<int> creatureWeightsIndicies = new List<int>();
+
+
     public List<float> extraWeights = new List<float>(); 
 
     public Network parentNet;
+    public Creature parentCreature;
     public int layer;
 
     public NonInputNode()
@@ -39,10 +43,11 @@ public class NonInputNode : Node
         activBehavior = new LogisticActivBehavior();
     }
 
-    public NonInputNode(Network parentNet, int layer)
+    public NonInputNode(Network parentNet, Creature parentCreature, int layer)
     {
         rand = new System.Random(Guid.NewGuid().GetHashCode());
         this.parentNet = parentNet;
+        this.parentCreature = parentCreature;
         // set to logistic activation by default
         activBehavior = new LogisticActivBehavior();
         this.layer = layer;
@@ -52,6 +57,10 @@ public class NonInputNode : Node
 
     public override void updateValue()
     {
+        if(parentCreature == null)
+        {
+            Debug.Log("null parent creature");
+        }
         float combination = linearCombinePrevVals();
         //Debug.Log("combination = " + combination);
         value = performActivBehavior(combination);
@@ -193,5 +202,19 @@ public class NonInputNode : Node
         {
             Debug.Log("v = " + node.value);
         }
+    }
+
+    public List<float> getWeightAverages()
+    {
+
+        List<float> weightAverages = new List<float>();
+        
+        for (int i = 0; i < creatureWeightsIndicies.Count; i++)
+        {
+            Debug.Log("index " + creatureWeightsIndicies[i]);
+            Debug.Log("val " + parentCreature.parentPopulation.weightAverages[creatureWeightsIndicies[i]]);
+            //weightAverages.Add(parentCreature.parentPopulation.weightAverages[creatureWeightsIndicies[i]]);
+        }
+        return weightAverages;
     }
 }

@@ -190,6 +190,10 @@ public class Ecosystem
                     }
                 }
 
+                // calculate averages
+                //populations[species].calculateWeightStats();
+
+
             }
 
             if (!notAllDead)
