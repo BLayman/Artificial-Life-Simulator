@@ -11,7 +11,7 @@ using UnityEngine;
 
 class ThreadManager : MonoBehaviour
 {
-    EcoDemo2 ecoMan;
+    EcoDemo1 ecoMan;
     Ecosystem unityEco;
     System.Object ecoQueueLock = new System.Object();
     System.Object threadFinishedLock = new System.Object();
@@ -42,7 +42,7 @@ class ThreadManager : MonoBehaviour
 
         ecoQueue = new LinkedList<Ecosystem>(); // queue for callback functions
                                                 // create ecosystem using EcoManager
-        ecoMan = new EcoDemo2();
+        ecoMan = new EcoDemo1();
         ecoMan.makeEco();
         // get newly created ecosystem and set unityEco to reference it
         unityEco = ecoMan.getEcosystem();

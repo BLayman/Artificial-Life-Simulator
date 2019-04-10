@@ -64,6 +64,13 @@ public class Copier
                 copy.populations[popName].weightAverages.Add(eco.populations[popName].weightAverages[i]);
             }
 
+            // copy averages
+            copy.populations[popName].weightSDs = new List<float>();
+            for (int i = 0; i < eco.populations[popName].weightSDs.Count; i++)
+            {
+                copy.populations[popName].weightSDs.Add(eco.populations[popName].weightSDs[i]);
+            }
+
             // get copy of founder
             copy.populations[popName].founder = getCreatureCopy(eco.populations[popName].founder);
 

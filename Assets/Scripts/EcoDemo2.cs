@@ -24,13 +24,13 @@ public class EcoDemo2
             // Create a 300 X 300 map
             userCreatesEcosystem(300);
             // add cat species
-            userAddsSpecies("Creature1", ColorChoice.blue, 2f, "A", "C", "D", .95f, .01f, false, 1);
+            userAddsSpecies("Creature1", ColorChoice.blue, 1f, "A", "C", "D", .95f, .01f, false, 1);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature1", 2f, 300, 500);
+            userPopulatesSpecies("Creature1", 1f, 300, 500);
 
-            userAddsSpecies("Creature2", ColorChoice.green, 2f, "B", "D", "C", .95f, .01f, false, 2);
+            userAddsSpecies("Creature2", ColorChoice.green, 1f, "B", "D", "C", .95f, .01f, false, 2);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature2", 2f, 300, 500);
+            userPopulatesSpecies("Creature2", 1f, 300, 500);
         }
         else
         {
@@ -238,7 +238,7 @@ public class EcoDemo2
         rae.setPriority(1);
         rae.setTimeCost(10);
         rae.addResourceCost(primaryConsume, 20);
-        rae.addResourceCost(dependentOn, 20);
+        rae.addResourceCost(dependentOn, 50);
         cc.saveAction();
 
         // action for converting with a 1 to 2 ratio

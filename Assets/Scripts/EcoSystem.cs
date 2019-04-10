@@ -66,6 +66,9 @@ public class Ecosystem
 
     public bool allDead = false;
 
+    public int statsInterval = 100; // update stats every 10 turns
+    public int statsCount = 100;
+
     System.Object threadsFinishedLock = new System.Object();
 
     /// <summary>
@@ -191,10 +194,19 @@ public class Ecosystem
                 }
 
                 // calculate averages
-                //populations[species].calculateWeightStats();
-
-
+                if(statsCount == statsInterval)
+                {
+                    populations[species].calculateWeightStats();
+                    Debug.Log("overall variability for: " + species + " is " + populations[species].overallVariability);
+                }
+                
             }
+            // calculate averages
+            if (statsCount == statsInterval)
+            {
+                statsCount = 0;
+            }
+            statsCount++;
 
             if (!notAllDead)
             {

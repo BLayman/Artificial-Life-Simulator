@@ -57,10 +57,7 @@ public class NonInputNode : Node
 
     public override void updateValue()
     {
-        if(parentCreature == null)
-        {
-            Debug.Log("null parent creature");
-        }
+        //getWeightAverages();
         float combination = linearCombinePrevVals();
         //Debug.Log("combination = " + combination);
         value = performActivBehavior(combination);
@@ -208,13 +205,43 @@ public class NonInputNode : Node
     {
 
         List<float> weightAverages = new List<float>();
-        
+        //Debug.Log(creatureWeightsIndicies.Count);
         for (int i = 0; i < creatureWeightsIndicies.Count; i++)
         {
-            Debug.Log("index " + creatureWeightsIndicies[i]);
-            Debug.Log("val " + parentCreature.parentPopulation.weightAverages[creatureWeightsIndicies[i]]);
-            //weightAverages.Add(parentCreature.parentPopulation.weightAverages[creatureWeightsIndicies[i]]);
+
+            // TODO: find a way to avoid this work around
+            try
+            {
+                //Debug.Log("val " + parentCreature.parentPopulation.weightAverages[creatureWeightsIndicies[i]]);
+                weightAverages.Add(parentCreature.parentPopulation.weightAverages[creatureWeightsIndicies[i]]);
+            }
+            catch(ArgumentOutOfRangeException e)
+            {
+                Debug.LogWarning("out of bounds");
+            }
         }
         return weightAverages;
+    }
+
+    public List<float> getWeightSDs()
+    {
+
+        List<float> weightSDs = new List<float>();
+
+        for (int i = 0; i < creatureWeightsIndicies.Count; i++)
+        {
+
+            // TODO: find a way to avoid this work around
+            try
+            {
+                //Debug.Log("val " + parentCreature.parentPopulation.weightAverages[creatureWeightsIndicies[i]]);
+                weightSDs.Add(parentCreature.parentPopulation.weightSDs[creatureWeightsIndicies[i]]);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Debug.LogWarning("out of bounds");
+            }
+        }
+        return weightSDs;
     }
 }

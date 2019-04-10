@@ -15,13 +15,15 @@ public class NodePanelPopulator : MonoBehaviour
 
     public void setNode(NonInputNode _node)
     {
-        int x = 127;
+        int x = 147;
         int y = -80;
 
         node = _node;
         Debug.Log(node.value);
 
-        //List<float> averages = node.getWeightAverages();
+        List<float> averages = node.getWeightAverages();
+        List<float> sDs = node.getWeightSDs();
+        Debug.Log(averages.Count);
 
         for (int i = 0; i < node.weights.Count; i++)
         {
@@ -30,10 +32,11 @@ public class NodePanelPopulator : MonoBehaviour
             
 
             double rounded = System.Math.Round((double)node.weights[i], 2);
-            // double rounded2 = System.Math.Round((double)averages[i], 2);
+            double rounded2 = System.Math.Round((double)averages[i], 2);
+            double rounded3 = System.Math.Round((double)sDs[i], 2);
 
 
-            txt.text = rounded.ToString();
+            txt.text = rounded.ToString() + "          " + rounded2 + "           " + rounded3;
 
             created.transform.SetParent(canvas.transform, false);
             RectTransform transform = created.GetComponent<RectTransform>();

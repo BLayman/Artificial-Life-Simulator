@@ -24,9 +24,9 @@ public class EcoDemo1
             // Create a 300 X 300 map
             userCreatesEcosystem(300);
             // add cat species
-            userAddsSpecies("cat", ColorChoice.blue, 2f, true, .95f, .01f);
+            userAddsSpecies("cat", ColorChoice.blue, 1f, true, .95f, .01f);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", 2f, 300, 700);
+            userPopulatesSpecies("cat", 1f, 300, 700);
             // add dog species
             //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
