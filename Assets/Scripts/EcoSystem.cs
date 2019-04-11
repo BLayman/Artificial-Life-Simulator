@@ -71,6 +71,7 @@ public class Ecosystem
 
     System.Object threadsFinishedLock = new System.Object();
 
+
     /// <summary>
     /// run ecosystem for a certain number of time steps
     /// </summary>

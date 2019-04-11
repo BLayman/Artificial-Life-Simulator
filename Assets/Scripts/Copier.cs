@@ -37,6 +37,7 @@ public class Copier
                 copy.map[i].Add(landCopy);
             }
         }
+
         
         // copy populations and add creatures back to map
         copy.populations = new Dictionary<string, Population>();
