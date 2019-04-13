@@ -21,7 +21,7 @@ public class ExperimentRunner : MonoBehaviour
     public void runExperiment()
     {
         EcoDemo1 demo = new EcoDemo1();
-        demo.runExperiment(5, 500);
+        demo.runExperiment(100, 500);
     }
 
 }

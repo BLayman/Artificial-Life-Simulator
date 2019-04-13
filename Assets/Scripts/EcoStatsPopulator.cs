@@ -36,15 +36,24 @@ public class EcoStatsPopulator : MonoBehaviour
         x = 318;
         y = -4.7f;
 
+        int i = 0;
         foreach (string key in popVars.Keys)
         {
             created = GameObject.Instantiate(keyValPrefab);
-            
+            double rounded = System.Math.Round((double)popVars[key], 2);
             GameObject keyObj = created.transform.GetChild(0).gameObject;
             GameObject valObj = created.transform.GetChild(1).gameObject;
+            keyObj.GetComponent<Text>().text = key + ":";
 
-            keyObj.GetComponent<Text>().text = key;
-            valObj.GetComponent<Text>().text = popVars[key].ToString();
+            if (i == popVars.Count - 1)
+            {
+                valObj.GetComponent<Text>().text = rounded.ToString();
+            }
+            else
+            {
+                valObj.GetComponent<Text>().text = rounded.ToString() + ",";
+            }
+
 
             created.transform.SetParent(canvas.transform, false);
             transform = created.GetComponent<RectTransform>();
@@ -52,15 +61,22 @@ public class EcoStatsPopulator : MonoBehaviour
 
             instantiated.Add(created);
 
-            x += 60;
+            x += 130;
+            i++;
         }
     }
 
     private void OnDisable()
     {
+        Debug.Log("called onDisable");
+
+
         for (int i = 0; i < instantiated.Count; i++)
         {
-            GameObject.Destroy(instantiated[i]);
+            Debug.Log(instantiated[i].name);
+            GameObject.DestroyImmediate(instantiated[i]);
         }
+        instantiated.Clear();
+
     }
 }

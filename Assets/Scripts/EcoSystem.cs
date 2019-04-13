@@ -66,8 +66,8 @@ public class Ecosystem
 
     public bool allDead = false;
 
-    public int statsInterval = 100; // update stats every 10 turns
-    public int statsCount = 100;
+    public int statsInterval = 20; // update stats every 10 turns
+    public int statsCount = 20;
 
     System.Object threadsFinishedLock = new System.Object();
 

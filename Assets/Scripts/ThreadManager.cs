@@ -23,6 +23,8 @@ class ThreadManager : MonoBehaviour
     bool finishChildThread = false;
     LinkedList<Ecosystem> ecoQueue;
     public string visibleResource;
+    public GameObject statsPrinterObj;
+    StatsPrinter statsPrinter;
     
 
     // Thread safe?
@@ -85,10 +87,11 @@ class ThreadManager : MonoBehaviour
 
     public void StartEcoSim()
     {
-        
+        statsPrinter = statsPrinterObj.GetComponent<StatsPrinter>();
+        statsPrinter.printFirstLine(unityEco);
+
         // create a copy, and set simulationEco to set the copy, then use the copy for the simulation
         Ecosystem simulationEco = Copier.getEcosystemCopy(unityEco);
-        
         int localSteps = steps; // just in case next line causes threading error
         StartThreadedFunction(() => { runSystem(simulationEco, localSteps, Thread.CurrentThread); });
     }
@@ -154,28 +157,11 @@ class ThreadManager : MonoBehaviour
                 // remove ecosystem from queue
                 Ecosystem updatedEco = ecoQueue.First.Value;
                 ecoQueue.RemoveFirst();
-                /*
-                Debug.Log("******************                     **********************               ***********");
-
-                for (int n = 0; n < updatedEco.map.Count; n++)
-                {
-                    for (int j = 0; j < updatedEco.map[n].Count; j++)
-                    {
-
-                        if (updatedEco.map[n][j].creatureIsOn())
-                        {
-                            Debug.Log(" queue length: " + updatedEco.map[n][j].creatureOn.actionQueue.Count);
-                        }
-                    }
-                }
-                Debug.Log("******************                     **********************               ***********");
-                */
-                //Debug.Log("Length of Queue: " + ecoQueue.Count);
-
-                //Debug.Log("safely applying data created in thread.");
+                
                 // make unityEco reference modified copy of itself, NOTE: this won't change all references to the ecosystem, such as those used in the UI 
                 unityEco = updatedEco;
 
+                statsPrinter.printStats(unityEco);
                 //Debug.Log("ecosystem age:" + unityEco.count);
             }
         }

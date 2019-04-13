@@ -1699,8 +1699,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 29.5, y: -212.1}
-  m_SizeDelta: {x: 484.01, y: -71.9}
+  m_AnchoredPosition: {x: 11.54, y: -212.1}
+  m_SizeDelta: {x: 489.86, y: -71.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228164587
 MonoBehaviour:
@@ -1715,7 +1715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.40250087, g: 0.5882675, b: 0.6320754, a: 0.7411765}
+  m_Color: {r: 0.041251704, g: 0, b: 0.6037736, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2645,7 +2645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &445341207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2687,6 +2687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visibleResource: grass
+  statsPrinterObj: {fileID: 1888005134}
   steps: 1
 --- !u!114 &445341210
 MonoBehaviour:
@@ -5551,17 +5552,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2099564029}
         m_MethodName: toggleActivation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2099564030}
-        m_MethodName: populateFields
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11394,7 +11384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -56.8, y: 0}
+  m_AnchoredPosition: {x: -65, y: 0}
   m_SizeDelta: {x: 379.04, y: 47.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1725749128
@@ -11610,7 +11600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1739275697
 Transform:
   m_ObjectHideFlags: 0
@@ -12514,6 +12504,49 @@ RectTransform:
   m_AnchoredPosition: {x: 49.9, y: -47.5}
   m_SizeDelta: {x: 150.47, y: 33.22}
   m_Pivot: {x: -0.000000007450581, y: 1.0000002}
+--- !u!1 &1888005134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1888005136}
+  - component: {fileID: 1888005135}
+  m_Layer: 0
+  m_Name: Printer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1888005135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888005134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f67aef782e6bc4380dc2f9f16fd7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1888005136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888005134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 349.89728, y: 68.32012, z: 21.330187}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1890379326
 GameObject:
   m_ObjectHideFlags: 0
@@ -14016,7 +14049,7 @@ MonoBehaviour:
   canvas: {fileID: 228164585}
   textPrefab: {fileID: 6522098839241620726, guid: 1297e37383f0ae7489ffe2f3fdb94eb7,
     type: 3}
-  keyValPrefab: {fileID: 8165380451068481379, guid: 65ba8819cb32ed147bf09ff65e248edb,
+  keyValPrefab: {fileID: 854128015761711948, guid: f6af2f8ee603bbe48b765b8a41258fbc,
     type: 3}
   instantiated: []
 --- !u!1 &2100817243

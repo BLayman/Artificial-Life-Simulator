@@ -14,6 +14,7 @@ public class ToggleGameobjectActivation : MonoBehaviour
         else
         {
             gameObject.SetActive(true);
+            gameObject.GetComponent<EcoStatsPopulator>().populateFields();
         }
     }
 

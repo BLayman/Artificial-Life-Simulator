@@ -97,64 +97,77 @@ public class Population
         // NOTE: only works if all creatures in the population have the same number of weights
         // calculate averages
         List<float> averages = new List<float>();
+
+        int count;
         
-        // for every weight
-        for (int i = 0; i < weightsByCreature[0].Count; i++)
+        // assuming any creatures were left
+        if(weightsByCreature.Count > 0)
         {
-            float sum = 0;
-            // for every creature
-            for (int j = 0; j < weightsByCreature.Count; j++)
+            // for every weight
+            for (int i = 0; i < weightsByCreature[0].Count; i++)
             {
-                // TODO: fix this
-                try
+                count = 0;
+                float sum = 0;
+                // for every creature
+                for (int j = 0; j < weightsByCreature.Count; j++)
                 {
-                    sum += weightsByCreature[j][i]; // add the weight for that creature to the sum for that weight
+                    // TODO: fix this
+                    try
+                    {
+                        count++;
+                        sum += weightsByCreature[j][i]; // add the weight for that creature to the sum for that weight
+                    }
+                    catch (ArgumentOutOfRangeException e)
+                    {
+                        // Debug.Log("Out of range: " + j + " " + i);
+                    }
                 }
-                catch(ArgumentOutOfRangeException e)
-                {
-                    // Debug.Log("Out of range: " + j + " " + i);
-                }
+                averages.Add(sum / count);
             }
-            averages.Add(sum / creatures.Count);
-        }
 
-        // calculate variances and standard deviations
-        List<float> variances = new List<float>();
-        List<float> sDs = new List<float>();
+            // calculate variances and standard deviations
+            List<float> variances = new List<float>();
+            List<float> sDs = new List<float>();
 
-        for (int i = 0; i < weightsByCreature[0].Count; i++)
-        {
-            float sumSquaredDiff = 0;
-            // for every creature
-            for (int j = 0; j < weightsByCreature.Count; j++)
+
+            for (int i = 0; i < weightsByCreature[0].Count; i++)
             {
-                // TODO: fix this
-                try
+                count = 0;
+                float sumSquaredDiff = 0;
+                // for every creature
+                for (int j = 0; j < weightsByCreature.Count; j++)
                 {
-                    sumSquaredDiff += (float)Math.Pow(weightsByCreature[j][i] - averages[i], 2.0); // add the weight for that creature to the sum for that weight
+                    // TODO: fix this
+                    try
+                    {
+                        count++;
+                        sumSquaredDiff += (float)Math.Pow(weightsByCreature[j][i] - averages[i], 2.0); // add the weight for that creature to the sum for that weight
+                    }
+                    catch (ArgumentOutOfRangeException e)
+                    {
+                        //Debug.Log("Out of range: " + j + " " + i);
+                    }
                 }
-                catch (ArgumentOutOfRangeException e)
-                {
-                    //Debug.Log("Out of range: " + j + " " + i);
-                }
+                variances.Add(sumSquaredDiff / count);
+                sDs.Add((float)Math.Sqrt((double)sumSquaredDiff / count));
             }
-            variances.Add(sumSquaredDiff / creatures.Count);
-            sDs.Add((float)Math.Sqrt((double)sumSquaredDiff / creatures.Count));
+
+
+            // set instance variables
+            weightAverages = averages;
+            weightSDs = sDs;
+
+            // calculate measure of overall variability
+
+
+            float varianceSum = 0;
+            for (int i = 0; i < variances.Count; i++)
+            {
+                varianceSum += variances[i];
+            }
+            overallVariability = (float)Math.Sqrt((double)(varianceSum / variances.Count));
         }
-
-
-        // set instance variables
-        weightAverages = averages;
-        weightSDs = sDs;
-
-        // calculate measure of overall variability
-
-        float varianceSum = 0;
-        for (int i = 0; i < variances.Count; i++)
-        {
-            varianceSum += variances[i];
-        }
-        overallVariability = (float) Math.Sqrt((double)(varianceSum / creatures.Count));
+        
 
     }
 

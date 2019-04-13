@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class EcoDemo1
             // add cat species
             userAddsSpecies("cat", ColorChoice.blue, 1f, true, .95f, .01f);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", 1f, 300, 700);
+            userPopulatesSpecies("cat", 1f, 300, 500);
             // add dog species
             //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
@@ -45,26 +46,28 @@ public class EcoDemo1
     public void runExperiment(int instances, int maxLength)
     {
         Debug.Log("Low variation system results: ");
-        experimentRunSystem(instances, maxLength, false, .1f, .01f);
+        experimentRunSystem(instances, maxLength, false, .2f, .1f);
 
         Debug.Log("high variation system results: ");
-        experimentRunSystem(instances, maxLength, false, 2f, 1f);
+        experimentRunSystem(instances, maxLength, false, .6f, .1f);
 
         Debug.Log("Experiment done");
     }
 
     public void experimentRunSystem(int instances, int maxLength, bool nonLinear, float popVar, float indVar)
     {
+        string fileName = ".\\OutputFiles\\experimentOutput.csv";
+        StringBuilder line = new StringBuilder();
         // create x instances of each ecosystem
         float sum = 0;
         for (int i = 0; i < instances; i++)
         {
             // Create a 100 X 100 mp
-            userCreatesEcosystem(100);
+            userCreatesEcosystem(200);
             // add cat species
             userAddsSpecies("cat", ColorChoice.blue, indVar, nonLinear, 1, indVar);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", popVar, 300, 500);
+            userPopulatesSpecies("cat", popVar, 500, 1000);
 
             while (!ecosystem.allDead && ecosystem.age < maxLength)
             {
@@ -73,7 +76,10 @@ public class EcoDemo1
             }
             sum += ecosystem.age;
             Debug.Log("final age: " + ecosystem.age);
+            line.Append(ecosystem.age.ToString() + ", ");
         }
+        line.Append("\n");
+        File.AppendAllText(fileName, line.ToString());
         Debug.Log("");
         Debug.Log("average: " + sum / instances);
     }
