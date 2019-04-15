@@ -83,12 +83,6 @@ public class EcosystemEditor
         //Debug.Log("distinct phenotypes set to " + numPhenotypes);
     }
 
-    public void setTimeUnitsPerTurn(int timeUnits)
-    {
-        ecosystem.timeUnitsPerTurn = timeUnits;
-        //Debug.Log("time units per turn set to " + timeUnits);
-    }
-
     /// <summary>
     /// sets name of dictionary to use when loading
     /// </summary>

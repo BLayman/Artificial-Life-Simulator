@@ -79,8 +79,6 @@ public class EcoMenuBehav : MonoBehaviour
         bool c = HelperValidator.setIntegerFunct(commBitsText, setCommBits, errorObj);
         IntFunct setDistinctPheno = new IntFunct(ecoEditor.setDistinctPhenotypeNum);
         bool d = HelperValidator.setIntegerFunct(distinctPhenoText, setDistinctPheno, errorObj);
-        IntFunct setTUPT = new IntFunct(ecoEditor.setTimeUnitsPerTurn);
-        bool e = HelperValidator.setIntegerFunct(timeUnitsText, setTUPT, errorObj);
 
         // saves tentative resource options to Ecosystem object
         ecoEditor.saveResourceOptions();

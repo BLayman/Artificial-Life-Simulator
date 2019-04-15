@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class EcoDemo2
+public class EcoDemo2 : DemoInterface
 {
     /// <summary>
     /// Stores state of ecosystem.
@@ -53,47 +53,21 @@ public class EcoDemo2
 
         ecoCreator = new EcosystemEditor(ecosystem);
         // set basic ecosystem parameters
-        ecoCreator.setAbilityPointsPerCreature(10);
-        ecoCreator.setCommBits(4);
-        ecoCreator.setDistinctPhenotypeNum(4);
-        ecoCreator.setTimeUnitsPerTurn(10);
-        ecoCreator.setRenewInterval(50);
+        setEcoParams(ecoCreator, 10, 4, 50);
 
         // create resources A, B, and C
-        LandResourceEditor lre = ecoCreator.addResource("A");
-        lre.setAmountOfResource(100);
-        lre.setMaxAmt(150);
-        lre.setAmtConsumedPerTime(10);
-        lre.setProportionExtracted(.4f); // higher proportion extracted for primary resources
-        lre.setRenewalAmt(2f);
+        addResource(ecoCreator, "A", 100, 150, 10, .4f, 2f);
+        ecoCreator.saveResource();
 
+        addResource(ecoCreator, "B", 100, 150, 10, .4f, 2f);
         ecoCreator.saveResource();
 
 
-        ecoCreator.addResource("B");
-        ecoCreator.lre.setAmountOfResource(100);
-        ecoCreator.lre.setMaxAmt(150);
-        ecoCreator.lre.setAmtConsumedPerTime(10);
-        ecoCreator.lre.setProportionExtracted(.4f); // higher proportion extracted for primary resources
-        ecoCreator.lre.setRenewalAmt(2f);
+        addResource(ecoCreator, "C", 100, 150, 10, .2f, 0); // not renewed
         ecoCreator.saveResource();
 
-
-        ecoCreator.addResource("C");
-        ecoCreator.lre.setAmountOfResource(100);
-        ecoCreator.lre.setMaxAmt(150);
-        ecoCreator.lre.setAmtConsumedPerTime(10);
-        ecoCreator.lre.setProportionExtracted(.2f);
-        ecoCreator.lre.setRenewalAmt(0); // not renewed
-        ecoCreator.saveResource();
-
-        ecoCreator.addResource("D");
-        ecoCreator.lre.setAmountOfResource(100);
-        ecoCreator.lre.setMaxAmt(150);
-        ecoCreator.lre.setAmtConsumedPerTime(10);
-        ecoCreator.lre.setProportionExtracted(.2f);
-        ecoCreator.lre.setRenewalAmt(0);
-        ecoCreator.saveResource(); // not renewed
+        addResource(ecoCreator, "D", 100, 150, 10, .2f, 0); // not renewed
+        ecoCreator.saveResource(); 
 
         ecoCreator.saveResourceOptions(); // adds all resources to ecosystem resources
 
@@ -120,25 +94,17 @@ public class EcoDemo2
      * add resource to node, 
      * save creature to founder creatures dict and species dict
      */
-    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation, string primaryConsume, string dependentOn, string produces, float mutationDeviationFraction, float lowestMutationDeviation, bool nonLinearPhenotypeNet, int phenotype)
+    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation, string primaryConsume,
+                                string dependentOn, string produces, float mutationDeviationFraction, float lowestMutationDeviation,
+                                bool nonLinearPhenotypeNet, int phenotype)
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
-        
+
+        setCreatureStats(cc, name, phenotype, 10, 1000, 700, 3, 10, mutationDeviation, color, true,
+                        mutationDeviationFraction, lowestMutationDeviation, MutationDeviationCoefficientType.exponentialDecay);
         // user edits:
-        cc.setSpecies(name);
-        cc.setPhenotype(phenotype);
-        cc.setTurnTime(10);
-        cc.setMaxHealth(1000);
-        cc.setInitialHealth(700);
-        cc.setActionClearInterval(3);
-        cc.setActionClearSize(10);
-        cc.setMutationStandardDeviation(mutationDeviation);
-        cc.setColor(color);
-        cc.setUsePhenotypeNet(true);
-        cc.setAnnealMutationFraction(mutationDeviationFraction);
-        cc.setBaseMutationDeviation(lowestMutationDeviation);
-        cc.setMutationCoeffType(MutationDeviationCoefficientType.exponentialDecay);
+        
 
         List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
 
@@ -147,53 +113,26 @@ public class EcoDemo2
 
         // add creature resource store for primary resource that creature needs
         ResourceEditor resourceCreator = cc.addResource();
-        resourceCreator.setName(primaryConsume);
-        resourceCreator.setMaxLevel(100);
-        resourceCreator.setLevel(90);
-        resourceCreator.setHealthGain(1);
-        resourceCreator.setHealthGainThreshold(90);
-        resourceCreator.setDeficiencyHealthDrain(5);
-        resourceCreator.setDeficiencyThreshold(20);
-        resourceCreator.setBaseUsage(1);
+        addCreatureResource(resourceCreator, primaryConsume, 100, 90, 1, 90, 5, 20, 1);
         cc.saveResource();
 
         // add creature resource store for resouce creature produces
         // Note: Creature 1 doesn't need this resource to survive (no health gain or drain)
         resourceCreator = cc.addResource();
-
-        resourceCreator.setName(produces);
-        resourceCreator.setMaxLevel(100);
-        resourceCreator.setLevel(90);
-        resourceCreator.setHealthGain(0);
-        resourceCreator.setHealthGainThreshold(90);
-        resourceCreator.setDeficiencyHealthDrain(0); // health drain zero
-        resourceCreator.setDeficiencyThreshold(20);
-        resourceCreator.setBaseUsage(1);
-
+        addCreatureResource(resourceCreator, produces, 100, 90, 0, 90, 0, 20, 1);
         cc.saveResource();
 
 
         // add creature resource store for resouce creature is dependent on
         resourceCreator = cc.addResource();
         // high starting level, so that population doesn't die out immediately
-        resourceCreator.setName(dependentOn);
-        resourceCreator.setMaxLevel(200);
-        resourceCreator.setLevel(190);
-        resourceCreator.setHealthGain(1);
-        resourceCreator.setHealthGainThreshold(190);
-        resourceCreator.setDeficiencyHealthDrain(5);
-        resourceCreator.setDeficiencyThreshold(10);
-        resourceCreator.setBaseUsage(1);
-
+        addCreatureResource(resourceCreator, dependentOn, 200, 190, 1, 180, 5, 10, 1);
         cc.saveResource();
-
-
-        
 
         // for reference later
         List<string> creatureResources = new List<string>(cc.creature.storedResources.Keys);
 
-        // generates movement actions
+        // generates movement actions with a resource cost
         cc.generateDefaultActionPool(primaryConsume, 5);
 
         /* MUST GENERATE ACTIONS AND ADD THEM TO CREATURE'S ACTION POOL BEFORE CREATING OUTPUT NODES FOR THOSE ACTIONS */
@@ -206,14 +145,15 @@ public class EcoDemo2
         ActionEditor ae = cc.addAction();
         ae.setCreator(ActionCreatorType.consumeCreator);
         ConsumeFromLandEditor cle = (ConsumeFromLandEditor)ae.getActionCreator();
-        cle.setName("eat" + primaryConsume);
-        cle.setNeighborIndex(0);
-        cle.setResourceToConsume(primaryConsume);
-        cle.setPriority(1);
-        cle.setTimeCost(10);
-        // requires A and C to perform
-        cle.addResourceCost(primaryConsume, 1);
-        cle.addResourceCost(dependentOn, 1);
+
+        Dictionary<string, float> resourceCosts = new Dictionary<string, float>()
+        {
+            {primaryConsume, 1},
+            {dependentOn, 1}
+        };
+
+        setBasicActionParams(cle,  "eat" + primaryConsume, 1, 10, resourceCosts);
+        setConsumeParams(cle, 0, primaryConsume);
         cc.saveAction();
 
         // create action for consuming Resource that creature is dependent on
@@ -877,6 +817,83 @@ public class EcoDemo2
         hne.setActivationFunction(activationType);
         netCreator.saveNode();
         // user clicks save on network creator
+    }
+
+
+    public void addResource(EcosystemEditor ecoEditor, string name, float initialAmt, float maxAmt,
+                                float consumedPerTime, float proportionExtract, float renewAmt)
+    {
+        LandResourceEditor lre = ecoEditor.addResource(name);
+        lre.setAmountOfResource(initialAmt);
+        lre.setMaxAmt(maxAmt);
+        lre.setAmtConsumedPerTime(consumedPerTime);
+        lre.setProportionExtracted(proportionExtract); // higher proportion extracted for primary resources
+        lre.setRenewalAmt(renewAmt);
+    }
+
+    public void setEcoParams(EcosystemEditor ecoEditor, int abilityPtsPerCreat, int commBits, int renewInterval)
+    {
+        ecoEditor.setAbilityPointsPerCreature(10);
+        ecoEditor.setCommBits(4);
+        ecoEditor.setDistinctPhenotypeNum(4);
+        ecoEditor.setRenewInterval(50);
+    }
+
+
+    public void setCreatureStats(CreatureEditor ce, string name, int phenotype, float turnTime, float maxHealth, float initialHealth,
+                                 int actionClearInterval, int actionClearSize, float mutationDeviation, ColorChoice color, bool usePhenoNet,
+                                 float mutationDeviationFraction, float lowestMutationDeviation, MutationDeviationCoefficientType mutationType)
+    {
+        ce.setSpecies(name);
+        ce.setPhenotype(phenotype);
+        ce.setTurnTime(turnTime);
+        ce.setMaxHealth(maxHealth);
+        ce.setInitialHealth(initialHealth);
+        ce.setActionClearInterval(actionClearInterval);
+        ce.setActionClearSize(actionClearSize);
+        ce.setMutationStandardDeviation(mutationDeviation);
+        ce.setColor(color);
+        ce.setUsePhenotypeNet(usePhenoNet);
+        ce.setAnnealMutationFraction(mutationDeviationFraction);
+        ce.setBaseMutationDeviation(lowestMutationDeviation);
+        ce.setMutationCoeffType(mutationType);
+    }
+
+    public void addCreatureResource(ResourceEditor resourceEditor, string name, float maxLevel, float initialLevel, float healthGain,
+                                    float gainThreshold, float healthDrain, float drainThreshold, float baseUsage)
+    {
+        resourceEditor.setName(name);
+        resourceEditor.setMaxLevel(maxLevel);
+        resourceEditor.setLevel(initialLevel);
+        resourceEditor.setHealthGain(healthGain);
+        resourceEditor.setHealthGainThreshold(gainThreshold);
+        resourceEditor.setDeficiencyHealthDrain(healthDrain);
+        resourceEditor.setDeficiencyThreshold(drainThreshold);
+        resourceEditor.setBaseUsage(baseUsage);
+    }
+
+    public void setBasicActionParams(ActionEditorAbstract aea, string name, int priority,
+                                int timeCost, Dictionary<string,float> resourceCosts)
+    {
+        aea.setName(name);
+        aea.setPriority(priority);
+        aea.setTimeCost(timeCost);
+        // add resource costs
+        if(resourceCosts != null)
+        {
+            foreach (string key in resourceCosts.Keys)
+            {
+                aea.addResourceCost(key, resourceCosts[key]);
+
+            }
+        }
+        
+    }
+
+    public void setConsumeParams(ConsumeFromLandEditor cle, int neighborIndex, string toConsume)
+    {
+        cle.setNeighborIndex(neighborIndex);
+        cle.setResourceToConsume(toConsume);
     }
 
 }

@@ -50,8 +50,6 @@ public class Ecosystem
     /// </summary>
     public Dictionary<string, ResourceStore> resourceOptions = new Dictionary<string, ResourceStore>();
 
-    public float timeUnitsPerTurn;
-
     public int age = 0;
 
     public int renewIntervalSteps = 10;

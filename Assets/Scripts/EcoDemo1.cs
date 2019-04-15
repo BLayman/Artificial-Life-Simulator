@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class EcoDemo1
+public class EcoDemo1 : DemoInterface
 {
     /// <summary>
     /// Stores state of ecosystem.
@@ -25,9 +25,9 @@ public class EcoDemo1
             // Create a 300 X 300 map
             userCreatesEcosystem(300);
             // add cat species
-            userAddsSpecies("cat", ColorChoice.blue, 1f, true, .95f, .01f);
+            userAddsSpecies("cow", ColorChoice.blue, 1f, true, .95f, .01f);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", 1f, 300, 500);
+            userPopulatesSpecies("cow", 1f, 300, 500);
             // add dog species
             //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
@@ -43,46 +43,7 @@ public class EcoDemo1
         }
     }
 
-    public void runExperiment(int instances, int maxLength)
-    {
-        Debug.Log("Low variation system results: ");
-        experimentRunSystem(instances, maxLength, false, .2f, .1f);
-
-        Debug.Log("high variation system results: ");
-        experimentRunSystem(instances, maxLength, false, .6f, .1f);
-
-        Debug.Log("Experiment done");
-    }
-
-    public void experimentRunSystem(int instances, int maxLength, bool nonLinear, float popVar, float indVar)
-    {
-        string fileName = ".\\OutputFiles\\experimentOutput.csv";
-        StringBuilder line = new StringBuilder();
-        // create x instances of each ecosystem
-        float sum = 0;
-        for (int i = 0; i < instances; i++)
-        {
-            // Create a 100 X 100 mp
-            userCreatesEcosystem(200);
-            // add cat species
-            userAddsSpecies("cat", ColorChoice.blue, indVar, nonLinear, 1, indVar);
-            // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cat", popVar, 500, 1000);
-
-            while (!ecosystem.allDead && ecosystem.age < maxLength)
-            {
-                ecosystem.runSystem(1);
-                //Debug.Log("age: " + ecosystem.age);
-            }
-            sum += ecosystem.age;
-            Debug.Log("final age: " + ecosystem.age);
-            line.Append(ecosystem.age.ToString() + ", ");
-        }
-        line.Append("\n");
-        File.AppendAllText(fileName, line.ToString());
-        Debug.Log("");
-        Debug.Log("average: " + sum / instances);
-    }
+    
 
 
 
@@ -101,7 +62,6 @@ public class EcoDemo1
         ecoCreator.setAbilityPointsPerCreature(10);
         ecoCreator.setCommBits(4);
         ecoCreator.setDistinctPhenotypeNum(32);
-        ecoCreator.setTimeUnitsPerTurn(10);
         ecoCreator.setRenewInterval(50);
 
         // create and save resources
@@ -114,7 +74,7 @@ public class EcoDemo1
 
         ecoCreator.saveResource();
         
-        ecoCreator.addResource("flowers");
+        ecoCreator.addResource("hay");
         ecoCreator.lre.setAmountOfResource(500);
         ecoCreator.lre.setMaxAmt(500);
         ecoCreator.lre.setAmtConsumedPerTime(10);
@@ -131,7 +91,7 @@ public class EcoDemo1
         // TODO: account for asymetric maps
         ecoCreator.mapEditor.generateMap(mapWidth, mapWidth);
         ecoCreator.mapEditor.addLERPXResource("grass", 1f);
-        ecoCreator.mapEditor.addLERPXResource("flowers", 1f);
+        ecoCreator.mapEditor.addLERPXResource("hay", 1f);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
         
@@ -244,7 +204,7 @@ public class EcoDemo1
         convEdit.setTimeCost(10);
         convEdit.setAmtToProduce(5);
         convEdit.addStartResource("grass", 1);
-        convEdit.addEndResource("flowers", 2);
+        convEdit.addEndResource("hay", 2);
         cc.saveAction();
         // TODO: add to neural network
 
@@ -254,7 +214,7 @@ public class EcoDemo1
         DepositEditor depEdit = (DepositEditor)ae4.getActionCreator();
         depEdit.setName("depositFlowers");
         depEdit.setNeighborIndex(0);
-        depEdit.setDepositResource("flowers");
+        depEdit.setDepositResource("hay");
         depEdit.setAmtToDeposit(10);
         depEdit.setPriority(1);
         depEdit.setTimeCost(10);
@@ -268,10 +228,10 @@ public class EcoDemo1
         ConsumeFromLandEditor cle2 = (ConsumeFromLandEditor)ae2.getActionCreator();
         cle2.setName("eat");
         cle2.setNeighborIndex(3);
-        cle2.setResourceToConsume("flowers");
+        cle2.setResourceToConsume("hay");
         cle2.setPriority(1);
         cle2.setTimeCost(5);
-        cle2.addResourceCost("flowers", 1);
+        cle2.addResourceCost("hay", 1);
         cc.saveAction();
         */
 
@@ -367,31 +327,6 @@ public class EcoDemo1
         // user clicks save on network creator
         cc.saveNetwork();
 
-
-        
-        /**** net2 ****/
-        /*
-        // user adds a network
-        NetworkEditor netCreator3 = cc.addNetwork();
-        netCreator3.setInLayer(0); // called by default with index of layer user clicked
-        netCreator3.setName("net2");
-
-        // Node net2 0,0 
-        // sense resource up
-        makeSensoryInputNode(netCreator3, 1, creatureResources[1]);
-
-        // Node net2 0,1 
-        // sense resource down
-        makeSensoryInputNode(netCreator3, 2, creatureResources[1]);
-
-        // Node net2 1,0 
-        makeOutputNode(netCreator3, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
-        // Node net2 1,1 
-        makeOutputNode(netCreator3, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
-
-        // user clicks save on network creator
-        cc.saveNetwork();
-        */
         
 
         /**** outNetUp ****/

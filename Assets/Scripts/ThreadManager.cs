@@ -11,7 +11,7 @@ using UnityEngine;
 
 class ThreadManager : MonoBehaviour
 {
-    EcoDemo1 ecoMan;
+    DemoInterface ecoMan;
     Ecosystem unityEco;
     System.Object ecoQueueLock = new System.Object();
     System.Object threadFinishedLock = new System.Object();
@@ -22,9 +22,12 @@ class ThreadManager : MonoBehaviour
     private int childThreadSleepTime = 0;
     bool finishChildThread = false;
     LinkedList<Ecosystem> ecoQueue;
+    [HideInInspector]
     public string visibleResource;
+    [HideInInspector]
     public GameObject statsPrinterObj;
     StatsPrinter statsPrinter;
+    public int demoIndex = 1;
     
 
     // Thread safe?
@@ -43,8 +46,20 @@ class ThreadManager : MonoBehaviour
         Debug.LogWarning("*********************            thread manager awake                     *************************");
 
         ecoQueue = new LinkedList<Ecosystem>(); // queue for callback functions
-                                                // create ecosystem using EcoManager
-        ecoMan = new EcoDemo1();
+
+        // create ecosystem using EcoManager
+        switch (demoIndex)
+        {
+            case 1:
+                ecoMan = new EcoDemo1();
+                break;
+            case 2:
+                ecoMan = new EcoDemo2();
+                break;
+            default:
+                Debug.LogError("That demo index does not exist.");
+                break;
+        }
         ecoMan.makeEco();
         // get newly created ecosystem and set unityEco to reference it
         unityEco = ecoMan.getEcosystem();
@@ -138,7 +153,7 @@ class ThreadManager : MonoBehaviour
                 {
                     lastEnqueued = unityEco;
                 }
-                // lastEnqueued.populations["cat"].creatures[0].printNetworks();
+                // lastEnqueued.populations[cow].creatures[0].printNetworks();
                 // create a copy using the latest ecosystem, then use the copy for the simulation
                 Ecosystem simulationEco = Copier.getEcosystemCopy(lastEnqueued);
                 // this will start the child thread, reseting checkFinished to false

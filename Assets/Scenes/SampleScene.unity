@@ -2645,7 +2645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &445341207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2688,6 +2688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visibleResource: grass
   statsPrinterObj: {fileID: 1888005134}
+  demoIndex: 2
   steps: 1
 --- !u!114 &445341210
 MonoBehaviour:
@@ -11600,7 +11601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1739275697
 Transform:
   m_ObjectHideFlags: 0
@@ -11627,6 +11628,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70484ae2c7f746440b0d8085618ca318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileName: .\OutputFiles\experimentOutput.csv
+  instances: 10
+  maxLength: 500
+  clearFile: 1
 --- !u!1 &1743724715
 GameObject:
   m_ObjectHideFlags: 0

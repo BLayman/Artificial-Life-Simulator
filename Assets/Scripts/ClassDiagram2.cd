@@ -51,7 +51,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OutputNode">
-    <Position X="20" Y="22.5" Width="3" />
+    <Position X="19.75" Y="23.5" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAQAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\OutputNode.cs</FileName>
@@ -84,7 +84,7 @@
   <Class Name="EcosystemEditor">
     <Position X="34" Y="6" Width="4" />
     <TypeIdentifier>
-      <HashCode>FQAApABAgBABgAMAYAACMAgAERAAABBEAAAAAQQAAAA=</HashCode>
+      <HashCode>FQAApABAgAABgAMAYAACMAgAERAAABBEAAAAAQQAAAA=</HashCode>
       <FileName>Assets\Scripts\EcosystemEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -145,7 +145,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CreatureEditor">
-    <Position X="22" Y="4.75" Width="3" />
+    <Position X="22" Y="4.5" Width="3" />
     <AssociationLine Name="netCreator" Type="NetworkEditor">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.307" Y="0.249" />
@@ -153,7 +153,7 @@
     </AssociationLine>
     <AssociationLine Name="abilitiesCreator" Type="AbilitiesEditor">
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.066" Y="0.63" />
+        <Position X="0.055" Y="0.31" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -293,7 +293,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Population">
-    <Position X="45.75" Y="1.75" Width="2.25" />
+    <Position X="43.75" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>MAAAAAAAAAAIAIIAIIAAAAAAAEACIAAAAAQAgAgAAAA=</HashCode>
       <FileName>Assets\Scripts\Population.cs</FileName>
@@ -342,10 +342,11 @@
   <Class Name="EcoDemo2">
     <Position X="35.25" Y="0.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>QCACAAAggAAAGAEAAEAAAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
+      <HashCode>RCACAAAggAAAOAEAAEAgAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
       <FileName>Assets\Scripts\EcoDemo2.cs</FileName>
       <NewMemberFileName>Assets\Scripts\EcoDemo1.cs</NewMemberFileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogisticWithNegActivBehav">
     <Position X="9.25" Y="21.25" Width="2.25" />
@@ -398,7 +399,7 @@
   <Class Name="Ecosystem">
     <Position X="28.75" Y="6.75" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>EACEHAAEEAAAQAAAQ0AABQAAAIIEKMCAAAAAIAAQBAA=</HashCode>
+      <HashCode>EACEHAAEEAAAQAAAQ0AABAAAAIIEKMCAAAAAIAAQBAA=</HashCode>
       <FileName>Assets\Scripts\EcoSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
