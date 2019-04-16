@@ -4,6 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
+OutputFiles/
 
 # Never ignore Asset meta data
 ![Aa]ssets/**/*.meta

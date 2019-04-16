@@ -7,9 +7,14 @@ using UnityEngine;
 public class StatsPrinter : MonoBehaviour
 {
     string fileName = ".\\OutputFiles\\output.csv";
+    public bool clearFile = true;
 
     public void printFirstLine(Ecosystem eco)
     {
+        if (clearFile)
+        {
+            File.AppendAllText(fileName, string.Empty);
+        }
         StringBuilder csv = new StringBuilder();
         StringBuilder firstLine = new StringBuilder(eco.populations.Keys.Count * 20);
         firstLine.Append("Time Steps, ");

@@ -111,7 +111,7 @@ public class Population
                 // for every creature
                 for (int j = 0; j < weightsByCreature.Count; j++)
                 {
-                    // TODO: fix this
+                    // TODO: fix this: Try excluding phenotype network Non-Input nodes 
                     try
                     {
                         count++;

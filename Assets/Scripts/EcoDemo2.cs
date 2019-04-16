@@ -229,60 +229,30 @@ public class EcoDemo2 : DemoInterface
         /**** phenotype network template ****/
 
         PhenotypeNetworkEditor phenoNetCreator = (PhenotypeNetworkEditor) cc.addNetwork(NetworkType.phenotype);
-        phenoNetCreator.setInLayer(0); // called by default with index of layer user clicked
-        phenoNetCreator.setName("phenotypeNet");
-        phenoNetCreator.createInputNodes();
+        
+        List<string> phenoOutputActions = new List<string>()
+        {
+            "deposit" + produces,
+            "convert" + primaryConsume + "To" + produces,
+            "reproduce",
+            "eat" + dependentOn,
+            "eat" + primaryConsume,
+            "moveUp",
+            "moveDown",
+            "moveLeft",
+            "moveRight"
 
-        // add hidden nodes to phenotype network if directed to
+        };
         if (nonLinearPhenotypeNet)
         {
-            phenoNetCreator.insertNewLayer(1);
-
-            makeHiddenNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
-
-            makeHiddenNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
-
-            makeHiddenNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
-
-            makeHiddenNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
-
-            // phenotype net will help determine if A is converted to B and if B is deposited
-            /* Node phenotypeNet 1,0 */
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 2);
-
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "convert" + primaryConsume + "To" + produces, 2);
-
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 2);
-
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + dependentOn, 2);
-
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + primaryConsume, 2);
+            createPhenotypeNet(phenoNetCreator, 0, "phenotypeNet", 4, 2, phenoOutputActions,
+                           ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
         }
-
         else
         {
-            // phenotype net will help determine if A is converted to B and if B is deposited
-            /* Node phenotypeNet 1,0 */
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 1);
-
-            /* Node phenotypeNet 1,0 */
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "convert" + primaryConsume + "To" + produces, 1);
-
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 1);
-
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + dependentOn, 1);
-
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + primaryConsume, 1);
-
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 1);
-
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 1);
-
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 1);
-
-            makeOutputNode(phenoNetCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 1);
+            createPhenotypeNet(phenoNetCreator, 0, "phenotypeNet", 0, 0, phenoOutputActions,
+                           ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
         }
-        
 
         // Note: don't call saveNetwork(), call savePhenotypeNetwork()
         cc.savePhenotypeNetwork();
@@ -296,99 +266,23 @@ public class EcoDemo2 : DemoInterface
         
         // user adds a network
         NetworkEditor netCreator = cc.addNetwork(NetworkType.regular);
-        netCreator.setInLayer(0); // called by default with index of layer user clicked
-        netCreator.setName("externalNet");
+        List<string> resourcesToSense = creatureResources; // sense resources creature can store
+        List<string> outputActions = new List<string>()
+        {
+            "deposit" + produces,
+            "convert" + primaryConsume + "To" + produces,
+            "reproduce",
+            "eat" + dependentOn,
+            "eat" + primaryConsume,
+            "moveUp",
+            "moveDown",
+            "moveLeft",
+            "moveRight"
 
-        // Node net1 0,0 
-        // sense resource 0 up
-        makeSensoryInputNode(netCreator, 1, creatureResources[0]);
+        };
 
-        // Node net1 0,1 
-        // sense resource 0 down
-        makeSensoryInputNode(netCreator, 2, creatureResources[0]);
-
-        // Node net1 0,2 
-        // sense resource 0 left
-        makeSensoryInputNode(netCreator, 3, creatureResources[0]);
-
-        // Node net1 0,3 
-        // sense resource 0 right
-        makeSensoryInputNode(netCreator, 4, creatureResources[0]);
-
-        // Node net1 0,4 
-        // sense resource 0 at current location
-        makeSensoryInputNode(netCreator, 0, creatureResources[0]);
-
-        // Node net1 0,5 
-        // sense resource 1 up
-        makeSensoryInputNode(netCreator, 1, creatureResources[1]);
-
-        // Node net1 0,6 
-        // sense resource 1 down
-        makeSensoryInputNode(netCreator, 2, creatureResources[1]);
-
-        // Node net1 0,7 
-        // sense resource 1 left
-        makeSensoryInputNode(netCreator, 3, creatureResources[1]);
-
-        // Node net1 0,8 
-        // sense resource 1 right
-        makeSensoryInputNode(netCreator, 4, creatureResources[1]);
-
-        // Node net1 0,9 
-        // sense resource 1 at current location
-        makeSensoryInputNode(netCreator, 0, creatureResources[1]);
-
-        // Node net1 0,10 
-        // sense resource 2 up
-        makeSensoryInputNode(netCreator, 1, creatureResources[2]);
-
-        // Node net1 0,11
-        // sense resource 2 down
-        makeSensoryInputNode(netCreator, 2, creatureResources[2]);
-
-        // Node net1 0,12
-        // sense resource 2 left
-        makeSensoryInputNode(netCreator, 3, creatureResources[2]);
-
-        // Node net1 0,13
-        // sense resource 2 right
-        makeSensoryInputNode(netCreator, 4, creatureResources[2]);
-
-        // Node net1 0,14
-        // sense resource 2 at current location
-        makeSensoryInputNode(netCreator, 0, creatureResources[2]);
-
-        netCreator.insertNewLayer(1);
-
-        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(netCreator, ActivationBehaviorTypes.LogisticAB, 1);
-
-        // Node net1 1,0 
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 2);
-        // Node net1 1,1 
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 2);
-        // Node net1 1,2 
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 2);
-        // Node net1 1,3 
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 2);
-        // Node net1 1,4 
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eat" + primaryConsume, 2);
-        // Node net1 1,
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "eat" + dependentOn, 2);
-        // Node net1 1,
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 2);
-        // Node net1 1,
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 2);
-        // Node net1 1,
-        makeOutputNode(netCreator, ActivationBehaviorTypes.LogisticAB, "convert" + primaryConsume + "To" + produces, 2);
-
+        makeSensoryInputNetwork(netCreator, 0, "externalNet", resourcesToSense, outputActions, 1, 6,
+                                ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
 
         // user clicks save on network creator
         cc.saveNetwork();
@@ -397,54 +291,30 @@ public class EcoDemo2 : DemoInterface
 
 
         // sense internal levels of resources
-
-
-        /**** net1 ****/
-
-        // user adds a network
         NetworkEditor InternalNetCreator = cc.addNetwork(NetworkType.regular);
-        InternalNetCreator.setInLayer(0); // called by default with index of layer user clicked
-        InternalNetCreator.setName("internalNet");
+        // sense all creature resources again, this time internally
+        resourcesToSense = creatureResources;
+        // use all output actions again
+        outputActions = new List<string>()
+        {
+            "deposit" + produces,
+            "convert" + primaryConsume + "To" + produces,
+            "reproduce",
+            "eat" + dependentOn,
+            "eat" + primaryConsume,
+            "moveUp",
+            "moveDown",
+            "moveLeft",
+            "moveRight"
 
-  
-        makeInternalResourceInputNode(InternalNetCreator, creatureResources[0]);
+        };
 
-        makeInternalResourceInputNode(InternalNetCreator, creatureResources[1]);
-
-        makeInternalResourceInputNode(InternalNetCreator, creatureResources[2]);
-
-        InternalNetCreator.insertNewLayer(1);
-
-        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
-        makeHiddenNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, 1);
-
-        // Node net1 1,0 
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveUp", 2);
-        // Node net1 1,1 
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveDown", 2);
-        // Node net1 1,2 
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveLeft", 2);
-        // Node net1 1,3 
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "moveRight", 2);
-        // Node net1 1,4 
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + primaryConsume, 2);
-        // Node net1 1,
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "eat" + dependentOn, 2);
-        // Node net1 1,
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "reproduce", 2);
-        // Node net1 1,
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "deposit" + produces, 2);
-        // Node net1 1,
-        makeOutputNode(InternalNetCreator, ActivationBehaviorTypes.LogisticAB, "convert" + primaryConsume + "To" + produces, 2);
-
+        makeInternalInputNetwork(InternalNetCreator, 0, "internalNet", resourcesToSense, outputActions, 1, 6,
+                                ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
 
         // user clicks save on network creator
         cc.saveNetwork();
+
 
 
 
@@ -930,8 +800,106 @@ public class EcoDemo2 : DemoInterface
         depEdit.setAmtToDeposit(depositAmt);
     }
 
-    
-    
+    public void createPhenotypeNet(PhenotypeNetworkEditor phenoNetEditor, int layer, string name, int hiddenNodesPerLayer, int layersHiddenNodes,
+                                      List<string> outputActionNames, ActivationBehaviorTypes hiddenNodeActiv, ActivationBehaviorTypes outputNodeActiv)
+    {
+        phenoNetEditor.setInLayer(layer); // called by default with index of layer user clicked
+        phenoNetEditor.setName(name);
+        phenoNetEditor.createInputNodes();
+        // set index of output layer based on hidden nodes
+        int outputLayer = layersHiddenNodes + 1;
+        // for every hidden layer
+        for (int i = 0; i < layersHiddenNodes; i++)
+        {
+            phenoNetEditor.insertNewLayer(i + 1);
+            // add every node in that layer
+            for (int j = 0; j < hiddenNodesPerLayer; j++)
+            {
+                makeHiddenNode(phenoNetEditor, hiddenNodeActiv, i + 1);
+            }
+        }
+
+        for (int i = 0; i < outputActionNames.Count; i++)
+        {
+            makeOutputNode(phenoNetEditor, outputNodeActiv, outputActionNames[i], outputLayer);
+        }
+
+    }
+
+
+
+    public void makeSensoryInputNetwork(NetworkEditor netCreator, int layer, string name, List<string> resourcesToSense, List<string> outputActions,
+                                        int hiddenLayerNum, int nodesPerLayer, ActivationBehaviorTypes hiddenActiv, ActivationBehaviorTypes outputActiv)
+    {
+        netCreator.setInLayer(layer); // called by default with index of layer user clicked
+        netCreator.setName(name);
+
+        // for every resource
+        for (int i = 0; i < resourcesToSense.Count; i++)
+        {
+            // for every neighbor
+            for (int j = 0; j < 5; j++)
+            {
+                makeSensoryInputNode(netCreator, j, resourcesToSense[i]);
+            }
+        }
+
+        int outputLayer = hiddenLayerNum + 1;
+
+        // for every hidden layer
+        for (int i = 0; i < hiddenLayerNum; i++)
+        {
+            netCreator.insertNewLayer(i + 1);
+            // add every node in that layer
+            for (int j = 0; j < nodesPerLayer; j++)
+            {
+                makeHiddenNode(netCreator, hiddenActiv, i + 1);
+            }
+        }
+
+        for (int i = 0; i < outputActions.Count; i++)
+        {
+            makeOutputNode(netCreator, outputActiv, outputActions[i], outputLayer);
+        }
+
+    }
+
+
+    public void makeInternalInputNetwork(NetworkEditor netCreator, int layer, string name, List<string> resourcesToSense, List<string> outputActions,
+                                        int hiddenLayerNum, int nodesPerLayer, ActivationBehaviorTypes hiddenActiv, ActivationBehaviorTypes outputActiv)
+    {
+        netCreator.setInLayer(layer); // called by default with index of layer user clicked
+        netCreator.setName(name);
+
+        // for every resource
+        for (int i = 0; i < resourcesToSense.Count; i++)
+        {
+            makeInternalResourceInputNode(netCreator, resourcesToSense[i]);
+        }
+
+        int outputLayer = hiddenLayerNum + 1;
+
+        // for every hidden layer
+        for (int i = 0; i < hiddenLayerNum; i++)
+        {
+            netCreator.insertNewLayer(i + 1);
+            // add every node in that layer
+            for (int j = 0; j < nodesPerLayer; j++)
+            {
+                makeHiddenNode(netCreator, hiddenActiv, i + 1);
+            }
+        }
+
+        for (int i = 0; i < outputActions.Count; i++)
+        {
+            makeOutputNode(netCreator, outputActiv, outputActions[i], outputLayer);
+        }
+
+
+    }
+
+
+
 
 
 }

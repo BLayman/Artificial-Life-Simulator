@@ -29,14 +29,25 @@ public class NodePanelPopulator : MonoBehaviour
         {
             GameObject created = GameObject.Instantiate(textObj);
             Text txt = created.GetComponent<Text>();
-            
 
             double rounded = System.Math.Round((double)node.weights[i], 2);
-            double rounded2 = System.Math.Round((double)averages[i], 2);
-            double rounded3 = System.Math.Round((double)sDs[i], 2);
+
+            // case for phenotype network nodes
+            if (averages.Count == node.weights.Count)
+            {
+                double rounded2 = System.Math.Round((double)averages[i], 2);
+                double rounded3 = System.Math.Round((double)sDs[i], 2);
+                txt.text = rounded.ToString() + "          " + rounded2 + "           " + rounded3;
+            }
+            else
+            {
+                txt.text = rounded.ToString();
+            }
+            
+            
 
 
-            txt.text = rounded.ToString() + "          " + rounded2 + "           " + rounded3;
+            
 
             created.transform.SetParent(canvas.transform, false);
             RectTransform transform = created.GetComponent<RectTransform>();
