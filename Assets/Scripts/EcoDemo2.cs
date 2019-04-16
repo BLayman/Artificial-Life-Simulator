@@ -145,67 +145,81 @@ public class EcoDemo2 : DemoInterface
         ActionEditor ae = cc.addAction();
         ae.setCreator(ActionCreatorType.consumeCreator);
         ConsumeFromLandEditor cle = (ConsumeFromLandEditor)ae.getActionCreator();
-
+        // define resource costs
         Dictionary<string, float> resourceCosts = new Dictionary<string, float>()
         {
             {primaryConsume, 1},
             {dependentOn, 1}
         };
-
+        // set parameters
         setBasicActionParams(cle,  "eat" + primaryConsume, 1, 10, resourceCosts);
         setConsumeParams(cle, 0, primaryConsume);
         cc.saveAction();
 
+
         // create action for consuming Resource that creature is dependent on
-        ActionEditor ae5 = cc.addAction();
-        ae5.setCreator(ActionCreatorType.consumeCreator);
-        ConsumeFromLandEditor cle2 = (ConsumeFromLandEditor)ae5.getActionCreator();
-        cle2.setName("eat" + dependentOn);
-        cle2.setNeighborIndex(0);
-        cle2.setResourceToConsume(dependentOn);
-        cle2.setPriority(1);
-        cle2.setTimeCost(10);
-        // requires A and C to perform
-        cle2.addResourceCost(primaryConsume, 1);
-        cle2.addResourceCost(dependentOn, 1);
+        ae = cc.addAction();
+        ae.setCreator(ActionCreatorType.consumeCreator);
+        cle = (ConsumeFromLandEditor)ae.getActionCreator();
+        // define resource costs
+        resourceCosts = new Dictionary<string, float>()
+        {
+            {primaryConsume, 1},
+            {dependentOn, 1}
+        };
+        // set parameters
+        setBasicActionParams(cle, "eat" + dependentOn, 1, 10, resourceCosts);
+        setConsumeParams(cle, 0, dependentOn);
         cc.saveAction();
+
 
         // create action for reproduction
-        ActionEditor ae2 = cc.addAction();
-        ae2.setCreator(ActionCreatorType.reproduceCreator);
-        ReproActionEditor rae = (ReproActionEditor)ae2.getActionCreator();
-        rae.setName("reproduce");
-        rae.setPriority(1);
-        rae.setTimeCost(10);
-        rae.addResourceCost(primaryConsume, 20);
-        rae.addResourceCost(dependentOn, 50);
+        ae = cc.addAction();
+        ae.setCreator(ActionCreatorType.reproduceCreator);
+        ReproActionEditor rae = (ReproActionEditor)ae.getActionCreator();
+        // high resource costs for reproduction
+        resourceCosts = new Dictionary<string, float>()
+        {
+            {primaryConsume, 20},
+            {dependentOn, 50}
+        };
+        setBasicActionParams(rae, "reproduce", 1, 10, resourceCosts);
+        // no special params to set for reproduction yet
         cc.saveAction();
 
+
         // action for converting with a 1 to 2 ratio
-        ActionEditor ae3 = cc.addAction();
-        ae3.setCreator(ActionCreatorType.convertEditor);
-        ConvertEditor convEdit = (ConvertEditor)ae3.getActionCreator();
-        convEdit.setName("convert"+ primaryConsume + "To" + produces);
-        convEdit.setPriority(1);
-        convEdit.setTimeCost(10);
-        convEdit.addResourceCost(primaryConsume, 1);
-        convEdit.addResourceCost(dependentOn, 1);
-        convEdit.setAmtToProduce(5);
-        convEdit.addStartResource(primaryConsume, 1);
-        convEdit.addEndResource(produces, 2);
+        ae = cc.addAction();
+        ae.setCreator(ActionCreatorType.convertEditor);
+        ConvertEditor convEdit = (ConvertEditor)ae.getActionCreator();
+        resourceCosts = new Dictionary<string, float>()
+        {
+            {primaryConsume, 1},
+            {dependentOn, 1}
+        };
+        setBasicActionParams(convEdit, "convert" + primaryConsume + "To" + produces, 1, 10, resourceCosts);
+
+        Dictionary<string, float> startResources = new Dictionary<string, float>()
+        {
+            {primaryConsume, 1f}
+        };
+        Dictionary<string, float> endResources = new Dictionary<string, float>()
+        {
+            {produces, 3f}
+        };
+
+        setConvertActionParams(convEdit, 5, startResources, endResources);
         cc.saveAction();
 
 
         // action for depositing B
-        ActionEditor ae4 = cc.addAction();
-        ae4.setCreator(ActionCreatorType.depositEditor);
-        DepositEditor depEdit = (DepositEditor)ae4.getActionCreator();
-        depEdit.setName("deposit" + produces);
-        depEdit.setNeighborIndex(0);
-        depEdit.setDepositResource(produces);
-        depEdit.setAmtToDeposit(10);
-        depEdit.setPriority(1);
-        depEdit.setTimeCost(10);
+        ae = cc.addAction();
+        ae.setCreator(ActionCreatorType.depositEditor);
+        DepositEditor depEdit = (DepositEditor)ae.getActionCreator();
+        // no resource costs for depositing
+        setBasicActionParams(depEdit, "deposit" + produces, 1, 10, null);
+        setDepositActionParams(depEdit, 0, produces, 10);
+
         cc.saveAction();
 
 
@@ -706,8 +720,6 @@ public class EcoDemo2 : DemoInterface
     }
 
 
-
-
     /*
      * Create populator (with population),
      * set population parameters
@@ -895,5 +907,31 @@ public class EcoDemo2 : DemoInterface
         cle.setNeighborIndex(neighborIndex);
         cle.setResourceToConsume(toConsume);
     }
+
+    public void setConvertActionParams(ConvertEditor convEdit, float amtToProd, Dictionary<string, float> startResources,
+                                       Dictionary<string, float> endResources)
+    {
+        convEdit.setAmtToProduce(amtToProd);
+        foreach(string key in startResources.Keys)
+        {
+            convEdit.addStartResource(key, startResources[key]);
+        }
+        foreach (string key in endResources.Keys)
+        {
+            convEdit.addEndResource(key, endResources[key]);
+        }
+    }
+
+
+    public void setDepositActionParams(DepositEditor depEdit, int neighborIndex, string produces, float depositAmt)
+    {
+        depEdit.setNeighborIndex(neighborIndex);
+        depEdit.setDepositResource(produces);
+        depEdit.setAmtToDeposit(depositAmt);
+    }
+
+    
+    
+
 
 }

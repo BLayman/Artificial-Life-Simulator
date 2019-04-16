@@ -13,12 +13,12 @@ public class ConvertEditor : ActionEditorAbstract
         actionRef = inAction;
     }
 
-    public void addStartResource(string res, int coefficient)
+    public void addStartResource(string res, float coefficient)
     {
         actionRef.startResources[res] = coefficient;
     }
 
-    public void addEndResource(string res, int coefficient)
+    public void addEndResource(string res, float coefficient)
     {
         actionRef.endResources[res] = coefficient;
     }
