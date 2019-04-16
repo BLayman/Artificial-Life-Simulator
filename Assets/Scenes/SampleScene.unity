@@ -2688,7 +2688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visibleResource: grass
   statsPrinterObj: {fileID: 1888005134}
-  demoIndex: 2
+  demoIndex: 1
   steps: 1
 --- !u!114 &445341210
 MonoBehaviour:
@@ -12538,6 +12538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f67aef782e6bc4380dc2f9f16fd7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clearFile: 1
 --- !u!4 &1888005136
 Transform:
   m_ObjectHideFlags: 0

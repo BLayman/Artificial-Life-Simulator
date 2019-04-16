@@ -56,41 +56,46 @@ public class Population
             {
                 foreach (string key in creatures[i].networks[j].Keys)
                 {
-                    for (int k = 0; k < creatures[i].networks[j][key].net.Count; k++)
+                    // if it's not a phenotype network
+                    if (!key.StartsWith("phenotypeNet"))
                     {
-                        for (int l = 0; l < creatures[i].networks[j][key].net[k].Count; l++)
+                        for (int k = 0; k < creatures[i].networks[j][key].net.Count; k++)
                         {
-                            bool castWorked = true;
-                            NonInputNode node = null;
-                            // get node and convert it to Non-Input node if possible
-                            try
+                            for (int l = 0; l < creatures[i].networks[j][key].net[k].Count; l++)
                             {
-                                node = (NonInputNode)creatures[i].networks[j][key].net[k][l];
-                            }
-                            catch (InvalidCastException e)
-                            {
-                                castWorked = false;
-                            }
-                            // if it is a non-input node
-                            if (castWorked)
-                            {
-                                // reset creature weights indicies in node
-                                node.creatureWeightsIndicies = new List<int>();
-
-                                // for every weight
-                                for (int m = 0; m < node.weights.Count; m++)
+                                bool castWorked = true;
+                                NonInputNode node = null;
+                                // get node and convert it to Non-Input node if possible
+                                try
                                 {
-                                    // add the weight to our weights by creature list
-                                    weightsByCreature[i].Add(node.weights[m]); // store weights by creature and weight index
-                                    // add index of where weights are stored in population to node
-                                    node.creatureWeightsIndicies.Add(creatureWeightIndex);
-                                    creatureWeightIndex++;
-
+                                    node = (NonInputNode)creatures[i].networks[j][key].net[k][l];
                                 }
-                                //Debug.Log(node.creatureWeightsIndicies.Count);
+                                catch (InvalidCastException e)
+                                {
+                                    castWorked = false;
+                                }
+                                // if it is a non-input node
+                                if (castWorked)
+                                {
+                                    // reset creature weights indicies in node
+                                    node.creatureWeightsIndicies = new List<int>();
+
+                                    // for every weight
+                                    for (int m = 0; m < node.weights.Count; m++)
+                                    {
+                                        // add the weight to our weights by creature list
+                                        weightsByCreature[i].Add(node.weights[m]); // store weights by creature and weight index
+                                                                                   // add index of where weights are stored in population to node
+                                        node.creatureWeightsIndicies.Add(creatureWeightIndex);
+                                        creatureWeightIndex++;
+
+                                    }
+                                    //Debug.Log(node.creatureWeightsIndicies.Count);
+                                }
                             }
                         }
                     }
+                    
                 }
             }
         }
@@ -111,7 +116,7 @@ public class Population
                 // for every creature
                 for (int j = 0; j < weightsByCreature.Count; j++)
                 {
-                    // TODO: fix this: Try excluding phenotype network Non-Input nodes 
+                    // TODO: fix this: Probably relates to creature removal from list?
                     try
                     {
                         count++;
@@ -119,7 +124,7 @@ public class Population
                     }
                     catch (ArgumentOutOfRangeException e)
                     {
-                        // Debug.Log("Out of range: " + j + " " + i);
+                        //Debug.Log("Out of range: " + j + " " + i);
                     }
                 }
                 averages.Add(sum / count);
