@@ -23,11 +23,11 @@ public class EcoDemo1 : DemoInterface
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(300);
+            createEcosystem(300);
             // add cat species
-            userAddsSpecies("cow", ColorChoice.blue, 1f, true, .95f, .01f);
+            addSpecies("cow", ColorChoice.blue, 1f, true, .95f, .01f);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("cow", 1f, 300, 500);
+            populateSpecies("cow", 1f, 300, 1000);
             // add dog species
             //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
@@ -53,17 +53,17 @@ public class EcoDemo1 : DemoInterface
      * create map,
      * add resource to map
      * */
-    public void userCreatesEcosystem(int mapWidth)
+    public void createEcosystem(int mapWidth)
     {
         ecosystem = new Ecosystem();
 
         ecoCreator = new EcosystemEditor(ecosystem);
 
         // set basic ecosystem parameters
-        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50);
+        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, false, true);
 
         // create hay and grass
-        EcoCreationHelper.addResource(ecoCreator, "grass", 100, 150, 5, .2f, .5f);
+        EcoCreationHelper.addResource(ecoCreator, "grass", 100, 150, 5, .4f, 1f);
         ecoCreator.saveResource();
 
 
@@ -73,7 +73,9 @@ public class EcoDemo1 : DemoInterface
         ecoCreator.createMap();
         // TODO: account for asymetric maps
         ecoCreator.mapEditor.generateMap(mapWidth, mapWidth);
-        ecoCreator.mapEditor.addLERPXResource("grass", 1f);
+        // islands: 300, .8, 50, 30
+        // barriers: 300, .8, 100, 30 (creature pop 2000 for barely survive)
+        ecoCreator.mapEditor.addClusteredResource("grass", .8f, 100, 30);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
         
@@ -87,7 +89,7 @@ public class EcoDemo1 : DemoInterface
      * add resource to node, 
      * save creature to founder creatures dict and species dict
      */
-    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation, bool useHiddenNodes, float mutationDeviationFraction, float lowestMutationDeviation)
+    public void addSpecies(string name, ColorChoice color, float mutationDeviation, bool useHiddenNodes, float mutationDeviationFraction, float lowestMutationDeviation)
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
@@ -100,7 +102,7 @@ public class EcoDemo1 : DemoInterface
         ResourceEditor resourceCreator = cc.addResource();
 
         List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
-        EcoCreationHelper.addCreatureResource(resourceCreator, "grass", 100, 50, 1, 90, 10, 20, 1);
+        EcoCreationHelper.addCreatureResource(resourceCreator, "grass", 100, 80, 1, 90, 10, 20, 1);
         cc.saveResource();
 
         // for future reference
@@ -140,7 +142,7 @@ public class EcoDemo1 : DemoInterface
         // high resource costs for reproduction
         resourceCosts = new Dictionary<string, float>()
         {
-            {"grass", 20}
+            {"grass", 40}
         };
         EcoCreationHelper.setBasicActionParams(rae, "reproduce", 1, 10, resourceCosts);
         // no special params to set for reproduction yet
@@ -164,11 +166,51 @@ public class EcoDemo1 : DemoInterface
 
         };
 
-        EcoCreationHelper.makeSensoryInputNetwork(netCreator, 0, "SensoryNet", resourcesToSense, outputActions, 1, 6,
+        EcoCreationHelper.makeSensoryInputNetwork(netCreator, 0, "SensoryNet", resourcesToSense, outputActions, 1, 9,
+                                ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
+
+
+        // user clicks save on network creator
+        cc.saveNetwork();
+
+
+        // sense internal levels of resources
+        NetworkEditor InternalNetCreator = cc.addNetwork(NetworkType.regular);
+        // sense all creature resources again, this time internally
+        resourcesToSense = creatureResources;
+        // use all output actions again
+        outputActions = new List<string>()
+        {
+            "reproduce",
+            "eatGrass",
+            "moveUp",
+            "moveDown",
+            "moveLeft",
+            "moveRight"
+
+        };
+
+        EcoCreationHelper.makeInternalInputNetwork(InternalNetCreator, 0, "internalNet", resourcesToSense, outputActions, 1, 9,
                                 ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
 
         // user clicks save on network creator
         cc.saveNetwork();
+
+
+
+
+        Dictionary<string, string> actionNameByNetName = new Dictionary<string, string>()
+        {
+            {"outNetUp", "moveUp" },
+            {"outNetDown", "moveDown" },
+            {"outNetLeft", "moveLeft" },
+            {"outNetRight", "moveRight" },
+            {"outNetEat", "eatGrass" },
+            {"outNetRepro", "reproduce"}
+
+        };
+
+        EcoCreationHelper.createOutputNetworks(cc, 1, actionNameByNetName, 0, 0, ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
 
 
         /**** outNetUp ****/
@@ -242,7 +284,7 @@ public class EcoDemo1 : DemoInterface
      * saves population and adds it to list of populations
      * adds population to map, and saves map
      * */
-    public void userPopulatesSpecies(string name, float populationDeviation, int popSize, int maxPopSize)
+    public void populateSpecies(string name, float populationDeviation, int popSize, int maxPopSize)
     {
         SpeciesPopulator populator = ecoCreator.populateSpecies(name);
         populator.SetAbilityStandardDeviation(1);

@@ -67,6 +67,9 @@ public class Ecosystem
     public int statsInterval = 20; // update stats every 10 turns
     public int statsCount = 20;
 
+    public bool uniformRenewal;
+    public bool clusterRenewal;
+
     System.Object threadsFinishedLock = new System.Object();
 
 
@@ -150,7 +153,14 @@ public class Ecosystem
                                 {
                                     if (res.renewalAmt > 0)
                                     {
-                                        res.renewResource();
+                                        if (uniformRenewal)
+                                        {
+                                            res.renewResource();
+                                        }
+                                        if (clusterRenewal)
+                                        {
+                                            res.renewClusterResource();
+                                        }
                                     }
                                 }
                             }
@@ -185,7 +195,14 @@ public class Ecosystem
 
                                 if (res.renewalAmt > 0)
                                 {
-                                    res.renewResource();
+                                    if (uniformRenewal)
+                                    {
+                                        res.renewResource();
+                                    }
+                                    if (clusterRenewal)
+                                    {
+                                        res.renewClusterResource();
+                                    }
                                 }
                             }
                         }

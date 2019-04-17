@@ -52,11 +52,11 @@ public class ExperimentRunner : MonoBehaviour
         for (int i = 0; i < instances; i++)
         {
             // Create a 100 X 100 mp
-            ecoDemo.userCreatesEcosystem(200);
+            ecoDemo.createEcosystem(200);
             // add cat species
-            ecoDemo.userAddsSpecies("cow", ColorChoice.blue, indVar, nonLinear, 1, indVar);
+            ecoDemo.addSpecies("cow", ColorChoice.blue, indVar, nonLinear, 1, indVar);
             // populate with low standard deviation from founder creature
-            ecoDemo.userPopulatesSpecies("cow", popVar, 500, 1000);
+            ecoDemo.populateSpecies("cow", popVar, 500, 1000);
 
             while (!ecoDemo.getEcosystem().allDead && ecoDemo.getEcosystem().age < maxLength)
             {

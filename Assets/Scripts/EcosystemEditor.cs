@@ -100,6 +100,15 @@ public class EcosystemEditor
         ecosystem.renewIntervalSteps = renewSteps;
     }
 
+    public void setUniformRenewal(bool renew)
+    {
+        ecosystem.uniformRenewal = renew;
+    }
+
+    public void setClusterRenewal(bool renew)
+    {
+        ecosystem.clusterRenewal = renew;
+    }
 
     /* add methods */
 

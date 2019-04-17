@@ -97,12 +97,15 @@ class EcoCreationHelper
         lre.setRenewalAmt(renewAmt);
     }
 
-    public static void setEcoParams(EcosystemEditor ecoEditor, int abilityPtsPerCreat, int commBits, int renewInterval)
+    public static void setEcoParams(EcosystemEditor ecoEditor, int abilityPtsPerCreat, int commBits, 
+                                    int renewInterval, bool uniformRenewal, bool clusterRenewal)
     {
         ecoEditor.setAbilityPointsPerCreature(10);
         ecoEditor.setCommBits(4);
         ecoEditor.setDistinctPhenotypeNum(4);
         ecoEditor.setRenewInterval(50);
+        ecoEditor.setUniformRenewal(uniformRenewal);
+        ecoEditor.setClusterRenewal(clusterRenewal);
     }
 
 
@@ -327,6 +330,22 @@ class EcoCreationHelper
         makeOutputNode(outNetEditor, outputActiv, outputAction, outputLayer);
     }
 
+
+    public static void createOutputNetworks(CreatureEditor ce, int netLayer, Dictionary<string,string> names, int hiddenLayerNum, int nodesPerLayer,
+                                            ActivationBehaviorTypes hiddenActiv, ActivationBehaviorTypes outputActiv)
+    {
+        OutputNetworkEditor outNetCreator;
+        foreach (string netName in names.Keys)
+        {
+            outNetCreator = (OutputNetworkEditor)ce.addNetwork(NetworkType.output);
+            createOutputNetwork(outNetCreator, names[netName], netLayer, netName, ce.creature.actionPool[names[netName]], hiddenLayerNum, nodesPerLayer,
+                                hiddenActiv, outputActiv, ce.creature.networks);
+            // user clicks save on creature creator
+            ce.saveNetwork();
+        }
+
+
+    }
 
 
 

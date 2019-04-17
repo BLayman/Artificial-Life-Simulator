@@ -22,15 +22,15 @@ public class EcoDemo2 : DemoInterface
         if (!called)
         {
             // Create a 300 X 300 map
-            userCreatesEcosystem(300);
+            createEcosystem(300);
             // add cat species
-            userAddsSpecies("Creature1", ColorChoice.blue, 1f, "A", "C", "D", .95f, .01f, false, 1);
+            addSpecies("Creature1", ColorChoice.blue, 1f, "A", "C", "D", .95f, .01f, false, 1);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature1", 1f, 300, 500);
+            populateSpecies("Creature1", 1f, 300, 500);
 
-            userAddsSpecies("Creature2", ColorChoice.green, 1f, "B", "D", "C", .95f, .01f, false, 2);
+            addSpecies("Creature2", ColorChoice.green, 1f, "B", "D", "C", .95f, .01f, false, 2);
             // populate with low standard deviation from founder creature
-            userPopulatesSpecies("Creature2", 1f, 300, 500);
+            populateSpecies("Creature2", 1f, 300, 500);
         }
         else
         {
@@ -47,13 +47,13 @@ public class EcoDemo2 : DemoInterface
      * create map,
      * add resource to map
      * */
-    public void userCreatesEcosystem(int mapWidth)
+    public void createEcosystem(int mapWidth)
     {
         ecosystem = new Ecosystem();
 
         ecoCreator = new EcosystemEditor(ecosystem);
         // set basic ecosystem parameters
-        EcoCreationHelper.setEcoParams(ecoCreator, 10, 4, 50);
+        EcoCreationHelper.setEcoParams(ecoCreator, 10, 4, 50, true, false);
 
         // create resources A, B, and C
         EcoCreationHelper.addResource(ecoCreator, "A", 100, 150, 10, .4f, 2f);
@@ -94,7 +94,7 @@ public class EcoDemo2 : DemoInterface
      * add resource to node, 
      * save creature to founder creatures dict and species dict
      */
-    public void userAddsSpecies(string name, ColorChoice color, float mutationDeviation, string primaryConsume,
+    public void addSpecies(string name, ColorChoice color, float mutationDeviation, string primaryConsume,
                                 string dependentOn, string produces, float mutationDeviationFraction, float lowestMutationDeviation,
                                 bool nonLinearPhenotypeNet, int phenotype)
     {
@@ -316,89 +316,21 @@ public class EcoDemo2 : DemoInterface
         cc.saveNetwork();
 
 
-        /**** outNetUp ****/
+        Dictionary<string, string> actionNameByNetName = new Dictionary<string, string>()
+        {
+            {"outNetUp", "moveUp" },
+            {"outNetDown", "moveDown" },
+            {"outNetLeft", "moveLeft" },
+            {"outNetRight", "moveRight" },
+            {"outNetEat" + primaryConsume , "eat" + primaryConsume },
+            {"outNetEat" + dependentOn, "eat" + dependentOn},
+            {"outNetRepro", "reproduce"},
+            {"outNetDeposit" + produces, "deposit" + produces },
+            {"outNetConvert",  "convert" + primaryConsume + "To" + produces}
 
-        OutputNetworkEditor outNetCreator = (OutputNetworkEditor) cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "moveUp", 1, "outNetUp", cc.creature.actionPool["moveUp"], 1, 4, 
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
+        };
 
-
-        /**** outNetDown ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "moveDown", 1, "outNetDown", cc.creature.actionPool["moveDown"], 1, 4,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetLeft ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "moveLeft", 1, "outNetLeft", cc.creature.actionPool["moveLeft"], 1, 4,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-
-        /**** outNetRight ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "moveRight", 1, "outNetRight", cc.creature.actionPool["moveRight"], 1, 4,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetConsume primary ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "eat" + primaryConsume, 1, "outNetEat" + primaryConsume, cc.creature.actionPool["eat" + primaryConsume], 1, 4,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetConsume dependent on ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "eat" + dependentOn, 1, "outNetEat" + dependentOn, cc.creature.actionPool["eat" + dependentOn], 1, 4,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetReproduce ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "reproduce", 1, "outNetRepro", cc.creature.actionPool["reproduce"], 1, 4,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetDeposit ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "deposit" + produces, 1, "outNetDeposit" + produces, cc.creature.actionPool["deposit" + produces], 1, 4,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** OutNetConvert ****/
-
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "convert" + primaryConsume + "To" + produces, 1, "outNetConvert",
-                            cc.creature.actionPool["convert" + primaryConsume + "To" + produces], 1, 4,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-        
+        EcoCreationHelper.createOutputNetworks(cc, 1, actionNameByNetName, 0, 0, ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
         //cc.creature.printNetworks();
 
         // adds creature to list of founders
@@ -417,7 +349,7 @@ public class EcoDemo2 : DemoInterface
      * saves population and adds it to list of populations
      * adds population to map, and saves map
      * */
-    public void userPopulatesSpecies(string name, float populationDeviation, int popSize, int maxPopSize)
+    public void populateSpecies(string name, float populationDeviation, int popSize, int maxPopSize)
     {
         SpeciesPopulator populator = ecoCreator.populateSpecies(name);
         populator.SetAbilityStandardDeviation(1);
