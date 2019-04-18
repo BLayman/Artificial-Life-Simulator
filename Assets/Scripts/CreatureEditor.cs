@@ -300,7 +300,7 @@ public class CreatureEditor
 
 
 
-    public void generateDefaultActionPool(string resourceSpent, float amount)
+    public void generateMovementActions(string resourceSpent, float amount)
     {
         // create move up action
         ActionEditor ac = addAction();

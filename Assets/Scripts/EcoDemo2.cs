@@ -133,7 +133,7 @@ public class EcoDemo2 : DemoInterface
         List<string> creatureResources = new List<string>(cc.creature.storedResources.Keys);
 
         // generates movement actions with a resource cost
-        cc.generateDefaultActionPool(primaryConsume, 5);
+        cc.generateMovementActions(primaryConsume, 5);
 
         /* MUST GENERATE ACTIONS AND ADD THEM TO CREATURE'S ACTION POOL BEFORE CREATING OUTPUT NODES FOR THOSE ACTIONS */
 

@@ -23,7 +23,7 @@ public class EcoDemo1 : DemoInterface
         if (!called)
         {
             // Create a 300 X 300 map
-            createEcosystem(300);
+            createEcosystem(200);
             // add cat species
             addSpecies("cow", ColorChoice.blue, 1f, true, .95f, .01f);
             // populate with low standard deviation from founder creature
@@ -60,10 +60,14 @@ public class EcoDemo1 : DemoInterface
         ecoCreator = new EcosystemEditor(ecosystem);
 
         // set basic ecosystem parameters
-        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, false, true);
+        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, true, false);
 
-        // create hay and grass
+        // create grass
         EcoCreationHelper.addResource(ecoCreator, "grass", 100, 150, 5, .4f, 1f);
+        ecoCreator.saveResource();
+
+        // create grass
+        EcoCreationHelper.addResource(ecoCreator, "special", 0, 10, 1, .1f, .01f);
         ecoCreator.saveResource();
 
 
@@ -75,7 +79,9 @@ public class EcoDemo1 : DemoInterface
         ecoCreator.mapEditor.generateMap(mapWidth, mapWidth);
         // islands: 300, .8, 50, 30
         // barriers: 300, .8, 100, 30 (creature pop 2000 for barely survive)
-        ecoCreator.mapEditor.addClusteredResource("grass", .8f, 100, 30);
+        //ecoCreator.mapEditor.addClusteredResource("grass", 1f, 100, 30);
+        ecoCreator.mapEditor.addLERPXResource("grass", 1);
+        ecoCreator.mapEditor.addUniformResource("special", .01f);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
         
@@ -105,13 +111,18 @@ public class EcoDemo1 : DemoInterface
         EcoCreationHelper.addCreatureResource(resourceCreator, "grass", 100, 80, 1, 90, 10, 20, 1);
         cc.saveResource();
 
+        resourceCreator = cc.addResource();
+        ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
+        EcoCreationHelper.addCreatureResource(resourceCreator, "special", 100, 10, 0, 90, 0, 20, 0);
+        cc.saveResource();
+
         // for future reference
         List<string> creatureResources = new List<string>(cc.creature.storedResources.Keys);
 
 
         // TODO create default actions for creature action pool, and example user made action 
         // (should use add an action creator to creature creator)
-        cc.generateDefaultActionPool("grass", 5);
+        cc.generateMovementActions("grass", 5);
 
         /* MUST GENERATE ACTIONS AND ADD THEM TO CREATURE'S ACTION POOL BEFORE CREATING OUTPUT NODES FOR THOSE ACTIONS */
 
@@ -135,6 +146,23 @@ public class EcoDemo1 : DemoInterface
         EcoCreationHelper.setConsumeParams(cle, 0, "grass");
         cc.saveAction();
 
+
+        ae = cc.addAction();
+        ae.setCreator(ActionCreatorType.consumeCreator);
+        cle = (ConsumeFromLandEditor)ae.getActionCreator();
+        // define resource costs
+        resourceCosts = new Dictionary<string, float>()
+        {
+            {"grass", 1},
+        };
+        // set parameters
+        EcoCreationHelper.setBasicActionParams(cle, "eatSpecial", 1, 10, resourceCosts);
+        EcoCreationHelper.setConsumeParams(cle, 0, "special");
+        cc.saveAction();
+
+
+
+
         // create action for reproduction
         ae = cc.addAction();
         ae.setCreator(ActionCreatorType.reproduceCreator);
@@ -142,7 +170,8 @@ public class EcoDemo1 : DemoInterface
         // high resource costs for reproduction
         resourceCosts = new Dictionary<string, float>()
         {
-            {"grass", 40}
+            {"grass", 40},
+            {"special", 10}
         };
         EcoCreationHelper.setBasicActionParams(rae, "reproduce", 1, 10, resourceCosts);
         // no special params to set for reproduction yet
@@ -206,7 +235,8 @@ public class EcoDemo1 : DemoInterface
             {"outNetLeft", "moveLeft" },
             {"outNetRight", "moveRight" },
             {"outNetEat", "eatGrass" },
-            {"outNetRepro", "reproduce"}
+            {"outNetRepro", "reproduce"},
+            {"outNetEatSpecial", "eatSpecial" }
 
         };
 
