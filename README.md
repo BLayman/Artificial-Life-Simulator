@@ -9,7 +9,7 @@ open-ended, with various parameters that the user can set. The system plays out 
 features: neural networks, and resources.
 
 Each agent has a collection of neural networks for determining that agent's behavior. An agent's neural network maps input information
-such as: perception of the environment, sensing internal state, and communication with other agents; to output actions such as: consumption
+such as: perception of the environment, sensing internal state, and communication with other agents to output actions such as: consumption
 of a resource, movement, reproduction, and interaction with other agents.
 
 Each agent also stores a number of resources that can be acquired from land spaces. These resources may be essential for the agent's
@@ -24,24 +24,15 @@ The above description is an oversimplification of the process, but should get th
 
 This project is being developed in the Unity game engine. You will need to clone the repository, and then open the project in Unity to edit it. To run a simple demo executable, Unzip the the "ExampleBuilds" folder, or build your own executable in Unity. When running the demo, press ESC to exit the program.
 
-## Current Settings and Basic Use
+## Basic Use
 
-The program is currently set to create two species: one colored blue and the other colored green. The weights of each specie's neural
-networks is randomly generated, so you will see different behavior each time you run the simulation. One key difference between the two
-species is the amount of random variation added to the initial weights when creating a population. The blue population is created with a
-small amount of variability in each individual's weights, whereas green is created with a large amount of variability between individuals.
-The result is a number of sub-populations of green with distinct behaviors (could be considered different species even). I'd suggest playing
-around with these parameters for population variation in MakeEco function of EcoManager. I'd also recommend adjusting the mutationDeviation
-of the species to see what happens when large amounts of variation are added to the weights upon reproduction. The overall result seems
-to be that more variation leads to increased chances of survival.
+There are currently two demos of the program as configured by the EcoDemo1 and EcoDemo2 classes. These files use a number of function calls to set the parameters for the simulation, so it's relatively easy to modify the simulation by changing the parameters. You can choose which demo to run by expanding the "Demos" game object in the Unity Hierarchy, selecting the "SimulationTestRunner" runner object, and setting the demo Index to 1 or 2 in the Unity Inspector.
 
-The populations are currently capped at 500 to keep the program running relatively quickly. Feel free to increase this cap or the map size. I have tested up to a population size of 10,000 creatures total on a 1000 X 1000 map (1 million land squares). Note that it can take some time just to render a large map.
-
-You will notice a line moving across the map. This is resources being renewed, not a bug. Feel free to change the number of steps processed between each rendering of the system by entering a number in the upper left and pressing the "Apply" button. The slider changes the rendering speed on smaller maps where the simulation can run faster.
+You can run an experiment by setting the "SimulationTestRunner" to InActive (with the check box) and setting its sibling: "ExperimentRunnerObj" to active. Set parameters for the experiment in the "ExperimentRunner" class.
 
 ## Goals
 
-One of the goals of this program was to make every aspect of the process, including neural network architecture, easily customizable through function calls, and eventually a graphical user interface. Please see the EcoManager class as an example of how parameters can be set.
+One of the goals of this program was to make every aspect of the process, including neural network architecture, easily customizable through function calls, and eventually a graphical user interface. Another goal is to study various phenomena related to evolution and ecology such as: competition, cooperation, biodiversity, and stability.
 
 Over time, this system is capable of evolving more adaptive neural networks. A process similar to natural selection is at work, where the
 agents that survive to produce the most offspring will pass on the weights of their neural networks to a larger portion of the next generation.
@@ -50,7 +41,7 @@ crossover.
 
 ## Additional Information
 
-The Additional_Resources folder contains a powerpoint describing Eco-Simulator, and an in depth project proposal. Note that the project was originally called "Artificial Life Agents". The Documentation folder contains various forms of documentation for the code. Keep in mind that the documentation isn't complete, but may have useful information for developers.
+The Additional_Resources folder contains a powerpoint describing Eco-Simulator, a comprehensive poster, and an in depth project proposal. Note that the project was originally titled "Artificial Life Agents". The Documentation folder contains various forms of documentation for the code. Keep in mind that the documentation isn't complete, but may have useful information for developers.
 
 ## License
 License information for this software can be found in LICENSE.txt.

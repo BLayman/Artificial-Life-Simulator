@@ -92,6 +92,7 @@ public class Ecosystem
             {
                 Population population = populations[species];
                 // if population has any members
+                //Debug.Log(population.creatures.Count);
                 if (population.creatures.Count > 0)
                 {
                     //Debug.Log(population.creatures[0].mutationStandardDeviation);

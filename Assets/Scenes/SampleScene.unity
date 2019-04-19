@@ -11596,7 +11596,7 @@ GameObject:
   - component: {fileID: 1739275697}
   - component: {fileID: 1739275698}
   m_Layer: 0
-  m_Name: ExperimentRunner
+  m_Name: ExperimentRunnerObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

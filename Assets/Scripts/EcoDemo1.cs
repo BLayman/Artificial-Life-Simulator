@@ -25,9 +25,9 @@ public class EcoDemo1 : DemoInterface
             // Create a 300 X 300 map
             createEcosystem(200);
             // add cat species
-            addSpecies("cow", ColorChoice.blue, 1f, true, .95f, .01f);
+            addSpecies("cow", ColorChoice.blue, .1f, true, .95f, .01f);
             // populate with low standard deviation from founder creature
-            populateSpecies("cow", 1f, 300, 1000);
+            populateSpecies("cow", 2f, 300, 500);
             // add dog species
             //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
@@ -67,7 +67,7 @@ public class EcoDemo1 : DemoInterface
         ecoCreator.saveResource();
 
         // create grass
-        EcoCreationHelper.addResource(ecoCreator, "special", 0, 10, 1, .1f, .01f);
+        EcoCreationHelper.addResource(ecoCreator, "special", 5, 10, 1, .1f, .005f);
         ecoCreator.saveResource();
 
 
@@ -81,7 +81,7 @@ public class EcoDemo1 : DemoInterface
         // barriers: 300, .8, 100, 30 (creature pop 2000 for barely survive)
         //ecoCreator.mapEditor.addClusteredResource("grass", 1f, 100, 30);
         ecoCreator.mapEditor.addLERPXResource("grass", 1);
-        ecoCreator.mapEditor.addUniformResource("special", .01f);
+        ecoCreator.mapEditor.addUniformResource("special", .05f);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
         
