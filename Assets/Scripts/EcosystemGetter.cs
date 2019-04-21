@@ -28,14 +28,9 @@ public class EcosystemGetter : MonoBehaviour
         return threader.getEcosystem().map[0].Count;
     }
 
-    public Dictionary<string, float> getPopVariabilities()
+    public Dictionary<string, Population> getPopulations()
     {
-        Dictionary<string, float> popVars = new Dictionary<string, float>();
-        foreach (string key in threader.getEcosystem().populations.Keys)
-        {
-            popVars[key] = threader.getEcosystem().populations[key].overallVariability;
-        }
-        return popVars;
+        return threader.getEcosystem().populations;
     }
 
     public int getAge()

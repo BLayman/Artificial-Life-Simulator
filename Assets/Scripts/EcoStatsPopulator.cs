@@ -31,27 +31,30 @@ public class EcoStatsPopulator : MonoBehaviour
         transform.anchoredPosition = new Vector2(x, y);
         instantiated.Add(created);
 
-        // display population variabilities
-        Dictionary<string, float> popVars = ecoGetter.getPopVariabilities();
-        x = 318;
+
+        Dictionary<string, Population> populations = ecoGetter.getPopulations();
+
+        x = 250;
         y = -4.7f;
 
         int i = 0;
-        foreach (string key in popVars.Keys)
+        foreach (string key in populations.Keys)
         {
             created = GameObject.Instantiate(keyValPrefab);
-            double rounded = System.Math.Round((double)popVars[key], 2);
+            double rounded = System.Math.Round((double)populations[key].overallVariability, 2);
+            int size = populations[key].size;
             GameObject keyObj = created.transform.GetChild(0).gameObject;
             GameObject valObj = created.transform.GetChild(1).gameObject;
             keyObj.GetComponent<Text>().text = key + ":";
 
-            if (i == popVars.Count - 1)
+            Debug.Log(size);
+            if (i == populations.Count - 1)
             {
-                valObj.GetComponent<Text>().text = rounded.ToString();
+                valObj.GetComponent<Text>().text = size.ToString() + ", " + rounded.ToString();
             }
             else
             {
-                valObj.GetComponent<Text>().text = rounded.ToString() + ",";
+                valObj.GetComponent<Text>().text = size.ToString() + ", " + rounded.ToString() +  ";";
             }
 
 
@@ -61,7 +64,7 @@ public class EcoStatsPopulator : MonoBehaviour
 
             instantiated.Add(created);
 
-            x += 130;
+            x += 170;
             i++;
         }
     }

@@ -53,13 +53,13 @@ public class EcoDemo2 : DemoInterface
 
         ecoCreator = new EcosystemEditor(ecosystem);
         // set basic ecosystem parameters
-        EcoCreationHelper.setEcoParams(ecoCreator, 10, 4, 50, true, false);
+        EcoCreationHelper.setEcoParams(ecoCreator, 10, 4, 50, false, true);
 
         // create resources A, B, and C
-        EcoCreationHelper.addResource(ecoCreator, "A", 100, 150, 10, .4f, 2f);
+        EcoCreationHelper.addResource(ecoCreator, "A", 100, 150, 10, .4f, 1f);
         ecoCreator.saveResource();
 
-        EcoCreationHelper.addResource(ecoCreator, "B", 100, 150, 10, .4f, 2f);
+        EcoCreationHelper.addResource(ecoCreator, "B", 100, 150, 10, .4f, 1f);
         ecoCreator.saveResource();
 
 
@@ -76,8 +76,8 @@ public class EcoDemo2 : DemoInterface
         // max size ~ 320 X 320 (100,000 cells)
         // TODO: account for asymetric maps
         ecoCreator.mapEditor.generateMap(mapWidth, mapWidth);
-        ecoCreator.mapEditor.addLERPXResource("A", 1f);
-        ecoCreator.mapEditor.addLERPXResource("B", 1f);
+        ecoCreator.mapEditor.addClusteredResource("A", .8f, 100, 30);
+        ecoCreator.mapEditor.addClusteredResource("B", .8f, 100, 30);
         // small starting amount of B and C
         ecoCreator.mapEditor.addUniformResource("C", .2f); 
         ecoCreator.mapEditor.addUniformResource("D", .2f);
@@ -126,7 +126,7 @@ public class EcoDemo2 : DemoInterface
         // add creature resource store for resouce creature is dependent on
         resourceCreator = cc.addResource();
         // high starting level, so that population doesn't die out immediately
-        EcoCreationHelper.addCreatureResource(resourceCreator, dependentOn, 200, 190, 1, 180, 5, 10, 1);
+        EcoCreationHelper.addCreatureResource(resourceCreator, dependentOn, 100, 90, 1, 50, 1, 5, 1);
         cc.saveResource();
 
         // for reference later
@@ -148,8 +148,7 @@ public class EcoDemo2 : DemoInterface
         // define resource costs
         Dictionary<string, float> resourceCosts = new Dictionary<string, float>()
         {
-            {primaryConsume, 1},
-            {dependentOn, 1}
+            {primaryConsume, 1}
         };
         // set parameters
         EcoCreationHelper.setBasicActionParams(cle,  "eat" + primaryConsume, 1, 10, resourceCosts);
@@ -164,8 +163,7 @@ public class EcoDemo2 : DemoInterface
         // define resource costs
         resourceCosts = new Dictionary<string, float>()
         {
-            {primaryConsume, 1},
-            {dependentOn, 1}
+            {primaryConsume, 1}
         };
         // set parameters
         EcoCreationHelper.setBasicActionParams(cle, "eat" + dependentOn, 1, 10, resourceCosts);
@@ -194,8 +192,7 @@ public class EcoDemo2 : DemoInterface
         ConvertEditor convEdit = (ConvertEditor)ae.getActionCreator();
         resourceCosts = new Dictionary<string, float>()
         {
-            {primaryConsume, 1},
-            {dependentOn, 1}
+            {primaryConsume, 1}
         };
         EcoCreationHelper.setBasicActionParams(convEdit, "convert" + primaryConsume + "To" + produces, 1, 10, resourceCosts);
 
@@ -205,7 +202,7 @@ public class EcoDemo2 : DemoInterface
         };
         Dictionary<string, float> endResources = new Dictionary<string, float>()
         {
-            {produces, 3f}
+            {produces, 10f}
         };
 
         EcoCreationHelper.setConvertActionParams(convEdit, 5, startResources, endResources);

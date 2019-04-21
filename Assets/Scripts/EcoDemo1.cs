@@ -25,9 +25,17 @@ public class EcoDemo1 : DemoInterface
             // Create a 300 X 300 map
             createEcosystem(200);
             // add cat species
-            addSpecies("cow", ColorChoice.blue, .1f, true, .95f, .01f);
+            // 0, 1
+            // 0, 1
+            // 1, 1
+            // .5, .9
+            addSpecies("cow", ColorChoice.blue, .5f, true, .9f, .01f);
             // populate with low standard deviation from founder creature
-            populateSpecies("cow", 2f, 300, 500);
+            // 0, 100
+            // 2, 100
+            // 2, 100
+            // 2, 100
+            populateSpecies("cow", 2f, 100, 1000);
             // add dog species
             //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
@@ -63,11 +71,11 @@ public class EcoDemo1 : DemoInterface
         EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, true, false);
 
         // create grass
-        EcoCreationHelper.addResource(ecoCreator, "grass", 100, 150, 5, .4f, 1f);
+        EcoCreationHelper.addResource(ecoCreator, "grass", 100, 150, 5, .4f, .5f);
         ecoCreator.saveResource();
 
-        // create grass
-        EcoCreationHelper.addResource(ecoCreator, "special", 5, 10, 1, .1f, .005f);
+ 
+        EcoCreationHelper.addResource(ecoCreator, "vitamin", .5f, 1, 1, .1f, .005f);
         ecoCreator.saveResource();
 
 
@@ -81,7 +89,7 @@ public class EcoDemo1 : DemoInterface
         // barriers: 300, .8, 100, 30 (creature pop 2000 for barely survive)
         //ecoCreator.mapEditor.addClusteredResource("grass", 1f, 100, 30);
         ecoCreator.mapEditor.addLERPXResource("grass", 1);
-        ecoCreator.mapEditor.addUniformResource("special", .05f);
+        ecoCreator.mapEditor.addUniformResource("vitamin", .5f);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
         
@@ -113,7 +121,7 @@ public class EcoDemo1 : DemoInterface
 
         resourceCreator = cc.addResource();
         ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
-        EcoCreationHelper.addCreatureResource(resourceCreator, "special", 100, 10, 0, 90, 0, 20, 0);
+        EcoCreationHelper.addCreatureResource(resourceCreator, "vitamin", 100, 10, 0, 90, 0, 20, 0);
         cc.saveResource();
 
         // for future reference
@@ -156,8 +164,8 @@ public class EcoDemo1 : DemoInterface
             {"grass", 1},
         };
         // set parameters
-        EcoCreationHelper.setBasicActionParams(cle, "eatSpecial", 1, 10, resourceCosts);
-        EcoCreationHelper.setConsumeParams(cle, 0, "special");
+        EcoCreationHelper.setBasicActionParams(cle, "eatVitamin", 1, 10, resourceCosts);
+        EcoCreationHelper.setConsumeParams(cle, 0, "vitamin");
         cc.saveAction();
 
 
@@ -171,7 +179,7 @@ public class EcoDemo1 : DemoInterface
         resourceCosts = new Dictionary<string, float>()
         {
             {"grass", 40},
-            {"special", 10}
+            {"vitamin", 10}
         };
         EcoCreationHelper.setBasicActionParams(rae, "reproduce", 1, 10, resourceCosts);
         // no special params to set for reproduction yet
@@ -188,6 +196,7 @@ public class EcoDemo1 : DemoInterface
         {
             "reproduce",
             "eatGrass",
+            "eatVitamin",
             "moveUp",
             "moveDown",
             "moveLeft",
@@ -212,6 +221,7 @@ public class EcoDemo1 : DemoInterface
         {
             "reproduce",
             "eatGrass",
+            "eatVitamin",
             "moveUp",
             "moveDown",
             "moveLeft",
@@ -236,66 +246,11 @@ public class EcoDemo1 : DemoInterface
             {"outNetRight", "moveRight" },
             {"outNetEat", "eatGrass" },
             {"outNetRepro", "reproduce"},
-            {"outNetEatSpecial", "eatSpecial" }
+            {"outNetEatVit", "eatVitamin" }
 
         };
 
         EcoCreationHelper.createOutputNetworks(cc, 1, actionNameByNetName, 0, 0, ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
-
-
-        /**** outNetUp ****/
-
-        OutputNetworkEditor outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "moveUp", 1, "outNetUp", cc.creature.actionPool["moveUp"], 0, 0,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetDown ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "moveDown", 1, "outNetDown", cc.creature.actionPool["moveDown"], 0, 0,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetLeft ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "moveLeft", 1, "outNetLeft", cc.creature.actionPool["moveLeft"], 0, 0,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-
-        /**** outNetRight ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "moveRight", 1, "outNetRight", cc.creature.actionPool["moveRight"], 0, 0,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetConsume grass ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "eatGrass", 1, "outNetEat", cc.creature.actionPool["eatGrass"], 0, 0,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
-
-
-        /**** outNetReproduce ****/
-
-        outNetCreator = (OutputNetworkEditor)cc.addNetwork(NetworkType.output);
-        EcoCreationHelper.createOutputNetwork(outNetCreator, "reproduce", 1, "outNetRepro", cc.creature.actionPool["reproduce"], 0, 0,
-                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB, cc.creature.networks);
-        // user clicks save on creature creator
-        cc.saveNetwork();
 
         // adds creature to list of founders
         ecoCreator.addToFounders();

@@ -26,7 +26,8 @@ public class ResourcePanelPopulator : MonoBehaviour
             GameObject valObj = created.transform.GetChild(1).gameObject;
             Debug.Log(key + resources[key].currentLevel);
             keyObj.GetComponent<Text>().text = key;
-            valObj.GetComponent<Text>().text = resources[key].currentLevel.ToString() + " / " + resources[key].maxLevel.ToString();
+            string currentLvl = (System.Math.Round(resources[key].currentLevel, 2)).ToString();
+            valObj.GetComponent<Text>().text = currentLvl + " / " + resources[key].maxLevel.ToString();
             created.transform.SetParent(canvas.transform, false);
             RectTransform transform = created.GetComponent<RectTransform>();
             transform.anchoredPosition = new Vector2(x,y);

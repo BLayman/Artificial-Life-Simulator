@@ -169,6 +169,7 @@ public class CreatureEditor
     public void setMutationStandardDeviation(float deviation)
     {
         creature.mutationStandardDeviation = deviation;
+        creature.actualMutationDeviation = deviation;
     }
 
     public void setUsePhenotypeNet(bool usePhenotypeNet)
