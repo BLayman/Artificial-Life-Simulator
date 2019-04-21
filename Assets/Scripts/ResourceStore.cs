@@ -13,7 +13,7 @@ using System.Text;
 /// </summary>
 public class ResourceStore
 {
-    public float clusterFactor = 0;
+    public float clusterFactor = -1;
     /// <summary>
     /// Amount of resource stored.
     /// </summary>
@@ -99,15 +99,32 @@ public class ResourceStore
 
     public void renewClusterResource()
     {
-        float weightedAmt = renewalAmt * clusterFactor;
-        if (amountStored + weightedAmt > maxAmount)
+        // if cluster factor was never set, this is not a clustered resource, so use regular renewal
+        if(clusterFactor == -1)
         {
-            amountStored = maxAmount;
+            if (amountStored + renewalAmt > maxAmount)
+            {
+                amountStored = maxAmount;
+            }
+            else
+            {
+                amountStored += renewalAmt;
+            }
         }
         else
         {
-            amountStored += weightedAmt;
+            float weightedAmt = renewalAmt * clusterFactor;
+            if (amountStored + weightedAmt > maxAmount)
+            {
+                amountStored = maxAmount;
+            }
+            else
+            {
+                amountStored += weightedAmt;
+            }
         }
+
+        
     }
 
     public float getProportionStored()

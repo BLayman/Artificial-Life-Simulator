@@ -31,7 +31,7 @@ public class EcoDemo1 : DemoInterface
             // 10, 1
             // 1, .9
             // 0, 0, ...true
-            addSpecies("cow", ColorChoice.blue, 10f, true, .9f, .01f, false);
+            addSpecies("cow", ColorChoice.blue, 1f, true, .9f, .01f, false);
             // populate with low standard deviation from founder creature
             // 0, 100
             // 2, 100
@@ -72,7 +72,7 @@ public class EcoDemo1 : DemoInterface
         ecoCreator = new EcosystemEditor(ecosystem);
 
         // set basic ecosystem parameters
-        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, true, false);
+        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, false, true);
 
         // create grass
         EcoCreationHelper.addResource(ecoCreator, "grass", 100, 150, 5, .4f, .5f);
@@ -92,7 +92,7 @@ public class EcoDemo1 : DemoInterface
         // islands: 300, .8, 50, 30
         // barriers: 300, .8, 100, 30 (creature pop 2000 for barely survive)
         //ecoCreator.mapEditor.addClusteredResource("grass", 1f, 100, 30);
-        ecoCreator.mapEditor.addLERPXResource("grass", 1);
+        ecoCreator.mapEditor.addLERPXResource("grass", 1f);
         ecoCreator.mapEditor.addUniformResource("vitamin", .5f);
         ecoCreator.saveEditedMap(); // saves to tentative map
         ecoCreator.saveMap(); // saves to ecosystem map
