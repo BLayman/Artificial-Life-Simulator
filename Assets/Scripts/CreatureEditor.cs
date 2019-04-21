@@ -300,6 +300,47 @@ public class CreatureEditor
     }
 
 
+    public void loadWeightsFromFile()
+    {
+        List<float> weightAverages = CreatureAveragesIO.loadAverages();
+        int avgsIndex = 0;
+
+        // for every node
+        for (int j = 0; j < creature.networks.Count; j++)
+        {
+            foreach (string key in creature.networks[j].Keys)
+            {
+                for (int k = 0; k < creature.networks[j][key].net.Count; k++)
+                {
+                    for (int l = 0; l < creature.networks[j][key].net[k].Count; l++)
+                    {
+
+                        bool castWorked = true;
+                        NonInputNode node = null;
+                        // get node and convert it to Non-Input node if possible
+                        try
+                        {
+                            node = (NonInputNode)creature.networks[j][key].net[k][l];
+                        }
+                        catch (InvalidCastException e)
+                        {
+                            castWorked = false;
+                        }
+                        // if it is a non-input node
+                        if (castWorked)
+                        {
+                            for (int i = 0; i < node.weights.Count; i++)
+                            {
+                                node.weights[i] = weightAverages[avgsIndex];
+                                avgsIndex++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     public void generateMovementActions(string resourceSpent, float amount)
     {

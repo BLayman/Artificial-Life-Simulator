@@ -54,7 +54,7 @@ public class ExperimentRunner : MonoBehaviour
             // Create a 100 X 100 mp
             ecoDemo.createEcosystem(200);
             // add cat species
-            ecoDemo.addSpecies("cow", ColorChoice.blue, indVar, nonLinear, 1, indVar);
+            ecoDemo.addSpecies("cow", ColorChoice.blue, indVar, nonLinear, 1, indVar, false);
             // populate with low standard deviation from founder creature
             ecoDemo.populateSpecies("cow", popVar, 500, 1000);
 

@@ -28,14 +28,18 @@ public class EcoDemo1 : DemoInterface
             // 0, 1
             // 0, 1
             // 1, 1
-            // .5, .9
-            addSpecies("cow", ColorChoice.blue, .5f, true, .9f, .01f);
+            // 10, 1
+            // 1, .9
+            // 0, 0, ...true
+            addSpecies("cow", ColorChoice.blue, 10f, true, .9f, .01f, false);
             // populate with low standard deviation from founder creature
             // 0, 100
             // 2, 100
             // 2, 100
             // 2, 100
-            populateSpecies("cow", 2f, 100, 1000);
+            // 2, 100
+            // 0, 100
+            populateSpecies("cow", 2f, 100, 2000);
             // add dog species
             //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
@@ -103,7 +107,7 @@ public class EcoDemo1 : DemoInterface
      * add resource to node, 
      * save creature to founder creatures dict and species dict
      */
-    public void addSpecies(string name, ColorChoice color, float mutationDeviation, bool useHiddenNodes, float mutationDeviationFraction, float lowestMutationDeviation)
+    public void addSpecies(string name, ColorChoice color, float mutationDeviation, bool useHiddenNodes, float mutationDeviationFraction, float lowestMutationDeviation, bool loadPrev)
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
@@ -251,6 +255,12 @@ public class EcoDemo1 : DemoInterface
         };
 
         EcoCreationHelper.createOutputNetworks(cc, 1, actionNameByNetName, 0, 0, ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
+
+        if (loadPrev)
+        {
+            cc.loadWeightsFromFile();
+        }
+        
 
         // adds creature to list of founders
         ecoCreator.addToFounders();

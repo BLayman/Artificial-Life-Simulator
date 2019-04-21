@@ -172,7 +172,9 @@ public class Population
             }
             overallVariability = (float)Math.Sqrt((double)(varianceSum / variances.Count));
         }
-        
+
+
+        CreatureAveragesIO.saveAverages(weightAverages);
 
     }
 
