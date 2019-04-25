@@ -43,7 +43,7 @@ crossover.
 
 ## Additional Information
 
-The Additional_Resources folder contains a powerpoint describing Eco-Simulator, a comprehensive poster, and an in depth project proposal. Note that the project was originally titled "Artificial Life Agents". The Documentation folder contains various forms of documentation for the code. Keep in mind that the documentation isn't complete, but may have useful information for developers.
+The Additional_Resources folder contains a comprehensive poster, and an in depth project report. The Documentation folder contains various forms of documentation for the code. Keep in mind that the documentation isn't complete, but may have useful information for developers.
 
 ## License
 License information for this software can be found in LICENSE.txt.
