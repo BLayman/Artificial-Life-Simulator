@@ -22,24 +22,15 @@ public class EcoDemo1 : DemoInterface
     {
         if (!called)
         {
-            // Create a 300 X 300 map
+           
             createEcosystem(200);
-            // add cat species
-            // 0, 1
-            // 0, 1
-            // 1, 1
-            // 10, 1
-            // 1, .9
-            // 0, 0, ...true
-            addSpecies("cow", ColorChoice.blue, 1f, true, .9f, .01f, false);
+
+            // add cow species
+            addSpecies("cow", ColorChoice.blue, 0f, true, 1f, 0f, true);
+
             // populate with low standard deviation from founder creature
-            // 0, 100
-            // 2, 100
-            // 2, 100
-            // 2, 100
-            // 2, 100
-            // 0, 100
-            populateSpecies("cow", 2f, 100, 2000);
+            populateSpecies("cow", 0f, 100, 2000);
+
             // add dog species
             //userAddsSpecies("dog", ColorChoice.green, .01f);
             //populate dog with high amount of variation in weights
@@ -72,7 +63,7 @@ public class EcoDemo1 : DemoInterface
         ecoCreator = new EcosystemEditor(ecosystem);
 
         // set basic ecosystem parameters
-        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, false, true);
+        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, true, false);
 
         // create grass
         EcoCreationHelper.addResource(ecoCreator, "grass", 100, 150, 5, .4f, .5f);

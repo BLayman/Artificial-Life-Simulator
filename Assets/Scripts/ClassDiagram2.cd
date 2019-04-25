@@ -84,7 +84,7 @@
   <Class Name="EcosystemEditor">
     <Position X="34" Y="6" Width="4" />
     <TypeIdentifier>
-      <HashCode>FQAApABAgAABgAMAYAACMAgAERAAABBEAAAAAQQAAAA=</HashCode>
+      <HashCode>FQIApABAgAABgAMAYAACMAgAERAAABBEAAAAAQQAQAA=</HashCode>
       <FileName>Assets\Scripts\EcosystemEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -104,7 +104,7 @@
   <Class Name="ResourceStore">
     <Position X="34" Y="16.25" Width="4.75" />
     <TypeIdentifier>
-      <HashCode>EAAAIBAAQAQAAQAAAAAAAAAAAAAEACAAAgAAAAQAAAA=</HashCode>
+      <HashCode>EAAAIBAAQAQAAQAAAgAAAAAAAAAEACAAAgAEAAQAAAA=</HashCode>
       <FileName>Assets\Scripts\ResourceStore.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -157,7 +157,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BjhICAAgICIAACEgAIAIAQACABQQYBKwAAAEACAoACA=</HashCode>
+      <HashCode>BjhICAAAICIAACEgAIAIAQASABQQYBKwQAAEACAoACA=</HashCode>
       <FileName>Assets\Scripts\CreatureEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -251,7 +251,7 @@
   <Class Name="MapEditor">
     <Position X="39.5" Y="10" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAGIABAAAAAgAAAA=</HashCode>
+      <HashCode>AAAAEAAAAAAAAAAAAAgAAAAAAAAgAGIABAAAAAgAAAA=</HashCode>
       <FileName>Assets\Scripts\MapEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -342,7 +342,7 @@
   <Class Name="EcoDemo2">
     <Position X="35.25" Y="0.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>RCACAAAggAAAOAEAAEAgAgQAAAgAAAAAAAAAAIAQAAA=</HashCode>
+      <HashCode>EAACAAAAgAAAAAMAAgAAAgAAAAgAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>Assets\Scripts\EcoDemo2.cs</FileName>
       <NewMemberFileName>Assets\Scripts\EcoDemo1.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -399,7 +399,7 @@
   <Class Name="Ecosystem">
     <Position X="28.75" Y="6.75" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>EACEHAAEEAAAQAAAQ0AABAAAAIIEKMCAAAAAIAAQBAA=</HashCode>
+      <HashCode>EACEHAAEEAAAQAAAQ0AABAAAAoIEKMCAAAAAIAAQBAQ=</HashCode>
       <FileName>Assets\Scripts\EcoSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -492,15 +492,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Creature">
-    <Position X="23.25" Y="12.25" Width="3.75" />
+    <Position X="23.5" Y="12.75" Width="3.75" />
     <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
       <Path>
-        <Point X="27" Y="14.355" />
-        <Point X="31" Y="14.355" />
-        <Point X="31" Y="15" />
+        <Point X="27.25" Y="14.855" />
+        <Point X="27.625" Y="14.855" />
+        <Point X="27.625" Y="16.258" />
+        <Point X="28.5" Y="16.258" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-0.24" Y="0.414" />
+        <Position X="0.414" Y="-0.24" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
