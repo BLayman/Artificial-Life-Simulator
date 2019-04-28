@@ -43,7 +43,7 @@ crossover.
 
 ## Additional Information
 
-The Additional_Resources folder contains a comprehensive poster, and an in depth project report. The Documentation folder contains various forms of documentation for the code. Keep in mind that the documentation isn't complete, but may have useful information for developers.
+The Additional_Resources folder contains a comprehensive poster, and an in depth project report. The Documentation folder contains various forms of documentation for the code. Keep in mind that the documentation isn't complete, but may have useful information for developers. If you are simply planning to create your own system, I would recommend using the documentation in the EcoCreationHelper Documentation folder. As you can see in the EcoDemo classes, much of the ecosystem creation is done through the EcoCreationHelper class. To view the documentation, first download the folder, and then open the index.html file inside the folder with your web browser. 
 
 ## License
 License information for this software can be found in LICENSE.txt.
