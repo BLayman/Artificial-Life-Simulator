@@ -602,14 +602,6 @@ public class Creature
         throw new System.NotImplementedException();
     }
 
-    /// <summary>
-    /// Reproduce with neighboring creature.
-    /// </summary>
-    /// <param name="mate">Creature to reproduce with.</param>
-    public void reproduce(Creature mate)
-    {
-        throw new System.NotImplementedException();
-    }
 
 
 
