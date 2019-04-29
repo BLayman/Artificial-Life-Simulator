@@ -24,11 +24,11 @@ public class EcoDemo2 : DemoInterface
             // Create a 300 X 300 map
             createEcosystem(300);
             // add cat species
-            addSpecies("Creature1", ColorChoice.blue, 1f, "A", "C", "D", .95f, .01f, false, 1);
+            addSpecies("Creature1", ColorChoice.blue, 1f, "A", "C", "D", .95f, .01f, false, 1, 100);
             // populate with low standard deviation from founder creature
             populateSpecies("Creature1", 1f, 300, 500);
 
-            addSpecies("Creature2", ColorChoice.green, 1f, "B", "D", "C", .95f, .01f, false, 2);
+            addSpecies("Creature2", ColorChoice.green, 1f, "B", "D", "C", .95f, .01f, false, 2, 100);
             // populate with low standard deviation from founder creature
             populateSpecies("Creature2", 1f, 300, 500);
         }
@@ -96,12 +96,12 @@ public class EcoDemo2 : DemoInterface
      */
     public void addSpecies(string name, ColorChoice color, float mutationDeviation, string primaryConsume,
                                 string dependentOn, string produces, float mutationDeviationFraction, float lowestMutationDeviation,
-                                bool nonLinearPhenotypeNet, int phenotype)
+                                bool nonLinearPhenotypeNet, int phenotype, int turnTime)
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
 
-        EcoCreationHelper.setCreatureStats(cc, name, phenotype, 10, 1000, 700, 3, 10, mutationDeviation, color, true,
+        EcoCreationHelper.setCreatureStats(cc, name, phenotype, turnTime, 1000, 700, 3, 10, mutationDeviation, color, true,
                         mutationDeviationFraction, lowestMutationDeviation, MutationDeviationCoefficientType.exponentialDecay);
         // user edits:
         

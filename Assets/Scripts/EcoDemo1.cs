@@ -26,10 +26,10 @@ public class EcoDemo1 : DemoInterface
             createEcosystem(200);
 
             // add cow species
-            addSpecies("cow", ColorChoice.blue, 0f, true, 1f, 0f, true);
+            addSpecies("cow", ColorChoice.blue, 1f, true, .9f, .01f, true, 10);
 
             // populate with low standard deviation from founder creature
-            populateSpecies("cow", 0f, 100, 2000);
+            populateSpecies("cow", 2f, 100, 2000);
 
             // add dog species
             //userAddsSpecies("dog", ColorChoice.green, .01f);
@@ -98,12 +98,12 @@ public class EcoDemo1 : DemoInterface
      * add resource to node, 
      * save creature to founder creatures dict and species dict
      */
-    public void addSpecies(string name, ColorChoice color, float mutationDeviation, bool useHiddenNodes, float mutationDeviationFraction, float lowestMutationDeviation, bool loadPrev)
+    public void addSpecies(string name, ColorChoice color, float mutationDeviation, bool useHiddenNodes, float mutationDeviationFraction, float lowestMutationDeviation, bool loadPrev, int turnTime)
     {
         // when user clicks to start species creation process:
         CreatureEditor cc = ecoCreator.addCreature();
 
-        EcoCreationHelper.setCreatureStats(cc, name, 3, 10, 1000, 700, 3, 10, mutationDeviation, color, false,
+        EcoCreationHelper.setCreatureStats(cc, name, 3, turnTime, 1000, 700, 3, 10, mutationDeviation, color, false,
                         mutationDeviationFraction, lowestMutationDeviation, MutationDeviationCoefficientType.exponentialDecay);
 
 
