@@ -494,14 +494,6 @@ public class Creature
     /// </summary>
     public void performActions(Ecosystem eco)
     {
-        /** 
-         * TODO: allow for a certain number of actions to carry over,
-         * otherwise, only the first action put on the queue will be run each turn,
-         * which is biased: based on the order of the output nodes in the final layer
-         * one solution: sort the order in which output nodes are added to queue
-        **/ 
-
-        
 
         // the queue for the next turn
         SimplePriorityQueue<Action> nextQueue = new SimplePriorityQueue<Action>();
@@ -510,21 +502,26 @@ public class Creature
         {
             Action nextAction = actionQueue.Dequeue();
 
-            // ignore actions that the creature doesn't have enough resources to perform
-            if (nextAction.enoughResources(this))
+            // if action is not possible, then ignore it (don't add it to the queue)
+            if (nextAction.isPossible(this))
             {
-                // if there is time left for an action, perform it
-                if (nextAction.timeCost <= remainingTurnTime)
+                // ignore actions that the creature doesn't have enough resources to perform
+                if (nextAction.enoughResources(this))
                 {
-                    //Debug.Log("performing " + nextAction.name);
-                    nextAction.performWrapper(this, eco);
-                }
-                else
-                {
-                    // put actions that take too long on the next turns queue
-                    nextQueue.Enqueue(nextAction, nextAction.priority);
+                    // if there is time left for an action, perform it
+                    if (nextAction.timeCost <= remainingTurnTime)
+                    {
+                        //Debug.Log("performing " + nextAction.name);
+                        nextAction.performWrapper(this, eco);
+                    }
+                    else
+                    {
+                        // put actions that take too long on the next turn's queue
+                        nextQueue.Enqueue(nextAction, nextAction.priority);
+                    }
                 }
             }
+            
         }
         // actionQueue is now the queue for next turn
         actionQueue = nextQueue;

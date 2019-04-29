@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ActionCreatorType { commActionCreator, moveActionCreator, consumeCreator,
-    reproduceCreator, convertEditor, depositEditor }
+    reproduceCreator, convertEditor, depositEditor, attackEditor }
 
 public class ActionEditor
 {
@@ -49,6 +49,9 @@ public class ActionEditor
             case ActionCreatorType.depositEditor:
                 actionCreator = new DepositEditor(new Deposit());
                 break;
+            case ActionCreatorType.attackEditor:
+                actionCreator = new AttackEditor(new Attack());
+                break;
             default:
                 break;
         }
@@ -72,6 +75,8 @@ public class ActionEditor
                 return (ConvertEditor)actionCreator;
             case ActionCreatorType.depositEditor:
                 return (DepositEditor)actionCreator;
+            case ActionCreatorType.attackEditor:
+                return (AttackEditor)actionCreator;
             default:
                 Debug.LogError("Invalid action creator type");
                 return null;

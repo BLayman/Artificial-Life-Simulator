@@ -157,7 +157,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BjhICAAAICIAACEgAIAIAQASABQQYBKwQAAEACAoACA=</HashCode>
+      <HashCode>BjhICAAAICMAACEgAIAIAQASABQQYBKwQAAEACAoACA=</HashCode>
       <FileName>Assets\Scripts\CreatureEditor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -367,7 +367,7 @@
   <Class Name="Action">
     <Position X="20.75" Y="26.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAQQAQAAAAAAAAABAAAAEAAIAAAAAAAAAQBE=</HashCode>
+      <HashCode>AAAAAAACAQQAQAAAAAAEAABAAAAEAAIAAAAAAAAAQBE=</HashCode>
       <FileName>Assets\Scripts\Action.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -530,9 +530,31 @@
   <Class Name="EcoCreationHelper">
     <Position X="0.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>xCAAAAACEAAAKAAAAEAgJAQBAAAAAAAAAABBIIAAAAA=</HashCode>
+      <HashCode>xCAAAAACEAAAKAAAAEAgJAQBAAAAAAAABABBIIAAAAA=</HashCode>
       <FileName>Assets\Scripts\EcoCreationHelper.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="Attack">
+    <Position X="10.5" Y="31.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAEAAAAAAAAAAEAAAABAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Attack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttackEditor">
+    <Position X="7" Y="32" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\AttackEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EcoDemo3">
+    <Position X="39.25" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAgAAAAAMAAgAAAgAAAAgAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\EcoDemo3.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="NodeEditorInterface">
     <Position X="10.5" Y="4.75" Width="2" />

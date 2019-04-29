@@ -76,8 +76,17 @@ class EcoCreationHelper
         // user clicks save on network creator
     }
 
-
-
+    /// <summary>
+    /// Set parameters for attack action
+    /// </summary>
+    /// <param name="attackEdit">Attack action wrapper.</param>
+    /// <param name="target">Species to be attacked.</param>
+    /// <param name="baseHealthLost">The base level of health damage that the attack does. This is modified by attack and defense attributes.</param>
+    public static void setAttackActionParams(AttackEditor attackEdit, string target, float baseHealthLost)
+    {
+        attackEdit.setBaseHealthLost(baseHealthLost);
+        attackEdit.setVictimSpecies(target);
+    }
 
     /// <summary>
     /// Make a first layer node that gets its value from a node in the last layer of another network.

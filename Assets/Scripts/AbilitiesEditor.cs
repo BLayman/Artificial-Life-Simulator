@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public enum abilityType {comsumption, defense, attack}
+public enum abilityType {consumption, defense, attack}
 
 /// <summary>
 /// API for Abilities objects. Modifies tentativeAbilities variable from CreatureEditor

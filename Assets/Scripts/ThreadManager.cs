@@ -56,6 +56,9 @@ class ThreadManager : MonoBehaviour
             case 2:
                 ecoMan = new EcoDemo2();
                 break;
+            case 3:
+                ecoMan = new EcoDemo3();
+                break;
             default:
                 Debug.LogError("That demo index does not exist.");
                 break;

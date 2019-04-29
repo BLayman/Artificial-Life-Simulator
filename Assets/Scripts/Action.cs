@@ -55,6 +55,11 @@ public abstract class Action
         return enoughToSpend;
     }
 
+    public virtual bool isPossible(Creature c)
+    {
+        return true;
+    }
+
     public void spendTimeAndResources(Creature creature)
     {
         creature.remainingTurnTime -= timeCost;

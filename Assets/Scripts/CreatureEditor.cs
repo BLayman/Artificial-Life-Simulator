@@ -228,10 +228,39 @@ public class CreatureEditor
 
     public void addDefaultResourceAbilities()
     {
-        abilitiesCreator = new AbilitiesEditor(tentativeAbilities, creature.remainingAbilityPoints);
+        if(abilitiesCreator == null)
+        {
+            abilitiesCreator = new AbilitiesEditor(tentativeAbilities, creature.remainingAbilityPoints);
+        }
         foreach (string resource in creature.storedResources.Keys)
         {
-            abilitiesCreator.addAbility(resource, abilityType.comsumption);
+            abilitiesCreator.addAbility(resource, abilityType.consumption);
+        }
+    }
+
+
+    public void addAttackAbilities(List<string> attackTargets)
+    {
+        if (abilitiesCreator == null)
+        {
+            abilitiesCreator = new AbilitiesEditor(tentativeAbilities, creature.remainingAbilityPoints);
+        }
+        for (int i = 0; i < attackTargets.Count; i++)
+        {
+            abilitiesCreator.addAbility(attackTargets[i] + "Attack", abilityType.attack);
+        }
+    }
+
+
+    public void addDefenseAbilities(List<string> defenseTargets)
+    {
+        if (abilitiesCreator == null)
+        {
+            abilitiesCreator = new AbilitiesEditor(tentativeAbilities, creature.remainingAbilityPoints);
+        }
+        for (int i = 0; i < defenseTargets.Count; i++)
+        {
+            abilitiesCreator.addAbility(defenseTargets[i] + "Defense", abilityType.defense);
         }
     }
 
@@ -331,8 +360,15 @@ public class CreatureEditor
                         {
                             for (int i = 0; i < node.weights.Count; i++)
                             {
-                                node.weights[i] = weightAverages[avgsIndex];
-                                avgsIndex++;
+                                try
+                                {
+                                    node.weights[i] = weightAverages[avgsIndex];
+                                    avgsIndex++;
+                                }
+                                catch(ArgumentOutOfRangeException e)
+                                {
+                                    Debug.LogError("Tried to read weight from file, but weight array length didn't match current creature.");
+                                }
                             }
                         }
                     }
