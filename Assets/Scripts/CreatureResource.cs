@@ -65,4 +65,13 @@ public class CreatureResource
     {
         return (CreatureResource)this.MemberwiseClone();
     }
+
+    public void baseUseUpdate()
+    {
+        currentLevel -= baseUsage;
+        if (currentLevel < 0)
+        {
+            currentLevel = 0;
+        }
+    }
 }

@@ -181,8 +181,19 @@ public class Creature
         performActions(eco);
         // update health based on resource levels
         resourceHealthUpdate();
+
+        
         //Debug.Log("after: " + actionQueue.Count);
 
+    }
+
+
+    public void baseResourceUse()
+    {
+        foreach (CreatureResource resource in storedResources.Values)
+        {
+            resource.baseUseUpdate();
+        }
     }
 
     // add actions from last layer of neural network to the queue
