@@ -21,13 +21,13 @@ public class EcoDemo3 : DemoInterface
         addPlant("grass", ColorChoice.green, 1f, false, .9f, .01f);
 
         // populate with low standard deviation from founder creature
-        populateSpecies("grass", 2f, 500, 1000);
+        populateSpecies("grass", 2f, 1500, 3000);
 
         // add cow species
         addHerbivore("cow", ColorChoice.blue, 2f, true, .9f, .01f, "grass");
 
         // populate with low standard deviation from founder creature
-        populateSpecies("cow", 2f, 100, 200);
+        populateSpecies("cow", 2f, 100, 300);
 
         addCarnivore("wolf", ColorChoice.red, 2f, true, .9f, .01f, "cow");
 
@@ -94,13 +94,13 @@ public class EcoDemo3 : DemoInterface
         ResourceEditor resourceCreator = cc.addResource();
 
         List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
-        EcoCreationHelper.addCreatureResource(resourceCreator, "energy", 1000, 800, 1, 900, 1, 100, 2);
+        EcoCreationHelper.addCreatureResource(resourceCreator, "energy", 1000, 800, 1, 900, 1, 100, 1);
         cc.saveResource();
 
 
         resourceCreator = cc.addResource();
         ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
-        EcoCreationHelper.addCreatureResource(resourceCreator, "vitamin", 100, 10, 0, 90, 0, 20, 0);
+        EcoCreationHelper.addCreatureResource(resourceCreator, "vitamin", 100, 20, 0, 90, 0, 20, 0);
         cc.saveResource();
 
 
@@ -152,7 +152,7 @@ public class EcoDemo3 : DemoInterface
         // high resource costs for reproduction
         resourceCosts = new Dictionary<string, float>()
         {
-            {"energy", 100},
+            {"energy", 30},
             {"vitamin", 10}
         };
         EcoCreationHelper.setBasicActionParams(rae, "reproduce", 1, 10, resourceCosts);
@@ -241,7 +241,7 @@ public class EcoDemo3 : DemoInterface
         ResourceEditor resourceCreator = cc.addResource();
 
         List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
-        EcoCreationHelper.addCreatureResource(resourceCreator, "energy", 1000, 800, 1, 900, 5, 200, 10f);
+        EcoCreationHelper.addCreatureResource(resourceCreator, "energy", 1000, 800, 1, 900, 5, 200, 1f);
         cc.saveResource();
 
         /*
@@ -359,7 +359,7 @@ public class EcoDemo3 : DemoInterface
 
         };
 
-        EcoCreationHelper.createPhenotypeNet(phenoNetCreator, 0, "phenotypeNet", 0, 0, phenoOutputActions,
+        EcoCreationHelper.createPhenotypeNet(phenoNetCreator, 0, "phenotypeNet", 5, 2, phenoOutputActions,
                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
 
         // Note: don't call saveNetwork(), call savePhenotypeNetwork()
@@ -412,7 +412,7 @@ public class EcoDemo3 : DemoInterface
         ResourceEditor resourceCreator = cc.addResource();
 
         List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
-        EcoCreationHelper.addCreatureResource(resourceCreator, "energy", 1000, 800, 1, 900, 5, 200, 10f);
+        EcoCreationHelper.addCreatureResource(resourceCreator, "energy", 1000, 800, 1, 900, 5, 200, 1);
         cc.saveResource();
 
         /*
@@ -526,7 +526,7 @@ public class EcoDemo3 : DemoInterface
 
         };
 
-        EcoCreationHelper.createPhenotypeNet(phenoNetCreator, 0, "phenotypeNet", 0, 0, phenoOutputActions,
+        EcoCreationHelper.createPhenotypeNet(phenoNetCreator, 0, "phenotypeNet", 5, 2, phenoOutputActions,
                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
 
         // Note: don't call saveNetwork(), call savePhenotypeNetwork()

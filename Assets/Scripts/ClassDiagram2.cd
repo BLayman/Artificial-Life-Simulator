@@ -111,7 +111,7 @@
   <Class Name="CreatureResource">
     <Position X="17.75" Y="7.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>IACAAACACQAAAAAAAAAAAAAAAAAEgAAABAAAQAAAAQA=</HashCode>
+      <HashCode>IACAAACACQAAAAAAAAAAAAAAAAAGgAAABAAAQAAAAQA=</HashCode>
       <FileName>Assets\Scripts\CreatureResource.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -495,8 +495,8 @@
     <Position X="23.5" Y="12.75" Width="3.75" />
     <AssociationLine Name="neighborLands" Type="Land" FixedFromPoint="true">
       <Path>
-        <Point X="27.25" Y="14.825" />
-        <Point X="27.625" Y="14.825" />
+        <Point X="27.25" Y="14.855" />
+        <Point X="27.625" Y="14.855" />
         <Point X="27.625" Y="16.258" />
         <Point X="28.5" Y="16.258" />
       </Path>
@@ -505,7 +505,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAqIMaEJAaZQgyEYBIoCISwgIZQAAICQEiADIABgBAk=</HashCode>
+      <HashCode>IAqIMakJAaZQgyEYBIoCISwgIZQAAICQEiADIABgBAk=</HashCode>
       <FileName>Assets\Scripts\Creature.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -551,7 +551,7 @@
   <Class Name="EcoDemo3">
     <Position X="39.25" Y="0.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>EAACAAAAgAAAAAMAAgAAAgAAAAgAAAAAAAAAAAAQAAA=</HashCode>
+      <HashCode>EACCAAAAgAAAAAMAAAAAAgAAAAgAAAgAAAAAEAAQAAA=</HashCode>
       <FileName>Assets\Scripts\EcoDemo3.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

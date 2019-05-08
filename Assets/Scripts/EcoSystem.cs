@@ -99,7 +99,6 @@ public class Ecosystem
                     notAllDead = true;
                     List<Creature> toRemove = new List<Creature>();
                     // for each creature in population
-                    // TODO: convert creatures to linked list
                     for (int l = 0; l < population.creatures.Count; l++)
                     {
                         Creature creature = population.creatures[l];
@@ -112,12 +111,13 @@ public class Ecosystem
                         else
                         {
                             creature.startTurn(this);
+                            // remove creature if dead at end of turn
+                            if (creature.isDead())
+                            {
+                                toRemove.Add(creature);
+                            }
                         }
-                        // remove creature if dead at end of turn
-                        if (creature.isDead())
-                        {
-                            toRemove.Add(creature);
-                        }
+                        
                     }
 
                     // remove each dead creature from population

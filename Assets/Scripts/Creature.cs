@@ -181,6 +181,7 @@ public class Creature
         performActions(eco);
         // update health based on resource levels
         resourceHealthUpdate();
+        baseResourceUse();
 
         
         //Debug.Log("after: " + actionQueue.Count);
