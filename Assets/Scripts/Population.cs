@@ -24,7 +24,7 @@ public class Population
     public int size = 0;
     public int maxSize = 1000;
     public List<float> weightAverages = new List<float>();
-    public List<float> weightSDs = new List<float>(); // TODO: edit copier
+    public List<float> weightSDs = new List<float>(); 
     public float overallVariability;
 
     // public List<float> weightSDs = new List<float>();

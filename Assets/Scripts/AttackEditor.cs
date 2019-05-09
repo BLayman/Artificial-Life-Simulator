@@ -18,8 +18,13 @@ public class AttackEditor: ActionEditorAbstract
         actionRef.victimSpecies = species;
     }
 
-    public void setBaseHealthLost(float healthLost)
+    public void setBackfireHealthLost(float healthLost)
     {
-        actionRef.baseHealthLost = healthLost;
+        actionRef.backfireHealthLost = healthLost;
+    }
+
+    public void setResourceFracTaken(float fraction)
+    {
+        actionRef.baseResourceFractionTaken = fraction;
     }
 }

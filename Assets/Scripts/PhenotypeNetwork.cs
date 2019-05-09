@@ -17,8 +17,9 @@ public class PhenotypeNetwork : Network
         for (int i = 1; i < net[0].Count; i++)
         {
             PhenotypeInputNode node = (PhenotypeInputNode) net[0][i];
-            node.setPhenotype(phenotype);
             node.setNeightborIndex(neighborIndex);
+            node.setPhenotype(phenotype);
+            
         }
     }
 

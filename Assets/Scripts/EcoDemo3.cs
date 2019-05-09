@@ -21,18 +21,18 @@ public class EcoDemo3 : DemoInterface
         addPlant("grass", ColorChoice.green, 1f, false, .9f, .01f);
 
         // populate with low standard deviation from founder creature
-        populateSpecies("grass", 2f, 1500, 3000);
+        populateSpecies("grass", 2f, 1500, 4000);
 
         // add cow species
         addHerbivore("cow", ColorChoice.blue, 2f, true, .9f, .01f, "grass");
 
         // populate with low standard deviation from founder creature
-        populateSpecies("cow", 2f, 100, 300);
+        populateSpecies("cow", 2f, 100, 700);
 
         addCarnivore("wolf", ColorChoice.red, 2f, true, .9f, .01f, "cow");
 
         // populate with low standard deviation from founder creature
-        populateSpecies("wolf", 2f, 100, 200);
+        populateSpecies("wolf", 2f, 100, 700);
 
 
     }
@@ -54,7 +54,7 @@ public class EcoDemo3 : DemoInterface
         EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, true, false);
 
         // create grass
-        EcoCreationHelper.addResource(ecoCreator, "energy", 200, 250, 1, .5f, 2f);
+        EcoCreationHelper.addResource(ecoCreator, "energy", 200, 250, 1, .5f, 8f);
         ecoCreator.saveResource();
 
 
@@ -94,7 +94,7 @@ public class EcoDemo3 : DemoInterface
         ResourceEditor resourceCreator = cc.addResource();
 
         List<string> ecosystemResources = new List<string>(ecosystem.resourceOptions.Keys);
-        EcoCreationHelper.addCreatureResource(resourceCreator, "energy", 1000, 800, 1, 900, 1, 100, 1);
+        EcoCreationHelper.addCreatureResource(resourceCreator, "energy", 1000, 800, 1, 900, 10, 100, 1);
         cc.saveResource();
 
 
@@ -300,7 +300,7 @@ public class EcoDemo3 : DemoInterface
         AttackEditor attackEdit = (AttackEditor)ae.getActionCreator();
         Dictionary<string, float> resourceCosts = new Dictionary<string, float> { { "energy", .2f } };
         EcoCreationHelper.setBasicActionParams(attackEdit, "eatGrass", 1, 10, resourceCosts);
-        EcoCreationHelper.setAttackActionParams(attackEdit, "grass", 1000);
+        EcoCreationHelper.setAttackActionParams(attackEdit, "grass", 0, .7f);
         cc.saveAction();
 
 
@@ -312,7 +312,7 @@ public class EcoDemo3 : DemoInterface
         // high resource costs for reproduction
         resourceCosts = new Dictionary<string, float>()
         {
-            {"energy", 500},
+            {"energy", 200},
             //{"vitamin", 10}
         };
         EcoCreationHelper.setBasicActionParams(rae, "reproduce", 1, 10, resourceCosts);
@@ -359,7 +359,7 @@ public class EcoDemo3 : DemoInterface
 
         };
 
-        EcoCreationHelper.createPhenotypeNet(phenoNetCreator, 0, "phenotypeNet", 5, 2, phenoOutputActions,
+        EcoCreationHelper.createPhenotypeNet(phenoNetCreator, 0, "phenotypeNet", 0, 0, phenoOutputActions,
                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
 
         // Note: don't call saveNetwork(), call savePhenotypeNetwork()
@@ -467,7 +467,7 @@ public class EcoDemo3 : DemoInterface
         AttackEditor attackEdit = (AttackEditor)ae.getActionCreator();
         Dictionary<string, float> resourceCosts = new Dictionary<string, float> { { "energy", .2f } };
         EcoCreationHelper.setBasicActionParams(attackEdit, "eatCow", 1, 10, resourceCosts);
-        EcoCreationHelper.setAttackActionParams(attackEdit, "cow", 1000);
+        EcoCreationHelper.setAttackActionParams(attackEdit, "cow", 1, .9f);
         cc.saveAction();
 
 
@@ -479,7 +479,7 @@ public class EcoDemo3 : DemoInterface
         // high resource costs for reproduction
         resourceCosts = new Dictionary<string, float>()
         {
-            {"energy", 500},
+            {"energy", 200},
             //{"vitamin", 10}
         };
         EcoCreationHelper.setBasicActionParams(rae, "reproduce", 1, 10, resourceCosts);
@@ -526,7 +526,7 @@ public class EcoDemo3 : DemoInterface
 
         };
 
-        EcoCreationHelper.createPhenotypeNet(phenoNetCreator, 0, "phenotypeNet", 5, 2, phenoOutputActions,
+        EcoCreationHelper.createPhenotypeNet(phenoNetCreator, 0, "phenotypeNet", 0, 0, phenoOutputActions,
                            ActivationBehaviorTypes.LogisticAB, ActivationBehaviorTypes.LogisticAB);
 
         // Note: don't call saveNetwork(), call savePhenotypeNetwork()

@@ -28,7 +28,34 @@ public class PhenotypeInputNode : Node
     // called from creature class
     public void setPhenotype(bool[] pheno)
     {
-        phenotype = pheno;
+        // if node is part of the phenotype encoding
+        if(index < pheno.Length)
+        {
+            phenotype = pheno;
+            if (phenotype[index] == false)
+            {
+                value = 0;
+            }
+            else
+            {
+                value = 1;
+            }
+        }
+        // else node is part of the neighbor location encoding
+        else
+        {
+            // subtract phenotype length from index to get new index starting at 0
+            // also subtract 1 from neightbor index to make it [0,4] instead of [1,5]
+            if(index - pheno.Length == neighborIndex - 1)
+            {
+                value = 1;
+            }
+            else
+            {
+                value = 0;
+            }
+        }
+        
     }
 
     public void setNeightborIndex(int i)
@@ -38,14 +65,7 @@ public class PhenotypeInputNode : Node
 
     public override void updateValue()
     {
-
-        if(phenotype[index] == false)
-        {
-            value = 0;
-        }
-        else
-        {
-            value = 1;
-        }
+        // value is a constant set in setPhenotype
+        
     }
 }

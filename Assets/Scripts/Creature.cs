@@ -326,9 +326,9 @@ public class Creature
     public void addPhenotypeNetworks()
     {
         // add network for every neighbor with a creature
-        for (int i = 0; i < neighborLands.Length; i++)
+        for (int i = 1; i < neighborLands.Length; i++)
         {
-            if (neighborLands[i].creatureIsOn() && i != 0)
+            if (neighborLands[i].creatureIsOn())
             {
                 // get a copy of the template
                 // Debug.Log("template first layer length: " + phenotypeNetTemplate.net[0].Count);

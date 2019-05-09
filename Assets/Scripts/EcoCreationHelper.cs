@@ -81,10 +81,13 @@ class EcoCreationHelper
     /// </summary>
     /// <param name="attackEdit">Attack action wrapper.</param>
     /// <param name="target">Species to be attacked.</param>
-    /// <param name="baseHealthLost">The base level of health damage that the attack does. This is modified by attack and defense attributes.</param>
-    public static void setAttackActionParams(AttackEditor attackEdit, string target, float baseHealthLost)
+    /// <param name="backfireHealthLost">The amount of health lost if the attack backfires.</param>
+    /// <param name="resourceFractTaken">The fraction of the resources stolen from the target creature by the attack.</param>
+    /// 
+    public static void setAttackActionParams(AttackEditor attackEdit, string target, float backfireHealthLost, float resourceFractTaken)
     {
-        attackEdit.setBaseHealthLost(baseHealthLost);
+        attackEdit.setBackfireHealthLost(backfireHealthLost);
+        attackEdit.setResourceFracTaken(resourceFractTaken);
         attackEdit.setVictimSpecies(target);
     }
 

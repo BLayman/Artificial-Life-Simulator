@@ -7,7 +7,8 @@ using UnityEngine;
 public class Attack : Action
 {
     public string victimSpecies;
-    public float baseHealthLost;
+    public float baseResourceFractionTaken;
+    public float backfireHealthLost;
     
     // don't attempt action if none of the neighboring creatures are applicable
     public override bool isPossible(Creature c)
@@ -42,7 +43,7 @@ public class Attack : Action
         {
             int attackAbility = creature.abilities[victim.species + "Attack"].level;
             int defenseAbility = victim.abilities[creature.species + "Defense"].level;
-            float healthLost = baseHealthLost * (attackAbility + 1) / (defenseAbility + 1);
+            float fractionRes = baseResourceFractionTaken * (attackAbility + 1) / (defenseAbility + 1);
 
             float backfireProbability = (float)Math.Pow(2.0, defenseAbility) / 10;
             if(backfireProbability > 1)
@@ -52,17 +53,30 @@ public class Attack : Action
             float randomNum = (float) rand.NextDouble();
             if(randomNum <= backfireProbability)
             {
-                Debug.Log("attack backfired");
-                creature.health -= baseHealthLost;
+                //Debug.Log("attack backfired");
+                creature.health -= backfireHealthLost;
             }
             else
             {
-                victim.health -= healthLost;
-                Debug.Log("attack succeeded");
+                // for each of victim's resources
+                foreach (string res in victim.storedResources.Keys)
+                {
+                    // if creature can store that resource, then take the resource from the victim
+                    if (creature.storedResources.ContainsKey(res))
+                    {
+                        float resourceTaken = victim.storedResources[res].currentLevel * fractionRes;
+                        creature.storedResources[res].currentLevel += resourceTaken;
+                        victim.storedResources[res].currentLevel -= resourceTaken;
+                        // if surpased max level, set to max
+                        if (creature.storedResources[res].currentLevel > creature.storedResources[res].maxLevel)
+                        {
+                            creature.storedResources[res].currentLevel = creature.storedResources[res].maxLevel;
+                        }
+                    }
+                }
+
+                //Debug.Log("attack succeeded");
             }
-
-
-
 
         }
         catch(KeyNotFoundException e)
@@ -80,25 +94,5 @@ public class Attack : Action
             }
         }
 
-        
-        // if the victim dies
-        if(victim.health <= 0)
-        {
-            // for each of victim's resources
-            foreach (string res in victim.storedResources.Keys)
-            {
-                // if creature can store that resource, then take the resource from the victim
-                if (creature.storedResources.ContainsKey(res))
-                {
-                    creature.storedResources[res].currentLevel += victim.storedResources[res].currentLevel;
-                    victim.storedResources[res].currentLevel = 0; // in case other scavengers come around before simulation step ends
-                    // if surpased max level, set to max
-                    if (creature.storedResources[res].currentLevel > creature.storedResources[res].maxLevel)
-                    {
-                        creature.storedResources[res].currentLevel = creature.storedResources[res].maxLevel;
-                    }
-                }
-            }
-        }
     }
 }

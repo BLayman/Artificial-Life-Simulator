@@ -14,11 +14,12 @@ public class PhenotypeNetworkEditor : NetworkEditor
     public void createInputNodes()
     {
         // adds an input node for each phenotype bit
-        for (int i = 0; i < parentCreatureCreator.creature.phenotype.Length; i++)
+        for (int i = 0; i < parentCreatureCreator.creature.phenotype.Length + 4; i++)
         {
             //Debug.Log("created phenotype node " + i);
             network.net[0].Add(new PhenotypeInputNode(i, parentCreatureCreator.creature));
         }
+
     }
 
 
