@@ -66,19 +66,40 @@ public class Ecosystem
 
     public int statsInterval = 20; // update stats every 10 turns
     public int statsCount = 20;
+    public int colorUpdateInterval = 5;
+    int colorUpdateCount = 0;
+    public int reclusterInterval = 20;
+    int reclusterCount = 0;
 
     public bool uniformRenewal;
     public bool clusterRenewal;
+    public bool useClusterColors = true;
 
     System.Object threadsFinishedLock = new System.Object();
 
+
+
+    public void readySystem()
+    {
+        if (useClusterColors)
+        {
+            // for each population
+            foreach (string species in populations.Keys)
+            {
+                Population population = populations[species];
+                population.calculateWeightStats();
+                population.initKMeans();
+                population.runKMeans();
+                population.updateColors();
+            }
+        }
+    }
 
     /// <summary>
     /// run ecosystem for a certain number of time steps
     /// </summary>
     public void runSystem(int timeSteps)
     {
-
 
         for (int i = 0; i < timeSteps; i++)
         {
@@ -91,6 +112,24 @@ public class Ecosystem
             foreach (string species in populations.Keys)
             {
                 Population population = populations[species];
+
+                if (useClusterColors)
+                {
+                    colorUpdateCount++;
+                    reclusterCount++;
+                    
+                    if (reclusterCount == reclusterInterval)
+                    {
+                        reclusterCount = 0;
+                        population.runKMeans();
+                    }
+                    if (colorUpdateCount == colorUpdateInterval)
+                    {
+                        colorUpdateCount = 0;
+                        population.updateColors();
+                    }
+                }
+
                 // if population has any members
                 //Debug.Log(population.creatures.Count);
                 if (population.creatures.Count > 0)

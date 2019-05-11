@@ -66,6 +66,8 @@ class ThreadManager : MonoBehaviour
         ecoMan.makeEco();
         // get newly created ecosystem and set unityEco to reference it
         unityEco = ecoMan.getEcosystem();
+        CreatureAveragesIO.persistantPath = Application.persistentDataPath;
+        unityEco.readySystem();
         visibleResource = unityEco.resourceOptions.Keys.First();
 
     }

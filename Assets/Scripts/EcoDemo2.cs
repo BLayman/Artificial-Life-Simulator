@@ -53,7 +53,7 @@ public class EcoDemo2 : DemoInterface
 
         ecoCreator = new EcosystemEditor(ecosystem);
         // set basic ecosystem parameters
-        EcoCreationHelper.setEcoParams(ecoCreator, 10, 4, 50, false, true);
+        EcoCreationHelper.setEcoParams(ecoCreator, 10, 4, 50, false, true, false);
 
         // create resources A, B, and C
         EcoCreationHelper.addResource(ecoCreator, "A", 100, 150, 10, .4f, 1f);

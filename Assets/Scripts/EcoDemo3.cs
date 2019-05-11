@@ -51,7 +51,7 @@ public class EcoDemo3 : DemoInterface
         ecoCreator = new EcosystemEditor(ecosystem);
 
         // set basic ecosystem parameters
-        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, true, false);
+        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, true, false, false);
 
         // create grass
         EcoCreationHelper.addResource(ecoCreator, "energy", 200, 250, 1, .5f, 8f);

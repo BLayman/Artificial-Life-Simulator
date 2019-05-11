@@ -26,7 +26,7 @@ public class EcoDemo1 : DemoInterface
             createEcosystem(200);
 
             // add cow species
-            addSpecies("cow", ColorChoice.blue, 1f, true, .9f, .01f, false, 10);
+            addSpecies("cow", ColorChoice.blue, 1f, true, .9f, .01f, false, 20);
 
             // populate with low standard deviation from founder creature
             populateSpecies("cow", 2f, 100, 2000);
@@ -63,7 +63,7 @@ public class EcoDemo1 : DemoInterface
         ecoCreator = new EcosystemEditor(ecosystem);
 
         // set basic ecosystem parameters
-        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, true, false);
+        EcoCreationHelper.setEcoParams(ecoCreator, 10, 32, 50, true, false, true);
 
         // create grass
         EcoCreationHelper.addResource(ecoCreator, "grass", 100, 150, 5, .4f, .5f);

@@ -110,6 +110,11 @@ public class EcosystemEditor
         ecosystem.clusterRenewal = renew;
     }
 
+    public void setUseClusterColors(bool useColors)
+    {
+        ecosystem.useClusterColors = useColors;
+    }
+
     /* add methods */
 
     /// <param name="resourceName">Name of resource: used as key in dictionary.</param>

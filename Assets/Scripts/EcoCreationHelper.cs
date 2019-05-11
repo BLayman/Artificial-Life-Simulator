@@ -160,8 +160,10 @@ class EcoCreationHelper
     /// <param name="renewInterval">The number of steps between each renewal of all resources on all Lands.</param>
     /// <param name="uniformRenewal">Renew resources across entire map.</param>
     /// <param name="clusterRenewal">Only renew resources in the clusters in which they were created (if using clusters to distribute).</param>
+    /// <param name="useClusterColors">Indicated whether or not to use K-Means to cluster into 3 groups, associated with red, green, and blue</param>
+
     public static void setEcoParams(EcosystemEditor ecoEditor, int abilityPtsPerCreat, int commBits,
-                                        int renewInterval, bool uniformRenewal, bool clusterRenewal)
+                                        int renewInterval, bool uniformRenewal, bool clusterRenewal, bool useClusterColors)
     {
         ecoEditor.setAbilityPointsPerCreature(10);
         ecoEditor.setCommBits(4);
@@ -169,6 +171,7 @@ class EcoCreationHelper
         ecoEditor.setRenewInterval(50);
         ecoEditor.setUniformRenewal(uniformRenewal);
         ecoEditor.setClusterRenewal(clusterRenewal);
+        ecoEditor.setUseClusterColors(useClusterColors);
     }
 
 

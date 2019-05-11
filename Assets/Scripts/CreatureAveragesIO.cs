@@ -9,12 +9,9 @@ public class CreatureAveragesIO : MonoBehaviour
 
     const string folder = "WeightAverages";
     const string fileName = "averages.dat";
-    static string persistantPath;
+    public static string persistantPath;
 
-    private void Awake()
-    {
-        persistantPath = Application.persistentDataPath;
-    }
+
 
 
     public static void saveAverages(List<float> weightAverages)

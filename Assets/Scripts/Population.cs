@@ -41,64 +41,9 @@ public class Population
 
     public void calculateWeightStats()
     {
-        weightsByCreature = new List<List<float>>(); // reset for new set of creatures
+        
+        updateWeightsByCreature();
 
-        // store weights of all creatures in 2D list
-        // for the ith creature
-        for (int i = 0; i < creatures.Count; i++)
-        {
-            int creatureWeightIndex = 0; // the index of the the weight out of all weights in a creature
-            // add a list for every creature
-            weightsByCreature.Add(new List<float>());
-
-            // for every node
-            for (int j = 0; j < creatures[i].networks.Count; j++)
-            {
-                foreach (string key in creatures[i].networks[j].Keys)
-                {
-                    // if it's not a phenotype network
-                    if (!key.StartsWith("phenotypeNet"))
-                    {
-                        for (int k = 0; k < creatures[i].networks[j][key].net.Count; k++)
-                        {
-                            for (int l = 0; l < creatures[i].networks[j][key].net[k].Count; l++)
-                            {
-                                bool castWorked = true;
-                                NonInputNode node = null;
-                                // get node and convert it to Non-Input node if possible
-                                try
-                                {
-                                    node = (NonInputNode)creatures[i].networks[j][key].net[k][l];
-                                }
-                                catch (InvalidCastException e)
-                                {
-                                    castWorked = false;
-                                }
-                                // if it is a non-input node
-                                if (castWorked)
-                                {
-                                    // reset creature weights indicies in node
-                                    node.creatureWeightsIndicies = new List<int>();
-
-                                    // for every weight
-                                    for (int m = 0; m < node.weights.Count; m++)
-                                    {
-                                        // add the weight to our weights by creature list
-                                        weightsByCreature[i].Add(node.weights[m]); // store weights by creature and weight index
-                                                                                   // add index of where weights are stored in population to node
-                                        node.creatureWeightsIndicies.Add(creatureWeightIndex);
-                                        creatureWeightIndex++;
-
-                                    }
-                                    //Debug.Log(node.creatureWeightsIndicies.Count);
-                                }
-                            }
-                        }
-                    }
-                    
-                }
-            }
-        }
         // NOTE: only works if all creatures in the population have the same number of weights
         // calculate averages
         List<float> averages = new List<float>();
@@ -175,8 +120,91 @@ public class Population
 
 
         CreatureAveragesIO.saveAverages(weightAverages);
-
+        
     }
+
+    public void initKMeans()
+    {
+        KMeans.createRandomCenters(weightsByCreature);
+        Debug.Log("initializing KMeans");
+    }
+
+    public void runKMeans()
+    {
+        KMeans.runKMeans(weightsByCreature);
+        Debug.Log("updating clusters");
+    }
+
+
+    public void updateColors()
+    {
+        updateWeightsByCreature();
+        Debug.Log("updating colors");
+        KMeans.setColors(weightsByCreature, creatures);
+    }
+
+
+    public void updateWeightsByCreature()
+    {
+        weightsByCreature = new List<List<float>>(); // reset for new set of creatures
+        // store weights of all creatures in 2D list
+        // for the ith creature
+        for (int i = 0; i < creatures.Count; i++)
+        {
+            int creatureWeightIndex = 0; // the index of the the weight out of all weights in a creature
+            // add a list for every creature
+            weightsByCreature.Add(new List<float>());
+
+            // for every node
+            for (int j = 0; j < creatures[i].networks.Count; j++)
+            {
+                foreach (string key in creatures[i].networks[j].Keys)
+                {
+                    // if it's not a phenotype network
+                    if (!key.StartsWith("phenotypeNet"))
+                    {
+                        for (int k = 0; k < creatures[i].networks[j][key].net.Count; k++)
+                        {
+                            for (int l = 0; l < creatures[i].networks[j][key].net[k].Count; l++)
+                            {
+                                bool castWorked = true;
+                                NonInputNode node = null;
+                                // get node and convert it to Non-Input node if possible
+                                try
+                                {
+                                    node = (NonInputNode)creatures[i].networks[j][key].net[k][l];
+                                }
+                                catch (InvalidCastException e)
+                                {
+                                    castWorked = false;
+                                }
+                                // if it is a non-input node
+                                if (castWorked)
+                                {
+                                    // reset creature weights indicies in node
+                                    node.creatureWeightsIndicies = new List<int>();
+
+                                    // for every weight
+                                    for (int m = 0; m < node.weights.Count; m++)
+                                    {
+                                        // add the weight to our weights by creature list
+                                        weightsByCreature[i].Add(node.weights[m]); // store weights by creature and weight index
+                                                                                   // add index of where weights are stored in population to node
+                                        node.creatureWeightsIndicies.Add(creatureWeightIndex);
+                                        creatureWeightIndex++;
+
+                                    }
+                                    //Debug.Log(node.creatureWeightsIndicies.Count);
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
 
     public Population shallowCopy()
     {
