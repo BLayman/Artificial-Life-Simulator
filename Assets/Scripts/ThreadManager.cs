@@ -45,6 +45,14 @@ class ThreadManager : MonoBehaviour
         // I think it only occurs when there are too many debug statements on the child thread, but I'm not sure
         Debug.LogWarning("*********************            thread manager awake                     *************************");
 
+        
+
+    }
+
+
+    public void menuStart(int _demoIndex)
+    {
+        demoIndex = _demoIndex;
         ecoQueue = new LinkedList<Ecosystem>(); // queue for callback functions
 
         // create ecosystem using EcoManager
@@ -69,7 +77,6 @@ class ThreadManager : MonoBehaviour
         CreatureAveragesIO.persistantPath = Application.persistentDataPath;
         unityEco.readySystem();
         visibleResource = unityEco.resourceOptions.Keys.First();
-
     }
 
     public void setVisibleResource(string resource)

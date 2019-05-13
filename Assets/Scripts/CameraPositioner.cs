@@ -12,7 +12,7 @@ public class CameraPositioner : MonoBehaviour
     EcosystemGetter ecoGetter;
 
     // Start is called before the first frame update
-    void Start()
+    public void menuStart()
     {
         ecoGetter = getterObj.GetComponent<EcosystemGetter>();
         int w = ecoGetter.getMapWidth();

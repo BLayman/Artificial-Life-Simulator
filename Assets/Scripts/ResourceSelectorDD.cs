@@ -13,10 +13,15 @@ public class ResourceSelectorDD : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    public void menuStart()
+    {
         List<string> options = new List<string>();
         dropD = gameObject.GetComponent<Dropdown>();
         sys = dataRetriever.GetComponent<EcosystemGetter>().GetEcosystem();
-        foreach(string res in sys.resourceOptions.Keys)
+        foreach (string res in sys.resourceOptions.Keys)
         {
             options.Add(res);
         }

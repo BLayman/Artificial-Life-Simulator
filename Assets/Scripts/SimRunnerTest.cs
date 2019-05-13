@@ -23,10 +23,17 @@ public class SimRunnerTest : MonoBehaviour
     ThreadManager threader;
     int intervalSteps = 1;
     bool paused = false;
+    bool started = false;
     
 
     // Use this for initialization
     void Start()
+    {
+        
+
+    }
+
+    public void menuStart()
     {
         sr = mapSpriteObj.GetComponent<SpriteRenderer>();
         Debug.LogWarning("*******************              simRunner awake              ******************");
@@ -42,7 +49,7 @@ public class SimRunnerTest : MonoBehaviour
         threader.setSteps(intervalSteps);
         // initiate simulation on child thread
         threader.StartEcoSim();
-
+        started = true;
     }
 
     public void flipPaused()
@@ -79,7 +86,7 @@ public class SimRunnerTest : MonoBehaviour
     void Update()
     {
         //Debug.Log(StaticVariables.threadManagerAwake);
-        if (!paused)
+        if (!paused && started)
         {
             elapsedTime += Time.deltaTime;
             // only update every intervalTime seconds

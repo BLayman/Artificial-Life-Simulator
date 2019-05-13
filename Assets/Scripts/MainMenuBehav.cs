@@ -17,8 +17,9 @@ public class MainMenuBehav : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        ecoMenuBehav = ecoMenu.GetComponent<EcoMenuBehav>();
+        // NOT CURRENTLY IN USE
+        //gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        //ecoMenuBehav = ecoMenu.GetComponent<EcoMenuBehav>();
     }
 
     /// <summary>

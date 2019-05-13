@@ -10,6 +10,7 @@ public class EscToExit : MonoBehaviour
     {
         if (Input.GetKey("escape"))
         {
+            Debug.Log("pressed escape");
             Application.Quit();
         }
     }
