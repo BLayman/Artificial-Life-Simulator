@@ -23,11 +23,19 @@ public class TextureUpdater
                 }
                 else
                 {
-                    float proportionStored = map[x][y].propertyDict[visibleResource].getProportionStored();
-                    resourceShade.r = proportionStored;
-                    resourceShade.g = proportionStored;
-                    resourceShade.b = proportionStored;
-
+                    if (visibleResource.Equals("Black"))
+                    {
+                        resourceShade.r = 0;
+                        resourceShade.g = 0;
+                        resourceShade.b = 0;
+                    }
+                    else
+                    {
+                        float proportionStored = map[x][y].propertyDict[visibleResource].getProportionStored();
+                        resourceShade.r = proportionStored;
+                        resourceShade.g = proportionStored;
+                        resourceShade.b = proportionStored;
+                    }
 
                     colors[y * map.Count + x] = resourceShade;
                 }

@@ -131,7 +131,7 @@ public class Population
 
     public void runKMeans()
     {
-        KMeans.runKMeans(weightsByCreature);
+        KMeans.runKMeans(weightsByCreature, creatures);
         Debug.Log("updating clusters");
     }
 

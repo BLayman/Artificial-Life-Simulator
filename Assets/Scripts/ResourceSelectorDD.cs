@@ -20,6 +20,7 @@ public class ResourceSelectorDD : MonoBehaviour
         {
             options.Add(res);
         }
+        options.Add("Black");
         dropD.ClearOptions();
         dropD.AddOptions(options);
 

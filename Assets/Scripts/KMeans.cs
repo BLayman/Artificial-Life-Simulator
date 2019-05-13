@@ -6,7 +6,8 @@ using System;
 public static class KMeans
 {
     public static List<List<float>> centers = new List<List<float>>();
-
+    public static int numOfClusters = 10;
+    public static List<Color> colors = new List<Color>();
 
     public static void createRandomCenters(List<List<float>> weightsByCreature)
     {
@@ -15,17 +16,16 @@ public static class KMeans
         // initialize centers
         centers.Clear();
 
-        // one center for each color: red, green, blue
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < numOfClusters; i++)
         {
-            centers.Add(new List<float>());
+            colors.Add(new Color((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble()));
         }
-
         // set clusters to random points
 
         // for each cluster
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < numOfClusters; i++)
         {
+            centers.Add(new List<float>());
             // for each weight in cluster
             for (int j = 0; j < weightsByCreature[0].Count; j++)
             {
@@ -34,19 +34,21 @@ public static class KMeans
                 centers[i].Add(num);
             }
         }
+
+
     }
 
 
-    public static void runKMeans(List<List<float>> weightsByCreature)
+    public static void runKMeans(List<List<float>> weightsByCreature, List<Creature> creatures)
     {
 
         // TODO: change this into a while loop with a convergence condition
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 5; i++)
         {
 
             // create list to store creatures by the cluster they belong to 
             List<List<List<float>>> creaturesByCluster = new List<List<List<float>>>();
-            for (int n = 0; n < 3; n++)
+            for (int n = 0; n < centers.Count; n++)
             {
                 // Add a list of creatures for each cluster
                 creaturesByCluster.Add(new List<List<float>>());
@@ -80,9 +82,11 @@ public static class KMeans
             // for each cluster
             for (int p = 0; p < creaturesByCluster.Count; p++)
             {
-                // TODO: handle empty clusters
+                //Debug.Log("creatures in cluster " + p + ": " + creaturesByCluster[p].Count);
+                // handle empty clusters
                 if(creaturesByCluster[p].Count == 0)
                 {
+                    //creaturesByCluster.RemoveAt(p);
                     Debug.Log("empty cluster");
                     continue;
                     /*
@@ -94,6 +98,7 @@ public static class KMeans
 
                 // initialize sums to zeros
                 List<float> sums = new List<float>();
+                // the number of sums equals the number of weights in a creature
                 for (int l = 0; l < creaturesByCluster[p][0].Count; l++)
                 {
                     sums.Add(0);
@@ -105,23 +110,18 @@ public static class KMeans
                     // for every weight k in creature j
                     for (int k = 0; k < creaturesByCluster[p][0].Count; k++)
                     {
+                        // sum weights by index
                         sums[k] += creaturesByCluster[p][j][k];
                     }
                 }
-                // TODO: handle case where cluster is empty
-                if (creaturesByCluster[p].Count != 0)
+
+                // divide sums by number of creatures
+                for (int m = 0; m < sums.Count; m++)
                 {
-                    // divide sums by number of creatures
-                    for (int m = 0; m < sums.Count; m++)
-                    {
-                        sums[m] /= creaturesByCluster[p].Count;
-                    }
+                    sums[m] /= creaturesByCluster[p].Count;
                 }
-                else
-                {
-                    Debug.Log("empty cluster");
-                }
-                // now sums are averages
+
+                // now sums are averages (centers was cleared above)
                 centers.Add(sums);
             }
         }
@@ -152,24 +152,23 @@ public static class KMeans
     {
 
         // for every creature
+        // for every creature
         for (int j = 0; j < weightsByCreature.Count; j++)
         {
-            float maxDist = 0;
-            float[] distances = new float[3];
+            int closestCenter = -1;
+            double shortestDist = double.PositiveInfinity;
             // calculate its distance to each center to find the closest center
             for (int k = 0; k < centers.Count; k++)
             {
                 double dist = calcDistance(weightsByCreature[j], centers[k]);
-                //Debug.Log("distance to " + k + " is " + dist);
-                distances[k] = (float) dist;
-                if (dist > maxDist)
+                if (dist < shortestDist)
                 {
-                    maxDist = (float) dist;
+                    shortestDist = dist;
+                    closestCenter = k;
                 }
             }
-            //Debug.Log("max dist: " + maxDist);
             // place creature in its cluster
-            creatures[j].color = new Color(1 - (distances[0] / maxDist), 1 - (distances[1] / maxDist), 1 - (distances[2] / maxDist));
+            creatures[j].color = colors[closestCenter];
         }
 
     }
