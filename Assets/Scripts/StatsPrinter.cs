@@ -11,6 +11,11 @@ public class StatsPrinter : MonoBehaviour
 
     public void printFirstLine(Ecosystem eco)
     {
+        if (!Directory.Exists(".\\OutputFiles"))
+        {
+            Directory.CreateDirectory(".\\OutputFiles");
+        }
+
         if (clearFile)
         {
             File.AppendAllText(fileName, string.Empty);

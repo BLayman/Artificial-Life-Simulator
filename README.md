@@ -24,13 +24,29 @@ The above description is an oversimplification of the process, but should get th
 
 ## Installation
 
-This project is being developed in the Unity game engine. You will need to clone the repository, and then open the project in Unity to edit it. To run a simple demo executable, Unzip the the "ExampleBuilds" folder, or build your own executable in Unity. When running the demo, press ESC to exit the program.
+To run the program and one of the three demos I've created: simply download/clone the repo and then extract the zip file titled, "EcoSimulatorBuild". Within the extracted folder there is an executable titled, "EcoNet". Run this to start the program.
 
-## Basic Use
+To edit the program, you'll need the Unity game engine, which is free. After installing the engine, you can open this project and edit the code with MonoDevelop or VisualStudio. In the future I would like to create a standalone application, since the simulation code is easily decoupled, but for now it is being run with Unity.
 
-There are currently two demos of the program as configured by the EcoDemo1 and EcoDemo2 classes. These files use a number of function calls to set the parameters for the simulation, so it's relatively easy to modify the simulation by changing the parameters. You can choose which demo to run by expanding the "Demos" game object in the Unity Hierarchy, selecting the "SimulationTestRunner" runner object, and setting the demo Index to 1 or 2 in the Unity Inspector.
+## Basic Use and Customization
 
-You can run an experiment by setting the "SimulationTestRunner" to InActive (with the check box) and setting its sibling: "ExperimentRunnerObj" to active. Set parameters for the experiment in the "ExperimentRunner" class.
+There are currently three demos of the program as configured by the EcoDemo1, EcoDemo2, and EcoDemo3 classes. You can choose a demo from the main menu when you start the program. It may take some time to load. These files use a number of function calls to set the parameters for the simulation, so it's relatively easy to modify the simulation by changing the parameters.
+
+You can run an experiment by setting the "SimulationTestRunner" to InActive (with the check box) in the Unity Editor Hierarchy and setting its sibling: "ExperimentRunnerObj" to active. Set parameters for the experiment in the "ExperimentRunner" class.
+
+## Description of Demos
+
+### Demo 1
+
+This is a relatively simple example to demonstrate how a population can adapt to an ecosystem through evolution by natural selection. K-Means clustering is used to show which creatures are genetically similar by assigning them the same color (1 color per cluster). The population starts with a certain amount of genetic variation, and mutation can add further variation to the population (although the mutation rate decreases over time to keep variation from getting out of control). As you can see, many of the clusters of creatures die out, while others are better adapted and survive. Occasionally a cluster will switch colors if it evolves enough before the next clustering step (which occurs every 20 steps). The number of creatures rarely reaches the population cap of 2000, because the "vitamin" resource is required for reproduction, and it has a slow regeneration rate. "grass" can effect cow health when it gets low, but "vitamin" does not.
+
+### Demo 2
+
+This demo was created to show the intricacies of resource flow and to explore cooperation between creatures. It doesn't use clustering, but instead has two species with different neural networks and actions. Each species is dependent on the other to produce a resource that they need. Creatures are able to sense the phenotype and position of their neighbors, which can then guide their behavior. This system uses artificial population caps.
+
+### Demo 3
+
+This demo uses a less abstract example of a system with plants, herbivores, and predators. The plants are green, herbivores blue, and predators red. Herbivores can steal resources from plants (potentially causing them to die) and predators can steal resources from herbivores. Creatures are able to sense the phenotype and position of their neighbors, which can then guide their behavior. This seems to cause herbivores to move less when they are next to plants (they can consume neighboring plants). This system uses artificial population caps.
 
 ## Goals
 
@@ -43,7 +59,13 @@ crossover.
 
 ## Additional Information
 
-The Additional_Resources folder contains a comprehensive poster, and an in depth project report. The Documentation folder contains various forms of documentation for the code. Keep in mind that the documentation isn't complete, but may have useful information for developers. If you are simply planning to create your own system, I would recommend using the documentation in the EcoCreationHelper Documentation folder. As you can see in the EcoDemo classes, much of the ecosystem creation is done through the EcoCreationHelper class. To view the documentation, first download the folder, and then open the index.html file inside the folder with your web browser. 
+The Additional_Resources folder contains a comprehensive poster, and an in depth project report. The Documentation folder contains various forms of documentation for the code. Keep in mind that the documentation isn't complete, but may have useful information for developers. If you are simply planning to create your own system, I would recommend using the documentation in the EcoCreationHelper Documentation folder. As you can see in the EcoDemo classes, much of the ecosystem creation is done through the EcoCreationHelper class. To view the documentation, first download the folder, and then open the index.html file inside the folder with your web browser.
+
+## Future Directions
+
+As you may notice, the simulation can run fairly slowly with a large number of creatures. This is because each creature's neural network is being run in sequence rather than in parallel. Running these neural nets in parallel on the graphics card would dramatically improve performance.
+
+It would also be useful to create a system for saving and loading populations of creatures, so that they can be reused after evolving, and be placed into new systems.
 
 ## License
 License information for this software can be found in LICENSE.txt.
