@@ -24,7 +24,7 @@ The above description is an oversimplification of the process, but should get th
 
 ## Installation
 
-To run the program and one of the three demos I've created: simply download/clone the repo and then extract the zip file titled, "EcoSimulatorBuild". Within the extracted folder there is an executable titled, "EcoNet". Run this to start the program.
+To run the program and one of the three demos I've created: simply download/clone the repo and then extract the zip file titled, "EcoSimulatorBuild". Within the extracted folder there is an executable titled, "EcoNet". Run this to start the program. Press the ESC key to exit the program
 
 To edit the program, you'll need the Unity game engine, which is free. After installing the engine, you can open this project and edit the code with MonoDevelop or VisualStudio. In the future I would like to create a standalone application, since the simulation code is easily decoupled, but for now it is being run with Unity.
 
