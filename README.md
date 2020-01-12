@@ -20,7 +20,9 @@ survival, and certain resources may be necessary for performing certain actions.
 During one step of the simulation, each agent performs a turn. A turn involves running inputs through the agent's neural networks,
 adding the resulting actions to a queue, and then performing as many actions as they can in the time allotted for their turn.
 
-The above description is an oversimplification of the process, but should get the general idea across.
+Part way through a simulation involving herbivores (blue) carnivores (red) and plants (green):
+
+![](/Images/Carnivores_Herbivores_and_Plants.png)
 
 ## Installation
 
