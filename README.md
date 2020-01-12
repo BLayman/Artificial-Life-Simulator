@@ -34,6 +34,8 @@ There are currently three demos of the program as configured by the EcoDemo1, Ec
 
 You can run an experiment by setting the "SimulationTestRunner" to InActive (with the check box) in the Unity Editor Hierarchy and setting its sibling: "ExperimentRunnerObj" to active. Set parameters for the experiment in the "ExperimentRunner" class.
 
+A helpful tip if you're a developer and plan to make major changes: If you're modifying the Creature class or any of the classes it's recursively composed of (of which there are many), then you will have to make sure that any changes are properly handled by the Copier class and it's methods. If you don't, then Creature's won't be copied properly, and you will have mysterious reference issues to try to debug.
+
 ## Description of Demos
 
 ### Demo 1
